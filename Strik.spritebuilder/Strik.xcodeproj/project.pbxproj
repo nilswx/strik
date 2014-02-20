@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
+		835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803B718B67B640008DA0E /* STKNewPlayerController.m */; };
+		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
+		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
+		835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C818B686AD0008DA0E /* STKBootstrapScene.m */; };
 		8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393781E18B5FFA40007BDE4 /* STKCore.m */; };
 		8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782118B5FFB60007BDE4 /* NSObject+Observer.m */; };
 		8393782F18B5FFB60007BDE4 /* STKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782318B5FFB60007BDE4 /* STKController.m */; };
@@ -83,6 +87,14 @@
 /* Begin PBXFileReference section */
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		835803B618B67B640008DA0E /* STKNewPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerController.h; sourceTree = "<group>"; };
+		835803B718B67B640008DA0E /* STKNewPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewPlayerController.m; sourceTree = "<group>"; };
+		835803BA18B67B720008DA0E /* STKNewPlayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerScene.h; sourceTree = "<group>"; };
+		835803BB18B67B720008DA0E /* STKNewPlayerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewPlayerScene.m; sourceTree = "<group>"; };
+		835803C418B6869A0008DA0E /* STKBootstrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBootstrapController.h; sourceTree = "<group>"; };
+		835803C518B6869A0008DA0E /* STKBootstrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapController.m; sourceTree = "<group>"; };
+		835803C718B686AD0008DA0E /* STKBootstrapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBootstrapScene.h; sourceTree = "<group>"; };
+		835803C818B686AD0008DA0E /* STKBootstrapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapScene.m; sourceTree = "<group>"; };
 		8393781D18B5FFA40007BDE4 /* STKCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCore.h; sourceTree = "<group>"; };
 		8393781E18B5FFA40007BDE4 /* STKCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCore.m; sourceTree = "<group>"; };
 		8393782018B5FFB60007BDE4 /* NSObject+Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Observer.h"; sourceTree = "<group>"; };
@@ -205,6 +217,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		835803BD18B686100008DA0E /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				835803C418B6869A0008DA0E /* STKBootstrapController.h */,
+				835803C518B6869A0008DA0E /* STKBootstrapController.m */,
+				835803C718B686AD0008DA0E /* STKBootstrapScene.h */,
+				835803C818B686AD0008DA0E /* STKBootstrapScene.m */,
+			);
+			name = Bootstrap;
+			sourceTree = "<group>";
+		};
 		8393781218B5FE650007BDE4 /* Strik */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +365,7 @@
 		8393785118B601F80007BDE4 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				835803BD18B686100008DA0E /* Bootstrap */,
 				8393789218B6029C0007BDE4 /* Connect */,
 				8393789418B602AD0007BDE4 /* Home */,
 				8393789318B602A60007BDE4 /* New Player */,
@@ -445,6 +469,10 @@
 		8393789318B602A60007BDE4 /* New Player */ = {
 			isa = PBXGroup;
 			children = (
+				835803B618B67B640008DA0E /* STKNewPlayerController.h */,
+				835803B718B67B640008DA0E /* STKNewPlayerController.m */,
+				835803BA18B67B720008DA0E /* STKNewPlayerScene.h */,
+				835803BB18B67B720008DA0E /* STKNewPlayerScene.m */,
 			);
 			name = "New Player";
 			sourceTree = "<group>";
@@ -698,6 +726,7 @@
 				8393787218B6023D0007BDE4 /* STKAvatarPart.m in Sources */,
 				8393784F18B601E60007BDE4 /* NSStack.m in Sources */,
 				8393787B18B6023D0007BDE4 /* STKProgression.m in Sources */,
+				835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */,
 				8393783318B5FFB60007BDE4 /* STKScene.m in Sources */,
 				8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */,
 				8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */,
@@ -706,6 +735,7 @@
 				8393784318B5FFEF0007BDE4 /* STKMessageHandler.m in Sources */,
 				8393787318B6023D0007BDE4 /* STKFriend.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */,
 				8393787A18B6023D0007BDE4 /* STKPowerUp.m in Sources */,
 				8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */,
 				8393788F18B602730007BDE4 /* STKMatchController.m in Sources */,
@@ -719,11 +749,13 @@
 				8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */,
 				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,
 				8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */,
+				835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */,
 				8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */,
 				8393787718B6023D0007BDE4 /* STKMatch.m in Sources */,
 				8393787C18B6023D0007BDE4 /* STKTrophy.m in Sources */,
 				8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */,
 				8393787F18B602500007BDE4 /* STKAlertView.m in Sources */,
+				835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */,
 				839378A318B60B090007BDE4 /* STKTile.m in Sources */,
 				8393787418B6023D0007BDE4 /* STKInventory.m in Sources */,
 				8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */,

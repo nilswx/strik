@@ -11,7 +11,7 @@
 #import "STKScene.h"
 #import "STKSceneController.h"
 
-#import "STKConnectController.h"
+#import "STKBootstrapController.h"
 
 @interface STKDirector()
 
@@ -116,7 +116,7 @@
 - (STKScene *)bootstrapScene
 {
 	// First setup the boot scene
-	self.sceneController = [STKConnectController new];
+	self.sceneController = [STKBootstrapController new];
 	self.scene = self.sceneController.scene;
 	
 	// Set core, don't want one without one

@@ -1,5 +1,5 @@
 //
-//  STKConnectController.h
+//  STKNewPlayerController.h
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 20/02/14.
@@ -8,8 +8,6 @@
 
 #import "STKSceneController.h"
 
-@interface STKConnectController : STKSceneController
-
-- (void)connectToServer;
+@interface STKNewPlayerController : STKSceneController
 
 @end

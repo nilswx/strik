@@ -28,6 +28,11 @@
 	[self performSelector:@selector(animateDots) withObject:nil afterDelay:0];
 }
 
+- (void)sceneWillEnd
+{
+	self.connecting = NO;
+}
+
 // Just changes between 1, 2 or 3 dots while connecting.
 - (void)animateDots
 {

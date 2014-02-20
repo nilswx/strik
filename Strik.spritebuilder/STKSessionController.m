@@ -60,7 +60,6 @@
 
 - (void)createNewPlayer
 {
-	// Jews in the oven, 5000 degrees!
 	NSLog(@"Session: requesting new player account...");
 	
 	// Request a new user account (receive CREDENTIALS = register OK)

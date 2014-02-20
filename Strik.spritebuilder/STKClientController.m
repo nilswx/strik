@@ -15,6 +15,8 @@
 #import "STKCore.h"
 #import "STKSessionController.h"
 
+#import "STKNewPlayerController.h"
+
 #import "STKIncomingMessage.h"
 #import "STKOutgoingMessage.h"
 
@@ -72,7 +74,7 @@
 		if(!session)
 		{
 			STKDirector *director = self.core[@"director"];
-//			[director replaceScene:[STKNewPlayerController new]];
+			[director replaceScene:[STKNewPlayerController new]];
 		}
 		else
 		{

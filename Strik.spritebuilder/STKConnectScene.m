@@ -24,8 +24,7 @@
 {
 	self.connecting = YES;
 	
-	// Start the connection animation
-	[self performSelector:@selector(animateDots) withObject:nil afterDelay:0];
+	[self animateDots];
 }
 
 - (void)sceneWillEnd

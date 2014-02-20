@@ -587,8 +587,9 @@
 		B77F1B2617B978D7009739AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = STK;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = Apportable;
+				ORGANIZATIONNAME = Strik;
 				TargetAttributes = {
 					B77F1B2D17B978D7009739AE = {
 						DevelopmentTeam = 7CTG6SL6FJ;

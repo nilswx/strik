@@ -57,3 +57,8 @@ doxygenWarnings.txt
 *.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
 */xcuserdata/*
 *.xcodeproj/User\ Data/*
+*/xcworkspace/xcshareddata*
+
+# spritebuilder
+*.ppng
+

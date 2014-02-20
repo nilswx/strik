@@ -59,6 +59,8 @@ doxygenWarnings.txt
 *.xcodeproj/User\ Data/*
 *xcworkspace/xcshareddata*
 
-# spritebuilder
-*.ppng
+# Kill all the xcuserdata
+*xcuserdata*
 
+# SpriteBuilder
+*.ppng

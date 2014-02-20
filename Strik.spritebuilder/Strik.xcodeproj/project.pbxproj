@@ -8,13 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
+		8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393781E18B5FFA40007BDE4 /* STKCore.m */; };
+		8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782118B5FFB60007BDE4 /* NSObject+Observer.m */; };
+		8393782F18B5FFB60007BDE4 /* STKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782318B5FFB60007BDE4 /* STKController.m */; };
+		8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782518B5FFB60007BDE4 /* STKDirector.m */; };
+		8393783118B5FFB60007BDE4 /* STKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782718B5FFB60007BDE4 /* STKModel.m */; };
+		8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782918B5FFB60007BDE4 /* STKRemoteServerChallenge.m */; };
+		8393783318B5FFB60007BDE4 /* STKScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782B18B5FFB60007BDE4 /* STKScene.m */; };
+		8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782D18B5FFB60007BDE4 /* STKSceneController.m */; };
+		8393783A18B5FFDC0007BDE4 /* STKNetConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393783918B5FFDC0007BDE4 /* STKNetConnection.m */; };
+		8393783D18B5FFE50007BDE4 /* RC4.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393783C18B5FFE50007BDE4 /* RC4.m */; };
+		8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393783F18B5FFEF0007BDE4 /* STKMessageCenter.m */; };
+		8393784318B5FFEF0007BDE4 /* STKMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393784118B5FFEF0007BDE4 /* STKMessageHandler.m */; };
+		8393784818B5FFF80007BDE4 /* STKIncomingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393784518B5FFF80007BDE4 /* STKIncomingMessage.m */; };
+		8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393784718B5FFF80007BDE4 /* STKOutgoingMessage.m */; };
+		8393784F18B601E60007BDE4 /* NSStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393784E18B601E60007BDE4 /* NSStack.m */; };
+		8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393785A18B6023D0007BDE4 /* STKAvatar.m */; };
+		8393787218B6023D0007BDE4 /* STKAvatarPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393785C18B6023D0007BDE4 /* STKAvatarPart.m */; };
+		8393787318B6023D0007BDE4 /* STKFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393785E18B6023D0007BDE4 /* STKFriend.m */; };
+		8393787418B6023D0007BDE4 /* STKInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786018B6023D0007BDE4 /* STKInventory.m */; };
+		8393787518B6023D0007BDE4 /* STKItemRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786218B6023D0007BDE4 /* STKItemRegistry.m */; };
+		8393787618B6023D0007BDE4 /* STKItemType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786418B6023D0007BDE4 /* STKItemType.m */; };
+		8393787718B6023D0007BDE4 /* STKMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786618B6023D0007BDE4 /* STKMatch.m */; };
+		8393787818B6023D0007BDE4 /* STKMatchPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786818B6023D0007BDE4 /* STKMatchPlayer.m */; };
+		8393787918B6023D0007BDE4 /* STKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786A18B6023D0007BDE4 /* STKPlayer.m */; };
+		8393787A18B6023D0007BDE4 /* STKPowerUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786C18B6023D0007BDE4 /* STKPowerUp.m */; };
+		8393787B18B6023D0007BDE4 /* STKProgression.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786E18B6023D0007BDE4 /* STKProgression.m */; };
+		8393787C18B6023D0007BDE4 /* STKTrophy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393787018B6023D0007BDE4 /* STKTrophy.m */; };
+		8393787F18B602500007BDE4 /* STKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393787E18B602500007BDE4 /* STKAlertView.m */; };
+		8393788C18B602730007BDE4 /* STKClientController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788118B602730007BDE4 /* STKClientController.m */; };
+		8393788D18B602730007BDE4 /* STKFacebookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788318B602730007BDE4 /* STKFacebookController.m */; };
+		8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788518B602730007BDE4 /* STKInAppPurchasesController.m */; };
+		8393788F18B602730007BDE4 /* STKMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788718B602730007BDE4 /* STKMatchController.m */; };
+		8393789018B602730007BDE4 /* STKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788918B602730007BDE4 /* STKSessionController.m */; };
+		8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */; };
+		8393789C18B60A260007BDE4 /* STKLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789B18B60A260007BDE4 /* STKLoadingController.m */; };
+		8393789F18B60A340007BDE4 /* STKLoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789E18B60A340007BDE4 /* STKLoadingScene.m */; };
+		839378A318B60B090007BDE4 /* STKTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A218B60B090007BDE4 /* STKTile.m */; };
+		839378A618B60B180007BDE4 /* STKBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A518B60B180007BDE4 /* STKBoard.m */; };
 		83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6024818B4DA1100AC2EB1 /* Images.xcassets */; };
 		83F6024B18B4DF3E00AC2EB1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F6024A18B4DF3E00AC2EB1 /* StoreKit.framework */; };
 		B737893B180761570076A88C /* Published-iOS in Resources */ = {isa = PBXBuildFile; fileRef = B737893A180761570076A88C /* Published-iOS */; };
 		B737893F1807617C0076A88C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		B73789871807631A0076A88C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B73789851807631A0076A88C /* main.m */; };
 		B737898A1807642B0076A88C /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B737894B180761A90076A88C /* libcocos2d.a */; };
-		B7378994180767190076A88C /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B7378993180767190076A88C /* MainScene.m */; };
 		B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3317B978D7009739AE /* OpenGLES.framework */; };
 		B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -46,6 +83,84 @@
 /* Begin PBXFileReference section */
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8393781D18B5FFA40007BDE4 /* STKCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCore.h; sourceTree = "<group>"; };
+		8393781E18B5FFA40007BDE4 /* STKCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCore.m; sourceTree = "<group>"; };
+		8393782018B5FFB60007BDE4 /* NSObject+Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Observer.h"; sourceTree = "<group>"; };
+		8393782118B5FFB60007BDE4 /* NSObject+Observer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Observer.m"; sourceTree = "<group>"; };
+		8393782218B5FFB60007BDE4 /* STKController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKController.h; sourceTree = "<group>"; };
+		8393782318B5FFB60007BDE4 /* STKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKController.m; sourceTree = "<group>"; };
+		8393782418B5FFB60007BDE4 /* STKDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDirector.h; sourceTree = "<group>"; };
+		8393782518B5FFB60007BDE4 /* STKDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDirector.m; sourceTree = "<group>"; };
+		8393782618B5FFB60007BDE4 /* STKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKModel.h; sourceTree = "<group>"; };
+		8393782718B5FFB60007BDE4 /* STKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKModel.m; sourceTree = "<group>"; };
+		8393782818B5FFB60007BDE4 /* STKRemoteServerChallenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKRemoteServerChallenge.h; sourceTree = "<group>"; };
+		8393782918B5FFB60007BDE4 /* STKRemoteServerChallenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKRemoteServerChallenge.m; sourceTree = "<group>"; };
+		8393782A18B5FFB60007BDE4 /* STKScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKScene.h; sourceTree = "<group>"; };
+		8393782B18B5FFB60007BDE4 /* STKScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKScene.m; sourceTree = "<group>"; };
+		8393782C18B5FFB60007BDE4 /* STKSceneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSceneController.h; sourceTree = "<group>"; };
+		8393782D18B5FFB60007BDE4 /* STKSceneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSceneController.m; sourceTree = "<group>"; };
+		8393783818B5FFDC0007BDE4 /* STKNetConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNetConnection.h; sourceTree = "<group>"; };
+		8393783918B5FFDC0007BDE4 /* STKNetConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNetConnection.m; sourceTree = "<group>"; };
+		8393783B18B5FFE50007BDE4 /* RC4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RC4.h; sourceTree = "<group>"; };
+		8393783C18B5FFE50007BDE4 /* RC4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RC4.m; sourceTree = "<group>"; };
+		8393783E18B5FFEF0007BDE4 /* STKMessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMessageCenter.h; sourceTree = "<group>"; };
+		8393783F18B5FFEF0007BDE4 /* STKMessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMessageCenter.m; sourceTree = "<group>"; };
+		8393784018B5FFEF0007BDE4 /* STKMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMessageHandler.h; sourceTree = "<group>"; };
+		8393784118B5FFEF0007BDE4 /* STKMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMessageHandler.m; sourceTree = "<group>"; };
+		8393784418B5FFF80007BDE4 /* STKIncomingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKIncomingMessage.h; sourceTree = "<group>"; };
+		8393784518B5FFF80007BDE4 /* STKIncomingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKIncomingMessage.m; sourceTree = "<group>"; };
+		8393784618B5FFF80007BDE4 /* STKOutgoingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKOutgoingMessage.h; sourceTree = "<group>"; };
+		8393784718B5FFF80007BDE4 /* STKOutgoingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKOutgoingMessage.m; sourceTree = "<group>"; };
+		8393784D18B601E60007BDE4 /* NSStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStack.h; sourceTree = "<group>"; };
+		8393784E18B601E60007BDE4 /* NSStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStack.m; sourceTree = "<group>"; };
+		8393785318B6020E0007BDE4 /* STKIncomingOpcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STKIncomingOpcode.h; sourceTree = "<group>"; };
+		8393785418B6020E0007BDE4 /* STKOutgoingOpcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STKOutgoingOpcode.h; sourceTree = "<group>"; };
+		8393785918B6023D0007BDE4 /* STKAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatar.h; sourceTree = "<group>"; };
+		8393785A18B6023D0007BDE4 /* STKAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatar.m; sourceTree = "<group>"; };
+		8393785B18B6023D0007BDE4 /* STKAvatarPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatarPart.h; sourceTree = "<group>"; };
+		8393785C18B6023D0007BDE4 /* STKAvatarPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatarPart.m; sourceTree = "<group>"; };
+		8393785D18B6023D0007BDE4 /* STKFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKFriend.h; sourceTree = "<group>"; };
+		8393785E18B6023D0007BDE4 /* STKFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKFriend.m; sourceTree = "<group>"; };
+		8393785F18B6023D0007BDE4 /* STKInventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKInventory.h; sourceTree = "<group>"; };
+		8393786018B6023D0007BDE4 /* STKInventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKInventory.m; sourceTree = "<group>"; };
+		8393786118B6023D0007BDE4 /* STKItemRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKItemRegistry.h; sourceTree = "<group>"; };
+		8393786218B6023D0007BDE4 /* STKItemRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKItemRegistry.m; sourceTree = "<group>"; };
+		8393786318B6023D0007BDE4 /* STKItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKItemType.h; sourceTree = "<group>"; };
+		8393786418B6023D0007BDE4 /* STKItemType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKItemType.m; sourceTree = "<group>"; };
+		8393786518B6023D0007BDE4 /* STKMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMatch.h; sourceTree = "<group>"; };
+		8393786618B6023D0007BDE4 /* STKMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMatch.m; sourceTree = "<group>"; };
+		8393786718B6023D0007BDE4 /* STKMatchPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMatchPlayer.h; sourceTree = "<group>"; };
+		8393786818B6023D0007BDE4 /* STKMatchPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMatchPlayer.m; sourceTree = "<group>"; };
+		8393786918B6023D0007BDE4 /* STKPLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKPLayer.h; sourceTree = "<group>"; };
+		8393786A18B6023D0007BDE4 /* STKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKPlayer.m; sourceTree = "<group>"; };
+		8393786B18B6023D0007BDE4 /* STKPowerUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKPowerUp.h; sourceTree = "<group>"; };
+		8393786C18B6023D0007BDE4 /* STKPowerUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKPowerUp.m; sourceTree = "<group>"; };
+		8393786D18B6023D0007BDE4 /* STKProgression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKProgression.h; sourceTree = "<group>"; };
+		8393786E18B6023D0007BDE4 /* STKProgression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKProgression.m; sourceTree = "<group>"; };
+		8393786F18B6023D0007BDE4 /* STKTrophy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTrophy.h; sourceTree = "<group>"; };
+		8393787018B6023D0007BDE4 /* STKTrophy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTrophy.m; sourceTree = "<group>"; };
+		8393787D18B602500007BDE4 /* STKAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAlertView.h; sourceTree = "<group>"; };
+		8393787E18B602500007BDE4 /* STKAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAlertView.m; sourceTree = "<group>"; };
+		8393788018B602730007BDE4 /* STKClientController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKClientController.h; sourceTree = "<group>"; };
+		8393788118B602730007BDE4 /* STKClientController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKClientController.m; sourceTree = "<group>"; };
+		8393788218B602730007BDE4 /* STKFacebookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKFacebookController.h; sourceTree = "<group>"; };
+		8393788318B602730007BDE4 /* STKFacebookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKFacebookController.m; sourceTree = "<group>"; };
+		8393788418B602730007BDE4 /* STKInAppPurchasesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKInAppPurchasesController.h; sourceTree = "<group>"; };
+		8393788518B602730007BDE4 /* STKInAppPurchasesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKInAppPurchasesController.m; sourceTree = "<group>"; };
+		8393788618B602730007BDE4 /* STKMatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMatchController.h; sourceTree = "<group>"; };
+		8393788718B602730007BDE4 /* STKMatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMatchController.m; sourceTree = "<group>"; };
+		8393788818B602730007BDE4 /* STKSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSessionController.h; sourceTree = "<group>"; };
+		8393788918B602730007BDE4 /* STKSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSessionController.m; sourceTree = "<group>"; };
+		8393788A18B602730007BDE4 /* STKTileSelectionBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTileSelectionBuffer.h; sourceTree = "<group>"; };
+		8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTileSelectionBuffer.m; sourceTree = "<group>"; };
+		8393789A18B60A260007BDE4 /* STKLoadingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLoadingController.h; sourceTree = "<group>"; };
+		8393789B18B60A260007BDE4 /* STKLoadingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLoadingController.m; sourceTree = "<group>"; };
+		8393789D18B60A340007BDE4 /* STKLoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLoadingScene.h; sourceTree = "<group>"; };
+		8393789E18B60A340007BDE4 /* STKLoadingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLoadingScene.m; sourceTree = "<group>"; };
+		839378A118B60B090007BDE4 /* STKTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTile.h; sourceTree = "<group>"; };
+		839378A218B60B090007BDE4 /* STKTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTile.m; sourceTree = "<group>"; };
+		839378A418B60B180007BDE4 /* STKBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBoard.h; sourceTree = "<group>"; };
+		839378A518B60B180007BDE4 /* STKBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBoard.m; sourceTree = "<group>"; };
 		83F6024818B4DA1100AC2EB1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Strik/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		83F6024A18B4DF3E00AC2EB1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B737893A180761570076A88C /* Published-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Published-iOS"; path = "Source/Resources/Published-iOS"; sourceTree = SOURCE_ROOT; };
@@ -54,8 +169,6 @@
 		B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "Source/libs/cocos2d-iphone/cocos2d-ios.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		B73789851807631A0076A88C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
 		B73789861807631A0076A88C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = SOURCE_ROOT; };
-		B7378992180767190076A88C /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainScene.h; path = Source/MainScene.h; sourceTree = "<group>"; };
-		B7378993180767190076A88C /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainScene.m; path = Source/MainScene.m; sourceTree = "<group>"; };
 		B77F1B2E17B978D7009739AE /* Strik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Strik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B77F1B3117B978D7009739AE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B77F1B3317B978D7009739AE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -92,23 +205,311 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9222E2B918734FF800A246C7 /* libs */ = {
+		8393781218B5FE650007BDE4 /* Strik */ = {
 			isa = PBXGroup;
 			children = (
-				B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */,
+				8393781A18B5FEB30007BDE4 /* App */,
+				8393781918B5FEAE0007BDE4 /* Assets */,
+				8393781818B5FEA90007BDE4 /* Core */,
+				8393781718B5FEA50007BDE4 /* Game */,
 			);
-			name = libs;
+			name = Strik;
 			sourceTree = "<group>";
 		};
-		B737893C1807616C0076A88C /* Source */ = {
+		8393781718B5FEA50007BDE4 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8393785218B601FC0007BDE4 /* Global */,
+				8393785118B601F80007BDE4 /* Scenes */,
+				8393785018B601F20007BDE4 /* Opcodes */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		8393781818B5FEA90007BDE4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8393781D18B5FFA40007BDE4 /* STKCore.h */,
+				8393781E18B5FFA40007BDE4 /* STKCore.m */,
+				8393781C18B5FF950007BDE4 /* MSCD */,
+				8393781B18B5FF900007BDE4 /* Network */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		8393781918B5FEAE0007BDE4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				83F6024818B4DA1100AC2EB1 /* Images.xcassets */,
+				B737893A180761570076A88C /* Published-iOS */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		8393781A18B5FEB30007BDE4 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
-				B7378992180767190076A88C /* MainScene.h */,
-				B7378993180767190076A88C /* MainScene.m */,
+				B73789851807631A0076A88C /* main.m */,
+				B73789861807631A0076A88C /* Prefix.pch */,
 			);
-			name = Source;
+			name = App;
+			sourceTree = "<group>";
+		};
+		8393781B18B5FF900007BDE4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8393783818B5FFDC0007BDE4 /* STKNetConnection.h */,
+				8393783918B5FFDC0007BDE4 /* STKNetConnection.m */,
+				8393783718B5FFD00007BDE4 /* Security */,
+				8393783618B5FFCB0007BDE4 /* Messaging */,
+				8393783518B5FFC70007BDE4 /* Messages */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		8393781C18B5FF950007BDE4 /* MSCD */ = {
+			isa = PBXGroup;
+			children = (
+				8393782018B5FFB60007BDE4 /* NSObject+Observer.h */,
+				8393782118B5FFB60007BDE4 /* NSObject+Observer.m */,
+				8393782218B5FFB60007BDE4 /* STKController.h */,
+				8393782318B5FFB60007BDE4 /* STKController.m */,
+				8393782418B5FFB60007BDE4 /* STKDirector.h */,
+				8393782518B5FFB60007BDE4 /* STKDirector.m */,
+				8393782618B5FFB60007BDE4 /* STKModel.h */,
+				8393782718B5FFB60007BDE4 /* STKModel.m */,
+				8393782818B5FFB60007BDE4 /* STKRemoteServerChallenge.h */,
+				8393782918B5FFB60007BDE4 /* STKRemoteServerChallenge.m */,
+				8393782A18B5FFB60007BDE4 /* STKScene.h */,
+				8393782B18B5FFB60007BDE4 /* STKScene.m */,
+				8393782C18B5FFB60007BDE4 /* STKSceneController.h */,
+				8393782D18B5FFB60007BDE4 /* STKSceneController.m */,
+			);
+			name = MSCD;
+			sourceTree = "<group>";
+		};
+		8393783518B5FFC70007BDE4 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8393784418B5FFF80007BDE4 /* STKIncomingMessage.h */,
+				8393784518B5FFF80007BDE4 /* STKIncomingMessage.m */,
+				8393784618B5FFF80007BDE4 /* STKOutgoingMessage.h */,
+				8393784718B5FFF80007BDE4 /* STKOutgoingMessage.m */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		8393783618B5FFCB0007BDE4 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				8393783E18B5FFEF0007BDE4 /* STKMessageCenter.h */,
+				8393783F18B5FFEF0007BDE4 /* STKMessageCenter.m */,
+				8393784018B5FFEF0007BDE4 /* STKMessageHandler.h */,
+				8393784118B5FFEF0007BDE4 /* STKMessageHandler.m */,
+			);
+			name = Messaging;
+			sourceTree = "<group>";
+		};
+		8393783718B5FFD00007BDE4 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				8393783B18B5FFE50007BDE4 /* RC4.h */,
+				8393783C18B5FFE50007BDE4 /* RC4.m */,
+			);
+			name = Security;
+			sourceTree = "<group>";
+		};
+		8393784C18B601DA0007BDE4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8393784D18B601E60007BDE4 /* NSStack.h */,
+				8393784E18B601E60007BDE4 /* NSStack.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		8393785018B601F20007BDE4 /* Opcodes */ = {
+			isa = PBXGroup;
+			children = (
+				8393785318B6020E0007BDE4 /* STKIncomingOpcode.h */,
+				8393785418B6020E0007BDE4 /* STKOutgoingOpcode.h */,
+			);
+			name = Opcodes;
+			sourceTree = "<group>";
+		};
+		8393785118B601F80007BDE4 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8393789218B6029C0007BDE4 /* Loading */,
+				8393789418B602AD0007BDE4 /* Home */,
+				8393789318B602A60007BDE4 /* New Player */,
+				8393789518B602B50007BDE4 /* Achievements */,
+				8393789618B602BD0007BDE4 /* Lobby */,
+				8393789718B602E20007BDE4 /* VS */,
+				8393789818B602E70007BDE4 /* Game */,
+				8393789918B602EC0007BDE4 /* End Game */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		8393785218B601FC0007BDE4 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				8393785818B602300007BDE4 /* Models */,
+				8393785718B6022C0007BDE4 /* Views */,
+				8393785618B602260007BDE4 /* Controllers */,
+				8393785518B6021C0007BDE4 /* Nodes */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		8393785518B6021C0007BDE4 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		8393785618B602260007BDE4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8393788018B602730007BDE4 /* STKClientController.h */,
+				8393788118B602730007BDE4 /* STKClientController.m */,
+				8393788218B602730007BDE4 /* STKFacebookController.h */,
+				8393788318B602730007BDE4 /* STKFacebookController.m */,
+				8393788418B602730007BDE4 /* STKInAppPurchasesController.h */,
+				8393788518B602730007BDE4 /* STKInAppPurchasesController.m */,
+				8393788618B602730007BDE4 /* STKMatchController.h */,
+				8393788718B602730007BDE4 /* STKMatchController.m */,
+				8393788818B602730007BDE4 /* STKSessionController.h */,
+				8393788918B602730007BDE4 /* STKSessionController.m */,
+				8393788A18B602730007BDE4 /* STKTileSelectionBuffer.h */,
+				8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8393785718B6022C0007BDE4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8393787D18B602500007BDE4 /* STKAlertView.h */,
+				8393787E18B602500007BDE4 /* STKAlertView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8393785818B602300007BDE4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8393785918B6023D0007BDE4 /* STKAvatar.h */,
+				8393785A18B6023D0007BDE4 /* STKAvatar.m */,
+				8393785B18B6023D0007BDE4 /* STKAvatarPart.h */,
+				8393785C18B6023D0007BDE4 /* STKAvatarPart.m */,
+				8393785D18B6023D0007BDE4 /* STKFriend.h */,
+				8393785E18B6023D0007BDE4 /* STKFriend.m */,
+				8393785F18B6023D0007BDE4 /* STKInventory.h */,
+				8393786018B6023D0007BDE4 /* STKInventory.m */,
+				8393786118B6023D0007BDE4 /* STKItemRegistry.h */,
+				8393786218B6023D0007BDE4 /* STKItemRegistry.m */,
+				8393786318B6023D0007BDE4 /* STKItemType.h */,
+				8393786418B6023D0007BDE4 /* STKItemType.m */,
+				8393786518B6023D0007BDE4 /* STKMatch.h */,
+				8393786618B6023D0007BDE4 /* STKMatch.m */,
+				8393786718B6023D0007BDE4 /* STKMatchPlayer.h */,
+				8393786818B6023D0007BDE4 /* STKMatchPlayer.m */,
+				8393786918B6023D0007BDE4 /* STKPLayer.h */,
+				8393786A18B6023D0007BDE4 /* STKPlayer.m */,
+				8393786B18B6023D0007BDE4 /* STKPowerUp.h */,
+				8393786C18B6023D0007BDE4 /* STKPowerUp.m */,
+				8393786D18B6023D0007BDE4 /* STKProgression.h */,
+				8393786E18B6023D0007BDE4 /* STKProgression.m */,
+				8393786F18B6023D0007BDE4 /* STKTrophy.h */,
+				8393787018B6023D0007BDE4 /* STKTrophy.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8393789218B6029C0007BDE4 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				8393789A18B60A260007BDE4 /* STKLoadingController.h */,
+				8393789B18B60A260007BDE4 /* STKLoadingController.m */,
+				8393789D18B60A340007BDE4 /* STKLoadingScene.h */,
+				8393789E18B60A340007BDE4 /* STKLoadingScene.m */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
+		8393789318B602A60007BDE4 /* New Player */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Player";
+			sourceTree = "<group>";
+		};
+		8393789418B602AD0007BDE4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		8393789518B602B50007BDE4 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Achievements;
+			sourceTree = "<group>";
+		};
+		8393789618B602BD0007BDE4 /* Lobby */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Lobby;
+			sourceTree = "<group>";
+		};
+		8393789718B602E20007BDE4 /* VS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = VS;
+			sourceTree = "<group>";
+		};
+		8393789818B602E70007BDE4 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				839378A018B60AF90007BDE4 /* Board */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		8393789918B602EC0007BDE4 /* End Game */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "End Game";
+			sourceTree = "<group>";
+		};
+		839378A018B60AF90007BDE4 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				839378A418B60B180007BDE4 /* STKBoard.h */,
+				839378A518B60B180007BDE4 /* STKBoard.m */,
+				839378A118B60B090007BDE4 /* STKTile.h */,
+				839378A218B60B090007BDE4 /* STKTile.m */,
+			);
+			name = Board;
+			sourceTree = "<group>";
+		};
+		9222E2B918734FF800A246C7 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				8393784C18B601DA0007BDE4 /* Utils */,
+				B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */,
+			);
+			name = Libs;
 			sourceTree = "<group>";
 		};
 		B7378941180761A80076A88C /* Products */ = {
@@ -122,10 +523,8 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
-				B737893C1807616C0076A88C /* Source */,
-				B77F1B4617B978D7009739AE /* Resources */,
-				9222E2B918734FF800A246C7 /* libs */,
-				B77F1CCF17B978D8009739AE /* Supporting Files */,
+				8393781218B5FE650007BDE4 /* Strik */,
+				9222E2B918734FF800A246C7 /* Libs */,
 				B77F1B3017B978D7009739AE /* Frameworks */,
 				B77F1B2F17B978D7009739AE /* Products */,
 				1E96447CB20243C193EC8885 /* Pods.xcconfig */,
@@ -157,25 +556,6 @@
 				6F9DC8090A134F69888D13FD /* libPods.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B77F1B4617B978D7009739AE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				83F6024818B4DA1100AC2EB1 /* Images.xcassets */,
-				B737893A180761570076A88C /* Published-iOS */,
-			);
-			name = Resources;
-			path = Source/Resources;
-			sourceTree = "<group>";
-		};
-		B77F1CCF17B978D8009739AE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B73789851807631A0076A88C /* main.m */,
-				B73789861807631A0076A88C /* Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,9 +686,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8393783118B5FFB60007BDE4 /* STKModel.m in Sources */,
+				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
-				B7378994180767190076A88C /* MainScene.m in Sources */,
+				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
+				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
+				8393788C18B602730007BDE4 /* STKClientController.m in Sources */,
+				8393783D18B5FFE50007BDE4 /* RC4.m in Sources */,
+				8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */,
+				8393787218B6023D0007BDE4 /* STKAvatarPart.m in Sources */,
+				8393784F18B601E60007BDE4 /* NSStack.m in Sources */,
+				8393787B18B6023D0007BDE4 /* STKProgression.m in Sources */,
+				8393783318B5FFB60007BDE4 /* STKScene.m in Sources */,
+				8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */,
+				8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */,
+				8393787918B6023D0007BDE4 /* STKPlayer.m in Sources */,
+				8393789018B602730007BDE4 /* STKSessionController.m in Sources */,
+				8393784318B5FFEF0007BDE4 /* STKMessageHandler.m in Sources */,
+				8393787318B6023D0007BDE4 /* STKFriend.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				8393787A18B6023D0007BDE4 /* STKPowerUp.m in Sources */,
+				8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */,
+				8393788F18B602730007BDE4 /* STKMatchController.m in Sources */,
+				8393788D18B602730007BDE4 /* STKFacebookController.m in Sources */,
+				839378A618B60B180007BDE4 /* STKBoard.m in Sources */,
+				8393783A18B5FFDC0007BDE4 /* STKNetConnection.m in Sources */,
+				8393784818B5FFF80007BDE4 /* STKIncomingMessage.m in Sources */,
+				8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */,
+				8393787518B6023D0007BDE4 /* STKItemRegistry.m in Sources */,
+				8393787818B6023D0007BDE4 /* STKMatchPlayer.m in Sources */,
+				8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */,
+				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,
+				8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */,
+				8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */,
+				8393787718B6023D0007BDE4 /* STKMatch.m in Sources */,
+				8393787C18B6023D0007BDE4 /* STKTrophy.m in Sources */,
+				8393789F18B60A340007BDE4 /* STKLoadingScene.m in Sources */,
+				8393787F18B602500007BDE4 /* STKAlertView.m in Sources */,
+				839378A318B60B090007BDE4 /* STKTile.m in Sources */,
+				8393787418B6023D0007BDE4 /* STKInventory.m in Sources */,
+				8393789C18B60A260007BDE4 /* STKLoadingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

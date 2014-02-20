@@ -28,11 +28,27 @@
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
 
+#import "STKCore.h"
+#import "STKDirector.h"
+#import "STKInAppPurchasesController.h"
+#import "STKFacebookController.h"
+#import "STKClientController.h"
+#import "STKScene.h"
+
+#import <Facebook.h>
+
+@interface AppController()
+
+@property STKCore *core;
+
+@end
+
 @implementation AppController
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Configure Cocos2d with the options set in SpriteBuilder
+	// Setup Cocos2D and Spritebuilder related settings
+	// Configure Cocos2d with the options set in SpriteBuilder
     NSString* configPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Published-iOS"]; // TODO: add support for Published-Android support
     configPath = [configPath stringByAppendingPathComponent:@"configCocos2d.plist"];
     
@@ -51,15 +67,44 @@
     
     // Do any extra configuration of Cocos2d here (the example line changes the pixel format for faster rendering, but with less colors)
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
-    
-    [self setupCocos2dWithOptions:cocos2dSetup];
-    
+		
+	// Setup game structure
+	[self setupCoreComponents];
+	
+	// Start cocos
+	[self setupCocos2dWithOptions:cocos2dSetup];
+	
     return YES;
+}
+
+- (void)setupCoreComponents
+{
+	self.core = [STKCore new];
+	
+	// Setup the STKDirector
+	[self.core installComponent:[STKDirector new]];
+	
+	// In App Purchases
+	[self.core installComponent:[STKInAppPurchasesController new] withKey:@"iap"];
+	
+	// We also want Facebook
+	[self.core installComponent:[STKFacebookController new]];
+	
+	// Plug client controller
+	[self.core installComponent:[STKClientController new]];
 }
 
 - (CCScene*) startScene
 {
-    return [CCBReader loadAsScene:@"MainScene"];
+    STKDirector *spielberg = self.core[@"director"];
+	return [spielberg bootstrapScene].cocosScene;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	// We need to properly handle activation of the application with regards to Facebook Login
+	// (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
+	[[FBSession activeSession] handleDidBecomeActive];
 }
 
 @end

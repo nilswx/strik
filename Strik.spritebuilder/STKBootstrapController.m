@@ -14,7 +14,12 @@
 
 - (void)enterTransitionDidFinish
 {
-	// All done, now login or create a new account
+	// Adding a slight delay, so the next animation runs a bit smoother
+	[self performSelector:@selector(bootstrap) withObject:nil afterDelay:0.5];
+}
+
+- (void)bootstrap
+{
 	STKClientController *clientController = self.core[@"client"];
 	[clientController registerOrLogin];
 }

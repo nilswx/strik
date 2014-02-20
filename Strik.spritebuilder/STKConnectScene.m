@@ -1,16 +1,16 @@
 //
-//  STKLoadingScene.m
+//  STKConnectScene.m
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 20/02/14.
-//  Copyright (c) 2014 Apportable. All rights reserved.
+//  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKLoadingScene.h"
+#import "STKConnectScene.h"
 
 #define DOTS_DELAY 0.5f
 
-@interface STKLoadingScene()
+@interface STKConnectScene()
 
 @property CCLabelTTF *connectingDots;
 
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation STKLoadingScene
+@implementation STKConnectScene
 
 - (void)sceneWillBegin
 {

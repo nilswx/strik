@@ -42,8 +42,8 @@
 		8393788F18B602730007BDE4 /* STKMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788718B602730007BDE4 /* STKMatchController.m */; };
 		8393789018B602730007BDE4 /* STKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788918B602730007BDE4 /* STKSessionController.m */; };
 		8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */; };
-		8393789C18B60A260007BDE4 /* STKLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789B18B60A260007BDE4 /* STKLoadingController.m */; };
-		8393789F18B60A340007BDE4 /* STKLoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789E18B60A340007BDE4 /* STKLoadingScene.m */; };
+		8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789B18B60A260007BDE4 /* STKConnectController.m */; };
+		8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789E18B60A340007BDE4 /* STKConnectScene.m */; };
 		839378A318B60B090007BDE4 /* STKTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A218B60B090007BDE4 /* STKTile.m */; };
 		839378A618B60B180007BDE4 /* STKBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A518B60B180007BDE4 /* STKBoard.m */; };
 		83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6024818B4DA1100AC2EB1 /* Images.xcassets */; };
@@ -153,10 +153,10 @@
 		8393788918B602730007BDE4 /* STKSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSessionController.m; sourceTree = "<group>"; };
 		8393788A18B602730007BDE4 /* STKTileSelectionBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTileSelectionBuffer.h; sourceTree = "<group>"; };
 		8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTileSelectionBuffer.m; sourceTree = "<group>"; };
-		8393789A18B60A260007BDE4 /* STKLoadingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLoadingController.h; sourceTree = "<group>"; };
-		8393789B18B60A260007BDE4 /* STKLoadingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLoadingController.m; sourceTree = "<group>"; };
-		8393789D18B60A340007BDE4 /* STKLoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLoadingScene.h; sourceTree = "<group>"; };
-		8393789E18B60A340007BDE4 /* STKLoadingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLoadingScene.m; sourceTree = "<group>"; };
+		8393789A18B60A260007BDE4 /* STKConnectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKConnectController.h; sourceTree = "<group>"; };
+		8393789B18B60A260007BDE4 /* STKConnectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKConnectController.m; sourceTree = "<group>"; };
+		8393789D18B60A340007BDE4 /* STKConnectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKConnectScene.h; sourceTree = "<group>"; };
+		8393789E18B60A340007BDE4 /* STKConnectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKConnectScene.m; sourceTree = "<group>"; };
 		839378A118B60B090007BDE4 /* STKTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTile.h; sourceTree = "<group>"; };
 		839378A218B60B090007BDE4 /* STKTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTile.m; sourceTree = "<group>"; };
 		839378A418B60B180007BDE4 /* STKBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBoard.h; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 		8393785118B601F80007BDE4 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				8393789218B6029C0007BDE4 /* Loading */,
+				8393789218B6029C0007BDE4 /* Connect */,
 				8393789418B602AD0007BDE4 /* Home */,
 				8393789318B602A60007BDE4 /* New Player */,
 				8393789518B602B50007BDE4 /* Achievements */,
@@ -431,15 +431,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		8393789218B6029C0007BDE4 /* Loading */ = {
+		8393789218B6029C0007BDE4 /* Connect */ = {
 			isa = PBXGroup;
 			children = (
-				8393789A18B60A260007BDE4 /* STKLoadingController.h */,
-				8393789B18B60A260007BDE4 /* STKLoadingController.m */,
-				8393789D18B60A340007BDE4 /* STKLoadingScene.h */,
-				8393789E18B60A340007BDE4 /* STKLoadingScene.m */,
+				8393789A18B60A260007BDE4 /* STKConnectController.h */,
+				8393789B18B60A260007BDE4 /* STKConnectController.m */,
+				8393789D18B60A340007BDE4 /* STKConnectScene.h */,
+				8393789E18B60A340007BDE4 /* STKConnectScene.m */,
 			);
-			name = Loading;
+			name = Connect;
 			sourceTree = "<group>";
 		};
 		8393789318B602A60007BDE4 /* New Player */ = {
@@ -722,11 +722,11 @@
 				8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */,
 				8393787718B6023D0007BDE4 /* STKMatch.m in Sources */,
 				8393787C18B6023D0007BDE4 /* STKTrophy.m in Sources */,
-				8393789F18B60A340007BDE4 /* STKLoadingScene.m in Sources */,
+				8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */,
 				8393787F18B602500007BDE4 /* STKAlertView.m in Sources */,
 				839378A318B60B090007BDE4 /* STKTile.m in Sources */,
 				8393787418B6023D0007BDE4 /* STKInventory.m in Sources */,
-				8393789C18B60A260007BDE4 /* STKLoadingController.m in Sources */,
+				8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,13 @@
 
 @implementation STKHomeScene
 
+- (void)sceneWillBegin
+{
+	self.avatar.borderColor = [CCColor whiteColor];
+	self.avatar.backgroundColor = [CCColor redColor];
+	self.avatar.maskedImage = [CCSprite spriteWithImageNamed:@"Home Scene/valerie.png"];
+}
+
 - (void)player:(STKPlayer *)player valueChangedForName:(NSString *)name
 {
 	self.username.title = name;

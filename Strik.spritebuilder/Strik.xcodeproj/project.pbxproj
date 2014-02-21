@@ -19,6 +19,7 @@
 		8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A64A18B79273003816BF /* STKAvatarNode.m */; };
 		8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A64D18B79E49003816BF /* STKAchievementsScene.m */; };
 		8383A65118B79E58003816BF /* STKAchievementsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A65018B79E58003816BF /* STKAchievementsController.m */; };
+		8383A65418B7F651003816BF /* STKLevelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A65318B7F651003816BF /* STKLevelNode.m */; };
 		8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393781E18B5FFA40007BDE4 /* STKCore.m */; };
 		8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782118B5FFB60007BDE4 /* NSObject+Observer.m */; };
 		8393782F18B5FFB60007BDE4 /* STKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782318B5FFB60007BDE4 /* STKController.m */; };
@@ -116,6 +117,8 @@
 		8383A64D18B79E49003816BF /* STKAchievementsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAchievementsScene.m; sourceTree = "<group>"; };
 		8383A64F18B79E58003816BF /* STKAchievementsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAchievementsController.h; sourceTree = "<group>"; };
 		8383A65018B79E58003816BF /* STKAchievementsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAchievementsController.m; sourceTree = "<group>"; };
+		8383A65218B7F651003816BF /* STKLevelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLevelNode.h; sourceTree = "<group>"; };
+		8383A65318B7F651003816BF /* STKLevelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLevelNode.m; sourceTree = "<group>"; };
 		8393781D18B5FFA40007BDE4 /* STKCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCore.h; sourceTree = "<group>"; };
 		8393781E18B5FFA40007BDE4 /* STKCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCore.m; sourceTree = "<group>"; };
 		8393782018B5FFB60007BDE4 /* NSObject+Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Observer.h"; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 			children = (
 				8383A64918B79273003816BF /* STKAvatarNode.h */,
 				8383A64A18B79273003816BF /* STKAvatarNode.m */,
+				8383A65218B7F651003816BF /* STKLevelNode.h */,
+				8383A65318B7F651003816BF /* STKLevelNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -773,6 +778,7 @@
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
 				48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */,
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
+				8383A65418B7F651003816BF /* STKLevelNode.m in Sources */,
 				8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */,
 				8393788C18B602730007BDE4 /* STKClientController.m in Sources */,
 				8393783D18B5FFE50007BDE4 /* RC4.m in Sources */,

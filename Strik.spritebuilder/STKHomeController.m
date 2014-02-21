@@ -27,6 +27,7 @@
 	// Let the view observe the userdata models
 	STKSessionController *sessionController = self.core[@"session"];
 	[self.scene observeModel:(STKModel *)sessionController.user];
+	[self.scene observeModel:(STKModel *)sessionController.user.progression];
 }
 
 #pragma mark buttons

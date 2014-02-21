@@ -18,7 +18,7 @@
 
 - (void)enterTransitionDidFinish
 {
-	[self connectToServer];
+	[self performSelector:@selector(connectToServer) withObject:nil afterDelay:2];
 }
 
 - (void)connectToServer

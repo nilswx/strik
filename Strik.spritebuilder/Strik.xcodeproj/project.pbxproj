@@ -13,6 +13,11 @@
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
 		835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C818B686AD0008DA0E /* STKBootstrapScene.m */; };
 		8383A63F18B762AC003816BF /* CCNode+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A63E18B762AC003816BF /* CCNode+Animation.m */; };
+		8383A64218B77B19003816BF /* STKHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A64118B77B19003816BF /* STKHomeController.m */; };
+		8383A64518B77B27003816BF /* STKHomeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A64418B77B27003816BF /* STKHomeScene.m */; };
+		8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A64A18B79273003816BF /* STKAvatarNode.m */; };
+		8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A64D18B79E49003816BF /* STKAchievementsScene.m */; };
+		8383A65118B79E58003816BF /* STKAchievementsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A65018B79E58003816BF /* STKAchievementsController.m */; };
 		8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393781E18B5FFA40007BDE4 /* STKCore.m */; };
 		8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782118B5FFB60007BDE4 /* NSObject+Observer.m */; };
 		8393782F18B5FFB60007BDE4 /* STKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782318B5FFB60007BDE4 /* STKController.m */; };
@@ -98,6 +103,16 @@
 		835803C818B686AD0008DA0E /* STKBootstrapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapScene.m; sourceTree = "<group>"; };
 		8383A63D18B762AC003816BF /* CCNode+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Animation.h"; sourceTree = "<group>"; };
 		8383A63E18B762AC003816BF /* CCNode+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Animation.m"; sourceTree = "<group>"; };
+		8383A64018B77B19003816BF /* STKHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKHomeController.h; sourceTree = "<group>"; };
+		8383A64118B77B19003816BF /* STKHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHomeController.m; sourceTree = "<group>"; };
+		8383A64318B77B27003816BF /* STKHomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKHomeScene.h; sourceTree = "<group>"; };
+		8383A64418B77B27003816BF /* STKHomeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHomeScene.m; sourceTree = "<group>"; };
+		8383A64918B79273003816BF /* STKAvatarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatarNode.h; sourceTree = "<group>"; };
+		8383A64A18B79273003816BF /* STKAvatarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatarNode.m; sourceTree = "<group>"; };
+		8383A64C18B79E49003816BF /* STKAchievementsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAchievementsScene.h; sourceTree = "<group>"; };
+		8383A64D18B79E49003816BF /* STKAchievementsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAchievementsScene.m; sourceTree = "<group>"; };
+		8383A64F18B79E58003816BF /* STKAchievementsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAchievementsController.h; sourceTree = "<group>"; };
+		8383A65018B79E58003816BF /* STKAchievementsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAchievementsController.m; sourceTree = "<group>"; };
 		8393781D18B5FFA40007BDE4 /* STKCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCore.h; sourceTree = "<group>"; };
 		8393781E18B5FFA40007BDE4 /* STKCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCore.m; sourceTree = "<group>"; };
 		8393782018B5FFB60007BDE4 /* NSObject+Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Observer.h"; sourceTree = "<group>"; };
@@ -413,6 +428,8 @@
 		8393785518B6021C0007BDE4 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				8383A64918B79273003816BF /* STKAvatarNode.h */,
+				8383A64A18B79273003816BF /* STKAvatarNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -501,6 +518,10 @@
 		8393789418B602AD0007BDE4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8383A64018B77B19003816BF /* STKHomeController.h */,
+				8383A64118B77B19003816BF /* STKHomeController.m */,
+				8383A64318B77B27003816BF /* STKHomeScene.h */,
+				8383A64418B77B27003816BF /* STKHomeScene.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -508,6 +529,10 @@
 		8393789518B602B50007BDE4 /* Achievements */ = {
 			isa = PBXGroup;
 			children = (
+				8383A64C18B79E49003816BF /* STKAchievementsScene.h */,
+				8383A64D18B79E49003816BF /* STKAchievementsScene.m */,
+				8383A64F18B79E58003816BF /* STKAchievementsController.h */,
+				8383A65018B79E58003816BF /* STKAchievementsController.m */,
 			);
 			name = Achievements;
 			sourceTree = "<group>";
@@ -737,10 +762,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8393783118B5FFB60007BDE4 /* STKModel.m in Sources */,
+				8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */,
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
+				8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */,
 				8393788C18B602730007BDE4 /* STKClientController.m in Sources */,
 				8393783D18B5FFE50007BDE4 /* RC4.m in Sources */,
 				8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */,
@@ -758,6 +785,7 @@
 				B73789871807631A0076A88C /* main.m in Sources */,
 				835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */,
 				8393787A18B6023D0007BDE4 /* STKPowerUp.m in Sources */,
+				8383A64518B77B27003816BF /* STKHomeScene.m in Sources */,
 				8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */,
 				8393788F18B602730007BDE4 /* STKMatchController.m in Sources */,
 				8393788D18B602730007BDE4 /* STKFacebookController.m in Sources */,
@@ -767,6 +795,7 @@
 				8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */,
 				8393787518B6023D0007BDE4 /* STKItemRegistry.m in Sources */,
 				8393787818B6023D0007BDE4 /* STKMatchPlayer.m in Sources */,
+				8383A64218B77B19003816BF /* STKHomeController.m in Sources */,
 				8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */,
 				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,
 				8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */,
@@ -778,6 +807,7 @@
 				8383A63F18B762AC003816BF /* CCNode+Animation.m in Sources */,
 				8393787F18B602500007BDE4 /* STKAlertView.m in Sources */,
 				835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */,
+				8383A65118B79E58003816BF /* STKAchievementsController.m in Sources */,
 				839378A318B60B090007BDE4 /* STKTile.m in Sources */,
 				8393787418B6023D0007BDE4 /* STKInventory.m in Sources */,
 				8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */,

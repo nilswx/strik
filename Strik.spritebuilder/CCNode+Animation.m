@@ -24,6 +24,8 @@
 		[self.userObject setCompletedAnimationCallbackBlock:block];
 	}
 	
+	NSLog(@"%@: running animation '%@'", self, name);
+	
 	[self.userObject runAnimationsForSequenceNamed:name];
 }
 

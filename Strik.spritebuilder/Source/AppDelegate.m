@@ -85,7 +85,7 @@
 	[self.core installComponent:[STKDirector new]];
 	
 	// In App Purchases
-	[self.core installComponent:[STKInAppPurchasesController new] withKey:@"iap"];
+	//[self.core installComponent:[STKInAppPurchasesController new] withKey:@"iap"];
 	
 	// We also want Facebook
 	[self.core installComponent:[STKFacebookController new]];
@@ -108,6 +108,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+	// YOU AND ME BABI WE BE NO NOTHING BUT MAMMAL
+	[super applicationDidBecomeActive:application];
+	
 	// We need to properly handle activation of the application with regards to Facebook Login
 	// (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
 	[[FBSession activeSession] handleDidBecomeActive];

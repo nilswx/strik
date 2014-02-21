@@ -212,12 +212,8 @@
 	}
 	else
 	{
-		// Lingering session?
-		if(session.isOpen)
-		{
-			NSLog(@"Facebook: closing session and deleting local token");
-			[[FBSession activeSession] closeAndClearTokenInformation];
-		}
+		// Forcefully delete local token info (just in case)
+		[[FBSession activeSession] closeAndClearTokenInformation];
 		
 		// So, no link on server. But user wants to link?
 		if(self.wantServerLink)

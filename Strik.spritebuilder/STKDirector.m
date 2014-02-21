@@ -59,6 +59,9 @@
 		[self.scene sceneWillEnd];
 	}
 	
+	// Heyo what's happenin'
+	NSLog(@"Director: will present %@", self.scene);
+	
 	// Set current scene and controller
 	self.scene = sceneController.scene;
 	self.sceneController = sceneController;
@@ -83,7 +86,6 @@
 		{
 			transition = [CCTransition transitionCrossFadeWithDuration:0.4];
 		}
-		
 		[self.cocosDirector performSelector:presentSelector withObject:self.scene.cocosScene withObject:transition];
 	}
 }

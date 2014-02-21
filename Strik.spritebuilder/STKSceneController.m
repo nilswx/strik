@@ -26,8 +26,6 @@
 		// Create scene and run post-creation logic
 		Class sceneClass = [[self class] sceneClass];
 		
-		NSLog(@"[sceneClass ccbFileName] %@", [sceneClass ccbFileName]);
-		
 		// Read the nodegraph from a file, (STKScene extends CCNode, the director will wrap it in a CCScene when it needs to be displayed)		
 		STKScene *scene = (STKScene *)[CCBReader load:[sceneClass ccbFileName] owner:self];
 

@@ -110,11 +110,10 @@ typedef NS_ENUM(NSInteger, zIndex)
 		// Don't know what idiot thought defaulting this to one was a good idea
 		self.clippingNode.alphaThreshold = 0;
 		
-		// Center it
 		self.clippingNode.contentSizeType = CCSizeTypeNormalized;
 		self.clippingNode.position = CGPointMake(50, 50);
 		
-		self.clippingNode.scale = 0.94f;
+		self.clippingNode.scale = 0.93f;
 		
 		// And add the clipping node to the tree
 		[self addChild:self.clippingNode];

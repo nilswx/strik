@@ -1044,8 +1044,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1077,7 +1075,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
+							<real>-1</real>
 							<real>500</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1154,6 +1152,250 @@
 						</array>
 					</dict>
 				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCPhysicsNode</string>
+				<key>children</key>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCNodeColor</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCNodeColor</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>physicsBody</key>
+						<dict>
+							<key>affectedByGravity</key>
+							<true/>
+							<key>allowsRotation</key>
+							<true/>
+							<key>bodyShape</key>
+							<integer>0</integer>
+							<key>cornerRadius</key>
+							<real>0.0</real>
+							<key>density</key>
+							<real>1</real>
+							<key>dynamic</key>
+							<false/>
+							<key>elasticity</key>
+							<real>0.30000001192092896</real>
+							<key>friction</key>
+							<real>0.30000001192092896</real>
+							<key>points</key>
+							<array>
+								<array>
+									<real>1.3313273191452026</real>
+									<real>-0.99025654792785645</real>
+								</array>
+								<array>
+									<real>318.15756225585938</real>
+									<real>-0.2317928671836853</real>
+								</array>
+								<array>
+									<real>318.51885986328125</real>
+									<real>28.960920333862305</real>
+								</array>
+								<array>
+									<real>4.6809625625610352</real>
+									<real>29.270168304443359</real>
+								</array>
+							</array>
+						</dict>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>name</string>
+								<key>type</key>
+								<string>StringSimple</string>
+								<key>value</key>
+								<string></string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>2.2318627088679932e-06</real>
+									<real>0.83330714702606201</real>
+									<integer>0</integer>
+									<integer>0</integer>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>contentSize</string>
+								<key>type</key>
+								<string>Size</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>30</real>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>color</string>
+								<key>type</key>
+								<string>Color3</string>
+								<key>value</key>
+								<array>
+									<real>0.9960784912109375</real>
+									<real>0.99215692281723022</real>
+									<real>0.99215692281723022</real>
+									<real>0.40000000596046448</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>0.40000000596046448</real>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>blendFunc</string>
+								<key>type</key>
+								<string>Blendmode</string>
+								<key>value</key>
+								<array>
+									<integer>770</integer>
+									<integer>771</integer>
+								</array>
+							</dict>
+						</array>
+					</dict>
+				</array>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>CCPhysicsNode</string>
+				<key>memberVarAssignmentName</key>
+				<string>physics</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<integer>2</integer>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>gravity</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>-250</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>sleepTimeThreshold</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.5</real>
+					</dict>
+				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -1295,7 +1537,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>3.3666665554046631</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

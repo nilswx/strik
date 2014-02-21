@@ -88,6 +88,8 @@
 			<key>previewFolderHidden</key>
 			<true/>
 		</dict>
+		<key>Global/Images/dark-background.png</key>
+		<dict/>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>

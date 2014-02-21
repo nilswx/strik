@@ -20,10 +20,10 @@
 #import "STKIncomingMessage.h"
 #import "STKOutgoingMessage.h"
 
-//#import "STKNewPlayerController.h"
+#import "STKNewPlayerController.h"
 
-//#import "STKConnectScene.h"
-//#import "STKConnectController.h"
+#import "STKConnectScene.h"
+#import "STKConnectController.h"
 
 @interface STKClientController()
 
@@ -109,17 +109,17 @@
 	// Get current scene
 	STKDirector* director = self.core[@"director"];
 
-//    STKScene *scene = [director isCurrentScene:[STKConnectScene class]];
+    STKScene *scene = [director isCurrentScene:[STKConnectScene class]];
 	
 	// Already in connect scene?
-//    if(scene)
-//    {
-//		[scene.controller connectToServer];
-//	}
-//    else
-//    {
-//        [director replaceScene:[STKConnectController new]];
-//    }
+    if(scene)
+    {
+		[scene.controller connectToServer];
+	}
+    else
+    {
+        [director replaceScene:[STKConnectController new]];
+    }
 }
 
 - (void)didDisconnectFromServer

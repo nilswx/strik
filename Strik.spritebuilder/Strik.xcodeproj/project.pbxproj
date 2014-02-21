@@ -12,6 +12,7 @@
 		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
 		835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C818B686AD0008DA0E /* STKBootstrapScene.m */; };
+		8383A63F18B762AC003816BF /* CCNode+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383A63E18B762AC003816BF /* CCNode+Animation.m */; };
 		8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393781E18B5FFA40007BDE4 /* STKCore.m */; };
 		8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782118B5FFB60007BDE4 /* NSObject+Observer.m */; };
 		8393782F18B5FFB60007BDE4 /* STKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393782318B5FFB60007BDE4 /* STKController.m */; };
@@ -95,6 +96,8 @@
 		835803C518B6869A0008DA0E /* STKBootstrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapController.m; sourceTree = "<group>"; };
 		835803C718B686AD0008DA0E /* STKBootstrapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBootstrapScene.h; sourceTree = "<group>"; };
 		835803C818B686AD0008DA0E /* STKBootstrapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapScene.m; sourceTree = "<group>"; };
+		8383A63D18B762AC003816BF /* CCNode+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Animation.h"; sourceTree = "<group>"; };
+		8383A63E18B762AC003816BF /* CCNode+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Animation.m"; sourceTree = "<group>"; };
 		8393781D18B5FFA40007BDE4 /* STKCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCore.h; sourceTree = "<group>"; };
 		8393781E18B5FFA40007BDE4 /* STKCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCore.m; sourceTree = "<group>"; };
 		8393782018B5FFB60007BDE4 /* NSObject+Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Observer.h"; sourceTree = "<group>"; };
@@ -228,6 +231,24 @@
 			name = Bootstrap;
 			sourceTree = "<group>";
 		};
+		8383A63A18B7627E003816BF /* NSStack */ = {
+			isa = PBXGroup;
+			children = (
+				8393784D18B601E60007BDE4 /* NSStack.h */,
+				8393784E18B601E60007BDE4 /* NSStack.m */,
+			);
+			name = NSStack;
+			sourceTree = "<group>";
+		};
+		8383A63C18B76287003816BF /* CCNode+Animation */ = {
+			isa = PBXGroup;
+			children = (
+				8383A63D18B762AC003816BF /* CCNode+Animation.h */,
+				8383A63E18B762AC003816BF /* CCNode+Animation.m */,
+			);
+			name = "CCNode+Animation";
+			sourceTree = "<group>";
+		};
 		8393781218B5FE650007BDE4 /* Strik */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,8 +368,8 @@
 		8393784C18B601DA0007BDE4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8393784D18B601E60007BDE4 /* NSStack.h */,
-				8393784E18B601E60007BDE4 /* NSStack.m */,
+				8383A63C18B76287003816BF /* CCNode+Animation */,
+				8383A63A18B7627E003816BF /* NSStack */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -754,6 +775,7 @@
 				8393787718B6023D0007BDE4 /* STKMatch.m in Sources */,
 				8393787C18B6023D0007BDE4 /* STKTrophy.m in Sources */,
 				8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */,
+				8383A63F18B762AC003816BF /* CCNode+Animation.m in Sources */,
 				8393787F18B602500007BDE4 /* STKAlertView.m in Sources */,
 				835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */,
 				839378A318B60B090007BDE4 /* STKTile.m in Sources */,

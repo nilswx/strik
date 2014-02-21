@@ -114,7 +114,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 		self.clippingNode.contentSizeType = CCSizeTypeNormalized;
 		self.clippingNode.position = CGPointMake(50, 50);
 		
-		self.clippingNode.scale = 0.95f;
+		self.clippingNode.scale = 0.94f;
 		
 		// And add the clipping node to the tree
 		[self addChild:self.clippingNode];

@@ -100,6 +100,12 @@
 	return [spielberg bootstrapScene].cocosScene;
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+	// For Facebook web browser flow
+    return [[FBSession activeSession] handleOpenURL:url];
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	// We need to properly handle activation of the application with regards to Facebook Login

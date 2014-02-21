@@ -160,9 +160,8 @@
 - (void)handleAlert:(STKIncomingMessage *)message
 {
 	// Construct server alert message (we don't deal with localized titles! this is just emergency etc!)
-	// Todo turn this on, this is annoying @ every boot
-	//	NSString *alertMessage = [message readStr];
-//	[[STKAlertView alertWithTitle:@"Server" andMessage:alertMessage] show];
+	NSString *alertMessage = [message readStr];
+	[[STKAlertView alertWithTitle:@"Server" andMessage:alertMessage] show];
 }
 
 @end

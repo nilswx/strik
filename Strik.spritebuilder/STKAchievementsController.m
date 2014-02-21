@@ -8,7 +8,6 @@
 
 #import "STKAchievementsController.h"
 
-#import "STKDirector.h"
 #import "STKHomeScene.h"
 
 @implementation STKAchievementsController

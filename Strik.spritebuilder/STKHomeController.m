@@ -16,8 +16,6 @@
 #import "STKPLayer.h"
 #import "STKOutgoingMessage.h"
 
-#import "STKDirector.h"
-
 @implementation STKHomeController
 
 - (void)sceneCreated

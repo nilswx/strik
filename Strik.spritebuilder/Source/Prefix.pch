@@ -15,3 +15,6 @@
 #import "cocos2d-ui.h"
 #import "CCBuilderReader.h"
 #endif
+
+#define PLAYER_ONE_COLOR [CCColor colorWithRed:34.0f/255.0f green:189.0f/255.0f blue:175.0f/255.0f]
+#define PLAYER_TWO_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:106.0f/255.0f]

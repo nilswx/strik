@@ -65,8 +65,8 @@
     // Configure CCFileUtils to work with SpriteBuilder
     [CCBReader configureCCFileUtils];
     
-    // Do any extra configuration of Cocos2d here (the example line changes the pixel format for faster rendering, but with less colors)
-    //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
+	// Using CCClipping node so this has to be turned on
+    [cocos2dSetup setObject:@GL_DEPTH24_STENCIL8_OES forKey:CCSetupDepthFormat];
 		
 	// Setup game structure
 	[self setupCoreComponents];

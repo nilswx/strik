@@ -39,7 +39,7 @@
 	
 	// Spawn block
 	STKLetterBlock* block = [STKLetterBlock blockWithLetter:letter color:color];
-	block.position = ccp(50 + arc4random_uniform(290), 600);
+	block.position = ccp(150, 600);
 	[self->physics addChild:block];
 	
 	// Next after one second

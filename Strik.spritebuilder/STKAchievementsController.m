@@ -8,6 +8,14 @@
 
 #import "STKAchievementsController.h"
 
+#import "STKDirector.h"
+#import "STKHomeScene.h"
+
 @implementation STKAchievementsController
+
+- (void)onBackButton:(CCButton *)button
+{
+	[self transitionTo:[STKHomeScene class] direction:CCTransitionDirectionRight];
+}
 
 @end

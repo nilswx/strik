@@ -9,6 +9,7 @@
 #import "STKSceneController.h"
 
 #import "STKScene.h"
+#import "STKDirector.h"
 
 @interface STKSceneController()
 
@@ -74,6 +75,16 @@
 - (void)exitTransitionDidStart
 {
 	// Override me	
+}
+
+- (void)transitionTo:(Class)sceneClass direction:(CCTransitionDirection)direction
+{
+	// Create instance of controller
+	STKSceneController* controller = [[sceneClass controllerClass] new];
+	
+	// Transition in the given direction
+	STKDirector* director = self.core[@"director"];
+	[director pushScene:controller withTransition:[CCTransition transitionPushWithDirection:direction duration:0.25]];
 }
 
 + (Class)sceneClass

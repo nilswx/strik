@@ -21,6 +21,8 @@
 - (void)exit;
 - (void)exitTransitionDidStart;
 
+- (void)transitionTo:(Class)sceneClass direction:(CCTransitionDirection)direction;
+
 + (Class)sceneClass;
 
 @end

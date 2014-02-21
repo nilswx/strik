@@ -9,7 +9,7 @@
 #import "STKHomeController.h"
 
 #import "STKScene.h"
-#import "STKAchievementsController.h"
+#import "STKAchievementsScene.h"
 #import "STKSessionController.h"
 
 #import "STKAlertView.h"
@@ -34,8 +34,7 @@
 #pragma mark buttons
 - (void)onAchievementsButton:(CCButton *)button
 {
-	STKDirector *director = self.core[@"director"];
-	[director pushScene:[STKAchievementsController new] withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.25]];
+	[self transitionTo:[STKAchievementsScene class] direction:CCTransitionDirectionLeft];
 }
 
 #pragma mark Username changes

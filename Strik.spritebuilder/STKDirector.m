@@ -86,7 +86,8 @@
 		{
 			transition = [CCTransition transitionCrossFadeWithDuration:0.4];
 		}
-		[self.cocosDirector performSelector:presentSelector withObject:self.scene.cocosScene withObject:transition];
+		[self.cocosDirector replaceScene:self.scene.cocosScene];
+		//[self.cocosDirector performSelector:presentSelector withObject:self.scene.cocosScene withObject:transition];
 	}
 }
 

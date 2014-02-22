@@ -80,9 +80,12 @@
 	// Create instance of controller
 	STKSceneController* controller = [[sceneClass controllerClass] new];
 	
+	// Create transition
+	CCTransition* transition = [CCTransition transitionPushWithDirection:direction duration:0.25];
+	
 	// Transition in the given direction
 	STKDirector* director = self.core[@"director"];
-	[director presentScene:controller withTransition:[CCTransition transitionPushWithDirection:direction duration:0.25]];
+	[director presentScene:controller withTransition:transition];
 }
 
 + (Class)sceneClass

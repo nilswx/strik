@@ -8,6 +8,8 @@
 
 #import "CCNode.h"
 
+typedef void(^AnimationCompletion)();
+
 @interface STKProgressNode : CCNode
 
 // The color of the border
@@ -25,5 +27,8 @@
 
 // Give it a value, and a total value, it will take care of the rest
 - (void)setValue:(int)value ofTotalValue:(int)totalValue;
+
+// Same, but will call the block once the animation is completed
+- (void)setValue:(int)value ofTotalValue:(int)totalValue withAnimationCompletion:(AnimationCompletion)completionBlock;
 
 @end

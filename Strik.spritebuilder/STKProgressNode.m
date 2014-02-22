@@ -8,9 +8,13 @@
 
 #import "STKProgressNode.h"
 
+#include <easing.h>
+
 #define VERTICAL_BORDER_MARGIN 5
 #define HORIZONTAL_BORDER_MARGIN 6
 #define RELATIVE_FONT_SIZE 0.75
+
+#define ANIMATION_TIME 1.5f
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
@@ -21,16 +25,23 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 @interface STKProgressNode()
 
+// The nodes which make up the progress bar
 @property CCSprite9Slice *borderNode;
-
 @property CCSprite9Slice *lightShadeNode;
-
 @property CCSprite9Slice *darkShadeNode;
 
+// The label
 @property CCLabelTTF *valueLabel;
 
+// Current values of the progress bar
 @property int value;
 @property int totalValue;
+
+// The passed time for the animation
+@property double passedTime;
+
+// The completionblock which will get called when set
+@property (strong) AnimationCompletion completionBlock;
 
 @end
 
@@ -105,8 +116,14 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (void)setValue:(int)value ofTotalValue:(int)totalValue
 {
+	[self setValue:value ofTotalValue:totalValue withAnimationCompletion:nil];
+}
+
+- (void)setValue:(int)value ofTotalValue:(int)totalValue withAnimationCompletion:(AnimationCompletion)completionBlock
+{
 	self.value = value;
 	self.totalValue = totalValue;
+	self.completionBlock = completionBlock;
 	
 	if(!self.valueLabel)
 	{
@@ -115,25 +132,71 @@ typedef NS_ENUM(NSInteger, zIndex)
 		
 		// Center it
 		self.valueLabel.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
-										   self.contentSize.height * self.anchorPoint.y - 1);
+											   self.contentSize.height * self.anchorPoint.y - 1);
 		
 		[self addChild:self.valueLabel];
 	}
 	
-	self.valueLabel.string = [NSString stringWithFormat:@"%d/%d", value, totalValue];
-	
-	// Calculate the bar width
-	CGFloat barWidth = [self fillWidthForValue:(float)value / (float)totalValue];
-	
-	// And set it to correct size
-	self.darkShadeNode.contentSize = CGSizeMake(barWidth, self.darkShadeNode.contentSize.height);
+	// Animate the progress bar there are no "Action blocks" for this, so doing it on the schedule system
+	self.passedTime = 0;
+	[self unschedule:@selector(animate:)];
+	[self schedule:@selector(animate:) interval:1.0f/60.0f repeat:-1 delay:0];
 }
 
+- (void)animate:(CCTime)time
+{
+	// Increment time within animation time range, make sure it does not exceed max
+	self.passedTime += time;
+	self.passedTime = MIN(ANIMATION_TIME, self.passedTime);
+	
+	// Get relative time (eased)
+	float relativeTime = QuadraticEaseOut(self.passedTime / ANIMATION_TIME);
+	
+	// Animate the progress bar
+	[self animateProgress:relativeTime];
+	
+	// Animate the label
+	[self animateLabel:relativeTime];
+	
+	// Stop animating when the animation is completed
+	if(self.passedTime == ANIMATION_TIME)
+	{
+		self.passedTime = 0;
+		[self unschedule:@selector(animate:)];
+		
+		// Call the completion block if it is there
+		if(self.completionBlock)
+		{
+			self.completionBlock();
+			self.completionBlock = nil;
+		}
+	}
+}
+
+- (void)animateProgress:(float)relativeTime
+{
+	// Get the percentage for the bar
+	float percentageForBar = (float)self.value / (float)self.totalValue;
+	
+	// Apply a little easing
+	float easedPercentage = relativeTime * percentageForBar;
+	
+	// Resize the bar
+	CGFloat barWidth = [self fillWidthForValue:easedPercentage];
+	self.darkShadeNode.contentSize = CGSizeMake(barWidth, self.darkShadeNode.contentSize.height);
+
+}
+
+- (void)animateLabel:(float)relativeTime
+{
+	int relativeValue = self.value * relativeTime;
+	self.valueLabel.string = [NSString stringWithFormat:@"%d/%d", relativeValue, self.totalValue];
+}
 
 // Returns the needed with within min and max based on value (number between 0 and 1)
 - (CGFloat)fillWidthForValue:(float)value
 {
-	float min = 30;
+	float min = 10;
 	float max = self.lightShadeNode.contentSize.width;
 	
 	float size = max * value;

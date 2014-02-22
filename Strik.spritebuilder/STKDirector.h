@@ -12,16 +12,8 @@
 
 @interface STKDirector : STKCoreComponent
 
-- (void)pushScene:(STKSceneController *)sceneController;
-- (void)pushScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;
-
-- (void)replaceScene:(STKSceneController *)sceneController;
-- (void)replaceScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;
-
-- (void)popScene;
-- (void)popSceneWithTransition:(CCTransition *)transition;
-
-- (void)popToRootScene;
+- (void)presentScene:(STKSceneController *)sceneController;
+- (void)presentScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;
 
 - (id)isCurrentScene:(Class)sceneClass;
 

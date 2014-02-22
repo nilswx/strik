@@ -82,7 +82,7 @@
 	
 	// Transition in the given direction
 	STKDirector* director = self.core[@"director"];
-	[director pushScene:controller withTransition:[CCTransition transitionPushWithDirection:direction duration:0.25]];
+	[director presentScene:controller withTransition:[CCTransition transitionPushWithDirection:direction duration:0.25]];
 }
 
 + (Class)sceneClass

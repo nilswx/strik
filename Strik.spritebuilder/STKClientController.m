@@ -71,14 +71,14 @@
 	else
 	{
 		// Connected?
-		if(!session)
+		if(session)
 		{
-			STKDirector *director = self.core[@"director"];
-			[director replaceScene:[STKNewPlayerController new]];
+			[session createNewPlayer];
 		}
 		else
 		{
-			[session createNewPlayer];
+			STKDirector *director = self.core[@"director"];
+			[director presentScene:[STKNewPlayerController new]];
 		}
 	}
 }
@@ -118,7 +118,7 @@
 	}
     else
     {
-        [director replaceScene:[STKConnectController new]];
+        [director presentScene:[STKConnectController new]];
     }
 }
 

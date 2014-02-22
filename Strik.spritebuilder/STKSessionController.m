@@ -161,7 +161,7 @@
     
 	// Go Home, matey!
     STKDirector *director = self.core[@"director"];
-	[director replaceScene:[STKHomeController new]];
+	[director presentScene:[STKHomeController new]];
 }
 
 - (void)handleExperience:(STKIncomingMessage *)message

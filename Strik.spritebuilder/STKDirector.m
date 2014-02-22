@@ -29,28 +29,12 @@
 	self.cocosDirector = [CCDirector sharedDirector];
 }
 
-#pragma mark Changing scenes
-- (void)pushScene:(STKSceneController *)sceneController
+- (void)presentScene:(STKSceneController *)sceneController
 {
-	[self pushScene:sceneController withTransition:nil];
+	[self presentScene:sceneController withTransition:nil];
 }
 
-- (void)pushScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition
-{
-	[self presentScene:sceneController withPresentSelector:@selector(pushScene:withTransition:) andTransition:transition];
-}
-
-- (void)replaceScene:(STKSceneController *)sceneController
-{
-	[self replaceScene:sceneController withTransition:nil];
-}
-
-- (void)replaceScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition
-{
-	[self presentScene:sceneController withPresentSelector:@selector(replaceScene:withTransition:) andTransition:transition];
-}
-
-- (void)presentScene:(STKSceneController *)sceneController withPresentSelector:(SEL)presentSelector andTransition:(CCTransition *)transition
+- (void)presentScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition
 {
 	// End current scene
 	if(self.scene)
@@ -59,12 +43,12 @@
 		[self.scene sceneWillEnd];
 	}
 	
-	// Heyo what's happenin'
-	NSLog(@"Director: will present %@", self.scene);
-	
 	// Set current scene and controller
 	self.scene = sceneController.scene;
 	self.sceneController = sceneController;
+	
+	// Heyo what's happenin'
+	NSLog(@"Director: will present %@", self.scene);
 	
 	// Hook core (faux core component that is never installed)
 	self.sceneController.core = self.core;
@@ -86,24 +70,10 @@
 		{
 			transition = [CCTransition transitionCrossFadeWithDuration:0.4];
 		}
-		[self.cocosDirector replaceScene:self.scene.cocosScene];
-		//[self.cocosDirector performSelector:presentSelector withObject:self.scene.cocosScene withObject:transition];
+		
+		// Go!
+		[self.cocosDirector replaceScene:self.scene.cocosScene withTransition:transition];
 	}
-}
-
-- (void)popScene
-{
-	[self.cocosDirector popScene];
-}
-
-- (void)popSceneWithTransition:(CCTransition *)transition
-{
-	[self.cocosDirector popSceneWithTransition:transition];
-}
-
-- (void)popToRootScene
-{
-	[self.cocosDirector popToRootScene];
 }
 
 - (id)isCurrentScene:(Class)sceneClass

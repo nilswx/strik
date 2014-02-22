@@ -15,11 +15,11 @@
 }
 @end
 
-@implementation STKLetterBlock
+@implementation STKLetterBlock : CCNode
 
 + (STKLetterBlock*)blockWithLetter:(char)letter color:(CCColor*)color
 {
-	STKLetterBlock* block = (STKLetterBlock*)[CCBReader load:@"Connect/Block"];
+	STKLetterBlock* block = (STKLetterBlock*)[CCBReader load:@"Connect/LetterBlock"];
 	block->letter.string = [NSString stringWithFormat:@"%c", letter];
 	block->inner.color = color;
 	

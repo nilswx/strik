@@ -8,42 +8,43 @@
 
 #import "STKAchievementsScene.h"
 
-#import "STKLetterBlock.h"
+#import "STKLetterBlockDispenser.h"
 
 @interface STKAchievementsScene()
-{
-	CCPhysicsNode* physics;
-}
+
+@property CCPhysicsNode* physics;
+@property STKLetterBlockDispenser* dispenser;
+
+@property int spawnX;
+
 @end
 
 @implementation STKAchievementsScene
 
 - (void)sceneWillBegin
 {
-	[self dispenseNextBlock:0];
+	// Create array with colors
+	NSArray* colors = @[[CCColor colorWithCcColor3b:ccc3(4, 189, 175)],
+						[CCColor colorWithCcColor3b:ccc3(241, 75, 106)]];
+	
+	// Create dispenser
+	self.dispenser = [STKLetterBlockDispenser dispenserWithLetters:@"STRIK" colors:colors physics:self.physics];
+	
+	// Automate dispenser
+	[self schedule:@selector(nextBlock) interval:1.0];
 }
 
-- (void)dispenseNextBlock:(NSNumber*)obj
+- (void)nextBlock
 {
-	// Cast number
-	int idx = [obj intValue];
+	// Operate dispenser
+	[self.dispenser dispenseNextBlockAt:ccp(self.spawnX, 600)];
 	
-	// Pick next letter from word
-	static const NSString* word = @"STRIK";
-	char letter = [word characterAtIndex:(idx % word.length)];
-	
-	// Pick next color
-	ccColor3B green = {4, 189, 175};
-	ccColor3B red = {241, 75, 106};
-	CCColor* color = [CCColor colorWithCcColor3b:(idx % 2) ? green : red];
-	
-	// Spawn block
-	STKLetterBlock* block = [STKLetterBlock blockWithLetter:letter color:color];
-	block.position = ccp(150, 600);
-	[self->physics addChild:block];
-	
-	// Next after one second
-	[self performSelector:@selector(dispenseNextBlock:) withObject:@(idx + 1) afterDelay:1];
+	// Next!
+	self.spawnX += 60;
+	if(self.spawnX >= 320)
+	{
+		self.spawnX = 0;
+	}
 }
 
 @end

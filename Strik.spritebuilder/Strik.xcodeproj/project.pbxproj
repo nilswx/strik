@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
 		48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */; };
+		48D10A7618B8B170004BC035 /* STKLetterBlockDispenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */; };
 		835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803B718B67B640008DA0E /* STKNewPlayerController.m */; };
 		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
@@ -96,6 +97,8 @@
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		48D10A6E18B7F0BD004BC035 /* STKLetterBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLetterBlock.h; sourceTree = "<group>"; };
 		48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLetterBlock.m; sourceTree = "<group>"; };
+		48D10A7418B8B170004BC035 /* STKLetterBlockDispenser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLetterBlockDispenser.h; sourceTree = "<group>"; };
+		48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLetterBlockDispenser.m; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		835803B618B67B640008DA0E /* STKNewPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerController.h; sourceTree = "<group>"; };
 		835803B718B67B640008DA0E /* STKNewPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewPlayerController.m; sourceTree = "<group>"; };
@@ -510,6 +513,8 @@
 				8393789E18B60A340007BDE4 /* STKConnectScene.m */,
 				48D10A6E18B7F0BD004BC035 /* STKLetterBlock.h */,
 				48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */,
+				48D10A7418B8B170004BC035 /* STKLetterBlockDispenser.h */,
+				48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */,
 			);
 			name = Connect;
 			sourceTree = "<group>";
@@ -774,6 +779,7 @@
 				8393783118B5FFB60007BDE4 /* STKModel.m in Sources */,
 				8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */,
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
+				48D10A7618B8B170004BC035 /* STKLetterBlockDispenser.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
 				48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */,

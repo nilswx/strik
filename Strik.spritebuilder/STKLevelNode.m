@@ -40,9 +40,12 @@ typedef NS_ENUM(NSInteger, zIndex)
 		self.backgroundCircle = [CCDrawNode new];
 		self.backgroundCircle.zOrder = Z_BACKGROUND;
 		
-		// Draw it at center
-		self.backgroundCircle.contentSizeType = CCSizeTypeNormalized;
-		[self.backgroundCircle drawDot:CGPointMake(50, 50) radius:self.radius color:backgroundColor];
+		// Draw it
+		[self.backgroundCircle drawDot:CGPointMake(0, 0) radius:self.radius color:backgroundColor];
+		
+		// Center it
+		self.backgroundCircle.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+									  self.contentSize.height * self.anchorPoint.y + 2);
 		
 		// And add to the tree
 		[self addChild:self.backgroundCircle];
@@ -57,7 +60,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 	{
 		self.label = [CCLabelTTF labelWithString:text fontName:@"Global/Fonts/UbuntuTitling-Bold.ttf" fontSize:self.radius * 1.4];
 
-		self.label.position = CGPointMake(50, 48);
+		// Make sure it is centered
+		self.label.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+									  self.contentSize.height * self.anchorPoint.y);
 
 		self.label.fontColor = self.fontColor;
 		self.label.zOrder = Z_LABEL;

@@ -17,4 +17,6 @@
 #endif
 
 #define PLAYER_ONE_COLOR [CCColor colorWithRed:34.0f/255.0f green:189.0f/255.0f blue:175.0f/255.0f]
+#define PLAYER_ONE_LIGHT_COLOR [CCColor colorWithRed:145.0f/255.0f green:222.0f/255.0f blue:215.0f/255.0f]
+
 #define PLAYER_TWO_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:106.0f/255.0f]

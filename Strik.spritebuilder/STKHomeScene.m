@@ -7,9 +7,10 @@
 //
 
 #import "STKHomeScene.h"
+
 #import "STKAvatarNode.h"
 #import "STKLevelNode.h"
-
+#import "STKProgressNode.h"
 #import "STKPLayer.h"
 
 @interface STKHomeScene()
@@ -23,6 +24,9 @@
 // The user level
 @property STKLevelNode *levelNode;
 
+// The user progress bar
+@property STKProgressNode *playerProgress;
+
 @end
 
 @implementation STKHomeScene
@@ -32,6 +36,10 @@
 	self.avatar.borderColor = [CCColor whiteColor];
 	self.avatar.backgroundColor = [CCColor redColor];
 	self.avatar.maskedImage = [CCSprite spriteWithImageNamed:@"Home Scene/valerie.png"];
+	
+	self.playerProgress.borderColor = [CCColor whiteColor];
+	self.playerProgress.lightShade = PLAYER_ONE_LIGHT_COLOR;
+	self.playerProgress.darkShade = PLAYER_ONE_COLOR;
 }
 
 - (void)player:(STKPlayer *)player valueChangedForName:(NSString *)name

@@ -11,6 +11,7 @@
 #import "STKScene.h"
 #import "STKAchievementsScene.h"
 #import "STKSessionController.h"
+#import "STKLobbyScene.h"
 
 #import "STKAlertView.h"
 #import "STKPLayer.h"
@@ -34,6 +35,11 @@
 - (void)onAchievementsButton:(CCButton *)button
 {
 	[self transitionTo:[STKAchievementsScene class] direction:CCTransitionDirectionLeft];
+}
+
+- (void)onNewGameButton:(CCButton *)button
+{
+	[self transitionTo:[STKLobbyScene class] direction:CCTransitionDirectionLeft];
 }
 
 #pragma mark Username changes

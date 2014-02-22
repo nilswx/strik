@@ -19,5 +19,11 @@
 // The lighter (fill color)
 @property (nonatomic) CCColor *lightShade;
 
+// Values for this label (read only)
+@property (readonly) int value;
+@property (readonly) int totalValue;
+
+// Give it a value, and a total value, it will take care of the rest
+- (void)setValue:(int)value ofTotalValue:(int)totalValue;
 
 @end

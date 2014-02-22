@@ -8,8 +8,6 @@
 
 #import "STKConnectScene.h"
 
-#define DOTS_DELAY 0.5f
-
 @interface STKConnectScene()
 
 @property CCLabelTTF *connectingDots;

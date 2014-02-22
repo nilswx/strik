@@ -8,7 +8,9 @@
 
 #import "STKProgressNode.h"
 
-#define BORDER_SIZE 4
+#define VERTICAL_BORDER_MARGIN 5
+#define HORIZONTAL_BORDER_MARGIN 6
+#define RELATIVE_FONT_SIZE 0.75
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
@@ -19,20 +21,16 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 @interface STKProgressNode()
 
-// The border (everything contains of a left and right circle, with a bar in between
-@property CCDrawNode *leftBorderCircle;
-@property CCDrawNode *rightBorderCircle;
-@property CCNodeColor *centerBar;
+@property CCSprite9Slice *borderNode;
 
-// The darker shade
-@property CCDrawNode *darkLeftCircle;
-@property CCDrawNode *darkRightCircle;
-@property CCNodeColor *darkCenterBar;
+@property CCSprite9Slice *lightShadeNode;
 
-// The lighter shade
-@property CCDrawNode *lightLeftCircle;
-@property CCDrawNode *lightRightCircle;
-@property CCNodeColor *lightCenterBar;
+@property CCSprite9Slice *darkShadeNode;
+
+@property CCLabelTTF *valueLabel;
+
+@property int value;
+@property int totalValue;
 
 @end
 
@@ -41,35 +39,15 @@ typedef NS_ENUM(NSInteger, zIndex)
 - (void)setBorderColor:(CCColor *)borderColor
 {
 	_borderColor = borderColor;
-
-	[self.leftBorderCircle removeFromParent];
-	[self.rightBorderCircle removeFromParent];
-	[self.centerBar removeFromParent];
+	
+	if(!self.borderNode)
+	{
+		self.borderNode = [self createFillingRoundedRect];
+	}
 	
 	if(borderColor)
 	{
-		// Draw a circle on both ends
-		
-		// Left circle
-		self.leftBorderCircle = [CCDrawNode new];
-		[self.leftBorderCircle drawDot:CGPointMake(self.radius, 0) radius:self.radius color:self.borderColor];
-		
-		self.leftBorderCircle.zOrder = Z_BORDER;
-		[self addChild:self.leftBorderCircle];
-		
-		// Right circle
-		self.rightBorderCircle = [CCDrawNode new];
-		[self.rightBorderCircle drawDot:CGPointMake(self.contentSizeInPoints.width - self.radius, 0) radius:self.radius color:self.borderColor];
-
-		self.rightBorderCircle.zOrder = Z_BORDER;
-		[self addChild:self.rightBorderCircle];
-		
-		// Draw a line in between, et voila, it looks like the progress bar
-		self.centerBar = [CCNodeColor nodeWithColor:self.borderColor width:self.contentSizeInPoints.width - (self.radius * 2) height:self.radius * 2 - 1];
-		self.centerBar.position = CGPointMake(self.radius, -self.radius + 0.5);
-		
-		self.centerBar.zOrder = Z_BORDER;
-		[self addChild:self.centerBar];
+		self.borderNode.color = borderColor;
 	}
 }
 
@@ -77,38 +55,90 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	_lightShade = lightShade;
 	
-	[self.lightLeftCircle removeFromParent];
-	[self.lightRightCircle removeFromParent];
-	[self.lightCenterBar removeFromParent];
+	if(!self.lightShadeNode)
+	{
+		self.lightShadeNode = [self createFillingRoundedRect];
+		self.lightShadeNode.contentSize = CGSizeMake(self.contentSize.width - VERTICAL_BORDER_MARGIN, self.contentSize.height - HORIZONTAL_BORDER_MARGIN);
+	}
 	
 	if(lightShade)
 	{
-		// Left circle
-		self.lightLeftCircle = [CCDrawNode new];
-		[self.lightLeftCircle drawDot:CGPointMake(self.radius, 0) radius:self.radius - BORDER_SIZE color:self.lightShade];
-		
-		self.lightLeftCircle.zOrder = Z_LIGHT_SHADE;
-		[self addChild:self.lightLeftCircle];
-		
-		// Right circle
-		self.lightRightCircle = [CCDrawNode new];
-		[self.lightRightCircle drawDot:CGPointMake(self.contentSizeInPoints.width - self.radius, 0) radius:self.radius - BORDER_SIZE color:self.lightShade];
-		
-		self.lightRightCircle.zOrder = Z_LIGHT_SHADE;
-		[self addChild:self.lightRightCircle];
-
-		// Draw a line in between, et voila, it looks like the progress bar
-		self.lightCenterBar = [CCNodeColor nodeWithColor:[CCColor redColor] width:self.contentSizeInPoints.width - (self.radius * 2) - (BORDER_SIZE) height:self.radius * 2 - 1 - (BORDER_SIZE * 2)];
-		self.lightCenterBar.position = CGPointMake(self.radius, -self.radius + 0.5 + BORDER_SIZE);
-
-		self.lightCenterBar.zOrder = Z_BORDER;
-		[self addChild:self.lightCenterBar];
+		self.lightShadeNode.color = lightShade;
 	}
 }
 
-- (CGFloat)radius
+- (void)setDarkShade:(CCColor *)darkShade
 {
-	return self.contentSizeInPoints.height / 2 - 2;
+	_darkShade = darkShade;
+	
+	if(!self.darkShadeNode)
+	{
+		self.darkShadeNode = [self createFillingRoundedRect];
+		self.darkShadeNode.contentSize = CGSizeMake(10, self.contentSize.height - HORIZONTAL_BORDER_MARGIN);
+
+		// It is easier with a anchor point on the left, since we "anchor" it to the left of the progress bar
+		self.darkShadeNode.anchorPoint = CGPointMake(0, 0);
+		self.darkShadeNode.position = CGPointMake(VERTICAL_BORDER_MARGIN / 2, HORIZONTAL_BORDER_MARGIN / 2);
+	}
+	
+	if(darkShade)
+	{
+		self.darkShadeNode.color = darkShade;
+	}
+}
+
+- (CCSprite9Slice *)createFillingRoundedRect
+{
+	// Using 9 slice sprites works much better, and looks better :)
+	CCSprite9Slice *roundedRect = [CCSprite9Slice spriteWithImageNamed:@"Global/Images/rounded-rect.png"];
+	
+	// Center it
+	roundedRect.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+									   self.contentSize.height * self.anchorPoint.y);
+	
+	// Fit it in the parent and add
+	roundedRect.contentSize = self.contentSize;
+	[self addChild:roundedRect];
+	
+	return roundedRect;
+}
+
+- (void)setValue:(int)value ofTotalValue:(int)totalValue
+{
+	self.value = value;
+	self.totalValue = totalValue;
+	
+	if(!self.valueLabel)
+	{
+		self.valueLabel = [CCLabelTTF labelWithString:@"" fontName:@"Global/Fonts/UbuntuTitling-Bold.ttf" fontSize:self.contentSize.height * RELATIVE_FONT_SIZE];
+		self.valueLabel.fontColor = [CCColor whiteColor];
+		
+		// Center it
+		self.valueLabel.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+										   self.contentSize.height * self.anchorPoint.y - 1);
+		
+		[self addChild:self.valueLabel];
+	}
+	
+	self.valueLabel.string = [NSString stringWithFormat:@"%d/%d", value, totalValue];
+	
+	// Calculate the bar width
+	CGFloat barWidth = [self fillWidthForValue:(float)value / (float)totalValue];
+	
+	// And set it to correct size
+	self.darkShadeNode.contentSize = CGSizeMake(barWidth, self.darkShadeNode.contentSize.height);
+}
+
+
+// Returns the needed with within min and max based on value (number between 0 and 1)
+- (CGFloat)fillWidthForValue:(float)value
+{
+	float min = 30;
+	float max = self.lightShadeNode.contentSize.width;
+	
+	float size = max * value;
+	
+	return MAX(min, size);
 }
 
 @end

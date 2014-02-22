@@ -14,23 +14,13 @@
 
 @property CCLabelTTF *connectingDots;
 
-@property BOOL connecting;
-
 @end
 
 @implementation STKConnectScene
 
 - (void)sceneWillBegin
 {
-	self.connecting = YES;
-	
-	// Start the connection animation
-	[self performSelector:@selector(animateDots) withObject:nil afterDelay:1];
-}
-
-- (void)sceneWillEnd
-{
-	self.connecting = NO;
+	[self schedule:@selector(animateDots) interval:0.5];
 }
 
 // Just changes between 1, 2 or 3 dots while connecting.
@@ -56,11 +46,6 @@
 	}
 	
 	self.connectingDots.string = dots;
-	
-	if(self.connecting)
-	{
-		[self performSelector:@selector(animateDots) withObject:nil afterDelay:DOTS_DELAY];
-	}
 }
 
 @end

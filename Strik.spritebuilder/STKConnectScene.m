@@ -20,7 +20,7 @@
 
 - (void)sceneWillBegin
 {
-	[self schedule:@selector(animateDots) interval:0.5];
+	[self schedule:@selector(animateDots) interval:0.5 repeat:-1 delay:1];
 }
 
 // Just changes between 1, 2 or 3 dots while connecting.

@@ -12,10 +12,19 @@
 #import "STKAchievementsScene.h"
 #import "STKSessionController.h"
 #import "STKLobbyScene.h"
+#import "STKHomeScene.h"
 
 #import "STKAlertView.h"
 #import "STKPLayer.h"
 #import "STKOutgoingMessage.h"
+
+#import "ScrollNode.h"
+
+@interface STKHomeController()
+
+//@property GridNode *timelineGrid;
+
+@end
 
 @implementation STKHomeController
 
@@ -29,6 +38,23 @@
 	STKSessionController *sessionController = self.core[@"session"];
 	[self.scene observeModel:(STKModel *)sessionController.user];
 	[self.scene observeModel:(STKModel *)sessionController.user.progression];
+	
+	// Setup the timeline
+	[self setupTimeline];
+}
+
+- (void)setupTimeline
+{
+	CCNodeGradient *node = [CCNodeGradient nodeWithColor:[CCColor redColor] fadingTo:[CCColor yellowColor]];
+	node.contentSizeType = CCSizeTypePoints;
+	node.contentSize = CGSizeMake(1000, 1000);
+	
+	ScrollNode *scroller = [ScrollNode scrollNodeWithContent:node];
+	scroller.contentSizeType = CCSizeTypeNormalized;
+	scroller.contentSize = CGSizeMake(1, 1);
+	
+	STKHomeScene *homeScene = self.scene;
+	[homeScene.timelineContainer addChild:scroller];
 }
 
 #pragma mark buttons

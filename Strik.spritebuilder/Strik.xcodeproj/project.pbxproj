@@ -10,6 +10,9 @@
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
 		48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */; };
 		48D10A7618B8B170004BC035 /* STKLetterBlockDispenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */; };
+		8330170518BA267800F8296B /* GridNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170218BA267800F8296B /* GridNode.m */; };
+		8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170718BA269C00F8296B /* CCNode+ClipVisit.m */; };
+		8330170B18BA269C00F8296B /* ScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170918BA269C00F8296B /* ScrollNode.m */; };
 		835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803B718B67B640008DA0E /* STKNewPlayerController.m */; };
 		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
@@ -103,6 +106,14 @@
 		48D10A7418B8B170004BC035 /* STKLetterBlockDispenser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLetterBlockDispenser.h; sourceTree = "<group>"; };
 		48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLetterBlockDispenser.m; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8330170118BA267800F8296B /* GridNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNode.h; sourceTree = "<group>"; };
+		8330170218BA267800F8296B /* GridNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridNode.m; sourceTree = "<group>"; };
+		8330170318BA267800F8296B /* GridNodeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNodeDataSource.h; sourceTree = "<group>"; };
+		8330170418BA267800F8296B /* GridNodeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNodeDelegate.h; sourceTree = "<group>"; };
+		8330170618BA269C00F8296B /* CCNode+ClipVisit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+ClipVisit.h"; sourceTree = "<group>"; };
+		8330170718BA269C00F8296B /* CCNode+ClipVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+ClipVisit.m"; sourceTree = "<group>"; };
+		8330170818BA269C00F8296B /* ScrollNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollNode.h; sourceTree = "<group>"; };
+		8330170918BA269C00F8296B /* ScrollNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollNode.m; sourceTree = "<group>"; };
 		835803B618B67B640008DA0E /* STKNewPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerController.h; sourceTree = "<group>"; };
 		835803B718B67B640008DA0E /* STKNewPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewPlayerController.m; sourceTree = "<group>"; };
 		835803BA18B67B720008DA0E /* STKNewPlayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerScene.h; sourceTree = "<group>"; };
@@ -253,6 +264,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		833016FE18BA265F00F8296B /* ScrollNode */ = {
+			isa = PBXGroup;
+			children = (
+				8330170618BA269C00F8296B /* CCNode+ClipVisit.h */,
+				8330170718BA269C00F8296B /* CCNode+ClipVisit.m */,
+				8330170818BA269C00F8296B /* ScrollNode.h */,
+				8330170918BA269C00F8296B /* ScrollNode.m */,
+			);
+			name = ScrollNode;
+			sourceTree = "<group>";
+		};
+		8330170018BA266700F8296B /* GridNode */ = {
+			isa = PBXGroup;
+			children = (
+				8330170118BA267800F8296B /* GridNode.h */,
+				8330170218BA267800F8296B /* GridNode.m */,
+				8330170318BA267800F8296B /* GridNodeDataSource.h */,
+				8330170418BA267800F8296B /* GridNodeDelegate.h */,
+			);
+			name = GridNode;
+			sourceTree = "<group>";
+		};
 		835803BD18B686100008DA0E /* Bootstrap */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +434,8 @@
 		8393784C18B601DA0007BDE4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8330170018BA266700F8296B /* GridNode */,
+				833016FE18BA265F00F8296B /* ScrollNode */,
 				8383A63C18B76287003816BF /* CCNode+Animation */,
 				8383A63A18B7627E003816BF /* NSStack */,
 			);
@@ -796,6 +831,7 @@
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
 				48D10A7618B8B170004BC035 /* STKLetterBlockDispenser.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
+				8330170B18BA269C00F8296B /* ScrollNode.m in Sources */,
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
 				48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */,
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
@@ -828,9 +864,11 @@
 				839378A618B60B180007BDE4 /* STKBoard.m in Sources */,
 				8393783A18B5FFDC0007BDE4 /* STKNetConnection.m in Sources */,
 				8393784818B5FFF80007BDE4 /* STKIncomingMessage.m in Sources */,
+				8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */,
 				8393782E18B5FFB60007BDE4 /* NSObject+Observer.m in Sources */,
 				8393787518B6023D0007BDE4 /* STKItemRegistry.m in Sources */,
 				8393787818B6023D0007BDE4 /* STKMatchPlayer.m in Sources */,
+				8330170518BA267800F8296B /* GridNode.m in Sources */,
 				8383A64218B77B19003816BF /* STKHomeController.m in Sources */,
 				8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */,
 				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,

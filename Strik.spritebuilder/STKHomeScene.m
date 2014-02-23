@@ -33,17 +33,20 @@
 
 - (void)sceneLoaded
 {
+	// Setting up the avatar
 	self.avatar.borderColor = [CCColor whiteColor];
 	self.avatar.backgroundColor = [CCColor redColor];
 	self.avatar.maskedImage = [CCSprite spriteWithImageNamed:@"Home Scene/valerie.png"];
+	
+	// Setting up the progress bar
+	self.playerProgress.borderColor = [CCColor whiteColor];
+	self.playerProgress.lightShade = PLAYER_ONE_LIGHT_COLOR;
+	self.playerProgress.darkShade = PLAYER_ONE_COLOR;
 }
 
 - (void)onEnterTransitionDidFinish
 {
-	self.playerProgress.borderColor = [CCColor whiteColor];
-	self.playerProgress.lightShade = PLAYER_ONE_LIGHT_COLOR;
-	self.playerProgress.darkShade = PLAYER_ONE_COLOR;
-	
+	// Setting value of progress bar on transition completion, so it starts animating after it completes
 	[self.playerProgress setValue:930 ofTotalValue:1500];
 }
 

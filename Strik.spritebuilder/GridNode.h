@@ -1,0 +1,22 @@
+//
+//  STKTableNode.h
+//  Strik
+//
+//  Created by Matthijn Dijkstra on 13/11/13.
+//  Copyright (c) 2013 Indev. All rights reserved.
+//
+
+#import "ScrollNode.h"
+#import "GridNodeDataSource.h"
+#import "GridNodeDelegate.h"
+
+@interface GridNode : ScrollNode
+
+@property (nonatomic, weak) NSObject<GridNodeDelegate> *delegate;
+
+- (id)initWithSize:(CGSize)size andDataSource:(NSObject<GridNodeDataSource> *)dataSource;
++ (id)gridWithSize:(CGSize)size andDataSource:(NSObject<GridNodeDataSource> *)dataSource;
+
+- (void)reload;
+
+@end

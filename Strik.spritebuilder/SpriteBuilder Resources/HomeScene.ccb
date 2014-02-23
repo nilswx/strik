@@ -1968,8 +1968,6 @@
 										</array>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -2053,9 +2051,9 @@
 						<key>displayName</key>
 						<string>Timeline Container</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>_timelineContainer</string>
 						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -2150,6 +2148,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

@@ -7,7 +7,8 @@
 //
 
 #import "STKSceneController.h"
+#import "GridNodeDataSource.h"
 
-@interface STKHomeController : STKSceneController
+@interface STKHomeController : STKSceneController <GridNodeDataSource>
 
 @end

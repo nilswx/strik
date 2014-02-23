@@ -27,6 +27,9 @@
 	{
 		// Set the content to display
 		self.content = content;
+		
+		// Listening to content size changes and update our scroll node content accordingly
+		[self.content addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionInitial context:NULL];
 	}
 	return self;
 }
@@ -125,6 +128,15 @@
 	self.scrollView.delegate = self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	// Update the scrollview content size if the content size of the content node changes
+	if([keyPath isEqualToString:@"contentSize"] && self.scrollView)
+	{
+		self.scrollView.contentSize = CGSizeMake(self.content.contentSizeInPoints.width, self.content.contentSizeInPoints.height);
+	}
+}
+
 - (void)removeScrollView
 {
 	// Remove scrollview
@@ -141,6 +153,11 @@
 - (CGRect)visibleFrame
 {
 	return CGRectMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y, self.boundingBox.size.width, self.boundingBox.size.height);
+}
+
+- (void)dealloc
+{
+	[self.content removeObserver:self forKeyPath:@"contentSize"];
 }
 
 @end

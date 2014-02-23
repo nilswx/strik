@@ -29,7 +29,7 @@
 		self.content = content;
 		
 		// Listening to content size changes and update our scroll node content accordingly
-		[self.content addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionInitial context:NULL];
+		[self.content addObserver:self forKeyPath:NSStringFromSelector(@selector(contentSize)) options:NSKeyValueObservingOptionInitial context:NULL];
 	}
 	return self;
 }
@@ -157,7 +157,7 @@
 
 - (void)dealloc
 {
-	[self.content removeObserver:self forKeyPath:@"contentSize"];
+	[self.content removeObserver:self forKeyPath:NSStringFromSelector(@selector(contentSize))];
 }
 
 @end

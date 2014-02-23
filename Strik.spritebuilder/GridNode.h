@@ -17,4 +17,7 @@
 - (id)initWithDataSource:(NSObject<GridNodeDataSource> *)dataSource;
 + (id)gridWithDataSource:(NSObject<GridNodeDataSource> *)dataSource;
 
+// When changing the row and or column count, call this, so it wil be shown
+- (void)reload;
+
 @end

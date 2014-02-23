@@ -89,6 +89,15 @@
 	}
 }
 
+- (void)reload
+{
+	// Resize the content node so it updates the scroll area size
+	self.content.contentSize = CGSizeMake(self.dataSource.columnCount * self.dataSource.cellSize.width, self.dataSource.rowCount * self.dataSource.cellSize.height);
+	
+	// And display the nodes if needed
+	[self displayNodes];
+}
+
 - (void)clearContent
 {
 	NSArray *children = [NSArray arrayWithArray:self.content.children];

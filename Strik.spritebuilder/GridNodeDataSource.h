@@ -12,6 +12,8 @@
 
 @protocol GridNodeDataSource <NSObject>
 
+@required
+
 @property (nonatomic, readonly) CGSize cellSize;
 
 @property (nonatomic, readonly) int columnCount;

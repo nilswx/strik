@@ -411,7 +411,9 @@
 
 #else
 	// setup DisplayLink in main thread
-	[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+#pragma mark warning Fix for scrolling so it keeps rendering while scrolling
+//	[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+	[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 #endif
 
     _animating = YES;
@@ -469,9 +471,10 @@
 -(void) threadMainLoop
 {
 	@autoreleasepool {
-
-		[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-
+#pragma mark warning Fix for scrolling so it keeps rendering while scrolling
+//		[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+		[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+		
 		// start the run loop
 		[[NSRunLoop currentRunLoop] run];
 

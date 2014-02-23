@@ -20,6 +20,7 @@
 #import "STKMatchController.h"
 #import "STKItemRegistry.h"
 #import "STKInAppPurchasesController.h"
+#import "STKAvatar.h"
 
 #import "STKHomeController.h"
 
@@ -160,8 +161,12 @@
 	[self.core[@"iap"] refreshProducts];
     
 	// Go Home, matey!
-    STKDirector *director = self.core[@"director"];
-	[director presentScene:[STKHomeController new]];
+	
+	// First load the current users avatar, so it won't pop in after showing the scene
+	[self.user.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture) {
+		STKDirector *director = self.core[@"director"];
+		[director presentScene:[STKHomeController new]];
+	}];
 }
 
 - (void)handleExperience:(STKIncomingMessage *)message

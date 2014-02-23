@@ -330,7 +330,7 @@
 		{
 			// Apply updates
 			friend.name = [msg readStr];
-			friend.avatar = [STKAvatar avatarFromString:[msg readStr]];
+			friend.avatar = [STKAvatar avatarWithIdentifier:[msg readStr]];
 			friend.motto = [msg readStr];
 			friend.isOnline = [msg readBool];
 			friend.isInMatch = [msg readBool];

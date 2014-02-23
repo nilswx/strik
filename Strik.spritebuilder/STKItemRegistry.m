@@ -14,7 +14,6 @@
 #import "STKItemType.h"
 #import "STKTrophy.h"
 #import "STKPowerUp.h"
-#import "STKAvatarPart.h"
 
 @interface STKItemRegistry()
 
@@ -91,8 +90,9 @@ static STKItemRegistry* instance;
 		}
 		else if(class == 'a')
 		{
-			STKAvatarPartSlot slot = [msg readByte];
-			[self addType:[STKAvatarPart partWithID:typeId code:code andSlot:slot]];
+			#pragma mark remove me
+			char slot = [msg readByte];
+//			[self addType:[STKAvatarPart partWithID:typeId code:code andSlot:slot]];
 		}
 	}
 	

@@ -63,7 +63,7 @@
 	<key>publishResolution_android_tablethd</key>
 	<true/>
 	<key>publishResolution_ios_phone</key>
-	<false/>
+	<true/>
 	<key>publishResolution_ios_phonehd</key>
 	<true/>
 	<key>publishResolution_ios_tablet</key>

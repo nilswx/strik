@@ -1090,7 +1090,7 @@
 								<key>displayName</key>
 								<string>STKAvatarNode</string>
 								<key>memberVarAssignmentName</key>
-								<string>_avatar</string>
+								<string>_avatarNode</string>
 								<key>memberVarAssignmentType</key>
 								<integer>1</integer>
 								<key>properties</key>
@@ -1139,6 +1139,8 @@
 										<string>Global/Nodes/Avatar.ccb</string>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>baseClass</key>
@@ -2148,8 +2150,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

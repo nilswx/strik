@@ -12,6 +12,7 @@
 #import "STKLevelNode.h"
 #import "STKProgressNode.h"
 #import "STKPLayer.h"
+#import "STKAvatar.h"
 
 @interface STKHomeScene()
 
@@ -19,7 +20,7 @@
 @property CCButton *username;
 
 // The user avatar
-@property STKAvatarNode *avatar;
+@property STKAvatarNode *avatarNode;
 
 // The user level
 @property STKLevelNode *levelNode;
@@ -34,9 +35,8 @@
 - (void)sceneLoaded
 {
 	// Setting up the avatar
-	self.avatar.borderColor = [CCColor whiteColor];
-	self.avatar.backgroundColor = [CCColor redColor];
-	self.avatar.maskedImage = [CCSprite spriteWithImageNamed:@"Home Scene/valerie.png"];
+	self.avatarNode.borderColor = [CCColor whiteColor];
+	self.avatarNode.backgroundColor = PLAYER_ONE_LIGHT_COLOR;
 	
 	// Setting up the progress bar
 	self.playerProgress.borderColor = [CCColor whiteColor];
@@ -50,6 +50,7 @@
 	[self.playerProgress setValue:930 ofTotalValue:1500];
 }
 
+#pragma mark Model events
 - (void)player:(STKPlayer *)player valueChangedForName:(NSString *)name
 {
 	self.username.title = name;
@@ -61,6 +62,13 @@
 	
 	self.levelNode.fontColor = PLAYER_ONE_COLOR;
 	self.levelNode.text = [NSString stringWithFormat:@"%d", [level intValue]];
+}
+
+- (void)avatar:(STKAvatar *)avatar valueChangedForIdentifier:(NSString *)identifier
+{
+	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture) {
+		self.avatarNode.maskedImage = [CCSprite spriteWithTexture:avatarTexture];
+	}];
 }
 
 @end

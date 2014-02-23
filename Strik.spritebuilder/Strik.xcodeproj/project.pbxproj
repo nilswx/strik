@@ -43,7 +43,6 @@
 		8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393784718B5FFF80007BDE4 /* STKOutgoingMessage.m */; };
 		8393784F18B601E60007BDE4 /* NSStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393784E18B601E60007BDE4 /* NSStack.m */; };
 		8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393785A18B6023D0007BDE4 /* STKAvatar.m */; };
-		8393787218B6023D0007BDE4 /* STKAvatarPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393785C18B6023D0007BDE4 /* STKAvatarPart.m */; };
 		8393787318B6023D0007BDE4 /* STKFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393785E18B6023D0007BDE4 /* STKFriend.m */; };
 		8393787418B6023D0007BDE4 /* STKInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786018B6023D0007BDE4 /* STKInventory.m */; };
 		8393787518B6023D0007BDE4 /* STKItemRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393786218B6023D0007BDE4 /* STKItemRegistry.m */; };
@@ -176,8 +175,6 @@
 		8393785418B6020E0007BDE4 /* STKOutgoingOpcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STKOutgoingOpcode.h; sourceTree = "<group>"; };
 		8393785918B6023D0007BDE4 /* STKAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatar.h; sourceTree = "<group>"; };
 		8393785A18B6023D0007BDE4 /* STKAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatar.m; sourceTree = "<group>"; };
-		8393785B18B6023D0007BDE4 /* STKAvatarPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatarPart.h; sourceTree = "<group>"; };
-		8393785C18B6023D0007BDE4 /* STKAvatarPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatarPart.m; sourceTree = "<group>"; };
 		8393785D18B6023D0007BDE4 /* STKFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKFriend.h; sourceTree = "<group>"; };
 		8393785E18B6023D0007BDE4 /* STKFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKFriend.m; sourceTree = "<group>"; };
 		8393785F18B6023D0007BDE4 /* STKInventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKInventory.h; sourceTree = "<group>"; };
@@ -524,8 +521,6 @@
 			children = (
 				8393785918B6023D0007BDE4 /* STKAvatar.h */,
 				8393785A18B6023D0007BDE4 /* STKAvatar.m */,
-				8393785B18B6023D0007BDE4 /* STKAvatarPart.h */,
-				8393785C18B6023D0007BDE4 /* STKAvatarPart.m */,
 				8393785D18B6023D0007BDE4 /* STKFriend.h */,
 				8393785E18B6023D0007BDE4 /* STKFriend.m */,
 				8393785F18B6023D0007BDE4 /* STKInventory.h */,
@@ -842,7 +837,6 @@
 				8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */,
 				8383A65F18B8E62E003816BF /* STKLobbyController.m in Sources */,
 				8383A65B18B8D255003816BF /* STKProgressNode.m in Sources */,
-				8393787218B6023D0007BDE4 /* STKAvatarPart.m in Sources */,
 				8393784F18B601E60007BDE4 /* NSStack.m in Sources */,
 				8393787B18B6023D0007BDE4 /* STKProgression.m in Sources */,
 				8383A66218B8E642003816BF /* STKLobbyScene.m in Sources */,

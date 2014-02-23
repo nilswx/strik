@@ -1,23 +1,22 @@
 //
-//  STKAvatar.h
+//  STKAvatar.m
 //  Strik
 //
-//  Created by Nils on Oct 6, 2013.
-//  Copyright (c) 2013 Indev. All rights reserved.
+//  Created by Matthijn on Feb 23, 2014.
+//  Copyright (c) 2014 Indev. All rights reserved.
 //
 
 #import "STKModel.h"
 
+typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture);
+
 @interface STKAvatar : STKModel
 
-@property (nonatomic, copy) NSString *hat; // Birthday hat!
-@property (nonatomic, copy) NSString *hair;
-@property (nonatomic, copy) NSString *head;
-@property (nonatomic, copy) NSString *eyes;
-@property (nonatomic, copy) NSString *mouth;
-@property (nonatomic, copy) NSString *shirt;
-@property (nonatomic, copy) NSString *background;
+@property (readonly) NSString *identifier;
 
-+ (STKAvatar*)avatarFromString:(NSString*)string;
+- (id)initWithAvatarIdentifier:(NSString *)identifier;
++ (STKAvatar*)avatarWithIdentifier:(NSString*)identifier;
+
+- (void)fetchAvatarWithCallback:(AvatarFetchResultBlock)callback;
 
 @end

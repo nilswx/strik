@@ -45,6 +45,7 @@
 	STKSessionController *sessionController = self.core[@"session"];
 	[self.scene observeModel:(STKModel *)sessionController.user];
 	[self.scene observeModel:(STKModel *)sessionController.user.progression];
+	[self.scene observeModel:(STKModel *)sessionController.user.avatar];
 	
 	// Setup the timeline
 	[self setupTimeline];

@@ -19,29 +19,36 @@
 
 @implementation GridNode
 
-- (id)initWithSize:(CGSize)size andDataSource:(NSObject<GridNodeDataSource> *)dataSource
+- (id)initWithDataSource:(NSObject<GridNodeDataSource> *)dataSource
 {
-	self.dataSource = dataSource;
+	CCNode *contentNode = [CCNode node];
 	
-	self = [super initWithContent:[CCNodeColor nodeWithColor:[CCColor whiteColor] width:size.width height:(self.dataSource.cellSize.height * self.dataSource.rowCount)]];
-	if(self)
+	contentNode.contentSizeType = CCSizeTypePoints;
+	contentNode.contentSize = CGSizeMake(dataSource.columnCount * dataSource.cellSize.width, dataSource.rowCount * dataSource.cellSize.height);
+	 
+	if(self = [super initWithContent:contentNode])
 	{
-		[self displayNodes];
+		self.dataSource = dataSource;
 	}
+	
 	return self;
 }
 
-+ (id)gridWithSize:(CGSize)size andDataSource:(NSObject<GridNodeDataSource> *)dataSource
++ (id)gridWithDataSource:(NSObject<GridNodeDataSource> *)dataSource
 {
-	return [[GridNode alloc] initWithSize:size andDataSource:dataSource];
+	return [[GridNode alloc] initWithDataSource:dataSource];
 }
 
+- (void)onEnter
+{
+	[super onEnter];
+	[self displayNodes];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 	[super scrollViewDidScroll:scrollView];
 
-	[self removeInvisibleNodes];
 	[self displayNodes];
 }
 
@@ -55,10 +62,14 @@
 	{
 		for(CGFloat yOffset = visibleFrame.origin.y; yOffset < visibleFrame.origin.y + visibleFrame.size.height; yOffset += self.dataSource.cellSize.height)
 		{
+//			NSLog(@"Offset Y %f, X %f", yOffset, xOffset);
+			
 			// Get the node for this row and collumn
 			int row = [self rowForYOffset:yOffset];
 			int col = [self columnForXOffset:xOffset];
 				
+//			NSLog(@"Displaying row %d and col %d", row, col);
+			
 			// Make sure there is a node to display (e.g there is only one node but room to display three)
 			if((row < self.dataSource.rowCount && row >= 0) && (col < self.dataSource.columnCount && col >= 0))
 			{
@@ -76,27 +87,6 @@
 			}
 		}
 	}
-}
-
-- (void)removeInvisibleNodes
-{
-
-}
-
-- (void)reload
-{
-	// Remove any node in the content
-	[self clearContent];
-	
-    // Recalculate size of content node
-	self.content.contentSize = CGSizeMake(self.content.contentSizeInPoints.width, self.dataSource.rowCount * self.dataSource.cellSize.height);
-	
-    // Disable and re enable scrolling to create a scroller with the correct size
-	[self enableScrolling:NO];
-	[self enableScrolling:YES];
-	
-    // And display new nodes
-	[self displayNodes];
 }
 
 - (void)clearContent

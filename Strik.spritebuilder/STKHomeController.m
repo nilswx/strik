@@ -18,11 +18,18 @@
 #import "STKPLayer.h"
 #import "STKOutgoingMessage.h"
 
-#import "ScrollNode.h"
+#import "GridNode.h"
 
 @interface STKHomeController()
 
-//@property GridNode *timelineGrid;
+// The grid for the timeline
+@property GridNode *timelineGrid;
+
+// The array which will contain the timeline item nodes
+@property NSMutableArray *timelineItemNodes;
+
+// The array containing the timeline items itself
+@property NSMutableArray *timelineItems;
 
 @end
 
@@ -45,16 +52,17 @@
 
 - (void)setupTimeline
 {
-	CCNodeGradient *node = [CCNodeGradient nodeWithColor:[CCColor redColor] fadingTo:[CCColor yellowColor]];
-	node.contentSizeType = CCSizeTypePoints;
-	node.contentSize = CGSizeMake(1000, 1000);
+	self.timelineItems = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", nil];
+	self.timelineItemNodes = [NSMutableArray array];
 	
-	ScrollNode *scroller = [ScrollNode scrollNodeWithContent:node];
-	scroller.contentSizeType = CCSizeTypeNormalized;
-	scroller.contentSize = CGSizeMake(1, 1);
+	// Create the timeline grid (filling its container)
+	self.timelineGrid = [GridNode gridWithDataSource:self];
+	self.timelineGrid.contentSizeType = CCSizeTypeNormalized;
+	self.timelineGrid.contentSize = CGSizeMake(1, 1);
 	
+	// And add it to the home scene timeline container
 	STKHomeScene *homeScene = self.scene;
-	[homeScene.timelineContainer addChild:scroller];
+	[homeScene.timelineContainer addChild:self.timelineGrid];
 }
 
 #pragma mark buttons
@@ -118,6 +126,40 @@
 	// Notify user
 	STKAlertView *alertview = [STKAlertView alertWithTitle:NSLocalizedString(@"Name Not Allowed", @"Name not allowed title.") andMessage:NSLocalizedString(@"You like naughty names don't you? Well, we don't!", @"Name not allowed message")];
 	[alertview show];
+}
+
+#pragma mark Timeline grid data source
+- (CGSize)cellSize
+{
+	return CGSizeMake(320, 70);
+}
+
+-(int)columnCount
+{
+	return 1;
+}
+
+- (int)rowCount
+{
+	return self.timelineItems.count;
+}
+
+- (CCNode *)nodeForColumn:(int)column andRow:(int)row
+{
+	if(self.timelineItemNodes.count <= row)
+	{
+		CCNodeGradient *gradient = [CCNodeGradient nodeWithColor:[CCColor blueColor] fadingTo:[CCColor orangeColor]];
+		gradient.contentSizeType = CCSizeTypePoints;
+		gradient.contentSize = [self cellSize];
+		
+		[self.timelineItemNodes addObject:gradient];
+
+		return gradient;
+	}
+	else
+	{
+		return [self.timelineItemNodes objectAtIndex:row];
+	}
 }
 
 @end

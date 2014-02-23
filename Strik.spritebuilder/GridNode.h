@@ -14,9 +14,7 @@
 
 @property (nonatomic, weak) NSObject<GridNodeDelegate> *delegate;
 
-- (id)initWithSize:(CGSize)size andDataSource:(NSObject<GridNodeDataSource> *)dataSource;
-+ (id)gridWithSize:(CGSize)size andDataSource:(NSObject<GridNodeDataSource> *)dataSource;
-
-- (void)reload;
+- (id)initWithDataSource:(NSObject<GridNodeDataSource> *)dataSource;
++ (id)gridWithDataSource:(NSObject<GridNodeDataSource> *)dataSource;
 
 @end

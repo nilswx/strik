@@ -46,7 +46,7 @@
 	if(avatarTexture)
 	{
 		// Callback to caller with avatar
-		callback(avatarTexture);
+		callback(avatarTexture, self.avatarType);
 	}
 	// It was not loaded before
 	else
@@ -54,7 +54,7 @@
 		// Determine type (e.g normal avatar, of facebook avatar)
 		
 		// It is a facebook type avatar
-		if([[self.identifier substringToIndex:1] isEqualToString:@"f"])
+		if(self.avatarType)
 		{
 			// Fetching remote? Don't do that on the main thread
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -80,7 +80,7 @@
 						[fetchedAvatars setObject:avatarTexture forKey:self.identifier];
 						
 						// And call the callback with texture
-						callback(avatarTexture);
+						callback(avatarTexture, self.avatarType);
 					});
 				}
 			});
@@ -98,11 +98,20 @@
 			[fetchedAvatars setObject:avatarTexture forKey:self.identifier];
 			
 			// And callback to caller with avatar
-			callback(avatarTexture);
+			callback(avatarTexture, self.avatarType);
 		}
 		
 	}
 	
+}
+
+- (AvatarType)avatarType
+{
+	if([[self.identifier substringToIndex:1] isEqualToString:@"f"])
+	{
+		return AvatarTypeProfile;
+	}
+	return AvatarTypeClient;
 }
 
 @end

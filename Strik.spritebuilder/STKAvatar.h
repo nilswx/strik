@@ -8,11 +8,20 @@
 
 #import "STKModel.h"
 
-typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture);
+typedef NS_ENUM(NSInteger, AvatarType)
+{
+	AvatarTypeProfile,
+	AvatarTypeClient
+};
+
+typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture, AvatarType avatarType);
 
 @interface STKAvatar : STKModel
 
 @property (readonly) NSString *identifier;
+
+// The avatar type (e.g profile picture, or chosen from the client avatar collection)
+@property (readonly) AvatarType avatarType;
 
 - (id)initWithAvatarIdentifier:(NSString *)identifier;
 + (STKAvatar*)avatarWithIdentifier:(NSString*)identifier;

@@ -66,7 +66,7 @@
 
 - (void)avatar:(STKAvatar *)avatar valueChangedForIdentifier:(NSString *)identifier
 {
-	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture) {
+	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
 		self.avatarNode.maskedImage = [CCSprite spriteWithTexture:avatarTexture];
 	}];
 }

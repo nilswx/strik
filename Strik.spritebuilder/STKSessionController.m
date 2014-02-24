@@ -163,7 +163,7 @@
 	// Go Home, matey!
 	
 	// First load the current users avatar, so it won't pop in after showing the scene
-	[self.user.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture) {
+	[self.user.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
 		STKDirector *director = self.core[@"director"];
 		[director presentScene:[STKHomeController new]];
 	}];

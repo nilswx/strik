@@ -61,6 +61,9 @@
 	
 	// Setup the timeline
 	[self setupTimeline];
+	
+	// Get stream begin
+	[self requestStreamFrom:0 to:25];
 }
 
 - (void)setupTimeline

@@ -54,7 +54,7 @@
 		// Determine type (e.g normal avatar, of facebook avatar)
 		
 		// It is a facebook type avatar
-		if(self.avatarType)
+		if(self.avatarType == AvatarTypeProfile)
 		{
 			// Fetching remote? Don't do that on the main thread
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{

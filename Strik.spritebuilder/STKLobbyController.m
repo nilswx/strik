@@ -7,7 +7,13 @@
 //
 
 #import "STKLobbyController.h"
+#import "STKHomeScene.h"
 
 @implementation STKLobbyController
+
+- (void)onBackButton:(CCButton *)button
+{
+	[self transitionTo:[STKHomeScene class] direction:CCTransitionDirectionRight];
+}
 
 @end

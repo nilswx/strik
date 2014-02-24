@@ -118,114 +118,6 @@
 				<array>
 					<dict>
 						<key>baseClass</key>
-						<string>CCNodeColor</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>top-divider</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>name</string>
-								<key>type</key>
-								<string>StringSimple</string>
-								<key>value</key>
-								<string></string>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>position</string>
-								<key>type</key>
-								<string>Position</string>
-								<key>value</key>
-								<array>
-									<real>320</real>
-									<real>0.0</real>
-									<integer>3</integer>
-									<integer>1</integer>
-									<integer>1</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>contentSize</string>
-								<key>type</key>
-								<string>Size</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>5</real>
-									<integer>2</integer>
-									<integer>1</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>anchorPoint</string>
-								<key>type</key>
-								<string>Point</string>
-								<key>value</key>
-								<array>
-									<real>0.0</real>
-									<real>1</real>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>color</string>
-								<key>type</key>
-								<string>Color3</string>
-								<key>value</key>
-								<array>
-									<real>0.15294118225574493</real>
-									<real>0.14901961386203766</real>
-									<real>0.15686275064945221</real>
-									<real>1</real>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>opacity</string>
-								<key>type</key>
-								<string>Float</string>
-								<key>value</key>
-								<real>1</real>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>blendFunc</string>
-								<key>type</key>
-								<string>Blendmode</string>
-								<key>value</key>
-								<array>
-									<integer>770</integer>
-									<integer>771</integer>
-								</array>
-							</dict>
-						</array>
-					</dict>
-					<dict>
-						<key>baseClass</key>
 						<string>CCLabelTTF</string>
 						<key>children</key>
 						<array/>
@@ -255,7 +147,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>10.5</real>
+									<real>8</real>
 									<integer>1</integer>
 									<integer>2</integer>
 									<integer>1</integer>
@@ -983,7 +875,7 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>65</real>
+							<real>60</real>
 							<integer>2</integer>
 							<integer>1</integer>
 						</array>
@@ -1020,7 +912,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0078431377187371254</real>
-							<real>0.76862752437591553</real>
+							<real>0.76862746477127075</real>
 							<real>0.69411766529083252</real>
 							<real>1</real>
 						</array>
@@ -1054,7 +946,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>achievements</string>
+				<string>top-divider</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1076,10 +968,10 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-1</real>
-							<real>500</real>
-							<integer>0</integer>
-							<integer>0</integer>
+							<real>0.0</real>
+							<real>60</real>
+							<integer>1</integer>
+							<integer>1</integer>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1091,7 +983,7 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>500</real>
+							<real>2.5</real>
 							<integer>2</integer>
 							<integer>1</integer>
 						</array>
@@ -1127,10 +1019,10 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
+							<real>0.15294118225574493</real>
+							<real>0.14901961386203766</real>
+							<real>0.15686275064945221</real>
 							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>0.40000000596046448</real>
 						</array>
 					</dict>
 					<dict>
@@ -1139,7 +1031,7 @@
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.40000000596046448</real>
+						<real>1</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1395,8 +1287,6 @@
 						<real>0.5</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

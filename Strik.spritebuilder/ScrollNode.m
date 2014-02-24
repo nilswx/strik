@@ -133,7 +133,8 @@
 	// Update the scrollview content size if the content size of the content node changes
 	if([keyPath isEqualToString:@"contentSize"] && self.scrollView)
 	{
-		self.scrollView.contentSize = CGSizeMake(self.content.contentSizeInPoints.width, self.content.contentSizeInPoints.height);
+		// The scroll view contentsize will be at least the same size as the view, so you can allwasy "scroll" which is prettier then static
+		self.scrollView.contentSize = CGSizeMake(self.content.contentSizeInPoints.width, MAX(self.content.contentSizeInPoints.height, self.scrollView.frame.size.height + 1));
 	}
 }
 

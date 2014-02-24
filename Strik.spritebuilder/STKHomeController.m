@@ -28,7 +28,6 @@
 #import "STKItemType.h"
 #import "STKItemRegistry.h"
 
-
 @interface STKHomeController()
 
 // The grid for the timeline
@@ -164,13 +163,20 @@
 {
 	if(self.timelineItemNodes.count <= row)
 	{
-		CCNodeGradient *gradient = [CCNodeGradient nodeWithColor:[CCColor blueColor] fadingTo:[CCColor orangeColor]];
-		gradient.contentSizeType = CCSizeTypePoints;
-		gradient.contentSize = [self cellSize];
+		// Get the info for this timeline item
+		NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:row];
 		
-		[self.timelineItemNodes addObject:gradient];
+		// Load it and set the properties
+		STKTimelineItemNode *timelineItem = (STKTimelineItemNode *)[CCBReader load:@"Home Scene/TimelineItemNode.ccbi"];
+		timelineItem.actor = nodeInfo[@"actor"];
+		timelineItem.content = nodeInfo[@"content"];
+		timelineItem.timestamp = [nodeInfo[@"timestamp"] intValue];
+		
+		// Add to cache
+		[self.timelineItemNodes addObject:timelineItem];
 
-		return gradient;
+		// And return
+		return timelineItem;
 	}
 	else
 	{

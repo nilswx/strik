@@ -7,14 +7,17 @@
 //
 
 #import "CCNode.h"
-#import "STKAvatar.h"
+#import "STKPLayer.h"
 
 @interface STKTimelineItemNode : CCNode
 
-@property STKAvatar *avatar;
-@property CCLabelTTF *content;
-@property CCLabelTTF *time;
+// The player for this timeline event
+@property (nonatomic) STKPlayer *actor;
 
-+ (id)timelineItemNodeWithAvatar:(STKAvatar *)avatar content:(NSString *)content andTime:(int)timestamp;
+// The content for the label
+@property (nonatomic) NSString *content;
+
+// And the time
+@property (nonatomic, assign) int *timestamp;
 
 @end

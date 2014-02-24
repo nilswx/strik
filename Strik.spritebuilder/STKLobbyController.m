@@ -11,6 +11,7 @@
 
 #import "STKFacebookController.h"
 #import "STKLobbyPersonNode.h"
+#import "STKLobbyScene.h"
 
 @interface STKLobbyController()
 
@@ -86,7 +87,23 @@
 
 - (int)rowCount
 {
-	return (int)(self.facebookUsers.count + self.friends.count);
+	int rowCount = (int)(self.facebookUsers.count + self.friends.count);
+	
+	if(rowCount >= 6)
+	{
+		// This makes sure the background of the bottom of the app matches the node with the last color when needed
+		STKLobbyScene *lobyyScene = self.scene;
+		
+		if(rowCount % 2 == 0)
+		{
+			lobyyScene.bottomColorNode.opacity = 1;
+		}
+		else
+		{
+			lobyyScene.bottomColorNode.opacity = 0;
+		}
+	}
+	return rowCount;
 }
 
 - (CCNode *)nodeForColumn:(int)column andRow:(int)row

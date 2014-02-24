@@ -34,6 +34,8 @@
 	if(friend)
 	{
 		
+		// Todo: check for reaallly long names
+		
 		// We have both, so we can set both labels
 		if(friend.name && friend.fullName)
 		{

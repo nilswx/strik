@@ -76,10 +76,10 @@
 	[super onEnter];
 }
 
-- (void)onExit
-{
+- (void)onExitTransitionDidStart
+{	
 	[self removeScrollView];
-	[super onExit];
+	[super onExitTransitionDidStart];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

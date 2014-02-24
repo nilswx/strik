@@ -15,7 +15,6 @@
 // Facebook
 @property int64_t userId;
 @property NSString *fullName;
-@property(readonly) NSString *profileImageUrl;
 
 // Game
 @property int32_t playerId;

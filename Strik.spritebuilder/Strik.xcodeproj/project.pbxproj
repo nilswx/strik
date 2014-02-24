@@ -14,6 +14,7 @@
 		8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170718BA269C00F8296B /* CCNode+ClipVisit.m */; };
 		8330170B18BA269C00F8296B /* ScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170918BA269C00F8296B /* ScrollNode.m */; };
 		8330170F18BB4EF000F8296B /* STKTimelineItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170E18BB4EF000F8296B /* STKTimelineItemNode.m */; };
+		8330171318BB964300F8296B /* STKLobbyPersonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330171218BB964300F8296B /* STKLobbyPersonNode.m */; };
 		835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803B718B67B640008DA0E /* STKNewPlayerController.m */; };
 		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
@@ -116,6 +117,8 @@
 		8330170918BA269C00F8296B /* ScrollNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollNode.m; sourceTree = "<group>"; };
 		8330170D18BB4EF000F8296B /* STKTimelineItemNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTimelineItemNode.h; sourceTree = "<group>"; };
 		8330170E18BB4EF000F8296B /* STKTimelineItemNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTimelineItemNode.m; sourceTree = "<group>"; };
+		8330171118BB964300F8296B /* STKLobbyPersonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLobbyPersonNode.h; sourceTree = "<group>"; };
+		8330171218BB964300F8296B /* STKLobbyPersonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLobbyPersonNode.m; sourceTree = "<group>"; };
 		835803B618B67B640008DA0E /* STKNewPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerController.h; sourceTree = "<group>"; };
 		835803B718B67B640008DA0E /* STKNewPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewPlayerController.m; sourceTree = "<group>"; };
 		835803BA18B67B720008DA0E /* STKNewPlayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewPlayerScene.h; sourceTree = "<group>"; };
@@ -291,6 +294,15 @@
 			children = (
 				8330170D18BB4EF000F8296B /* STKTimelineItemNode.h */,
 				8330170E18BB4EF000F8296B /* STKTimelineItemNode.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		8330171018BB963300F8296B /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				8330171118BB964300F8296B /* STKLobbyPersonNode.h */,
+				8330171218BB964300F8296B /* STKLobbyPersonNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -609,6 +621,7 @@
 		8393789618B602BD0007BDE4 /* Lobby */ = {
 			isa = PBXGroup;
 			children = (
+				8330171018BB963300F8296B /* Nodes */,
 				8383A65D18B8E62E003816BF /* STKLobbyController.h */,
 				8383A65E18B8E62E003816BF /* STKLobbyController.m */,
 				8383A66018B8E642003816BF /* STKLobbyScene.h */,
@@ -856,6 +869,7 @@
 				8383A66218B8E642003816BF /* STKLobbyScene.m in Sources */,
 				835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */,
 				8393783318B5FFB60007BDE4 /* STKScene.m in Sources */,
+				8330171318BB964300F8296B /* STKLobbyPersonNode.m in Sources */,
 				8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */,
 				8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */,
 				8393787918B6023D0007BDE4 /* STKPlayer.m in Sources */,

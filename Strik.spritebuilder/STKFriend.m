@@ -15,16 +15,4 @@
 	return (self.playerId > 0);
 }
 
-@synthesize profileImageUrl = _profileImageUrl;
-
-- (NSString*)profileImageUrl
-{
-	if(!self->_profileImageUrl)
-	{
-		self->_profileImageUrl = [NSString stringWithFormat:@"http://graph.facebook.com/%lld/picture?width=180&height=180", self.userId];
-	}
-	
-	return self->_profileImageUrl;
-}
-
 @end

@@ -63,7 +63,7 @@
 				double facebookID = [[self.identifier substringFromIndex:1] doubleValue];
 				
 				// Fetch the contents of the URL create an image out of it
-				NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%.0f/picture?width=180&height=180", facebookID]];
+				NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%.0f/picture?width=200&height=200", facebookID]];
 				NSData *data = [NSData dataWithContentsOfURL:url];
 				UIImage *profileImage = [UIImage imageWithData:data];
 				

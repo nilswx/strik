@@ -249,6 +249,8 @@
 				 STKFriend* friend = [STKFriend new];
 				 friend.userId = [data[@"uid"] longLongValue];
 				 friend.fullName = data[@"name"];
+				 friend.avatar = [STKAvatar avatarWithIdentifier:[NSString stringWithFormat:@"f%lld", friend.userId]];
+				 
 				 self.friends[@(friend.userId)] = friend;
 				 
 				 // Uses the game too?
@@ -289,6 +291,7 @@
 		
 		// Not a bogus friend?
 		STKFriend* friend = self.friends[@(userId)];
+		
 		if(friend)
 		{
 			friend.playerId = playerId;

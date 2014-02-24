@@ -8,6 +8,10 @@
 
 #import "STKScene.h"
 
+@class GridNode;
+
 @interface STKLobbyScene : STKScene
+
+@property GridNode *friendsGridNode;
 
 @end

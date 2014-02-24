@@ -9,6 +9,13 @@
 #import "CCNode.h"
 #import "STKPLayer.h"
 
+typedef NS_ENUM(NSInteger, TimelinePositionType)
+{
+	TimelinePositionTypeTop,
+	TimelinePositionTypeCenter,
+	TimelinePositionTypeBottom
+};
+
 @interface STKTimelineItemNode : CCNode
 
 // The player for this timeline event
@@ -19,5 +26,8 @@
 
 // And the time
 @property (nonatomic, assign) int *timestamp;
+
+// Based on the property the line will be changes so the top and bottom have the correct lines
+@property (nonatomic, assign) TimelinePositionType timelinePosition;
 
 @end

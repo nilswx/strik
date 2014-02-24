@@ -57,19 +57,25 @@
 	// We want to preload a few nodes ahead
 	CGRect visibleFrame = CGRectMake(self.visibleFrame.origin.x, self.visibleFrame.origin.y, self.visibleFrame.size.width * PRELOAD_DISTANCE, self.visibleFrame.size.height * PRELOAD_DISTANCE);
 
+	// Todo, make it possible to scroll vertical in the grid node
 	// Add any new nodes in the visible bounds
-	for(CGFloat xOffset = visibleFrame.origin.x; xOffset < visibleFrame.origin.x + visibleFrame.size.width; xOffset += self.dataSource.cellSize.width)
+//	for(CGFloat xOffset = visibleFrame.origin.x; xOffset < visibleFrame.origin.x + visibleFrame.size.width; xOffset += self.dataSource.cellSize.width)
 	{
+		NSLog(@"ONCE");
+		
 		for(CGFloat yOffset = visibleFrame.origin.y; yOffset < visibleFrame.origin.y + visibleFrame.size.height; yOffset += self.dataSource.cellSize.height)
 		{
-//			NSLog(@"Offset Y %f, X %f", yOffset, xOffset);
-			
 			// Get the node for this row and collumn
 			int row = [self rowForYOffset:yOffset];
-			int col = [self columnForXOffset:xOffset];
-				
-//			NSLog(@"Displaying row %d and col %d", row, col);
+//			int col = [self columnForXOffset:xOffset];
+			int col = 0;
 			
+			// Break when there is more space then available nodes
+			if(row == self.dataSource.rowCount)
+			{
+				break;
+			}
+						
 			// Make sure there is a node to display (e.g there is only one node but room to display three)
 			if((row < self.dataSource.rowCount && row >= 0) && (col < self.dataSource.columnCount && col >= 0))
 			{
@@ -120,7 +126,7 @@
 
 - (int)rowForYOffset:(CGFloat)yOffset
 {
-	return MIN(MAX(0, floorf(yOffset / self.dataSource.cellSize.height)), self.dataSource.rowCount - 1);
+	return MAX(0, floorf(yOffset / self.dataSource.cellSize.height));
 }
 
 - (CGPoint)pointForNodeAtColumn:(int)column andRow:(int)row

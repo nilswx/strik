@@ -44,5 +44,29 @@
 	}];
 }
 
+- (void)setTimelinePosition:(TimelinePositionType)timelinePosition
+{
+	_timelinePosition = timelinePosition;
+	
+	// The width and x pos doesn't change
+	CGFloat width = self.connectingLine.contentSize.width;
+	CGFloat x = self.connectingLine.position.x;
+	
+	if(timelinePosition == TimelinePositionTypeTop)
+	{
+		self.connectingLine.contentSize = CGSizeMake(width, 0.5);
+		self.connectingLine.position = CGPointMake(x, 0);
+	}
+	else if(timelinePosition == TimelinePositionTypeCenter)
+	{
+		self.connectingLine.contentSize = CGSizeMake(width, 1);
+		self.connectingLine.position = CGPointMake(x, 0);
+	}
+	else if(timelinePosition == TimelinePositionTypeBottom)
+	{
+		self.connectingLine.contentSize = CGSizeMake(width, 0.5);
+		self.connectingLine.position = CGPointMake(x, 50);
+	}
+}
 
 @end

@@ -161,27 +161,43 @@
 
 - (CCNode *)nodeForColumn:(int)column andRow:(int)row
 {
+	
+	STKTimelineItemNode *timelineItem;
+	
 	if(self.timelineItemNodes.count <= row)
 	{
 		// Get the info for this timeline item
 		NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:row];
 		
 		// Load it and set the properties
-		STKTimelineItemNode *timelineItem = (STKTimelineItemNode *)[CCBReader load:@"Home Scene/TimelineItemNode.ccbi"];
+		timelineItem = (STKTimelineItemNode *)[CCBReader load:@"Home Scene/TimelineItemNode.ccbi"];
 		timelineItem.actor = nodeInfo[@"actor"];
 		timelineItem.content = nodeInfo[@"content"];
 		timelineItem.timestamp = [nodeInfo[@"timestamp"] intValue];
 		
 		// Add to cache
 		[self.timelineItemNodes addObject:timelineItem];
-
-		// And return
-		return timelineItem;
 	}
 	else
 	{
-		return [self.timelineItemNodes objectAtIndex:row];
+		timelineItem = [self.timelineItemNodes objectAtIndex:row];
 	}
+	
+	// Make sure the line is correct based on position
+	if(row == 0)
+	{
+		timelineItem.timelinePosition = TimelinePositionTypeTop;
+	}
+	else if(row == self.rowCount - 1)
+	{
+		timelineItem.timelinePosition = TimelinePositionTypeBottom;
+	}
+	else
+	{
+		timelineItem.timelinePosition = TimelinePositionTypeCenter;
+	}
+	
+	return timelineItem;
 }
 
 #pragma mark timeline handling

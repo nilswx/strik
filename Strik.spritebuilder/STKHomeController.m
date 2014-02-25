@@ -28,6 +28,9 @@
 #import "STKItemType.h"
 #import "STKItemRegistry.h"
 
+#import "STKSettingsController.h"
+#import "STKDirector.h"
+
 @interface STKHomeController()
 
 // The grid for the timeline
@@ -89,6 +92,12 @@
 - (void)onNewGameButton:(CCButton *)button
 {
 	[self transitionTo:[STKLobbyScene class] direction:CCTransitionDirectionLeft];
+}
+
+- (void)onSettingsButton:(CCButton *)button
+{
+	STKDirector* director = self.core[@"director"];
+	[director overlayScene:[STKSettingsController new]];
 }
 
 - (void)onScrollTopButton:(CCButton *)button

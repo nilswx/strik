@@ -15,6 +15,8 @@
 - (void)presentScene:(STKSceneController *)sceneController;
 - (void)presentScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;
 
+- (void)overlayScene:(STKSceneController *)sceneController;
+
 - (id)isCurrentScene:(Class)sceneClass;
 
 - (STKScene *)bootstrapScene;

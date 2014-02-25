@@ -9,12 +9,23 @@
 #import "STKAchievementsController.h"
 
 #import "STKHomeScene.h"
+#import "STKAchievementsScene.h"
+#import "GridNode.h"
 
 @implementation STKAchievementsController
 
+#pragma mark buttons
 - (void)onBackButton:(CCButton *)button
 {
 	[self transitionTo:[STKHomeScene class] direction:CCTransitionDirectionRight];
 }
+
+- (void)onScrollTopButton:(CCButton *)button
+{
+	// Scrolling back to top when tapping top bar
+	STKAchievementsScene *achievementsScene = self.scene;
+	[achievementsScene.achievementsGrid.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
+
 
 @end

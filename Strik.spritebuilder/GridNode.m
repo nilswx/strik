@@ -8,8 +8,8 @@
 
 #import "GridNode.h"
 
-// The distance to load ahead (e.g it loads 50% of the node size before it is displayed so it wont' pop in during scrolling)
-#define PRELOAD_DISTANCE 1.5f
+// The distance to load ahead (e.g it loads x% of the container node size before it is displayed so it wont' pop in during scrolling)
+#define PRELOAD_DISTANCE 1.1f
 
 @interface GridNode()
 
@@ -61,8 +61,6 @@
 	// Add any new nodes in the visible bounds
 //	for(CGFloat xOffset = visibleFrame.origin.x; xOffset < visibleFrame.origin.x + visibleFrame.size.width; xOffset += self.dataSource.cellSize.width)
 	{
-		NSLog(@"ONCE");
-		
 		for(CGFloat yOffset = visibleFrame.origin.y; yOffset < visibleFrame.origin.y + visibleFrame.size.height; yOffset += self.dataSource.cellSize.height)
 		{
 			// Get the node for this row and collumn

@@ -12,6 +12,7 @@
 #import "STKFacebookController.h"
 #import "STKLobbyPersonNode.h"
 #import "STKLobbyScene.h"
+#import "GridNode.h"
 
 @interface STKLobbyController()
 
@@ -71,6 +72,13 @@
 - (void)onRandomOpponentButton:(CCButton *)button
 {
 	NSLog(@"Pressed random game button.");
+}
+
+- (void)onScrollTopButton:(CCButton *)button
+{
+	// Scrolling back to top when tapping top bar
+	STKLobbyScene *lobbyScene = self.scene;
+	[lobbyScene.friendsGridNode.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
 #pragma mark Grid datasource

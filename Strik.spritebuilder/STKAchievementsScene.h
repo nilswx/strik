@@ -8,6 +8,10 @@
 
 #import "STKScene.h"
 
+@class GridNode;
+
 @interface STKAchievementsScene : STKScene
+
+@property GridNode *achievementsGrid;
 
 @end

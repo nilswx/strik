@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
-		48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */; };
-		48D10A7618B8B170004BC035 /* STKLetterBlockDispenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */; };
 		8330170518BA267800F8296B /* GridNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170218BA267800F8296B /* GridNode.m */; };
 		8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170718BA269C00F8296B /* CCNode+ClipVisit.m */; };
 		8330170B18BA269C00F8296B /* ScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170918BA269C00F8296B /* ScrollNode.m */; };
@@ -102,10 +100,6 @@
 
 /* Begin PBXFileReference section */
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		48D10A6E18B7F0BD004BC035 /* STKLetterBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLetterBlock.h; sourceTree = "<group>"; };
-		48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLetterBlock.m; sourceTree = "<group>"; };
-		48D10A7418B8B170004BC035 /* STKLetterBlockDispenser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLetterBlockDispenser.h; sourceTree = "<group>"; };
-		48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLetterBlockDispenser.m; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8330170118BA267800F8296B /* GridNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNode.h; sourceTree = "<group>"; };
 		8330170218BA267800F8296B /* GridNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridNode.m; sourceTree = "<group>"; };
@@ -576,10 +570,6 @@
 				8393789B18B60A260007BDE4 /* STKConnectController.m */,
 				8393789D18B60A340007BDE4 /* STKConnectScene.h */,
 				8393789E18B60A340007BDE4 /* STKConnectScene.m */,
-				48D10A6E18B7F0BD004BC035 /* STKLetterBlock.h */,
-				48D10A6F18B7F0BD004BC035 /* STKLetterBlock.m */,
-				48D10A7418B8B170004BC035 /* STKLetterBlockDispenser.h */,
-				48D10A7518B8B170004BC035 /* STKLetterBlockDispenser.m */,
 			);
 			name = Connect;
 			sourceTree = "<group>";
@@ -850,11 +840,9 @@
 				8393783118B5FFB60007BDE4 /* STKModel.m in Sources */,
 				8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */,
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
-				48D10A7618B8B170004BC035 /* STKLetterBlockDispenser.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				8330170B18BA269C00F8296B /* ScrollNode.m in Sources */,
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
-				48D10A7018B7F0BD004BC035 /* STKLetterBlock.m in Sources */,
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
 				8383A65418B7F651003816BF /* STKLevelNode.m in Sources */,
 				8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */,

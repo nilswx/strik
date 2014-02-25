@@ -91,6 +91,12 @@
 	[self transitionTo:[STKLobbyScene class] direction:CCTransitionDirectionLeft];
 }
 
+- (void)onScrollTopButton:(CCButton *)button
+{
+	// Scroll to top when pressing top bar
+	[self.timelineGrid.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
+
 #pragma mark Username changes
 - (void)onUsernameButton:(CCButton *)button
 {

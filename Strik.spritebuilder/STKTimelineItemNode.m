@@ -46,6 +46,8 @@
 
 - (void)setTimelinePosition:(TimelinePositionType)timelinePosition
 {
+	self.connectingLine.opacity = 1;
+	
 	_timelinePosition = timelinePosition;
 	
 	// The width and x pos doesn't change
@@ -65,7 +67,11 @@
 	else if(timelinePosition == TimelinePositionTypeBottom)
 	{
 		self.connectingLine.contentSize = CGSizeMake(width, 0.5);
-		self.connectingLine.position = CGPointMake(x, 50);
+		self.connectingLine.position = CGPointMake(x, 0.5);
+	}
+	else if(timelinePosition == TimelinePositionTypeOnly)
+	{
+		self.connectingLine.opacity = 0;
 	}
 }
 

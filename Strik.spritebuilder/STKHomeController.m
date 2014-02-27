@@ -199,17 +199,24 @@
 	}
 	
 	// Make sure the line is correct based on position
-	if(row == 0)
+	if(self.rowCount == 1)
 	{
-		timelineItem.timelinePosition = TimelinePositionTypeTop;
-	}
-	else if(row == self.rowCount - 1)
-	{
-		timelineItem.timelinePosition = TimelinePositionTypeBottom;
+		timelineItem.timelinePosition = TimelinePositionTypeOnly;
 	}
 	else
 	{
-		timelineItem.timelinePosition = TimelinePositionTypeCenter;
+		if(row == 0)
+		{
+			timelineItem.timelinePosition = TimelinePositionTypeTop;
+		}
+		else if(row == self.rowCount - 1)
+		{
+			timelineItem.timelinePosition = TimelinePositionTypeBottom;
+		}
+		else
+		{
+			timelineItem.timelinePosition = TimelinePositionTypeCenter;
+		}
 	}
 	
 	return timelineItem;

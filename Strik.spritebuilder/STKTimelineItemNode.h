@@ -13,7 +13,8 @@ typedef NS_ENUM(NSInteger, TimelinePositionType)
 {
 	TimelinePositionTypeTop,
 	TimelinePositionTypeCenter,
-	TimelinePositionTypeBottom
+	TimelinePositionTypeBottom,
+	TimelinePositionTypeOnly
 };
 
 @interface STKTimelineItemNode : CCNode

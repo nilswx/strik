@@ -26,7 +26,7 @@
 	
 }
 
-- (void)onSoundsButton:(CCButton *)button
+- (void)onSoundButton:(CCButton *)button
 {
 	
 }

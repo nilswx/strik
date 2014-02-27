@@ -12,6 +12,9 @@
 #import "STKSceneController.h"
 
 #import "STKBootstrapController.h"
+#import <CCNode_Private.h>
+#import "CSEEmboss.h"
+#import "ScrollNode.h"
 
 @interface STKDirector()
 
@@ -19,10 +22,6 @@
 
 @property STKScene* scene;
 @property STKSceneController* sceneController;
-
-@property STKScene *overlayScene;
-@property STKSceneController *overlaySceneController;
-@property CCNode *blurredBackground;
 
 @end
 
@@ -107,33 +106,7 @@
 	return self.scene;
 }
 
-// Displays a scene over the current scene with blurred background
-- (void)overlayScene:(STKSceneController *)sceneController
-{
-	// Keep track of the overlay scene controller and scene
-	self.overlaySceneController = sceneController;
-	self.overlayScene = sceneController.scene;
-	
-	// Create the blurred background which will capture touch
-	// Todo: blur it
-	if(!self.blurredBackground)
-	{
-		self.blurredBackground = [CCNode node];
-		self.blurredBackground.contentSizeType = CCSizeTypeNormalized;
-		self.blurredBackground.contentSize = CGSizeMake(1, 1);
-		self.blurredBackground.anchorPoint = CGPointMake(0, 0);
-		
-		[self.scene addChild:self.blurredBackground];
-	}
-	
-	// Make sure the scene is centered
-	self.overlayScene.positionType = CCPositionTypeNormalized;
-	self.overlayScene.position = CGPointMake(0.5, 0.5);
-	self.overlayScene.anchorPoint = CGPointMake(0.5, 0.5);
-	
-	// Add the overlay to the blurred background
-	[self.blurredBackground addChild:self.overlayScene];
-}
+
 
 - (UIView*)view
 {

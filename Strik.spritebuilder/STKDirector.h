@@ -12,10 +12,11 @@
 
 @interface STKDirector : STKCoreComponent
 
+@property (readonly) STKSceneController *sceneController;
+@property (readonly) STKScene *scene;
+
 - (void)presentScene:(STKSceneController *)sceneController;
 - (void)presentScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;
-
-- (void)overlayScene:(STKSceneController *)sceneController;
 
 - (id)isCurrentScene:(Class)sceneClass;
 

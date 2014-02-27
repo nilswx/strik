@@ -30,6 +30,7 @@
 
 #import "STKSettingsController.h"
 #import "STKDirector.h"
+#import "STKDirector+Modal.h"
 
 @interface STKHomeController()
 

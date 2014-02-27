@@ -66,6 +66,10 @@
 		8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789E18B60A340007BDE4 /* STKConnectScene.m */; };
 		839378A318B60B090007BDE4 /* STKTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A218B60B090007BDE4 /* STKTile.m */; };
 		839378A618B60B180007BDE4 /* STKBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A518B60B180007BDE4 /* STKBoard.m */; };
+		83C4424218BE18CC00B417C9 /* CSEEmboss.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
+		83C4424318BE18CC00B417C9 /* CSEEmboss.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4424118BE18CC00B417C9 /* CSEEmboss.m */; };
+		83C4424418BE18DB00B417C9 /* CSEEmboss.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
+		83F4EF9318BF9ADE00319BDE /* STKDirector+Modal.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */; };
 		83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6024818B4DA1100AC2EB1 /* Images.xcassets */; };
 		83F6024B18B4DF3E00AC2EB1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F6024A18B4DF3E00AC2EB1 /* StoreKit.framework */; };
 		B737893B180761570076A88C /* Published-iOS in Resources */ = {isa = PBXBuildFile; fileRef = B737893A180761570076A88C /* Published-iOS */; };
@@ -223,6 +227,11 @@
 		839378A218B60B090007BDE4 /* STKTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTile.m; sourceTree = "<group>"; };
 		839378A418B60B180007BDE4 /* STKBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBoard.h; sourceTree = "<group>"; };
 		839378A518B60B180007BDE4 /* STKBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBoard.m; sourceTree = "<group>"; };
+		83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CSEEmboss.fsh; sourceTree = "<group>"; };
+		83C4424018BE18CC00B417C9 /* CSEEmboss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEEmboss.h; sourceTree = "<group>"; };
+		83C4424118BE18CC00B417C9 /* CSEEmboss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEEmboss.m; sourceTree = "<group>"; };
+		83F4EF9118BF9ADE00319BDE /* STKDirector+Modal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STKDirector+Modal.h"; sourceTree = "<group>"; };
+		83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STKDirector+Modal.m"; sourceTree = "<group>"; };
 		83F6024818B4DA1100AC2EB1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Strik/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		83F6024A18B4DF3E00AC2EB1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B737893A180761570076A88C /* Published-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Published-iOS"; path = "Source/Resources/Published-iOS"; sourceTree = SOURCE_ROOT; };
@@ -382,6 +391,7 @@
 		8393781918B5FEAE0007BDE4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				83C4423418BDF6D700B417C9 /* Shaders */,
 				83F6024818B4DA1100AC2EB1 /* Images.xcassets */,
 				B737893A180761570076A88C /* Published-iOS */,
 			);
@@ -428,6 +438,8 @@
 				8393782B18B5FFB60007BDE4 /* STKScene.m */,
 				8393782C18B5FFB60007BDE4 /* STKSceneController.h */,
 				8393782D18B5FFB60007BDE4 /* STKSceneController.m */,
+				83F4EF9118BF9ADE00319BDE /* STKDirector+Modal.h */,
+				83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */,
 			);
 			name = MSCD;
 			sourceTree = "<group>";
@@ -671,6 +683,16 @@
 			name = Board;
 			sourceTree = "<group>";
 		};
+		83C4423418BDF6D700B417C9 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */,
+				83C4424018BE18CC00B417C9 /* CSEEmboss.h */,
+				83C4424118BE18CC00B417C9 /* CSEEmboss.m */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
 		9222E2B918734FF800A246C7 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +832,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C4424418BE18DB00B417C9 /* CSEEmboss.fsh in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */,
 			);
@@ -864,6 +887,7 @@
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
 				8383A65418B7F651003816BF /* STKLevelNode.m in Sources */,
 				8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */,
+				83C4424218BE18CC00B417C9 /* CSEEmboss.fsh in Sources */,
 				8393788C18B602730007BDE4 /* STKClientController.m in Sources */,
 				8393783D18B5FFE50007BDE4 /* RC4.m in Sources */,
 				8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */,
@@ -902,6 +926,7 @@
 				8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */,
 				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,
 				8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */,
+				83C4424318BE18CC00B417C9 /* CSEEmboss.m in Sources */,
 				835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */,
 				8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */,
 				8393787718B6023D0007BDE4 /* STKMatch.m in Sources */,
@@ -915,6 +940,7 @@
 				839378A318B60B090007BDE4 /* STKTile.m in Sources */,
 				8393787418B6023D0007BDE4 /* STKInventory.m in Sources */,
 				8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */,
+				83F4EF9318BF9ADE00319BDE /* STKDirector+Modal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

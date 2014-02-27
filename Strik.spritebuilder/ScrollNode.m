@@ -140,6 +140,9 @@
 
 - (void)removeScrollView
 {
+	// Scroll non-animated to the current position, so it stops scrolling and can be removed (when removing while scrolling the system hangs, this is a workaround)
+	[self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y, 0, 0) animated:NO];
+		
 	// Remove scrollview
 	[self.scrollView removeFromSuperview];
 	self.scrollView = nil;

@@ -69,6 +69,7 @@
 		83C4424218BE18CC00B417C9 /* CSEEmboss.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
 		83C4424318BE18CC00B417C9 /* CSEEmboss.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4424118BE18CC00B417C9 /* CSEEmboss.m */; };
 		83C4424418BE18DB00B417C9 /* CSEEmboss.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
+		83D32FD218C0B02D00772575 /* STKHolePunchedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D32FD118C0B02D00772575 /* STKHolePunchedButton.m */; };
 		83F4EF9318BF9ADE00319BDE /* STKDirector+Modal.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */; };
 		83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6024818B4DA1100AC2EB1 /* Images.xcassets */; };
 		83F6024B18B4DF3E00AC2EB1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F6024A18B4DF3E00AC2EB1 /* StoreKit.framework */; };
@@ -230,6 +231,8 @@
 		83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CSEEmboss.fsh; sourceTree = "<group>"; };
 		83C4424018BE18CC00B417C9 /* CSEEmboss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEEmboss.h; sourceTree = "<group>"; };
 		83C4424118BE18CC00B417C9 /* CSEEmboss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEEmboss.m; sourceTree = "<group>"; };
+		83D32FD018C0B02D00772575 /* STKHolePunchedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKHolePunchedButton.h; sourceTree = "<group>"; };
+		83D32FD118C0B02D00772575 /* STKHolePunchedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHolePunchedButton.m; sourceTree = "<group>"; };
 		83F4EF9118BF9ADE00319BDE /* STKDirector+Modal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STKDirector+Modal.h"; sourceTree = "<group>"; };
 		83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STKDirector+Modal.m"; sourceTree = "<group>"; };
 		83F6024818B4DA1100AC2EB1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Strik/Images.xcassets; sourceTree = SOURCE_ROOT; };
@@ -559,6 +562,8 @@
 			children = (
 				8393787D18B602500007BDE4 /* STKAlertView.h */,
 				8393787E18B602500007BDE4 /* STKAlertView.m */,
+				83D32FD018C0B02D00772575 /* STKHolePunchedButton.h */,
+				83D32FD118C0B02D00772575 /* STKHolePunchedButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -924,6 +929,7 @@
 				8330170518BA267800F8296B /* GridNode.m in Sources */,
 				8383A64218B77B19003816BF /* STKHomeController.m in Sources */,
 				8393783418B5FFB60007BDE4 /* STKSceneController.m in Sources */,
+				83D32FD218C0B02D00772575 /* STKHolePunchedButton.m in Sources */,
 				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,
 				8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */,
 				83C4424318BE18CC00B417C9 /* CSEEmboss.m in Sources */,

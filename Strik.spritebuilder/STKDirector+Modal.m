@@ -11,7 +11,9 @@
 
 #import "STKScene.h"
 #import "STKSceneController.h"
+
 #import "ScrollNode.h"
+#import "STKHolePunchedButton.h"
 
 @implementation STKDirector (Modal)
 
@@ -43,7 +45,9 @@
 		self.blurredBackground.anchorPoint = CGPointMake(0, 0);
 		
 		// Add a full screen button to this node, so when it is tapped the window closes
-//		CCButton *button = [CCButton buttonWithTitle:@"" spriteFrame:nil highlightedSpriteFrame:nil disabledSpriteFrame:nil];
+		STKHolePunchedButton *button = [STKHolePunchedButton holePunchedButtonWithCenterNode:self.overlayScene];
+		[button setTarget:self selector:@selector(tappedBackground:)];
+		[self.blurredBackground addChild:button];
 		
 		[self.scene addChild:self.blurredBackground];
 	}
@@ -55,6 +59,13 @@
 	
 	// And put it on screen
 	[self.blurredBackground addChild:self.overlayScene];
+}
+
+#pragma mark buttons
+- (void)tappedBackground:(CCButton *)button
+{
+	[self.blurredBackground removeFromParent];
+	[self.overlayScene removeFromParent];
 }
 
 // Disable or enable scrolling for any node if it supports it in the tree
@@ -82,7 +93,6 @@
 		[self enableTouches:enableTouches forNodesIntree:child];
 	}
 }
-
 
 #pragma properties for modal director
 - (STKScene *)overlayScene

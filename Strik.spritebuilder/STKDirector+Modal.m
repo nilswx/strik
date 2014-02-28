@@ -27,9 +27,6 @@
 	// Disable scrolling in the current scene (else the scroll views overlay the overlay)
 	[self enableScrolling:NO forNodesIntree:self.scene];
 	
-	// Disable touches for every node
-	[self enableTouches:NO forNodesIntree:self.scene];
-	
 	// Keep track of the overlay scene controller and scene
 	self.overlaySceneController = sceneController;
 	self.overlayScene = sceneController.scene;
@@ -64,8 +61,15 @@
 #pragma mark buttons
 - (void)tappedBackground:(CCButton *)button
 {
+	// Remove the blurred background and overlay
 	[self.blurredBackground removeFromParent];
 	[self.overlayScene removeFromParent];
+	
+	self.overlayScene = nil;
+	self.overlaySceneController = nil;
+	
+	// Re-enable scrolling and touches
+	[self enableScrolling:YES forNodesIntree:self.scene];
 }
 
 // Disable or enable scrolling for any node if it supports it in the tree
@@ -81,16 +85,6 @@
 	for(CCNode *child in nodeTree.children)
 	{
 		[self enableScrolling:enableScrolling forNodesIntree:child];
-	}
-}
-
-// Enable touches or disable touches for nodes in tree
-- (void)enableTouches:(BOOL)enableTouches forNodesIntree:(CCNode *)nodeTree
-{
-	nodeTree.userInteractionEnabled = enableTouches;
-	for(CCNode *child in nodeTree.children)
-	{
-		[self enableTouches:enableTouches forNodesIntree:child];
 	}
 }
 

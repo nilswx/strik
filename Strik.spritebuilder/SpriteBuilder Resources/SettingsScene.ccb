@@ -1838,8 +1838,8 @@
 										<string>ScaleLock</string>
 										<key>value</key>
 										<array>
-											<real>1</real>
-											<real>1</real>
+											<real>0.75</real>
+											<real>0.75</real>
 											<false/>
 											<integer>0</integer>
 										</array>
@@ -2549,9 +2549,9 @@
 										<string>ScaleLock</string>
 										<key>value</key>
 										<array>
-											<real>1</real>
-											<real>1</real>
-											<false/>
+											<real>0.75</real>
+											<real>0.75</real>
+											<true/>
 											<integer>0</integer>
 										</array>
 									</dict>
@@ -4305,8 +4305,6 @@ friends and see their progress.</string>
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array>
@@ -4318,9 +4316,9 @@ friends and see their progress.</string>
 			<key>width</key>
 			<real>150</real>
 			<key>xPos</key>
-			<real>287</real>
+			<real>184</real>
 			<key>yPos</key>
-			<real>49</real>
+			<real>40</real>
 		</dict>
 	</array>
 	<key>resolutions</key>

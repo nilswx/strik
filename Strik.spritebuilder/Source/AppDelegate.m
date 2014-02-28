@@ -35,6 +35,8 @@
 #import "STKClientController.h"
 #import "STKScene.h"
 
+#import "STKSettings.h"
+
 #import <Facebook.h>
 
 @interface AppController()
@@ -47,6 +49,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	// Load the settings before everything else
+	[STKSettings loadSettings];
+	
 	// Setup Cocos2D and Spritebuilder related settings
 	// Configure Cocos2d with the options set in SpriteBuilder
     NSString* configPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Published-iOS"]; // TODO: add support for Published-Android support

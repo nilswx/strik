@@ -7,8 +7,51 @@
 //
 
 #import "STKSettingsController.h"
+#import "STKSettings.h"
+#import "STKSettingsScene.h"
+
+#define SETTINGS_DISABLED_COLOR [CCColor colorWithRed:198.0f/255.0f green:198.0f/255.0f blue:198.0f/255.0f]
+#define SETTINGS_ENABLED_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:106.0f/255.0f]
+
+@interface STKSettingsController()
+
+@property (readonly) STKSettingsScene *settingsScene;
+
+@end
 
 @implementation STKSettingsController
+
+
+- (void)sceneWillBegin
+{
+	// Set the correct color to the checkboxes for settings and ads
+	[self colorSoundsCheckmark];
+	[self colorAdFreeCheckMark];
+}
+
+- (void)colorSoundsCheckmark
+{
+	if([STKSettings boolforKey:SETTINGS_KEY_SOUND])
+	{
+		[self colorButton:self.settingsScene.checkmarkSound withColor:SETTINGS_ENABLED_COLOR];
+	}
+	else
+	{
+		[self colorButton:self.settingsScene.checkmarkSound withColor:SETTINGS_DISABLED_COLOR];
+	}
+}
+
+- (void)colorAdFreeCheckMark
+{
+	
+}
+
+- (void)colorButton:(CCButton *)button withColor:(CCColor *)color
+{
+	[button setBackgroundColor:color forState:CCControlStateHighlighted];
+	[button setBackgroundColor:color forState:CCControlStateNormal];
+	[button setBackgroundColor:color forState:CCControlStateSelected];
+}
 
 #pragma mark Button events
 - (void)onFlagUSButton:(CCButton *)button
@@ -28,17 +71,24 @@
 
 - (void)onSoundButton:(CCButton *)button
 {
-	
+	[STKSettings setBool:![STKSettings boolforKey:SETTINGS_KEY_SOUND] forKey:SETTINGS_KEY_SOUND];
+	[self colorSoundsCheckmark];
 }
 
 - (void)onAdFreeButton:(CCButton *)button
 {
-	
+	// Todo: This does nothing yet, don't think storing this setting in NSUserDefaults is a good idea though...
 }
 
 - (void)onFacebookButton:(CCButton *)button
 {
 	
+}
+
+#pragma mark getters and setters
+- (STKSettingsScene *)settingsScene
+{
+	return (STKSettingsScene *)self.scene;
 }
 
 @end

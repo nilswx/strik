@@ -8,6 +8,7 @@
 
 #import "STKScene.h"
 
+
 @interface STKSettingsScene : STKScene
 
 @property CCButton *flagUS;

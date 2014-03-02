@@ -78,7 +78,7 @@
 		
 		// Load avatar image
 		[friend.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-			self.avatarNode.maskedImage = [CCSprite spriteWithTexture:avatarTexture];
+			[self.avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
 		}];
 		
 	}

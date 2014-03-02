@@ -29,6 +29,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 // The clipping node which will clip the image
 @property CCClippingNode *clippingNode;
 
+// The avatar type
+@property AvatarType avatarType;
+
 @end
 
 @implementation STKAvatarNode
@@ -97,12 +100,32 @@ typedef NS_ENUM(NSInteger, zIndex)
 	return circle;
 }
 
+- (void)setAvatarTexture:(CCTexture *)avatarTexture ofType:(AvatarType)avatarType
+{
+	CCSprite *avatar = [CCSprite spriteWithTexture:avatarTexture];
+	
+	if(avatarType == AvatarTypeProfile)
+	{
+		self.maskedImage = avatar;
+	}
+	else
+	{
+		self.imageSprite = avatar;
+	}
+}
+
 - (void)setMaskedImage:(CCSprite *)maskedImage
 {
 	// Delete old if there is one
 	if(self.maskedImage)
 	{
 		[self.clippingNode removeFromParent];
+	}
+	
+	// Remove the client avatar if it is there
+	if(self.imageSprite)
+	{
+		[self.imageSprite removeFromParent];
 	}
 	
 	_maskedImage = maskedImage;
@@ -129,6 +152,38 @@ typedef NS_ENUM(NSInteger, zIndex)
 		// And add the clipping node to the tree
 		[self addChild:self.clippingNode];
 	}
+}
+
+- (void)setImageSprite:(CCSprite *)imageSprite
+{
+	// If a mask is set remove that
+	if(self.maskedImage)
+	{
+		[self.clippingNode removeFromParent];
+	}
+	
+	// Set background color if set (setting it again creates a circle)
+	if(self.backgroundColor)
+	{
+		self.backgroundColor = self.backgroundColor;
+	}
+	
+	// Remove old
+	if(self.imageSprite)
+	{
+		[self.imageSprite removeFromParent];
+	}
+	
+	_imageSprite = imageSprite;
+	
+	// Center it
+	imageSprite.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+											 self.contentSize.height * self.anchorPoint.y);
+	
+	// Scale it a bit down
+	imageSprite.scale = 0.8;
+	
+	[self addChild:imageSprite];
 }
 
 - (CGFloat)radius

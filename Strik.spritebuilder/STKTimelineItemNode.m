@@ -38,9 +38,9 @@
 	_actor = actor;
 	
 	[actor.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-		self.avatarNode.borderColor = PLAYER_ONE_COLOR;
-		self.avatarNode.backgroundColor = PLAYER_ONE_LIGHT_COLOR;
-		self.avatarNode.maskedImage = [CCSprite spriteWithTexture:avatarTexture];
+		self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
+		self.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
+		[self.avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
 	}];
 }
 

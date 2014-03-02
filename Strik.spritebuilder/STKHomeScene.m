@@ -34,10 +34,6 @@
 
 - (void)sceneLoaded
 {
-	// Setting up the avatar
-	self.avatarNode.borderColor = [CCColor whiteColor];
-	self.avatarNode.backgroundColor = PLAYER_ONE_LIGHT_COLOR;
-	
 	// Setting up the progress bar
 	self.playerProgress.borderColor = [CCColor whiteColor];
 	self.playerProgress.lightShade = PLAYER_ONE_LIGHT_COLOR;
@@ -67,7 +63,11 @@
 - (void)avatar:(STKAvatar *)avatar valueChangedForIdentifier:(NSString *)identifier
 {
 	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-		self.avatarNode.maskedImage = [CCSprite spriteWithTexture:avatarTexture];
+		// Setting up the avatar
+		self.avatarNode.borderColor = [CCColor whiteColor];
+		self.avatarNode.backgroundColor = PLAYER_ONE_COLOR;
+		
+		[self.avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
 	}];
 }
 

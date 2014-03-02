@@ -10,4 +10,6 @@
 
 @interface STKAvatarPickerScene : STKScene
 
+@property CCNode *avatarPickerContainer;
+
 @end

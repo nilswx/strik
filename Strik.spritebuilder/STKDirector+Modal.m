@@ -28,8 +28,8 @@
 	self.overlaySceneController = sceneController;
 	self.overlayScene = sceneController.scene;
 	
-	
 	// Make sure the events are fired
+	[self.overlaySceneController sceneCreated];
 	[self.overlaySceneController sceneWillBegin];
 	[self.overlayScene sceneWillBegin];
 	

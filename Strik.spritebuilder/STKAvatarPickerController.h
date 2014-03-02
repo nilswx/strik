@@ -7,7 +7,9 @@
 //
 
 #import "STKSceneController.h"
+#import "PagedScrollNodeDataSource.h"
 
-@interface STKAvatarPickerController : STKSceneController
+@interface STKAvatarPickerController : STKSceneController <PagedScrollNodeDataSource>
+
 
 @end

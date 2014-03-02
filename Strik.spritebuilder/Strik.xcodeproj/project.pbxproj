@@ -73,6 +73,7 @@
 		83D32FD618C0C9C900772575 /* STKSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D32FD518C0C9C900772575 /* STKSettings.m */; };
 		83EDE5FE18C3654400D3B78D /* STKAvatarPickerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EDE5FD18C3654400D3B78D /* STKAvatarPickerScene.m */; };
 		83EDE60118C3655D00D3B78D /* STKAvatarPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EDE60018C3655D00D3B78D /* STKAvatarPickerController.m */; };
+		83EDE60518C38F2500D3B78D /* PagedScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EDE60418C38F2500D3B78D /* PagedScrollNode.m */; };
 		83F4EF9318BF9ADE00319BDE /* STKDirector+Modal.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */; };
 		83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6024818B4DA1100AC2EB1 /* Images.xcassets */; };
 		83F6024B18B4DF3E00AC2EB1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F6024A18B4DF3E00AC2EB1 /* StoreKit.framework */; };
@@ -242,6 +243,9 @@
 		83EDE5FD18C3654400D3B78D /* STKAvatarPickerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatarPickerScene.m; sourceTree = "<group>"; };
 		83EDE5FF18C3655D00D3B78D /* STKAvatarPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatarPickerController.h; sourceTree = "<group>"; };
 		83EDE60018C3655D00D3B78D /* STKAvatarPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatarPickerController.m; sourceTree = "<group>"; };
+		83EDE60318C38F2500D3B78D /* PagedScrollNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedScrollNode.h; sourceTree = "<group>"; };
+		83EDE60418C38F2500D3B78D /* PagedScrollNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedScrollNode.m; sourceTree = "<group>"; };
+		83EDE60618C38F8400D3B78D /* PagedScrollNodeDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagedScrollNodeDataSource.h; sourceTree = "<group>"; };
 		83F4EF9118BF9ADE00319BDE /* STKDirector+Modal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STKDirector+Modal.h"; sourceTree = "<group>"; };
 		83F4EF9218BF9ADE00319BDE /* STKDirector+Modal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STKDirector+Modal.m"; sourceTree = "<group>"; };
 		83F6024818B4DA1100AC2EB1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Strik/Images.xcassets; sourceTree = SOURCE_ROOT; };
@@ -490,6 +494,7 @@
 		8393784C18B601DA0007BDE4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				83EDE60218C38F0B00D3B78D /* PagesScrollNode */,
 				8330170018BA266700F8296B /* GridNode */,
 				833016FE18BA265F00F8296B /* ScrollNode */,
 				8383A63C18B76287003816BF /* CCNode+Animation */,
@@ -721,6 +726,16 @@
 			name = AvatarPicker;
 			sourceTree = "<group>";
 		};
+		83EDE60218C38F0B00D3B78D /* PagesScrollNode */ = {
+			isa = PBXGroup;
+			children = (
+				83EDE60318C38F2500D3B78D /* PagedScrollNode.h */,
+				83EDE60418C38F2500D3B78D /* PagedScrollNode.m */,
+				83EDE60618C38F8400D3B78D /* PagedScrollNodeDataSource.h */,
+			);
+			name = PagesScrollNode;
+			sourceTree = "<group>";
+		};
 		9222E2B918734FF800A246C7 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -933,6 +948,7 @@
 				8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */,
 				8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */,
 				8393787918B6023D0007BDE4 /* STKPlayer.m in Sources */,
+				83EDE60518C38F2500D3B78D /* PagedScrollNode.m in Sources */,
 				8393789018B602730007BDE4 /* STKSessionController.m in Sources */,
 				8393784318B5FFEF0007BDE4 /* STKMessageHandler.m in Sources */,
 				8349904018BCFBCB00A0A4AB /* STKSettingsScene.m in Sources */,

@@ -4238,7 +4238,7 @@ friends and see their progress.</string>
 		<key>customClass</key>
 		<string>STKSettingsScene</string>
 		<key>displayName</key>
-		<string>CCNode</string>
+		<string>STKSettingsScene</string>
 		<key>memberVarAssignmentName</key>
 		<string></string>
 		<key>memberVarAssignmentType</key>
@@ -4305,6 +4305,8 @@ friends and see their progress.</string>
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array>

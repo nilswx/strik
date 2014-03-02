@@ -29,6 +29,8 @@
 #import "STKItemRegistry.h"
 
 #import "STKSettingsController.h"
+#import "STKAvatarPickerController.h"
+
 #import "STKDirector.h"
 #import "STKDirector+Modal.h"
 
@@ -97,8 +99,14 @@
 
 - (void)onSettingsButton:(CCButton *)button
 {
-	STKDirector* director = self.core[@"director"];
+	STKDirector *director = self.core[@"director"];
 	[director overlayScene:[STKSettingsController new]];
+}
+
+- (void)onAvatarButton:(CCButton *)button
+{
+	STKDirector *director = self.core[@"director"];
+	[director overlayScene:[STKAvatarPickerController new]];
 }
 
 - (void)onScrollTopButton:(CCButton *)button

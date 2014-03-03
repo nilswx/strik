@@ -9,9 +9,26 @@
 #import "PagedScrollNode.h"
 #import "PagedScrollNodeDataSource.h"
 
+#define CIRCLE_PADDING 2
+#define CIRCLE_RADIUS 4
+
+#define DEFAULT_ACTIVE_PAGE_CONTROL_DOT_COLOR [CCColor colorWithRed:122.0f/255.0f green:122.0f/255.0f blue:122.0f/255.0f]
+#define DEFAULT_PAGE_CONTROL_DOT_COLOR [CCColor colorWithRed:170.0f/255.0f green:170.0f/255.0f blue:170.0f/255.0f];
+
 @interface PagedScrollNode()
 
+// The data source for this page system
 @property NSObject<PagedScrollNodeDataSource> *dataSource;
+
+// The dots container @ the bottom
+@property CCNode *pageControlContainer;
+
+// The left an right button of the page control (to tap to move to another page)
+@property CCButton *pageControlLeftButton;
+@property CCButton *pageControlRightButton;
+
+// The current page
+@property int currentPage;
 
 @end
 
@@ -60,11 +77,128 @@
 	
 	// Setup the dots for page control
 	[self setupPageControl];
+	[self setupPageControlButtons];
 }
 
+#pragma mark Page Control
 - (void)setupPageControl
 {
+	// Remove the old page control
+	[self.pageControlContainer removeFromParent];
 	
+	// Calculate width and height for the pageControlContainer
+	int numberOfPages = self.dataSource.numberOfPages;
+	
+	CGSize containerSize;
+	CGFloat diameter = CIRCLE_RADIUS * 2;
+	
+	// The width is calculated differently based on the number of dots (e.g 1, 2 or more dots)
+	if(numberOfPages > 0)
+	{
+		if(numberOfPages == 1)
+		{
+			containerSize = CGSizeMake(diameter, diameter);
+		}
+		else if(numberOfPages == 2)
+		{
+			containerSize = CGSizeMake(diameter * 2 + CIRCLE_PADDING * 2, diameter);
+		}
+		else
+		{
+			CGFloat sumCircles = diameter * numberOfPages;
+			CGFloat sumPadding = (CIRCLE_PADDING * 2) * (numberOfPages - 1);
+			containerSize = CGSizeMake(sumCircles + sumPadding, diameter);
+		}
+	}
+	
+	// Create container with correct size
+	self.pageControlContainer = [CCNodeColor nodeWithColor:[CCColor purpleColor]];
+	self.pageControlContainer.contentSizeType = CCSizeTypePoints;
+	self.pageControlContainer.contentSize = containerSize;
+	
+	// Center it
+	self.pageControlContainer.anchorPoint = CGPointMake(0.5, 0.5);
+	self.pageControlContainer.position = CGPointMake(self.dataSource.pageSize.width / 2,
+									   diameter + CIRCLE_RADIUS);
+	
+	[self addChild:self.pageControlContainer];
+	
+	// Add childnodes in it, drawing from left to right
+	for (int i = 0; i < numberOfPages; i++)
+	{
+		CCDrawNode *circle = [CCDrawNode node];
+		circle.position = CGPointMake((diameter * i + (CIRCLE_PADDING * 2) * i) + CIRCLE_RADIUS, CIRCLE_RADIUS);
+		
+		circle.color = [CCColor purpleColor];
+		[self.pageControlContainer addChild:circle];
+	}
+	
+	// Make sure the circles have the correct colors
+	[self updatePageControlWithPage:0];
+}
+
+- (void)updatePageControlWithPage:(int)currentPage
+{
+	// Get the circle for the current page
+	CCDrawNode *activeCircle = [self.pageControlContainer.children objectAtIndex:currentPage];
+	
+	// Loop through all circles, color them based on state
+	for(CCDrawNode *child in self.pageControlContainer.children)
+	{
+		// Clear the old dot
+		[child clear];
+			
+		// Get the color for this node
+		CCColor *currentcolor;
+		if(child != activeCircle)
+		{
+			currentcolor = self.pageControlDotColor;
+		}
+		else
+		{
+			currentcolor = self.acctivePageControlDotColor;
+		}
+		
+		// And draw correct color
+		[child drawDot:CGPointMake(0, 0) radius:CIRCLE_RADIUS color:currentcolor];
+	}
+}
+
+- (void)setupPageControlButtons
+{
+	// First the left button
+	self.pageControlLeftButton = [CCButton buttonWithTitle:@"" spriteFrame:nil highlightedSpriteFrame:nil disabledSpriteFrame:nil];
+	[self.pageControlLeftButton setTarget:self selector:@selector(onPageControlLeftButton:)];
+	
+	// Size and add
+	self.pageControlLeftButton.contentSize = CGSizeMake(self.dataSource.pageSize.width / 2, CIRCLE_RADIUS * 4);
+	[self addChild:self.pageControlLeftButton];
+	
+
+	// And the right button
+	self.pageControlRightButton = [CCButton buttonWithTitle:@"" spriteFrame:nil highlightedSpriteFrame:nil disabledSpriteFrame:nil];
+	[self.pageControlRightButton setTarget:self selector:@selector(onPageControlRightButton:)];
+	
+	// Size, position and add
+	self.pageControlRightButton.contentSize = CGSizeMake(self.dataSource.pageSize.width / 2, CIRCLE_RADIUS * 4);
+	self.pageControlRightButton.position = CGPointMake(self.dataSource.pageSize.width / 2, 0);
+	[self addChild:self.pageControlRightButton];
+}
+
+- (void)onPageControlLeftButton:(CCButton *)button
+{
+	[self scrollToPage:MAX(0, self.currentPage - 1)];
+}
+
+- (void)onPageControlRightButton:(CCButton *)button
+{
+	[self scrollToPage:MIN(self.dataSource.numberOfPages - 1, self.currentPage + 1)];
+}
+
+- (void)scrollToPage:(int)page
+{
+	CGPoint scrollPointForPage = [self scrollPointForPage:page];
+	[self.scrollView scrollRectToVisible:CGRectMake(scrollPointForPage.x, scrollPointForPage.y, 1, 1) animated:YES];
 }
 
 - (void)clearContent
@@ -74,6 +208,10 @@
 	{
 		[child removeFromParent];
 	}
+	
+	[self.pageControlContainer removeFromParent];
+	[self.pageControlLeftButton removeFromParent];
+	[self.pageControlRightButton removeFromParent];
 }
 
 - (CGPoint)positionForPage:(int)page
@@ -81,12 +219,60 @@
 	return CGPointMake(self.dataSource.pageSize.width * page, 0);
 }
 
+#pragma mark Cocos2d events
 - (void)onEnter
 {
 	[super onEnter];
 	
-	// We want paging here
+	// We want paging here and no visibe scrollbars
 	self.scrollView.pagingEnabled = YES;
+	
+	self.scrollView.showsHorizontalScrollIndicator = NO;
+	self.scrollView.showsVerticalScrollIndicator = NO;
+}
+
+#pragma mark UIScrollViewDelegate events
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	[super scrollViewDidScroll:scrollView];
+	
+	// Determine if we scrolled a full page
+	float scrolled = (self.scrollView.contentOffset.x / self.dataSource.pageSize.width);
+	// When the result is a integral number, that is the page we are on now
+	if(scrolled == (int)scrolled)
+	{
+		int page = (int)scrolled;
+		
+		// Set the current page as property
+		self.currentPage = page;
+
+		// And update the dots
+		[self updatePageControlWithPage:page];
+	}
+}
+
+// Defaulting the colors here
+- (CCColor *)pageControlDotColor
+{
+	if(!_pageControlDotColor)
+	{
+		return DEFAULT_PAGE_CONTROL_DOT_COLOR;
+	}
+	return _pageControlDotColor;
+}
+
+- (CCColor *)acctivePageControlDotColor
+{
+	if(!_acctivePageControlDotColor)
+	{
+		return DEFAULT_ACTIVE_PAGE_CONTROL_DOT_COLOR;
+	}
+	return _acctivePageControlDotColor;
+}
+
+- (CGPoint)scrollPointForPage:(int)page
+{
+	return CGPointMake(self.dataSource.pageSize.width * page, 0);
 }
 
 @end

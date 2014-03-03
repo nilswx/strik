@@ -11,6 +11,15 @@
 
 @interface PagedScrollNode : ScrollNode
 
+// The dot color for the page controls
+@property (nonatomic) CCColor *pageControlDotColor;
+
+// The dot color for the active page
+@property (nonatomic) CCColor *acctivePageControlDotColor;
+
+// The current page
+@property (readonly) int currentPage;
+
 - (id)initWithDataSource:(NSObject<PagedScrollNodeDataSource> *)dataSource;
 + (id)pagedScrollNodeWithDataSource:(NSObject<PagedScrollNodeDataSource> *)dataSource;
 

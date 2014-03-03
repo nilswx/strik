@@ -112,7 +112,7 @@
 	}
 	
 	// Create container with correct size
-	self.pageControlContainer = [CCNodeColor nodeWithColor:[CCColor purpleColor]];
+	self.pageControlContainer = [CCNode node];
 	self.pageControlContainer.contentSizeType = CCSizeTypePoints;
 	self.pageControlContainer.contentSize = containerSize;
 	

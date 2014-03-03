@@ -8,6 +8,7 @@
 
 #import "ScrollNode.h"
 #import "CCNode+ClipVisit.h"
+#import "ScrollNodeScrollView.h"
 
 @interface ScrollNode()
 
@@ -15,7 +16,7 @@
 @property (nonatomic) CCNode *content;
 
 // Using the UISCrollView to do the hard work
-@property UIScrollView *scrollView;
+@property ScrollNodeScrollView *scrollView;
 
 @end
 
@@ -112,11 +113,11 @@
 	CGSize size = [CCDirector sharedDirector].view.bounds.size;
 	
 	CGPoint UIPoint = CGPointMake(worldPoint.x, size.height - worldPoint.y);
-
+	
 	// Create a scrollview on the position of the cropped node (we capture it's scroll events to position the cropped content)
 	
 	// The view has a topleft anchor point the UIPoint is bottomleft, so substracting height of the view to get topleft
-	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(UIPoint.x, UIPoint.y - self.contentSizeInPoints.height, self.contentSizeInPoints.width, self.contentSizeInPoints.height)];
+	self.scrollView = [[ScrollNodeScrollView alloc] initWithFrame:CGRectMake(UIPoint.x, UIPoint.y - self.contentSizeInPoints.height, self.contentSizeInPoints.width, self.contentSizeInPoints.height)];
 	
 	// Set the content size in the UIScrollView this creates scrollbars and scroll area of the right size
 	self.scrollView.contentSize = CGSizeMake(self.content.contentSizeInPoints.width, self.content.contentSizeInPoints.height);

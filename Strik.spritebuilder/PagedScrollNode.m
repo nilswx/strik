@@ -166,22 +166,37 @@
 
 - (void)setupPageControlButtons
 {
-	// First the left button
-	self.pageControlLeftButton = [CCButton buttonWithTitle:@"" spriteFrame:nil highlightedSpriteFrame:nil disabledSpriteFrame:nil];
-	[self.pageControlLeftButton setTarget:self selector:@selector(onPageControlLeftButton:)];
+	// Defaults for both buttons
+	CGSize buttonSize = CGSizeMake(self.dataSource.pageSize.width / 2, CIRCLE_RADIUS * 8);
+	CCPositionType buttonPositionType = CCPositionTypeMake(CCPositionUnitPoints, CCPositionUnitPoints, CCPositionReferenceCornerBottomLeft);
+	CGPoint buttonAnchor = CGPointMake(0, 0);
 	
-	// Size and add
-	self.pageControlLeftButton.contentSize = CGSizeMake(self.dataSource.pageSize.width / 2, CIRCLE_RADIUS * 4);
+	// Left butotn
+	self.pageControlLeftButton = [CCButton node];
+	
+	// Place and size left button
+	self.pageControlLeftButton.contentSize = buttonSize;
+	self.pageControlLeftButton.preferredSize = buttonSize;
+	self.pageControlLeftButton.anchorPoint = buttonAnchor;
+	self.pageControlLeftButton.positionType = buttonPositionType;
+	self.pageControlRightButton.position = CGPointMake(0, 0);
+
+	// Set target and add
+	[self.pageControlLeftButton setTarget:self selector:@selector(onPageControlLeftButton:)];
 	[self addChild:self.pageControlLeftButton];
 	
+	// Right button
+	self.pageControlRightButton = [CCButton node];
 
-	// And the right button
-	self.pageControlRightButton = [CCButton buttonWithTitle:@"" spriteFrame:nil highlightedSpriteFrame:nil disabledSpriteFrame:nil];
-	[self.pageControlRightButton setTarget:self selector:@selector(onPageControlRightButton:)];
-	
-	// Size, position and add
-	self.pageControlRightButton.contentSize = CGSizeMake(self.dataSource.pageSize.width / 2, CIRCLE_RADIUS * 4);
+	// Place and size
+	self.pageControlRightButton.contentSize = buttonSize;
+	self.pageControlRightButton.preferredSize = buttonSize;
+	self.pageControlRightButton.anchorPoint = buttonAnchor;
+	self.pageControlRightButton.positionType = buttonPositionType;
 	self.pageControlRightButton.position = CGPointMake(self.dataSource.pageSize.width / 2, 0);
+	
+	// Set target and add
+	[self.pageControlRightButton setTarget:self selector:@selector(onPageControlRightButton:)];
 	[self addChild:self.pageControlRightButton];
 }
 
@@ -197,8 +212,7 @@
 
 - (void)scrollToPage:(int)page
 {
-	CGPoint scrollPointForPage = [self scrollPointForPage:page];
-	[self.scrollView scrollRectToVisible:CGRectMake(scrollPointForPage.x, scrollPointForPage.y, 1, 1) animated:YES];
+	[self.scrollView scrollRectToVisible:CGRectMake(self.dataSource.pageSize.width * page, 0, self.dataSource.pageSize.width, self.dataSource.pageSize.height) animated:YES];
 }
 
 - (void)clearContent
@@ -268,11 +282,6 @@
 		return DEFAULT_ACTIVE_PAGE_CONTROL_DOT_COLOR;
 	}
 	return _acctivePageControlDotColor;
-}
-
-- (CGPoint)scrollPointForPage:(int)page
-{
-	return CGPointMake(self.dataSource.pageSize.width * page, 0);
 }
 
 @end

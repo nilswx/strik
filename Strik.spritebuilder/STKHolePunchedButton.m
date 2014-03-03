@@ -42,7 +42,7 @@
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	// When the touch ends outside the center node, it is a touch to dismiss it
-	if(!CGRectContainsPoint(self.centerNode.boundingBox, [touch locationInNode:self]))
+	if(!CGRectContainsPoint(self.centerNode.boundingBox, [touch locationInView:[CCDirector sharedDirector].view]))
 	{
 		if(self.block)
 		{

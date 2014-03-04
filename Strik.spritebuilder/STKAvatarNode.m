@@ -31,9 +31,6 @@ typedef NS_ENUM(NSInteger, zIndex)
 // The clipping node which will clip the image
 @property CCClippingNode *clippingNode;
 
-// The avatar type
-@property AvatarType avatarType;
-
 @end
 
 @implementation STKAvatarNode
@@ -131,7 +128,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	CCSprite *avatar = [CCSprite spriteWithTexture:avatarTexture];
 	
-	if(avatarType == AvatarTypeProfile)
+	if(avatarType == AvatarTypeProfile || avatarType == AvatarTypeNoFacebook)
 	{
 		self.maskedImage = avatar;
 	}

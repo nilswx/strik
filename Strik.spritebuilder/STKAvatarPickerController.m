@@ -18,10 +18,13 @@
 #import "STKButton.h"
 
 #import "STKSessionController.h"
+#import "STKFacebookController.h"
 #import "STKPLayer.h"
 
 #import "STKDirector.h"
 #import "STKDirector+Modal.h"
+
+#import "STKAlertView.h"
 
 @interface STKAvatarPickerController()
 
@@ -46,7 +49,27 @@
 {
 	NSMutableArray *avatars = [NSMutableArray array];
 
-	// The user avatar (e.g the facebook profile, or a default facebook picture)
+	STKFacebookController *facebookController = self.core[@"facebook"];
+
+	// Use the avatar based on facebook linked status (e.g default FB image, or profile picture)
+	STKAvatar *facebookAvatar;
+	
+	// Determine if the user if facebook linked
+//	if(!facebookController.isServerLinked)
+	{
+		// Use
+		facebookAvatar = [STKAvatar avatarWithIdentifier:AVATAR_TYPE_NO_FACEBOOK_ID];
+	}
+//	else
+//	{
+//		// Use profile image
+//		STKSessionController *sessionController = self.core[@"session"];
+//		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%d", sessionController.user.playerId];
+//		facebookAvatar = [STKAvatar avatarWithIdentifier:facebookIdentifier];
+//	}
+//	
+	// Ad facebook avatar as first image to array
+	[avatars addObject:facebookAvatar];
 	
 	// The client avatars
 	for(int i =  1; i <= CLIENT_AVATAR_COUNT; i++)
@@ -104,12 +127,30 @@
 - (void)onAvatarNodeButton:(STKButton *)button
 {
 	STKAvatarNode *avatarNode = button.data;
-	
-	STKSessionController *sessionController = self.core[@"session"];
-	sessionController.user.avatar.identifier = avatarNode.avatar.identifier;
-	
-	STKDirector *director = self.core[@"director"];
-	[director hideOverlay];
+
+	if(avatarNode.avatar.avatarType == AvatarTypeNoFacebook)
+	{
+		STKAlertView *alert = [STKAlertView confirmationWithTitle:NSLocalizedString(@"Connect Facebook", @"Connect facebook alert title") message:NSLocalizedString(@"Connect with Facebook to use your own photo as a profile picture. Would you like to do this now?", nil) target:self yesSelector:@selector(onFacebookConnectYes:) andNoSelector:@selector(onFacebookConnectNo:)];
+		[alert show];
+	}
+	else
+	{
+		STKSessionController *sessionController = self.core[@"session"];
+		sessionController.user.avatar.identifier = avatarNode.avatar.identifier;
+		
+		STKDirector *director = self.core[@"director"];
+		[director hideOverlay];
+	}
+}
+							   
+- (void)onFacebookConnectYes:(id)sender
+{
+	NSLog(@"Sweetness! Connect with facebook please.");
+}
+
+- (void)onFacebookConnectNo:(id)sender
+{
+	NSLog(@"Well, I'm not feeling like connecting right now.");
 }
 
 @end

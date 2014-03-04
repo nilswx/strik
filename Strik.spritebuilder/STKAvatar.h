@@ -13,8 +13,11 @@
 typedef NS_ENUM(NSInteger, AvatarType)
 {
 	AvatarTypeProfile,
-	AvatarTypeClient
+	AvatarTypeClient,
+	AvatarTypeNoFacebook
 };
+
+#define AVATAR_TYPE_NO_FACEBOOK_ID @"facebook-default"
 
 typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture, AvatarType avatarType);
 

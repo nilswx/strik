@@ -50,9 +50,6 @@
 - (void)onEnterTransitionDidFinish
 {
 	[super onEnter];
-	
-	NSLog(@"Size %@", NSStringFromCGSize(self.contentSizeInPoints));
-	
 	[self layoutAvatars];
 }
 

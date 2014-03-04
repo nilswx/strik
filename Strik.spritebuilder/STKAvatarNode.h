@@ -28,7 +28,4 @@
 // This wil be placed in center without mask, and can show background
 @property (readonly, nonatomic) CCSprite *imageSprite;
 
-// The avatar type
-@property (readonly) AvatarType avatarType;
-
 @end

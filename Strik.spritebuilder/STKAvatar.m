@@ -87,7 +87,7 @@
 		else
 		{
 			// Get it's path
-			NSString *avatarPath = [NSString stringWithFormat:@"Global/Images/Avatars/%d.png", [self.identifier intValue]];
+			NSString *avatarPath = [NSString stringWithFormat:@"Global/Images/Avatars/%@.png", self.identifier];
 			
 			// Load the texture from disk
 			avatarTexture = [CCTexture textureWithFile:avatarPath];
@@ -105,10 +105,15 @@
 
 - (AvatarType)avatarType
 {
-	if([[self.identifier substringToIndex:1] isEqualToString:@"f"])
+	if([self.identifier isEqualToString:AVATAR_TYPE_NO_FACEBOOK_ID])
+	{
+		return AvatarTypeNoFacebook;
+	}
+	else if([[self.identifier substringToIndex:1] isEqualToString:@"f"])
 	{
 		return AvatarTypeProfile;
 	}
+	
 	return AvatarTypeClient;
 }
 

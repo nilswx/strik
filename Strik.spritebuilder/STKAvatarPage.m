@@ -10,6 +10,8 @@
 #import "STKAvatar.h"
 #import "STKAvatarNode.h"
 
+#import "STKButton.h"
+
 #define AVATAR_BORDER_COLOR [CCColor colorWithRed:61.0f/255.0f green:60.0f/255.0f blue:62.0f/255.0f]
 #define AVATAR_SCALE 0.78f
 #define AVATAR_PADDING 8
@@ -94,16 +96,29 @@
 	// Load the avatar and center in container
 	STKAvatarNode *avatarNode = [STKAvatarNode new];
 	avatarNode.position = CGPointMake(50, 50);
+
+	avatarNode.backgroundColor = PLAYER_ONE_COLOR;
+	avatarNode.borderColor = AVATAR_BORDER_COLOR;
 	
-	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-		[avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
-		
-		avatarNode.backgroundColor = PLAYER_ONE_COLOR;
-		avatarNode.borderColor = AVATAR_BORDER_COLOR;
-	}];
+	avatarNode.avatar = avatar;
+	
 	
 	// Add the avatar to the container
 	[container addChild:avatarNode];
+	
+	// Create the button
+	STKButton *button = [STKButton node];
+	button.data = avatar;
+	
+	button.anchorPoint = CGPointMake(0, 0);
+	button.position = CGPointMake(0, 0);
+	
+	button.preferredSizeType = CCSizeTypeNormalized;
+	button.preferredSize = CGSizeMake(1, 1);
+	
+	[button setTarget:self.controller selector:@selector(onAvatarButton:)];
+	
+	[container addChild:button];
 	
 	return container;
 }

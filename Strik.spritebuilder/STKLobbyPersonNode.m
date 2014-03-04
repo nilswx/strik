@@ -76,11 +76,7 @@
 			self.avatarNode.borderColor = PLAYER_OFFLINE_COLOR;
 		}
 		
-		// Load avatar image
-		[friend.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-			[self.avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
-		}];
-		
+		self.avatarNode.avatar = friend.avatar;
 	}
 }
 

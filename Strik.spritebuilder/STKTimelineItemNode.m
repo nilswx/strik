@@ -36,12 +36,11 @@
 - (void)setActor:(STKPlayer *)actor
 {
 	_actor = actor;
+
+	self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
+	self.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
 	
-	[actor.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-		self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
-		self.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
-		[self.avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
-	}];
+	self.avatarNode.avatar = actor.avatar;
 }
 
 - (void)setTimelinePosition:(TimelinePositionType)timelinePosition

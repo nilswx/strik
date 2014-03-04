@@ -7,6 +7,7 @@
 //
 
 #import "STKAvatarNode.h"
+#import "STKAvatar.h"
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
@@ -98,6 +99,17 @@ typedef NS_ENUM(NSInteger, zIndex)
 	[self addChild:circle];
 	
 	return circle;
+}
+
+- (void)setAvatar:(STKAvatar *)avatar
+{
+	_avatar = avatar;
+	if(avatar)
+	{
+		[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
+			[self setAvatarTexture:avatarTexture ofType:avatarType];
+		}];
+	}
 }
 
 - (void)setAvatarTexture:(CCTexture *)avatarTexture ofType:(AvatarType)avatarType

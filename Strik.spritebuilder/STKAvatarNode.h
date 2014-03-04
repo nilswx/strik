@@ -9,7 +9,12 @@
 #import "CCNode.h"
 #import "STKAvatar.h"
 
+@class STKAvatar;
+
 @interface STKAvatarNode : CCNode
+
+// The avatar itself
+@property (nonatomic) STKAvatar *avatar;
 
 // The border color
 @property (nonatomic) CCColor *borderColor;
@@ -25,8 +30,5 @@
 
 // The avatar type
 @property (readonly) AvatarType avatarType;
-
-// Set the avatar texture and the avatar type
-- (void)setAvatarTexture:(CCTexture *)avatarTexture ofType:(AvatarType)avatarType;
 
 @end

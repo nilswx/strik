@@ -62,13 +62,11 @@
 
 - (void)avatar:(STKAvatar *)avatar valueChangedForIdentifier:(NSString *)identifier
 {
-	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-		// Setting up the avatar
-		self.avatarNode.borderColor = [CCColor whiteColor];
-		self.avatarNode.backgroundColor = PLAYER_ONE_COLOR;
-		
-		[self.avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
-	}];
+	// Setting up the avatar
+	self.avatarNode.borderColor = [CCColor whiteColor];
+	self.avatarNode.backgroundColor = PLAYER_ONE_COLOR;
+	
+	self.avatarNode.avatar = avatar;
 }
 
 @end

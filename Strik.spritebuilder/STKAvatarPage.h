@@ -10,6 +10,8 @@
 
 @interface STKAvatarPage : CCNode
 
+@property (weak) id controller;
+
 @property (readonly) NSArray *avatars;
 
 - (id)initWithAvatars:(NSArray *)avatars;

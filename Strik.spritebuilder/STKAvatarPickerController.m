@@ -62,7 +62,10 @@
 	NSArray *avatarsForPage = [self avatarsForPage:page];
 	
 	// Create a page with these avatars
-	return [STKAvatarPage avatarPageWithAvatars:avatarsForPage];
+	STKAvatarPage *avatarPage = [STKAvatarPage avatarPageWithAvatars:avatarsForPage];
+	avatarPage.controller = self;
+	
+	return avatarPage;
 }
 
 - (NSArray *)avatarsForPage:(int)page
@@ -86,5 +89,7 @@
 {
 	return self.scene;
 }
+
+
 
 @end

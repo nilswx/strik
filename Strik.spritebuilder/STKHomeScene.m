@@ -60,7 +60,7 @@
 	self.levelNode.text = [NSString stringWithFormat:@"%d", [level intValue]];
 }
 
-- (void)avatar:(STKAvatar *)avatar valueChangedForIdentifier:(NSString *)identifier
+- (void)player:(STKPlayer *)player valueChangedForAvatar:(STKAvatar *)avatar
 {
 	// Setting up the avatar
 	self.avatarNode.borderColor = [CCColor whiteColor];

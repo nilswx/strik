@@ -10,8 +10,6 @@
 
 @interface STKAvatar()
 
-@property NSString *identifier;
-
 @end
 
 @implementation STKAvatar

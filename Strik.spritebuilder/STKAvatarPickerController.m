@@ -10,8 +10,18 @@
 #import "STKAVatarPickerScene.h"
 
 #import "PagedScrollNode.h"
+
 #import "STKAvatarPage.h"
 #import "STKAvatar.h"
+#import "STKAvatarNode.h"
+
+#import "STKButton.h"
+
+#import "STKSessionController.h"
+#import "STKPLayer.h"
+
+#import "STKDirector.h"
+#import "STKDirector+Modal.h"
 
 @interface STKAvatarPickerController()
 
@@ -90,6 +100,16 @@
 	return self.scene;
 }
 
-
+#pragma mark events
+- (void)onAvatarNodeButton:(STKButton *)button
+{
+	STKAvatarNode *avatarNode = button.data;
+	
+	STKSessionController *sessionController = self.core[@"session"];
+	sessionController.user.avatar.identifier = avatarNode.avatar.identifier;
+	
+	STKDirector *director = self.core[@"director"];
+	[director hideOverlay];
+}
 
 @end

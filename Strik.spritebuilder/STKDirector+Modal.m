@@ -27,6 +27,9 @@
 	// Keep track of the overlay scene controller and scene
 	self.overlaySceneController = sceneController;
 	self.overlayScene = sceneController.scene;
+
+	// What is a controller without a core...
+	self.overlaySceneController.core = self.core;
 	
 	// Make sure the events are fired
 	[self.overlaySceneController sceneCreated];
@@ -59,6 +62,14 @@
 		
 	// And put it on screen
 	[self.blurredBackground addChild:self.overlayScene];
+}
+
+- (void)hideOverlay
+{
+	if(self.overlaySceneController)
+	{
+		[self tappedBackground:nil];
+	}
 }
 
 #pragma mark buttons

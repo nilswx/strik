@@ -20,7 +20,8 @@ typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture, AvatarType avata
 
 @interface STKAvatar : STKModel
 
-@property (readonly) NSString *identifier;
+// The avatar identifier
+@property NSString *identifier;
 
 // The avatar type (e.g profile picture, or chosen from the client avatar collection)
 @property (readonly) AvatarType avatarType;

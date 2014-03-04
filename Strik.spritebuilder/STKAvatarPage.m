@@ -108,7 +108,7 @@
 	
 	// Create the button
 	STKButton *button = [STKButton node];
-	button.data = avatar;
+	button.data = avatarNode;
 	
 	button.anchorPoint = CGPointMake(0, 0);
 	button.position = CGPointMake(0, 0);
@@ -116,7 +116,7 @@
 	button.preferredSizeType = CCSizeTypeNormalized;
 	button.preferredSize = CGSizeMake(1, 1);
 	
-	[button setTarget:self.controller selector:@selector(onAvatarButton:)];
+	[button setTarget:self.controller selector:@selector(onAvatarNodeButton:)];
 	
 	[container addChild:button];
 	

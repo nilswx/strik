@@ -10,6 +10,8 @@
 #import "STKAVatarPickerScene.h"
 
 #import "PagedScrollNode.h"
+#import "STKAvatarPage.h"
+#import "STKAvatar.h"
 
 @interface STKAvatarPickerController()
 
@@ -17,46 +19,62 @@
 
 @property (readonly) STKAvatarPickerScene *avatarPickerScene;
 
+// Contains all avatars, first item is facebook avatar
+@property NSArray *allAvatars;
+
 @end
 
 @implementation STKAvatarPickerController
 
 - (void)sceneCreated
 {
-	// Create the paged scroll node for the avatar picker
-	self.pagedScrollNode = [PagedScrollNode pagedScrollNodeWithDataSource:self];
-	self.pagedScrollNode.contentSizeType = CCSizeTypeNormalized;
-	self.pagedScrollNode.contentSize = CGSizeMake(1, 1);
+	// Load all available avatars in an array
+	[self loadAvatars];
+}
+
+- (void)loadAvatars
+{
+	NSMutableArray *avatars = [NSMutableArray array];
+
+	// The user avatar (e.g the facebook profile, or a default facebook picture)
 	
-	[self.avatarPickerScene.avatarPickerContainer addChild:self.pagedScrollNode];
+	// The client avatars
+	for(int i =  1; i <= CLIENT_AVATAR_COUNT; i++)
+	{
+		STKAvatar *avatar = [STKAvatar avatarWithIdentifier:[NSString stringWithFormat:@"%d", i]];
+		[avatars addObject:avatar];
+	}
+	
+	self.allAvatars = [NSArray arrayWithArray:avatars];
 }
 
 #pragma mark PagedSCrollNodeDataSource
 - (int)numberOfPages
 {
-	return 3;
+	// The plus one is for the facebook avatar
+	int numberOfPages = ceil((float)(CLIENT_AVATAR_COUNT + 1) / (float)[STKAvatarPage avatarsPerPage]);
+	return numberOfPages;
 }
 
 - (CCNode *)nodeForPage:(int)page
 {
-	CCNodeColor *node;
-	if(page == 0)
-	{
-		node = [CCNodeColor nodeWithColor:[CCColor redColor]];
-	}
-	else if(page == 1)
-	{
-		node = [CCNodeColor nodeWithColor:[CCColor purpleColor]];
-	}
-	else
-	{
-		node = [CCNodeColor nodeWithColor:[CCColor greenColor]];
-	}
+	// Get the avatars for this page
+	NSArray *avatarsForPage = [self avatarsForPage:page];
 	
-	node.contentSizeType = CCSizeTypePoints;
-	node.contentSize = self.pageSize;
+	// Create a page with these avatars
+	return [STKAvatarPage avatarPageWithAvatars:avatarsForPage];
+}
+
+- (NSArray *)avatarsForPage:(int)page
+{
+	// Determine range for page
+	int start = page * [STKAvatarPage avatarsPerPage];
+	int length = MIN(self.allAvatars.count - start, [STKAvatarPage avatarsPerPage]);
 	
-	return node;
+	NSRange avatarRange = NSMakeRange(start, length);
+	
+	// Return range for page
+	return [self.allAvatars subarrayWithRange:avatarRange];
 }
 
 - (CGSize)pageSize

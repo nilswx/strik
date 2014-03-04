@@ -213,7 +213,7 @@
 - (void)scrollToPage:(int)page
 {
 	[self.scrollView scrollRectToVisible:CGRectMake(self.dataSource.pageSize.width * page, 0, self.dataSource.pageSize.width, self.dataSource.pageSize.height) animated:YES];
-}
+} 
 
 - (void)clearContent
 {

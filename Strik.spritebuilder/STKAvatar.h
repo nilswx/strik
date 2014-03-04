@@ -8,6 +8,8 @@
 
 #import "STKModel.h"
 
+#define CLIENT_AVATAR_COUNT 15
+
 typedef NS_ENUM(NSInteger, AvatarType)
 {
 	AvatarTypeProfile,

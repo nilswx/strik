@@ -8,8 +8,11 @@
 
 #import "STKScene.h"
 
+@class PagedScrollNode;
+
 @interface STKAvatarPickerScene : STKScene
 
 @property CCNode *avatarPickerContainer;
+@property PagedScrollNode *avatarPagedScrollNode;
 
 @end

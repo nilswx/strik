@@ -1,0 +1,125 @@
+//
+//  STKAvatarPage.m
+//  Strik
+//
+//  Created by Matthijn Dijkstra on 04/03/14.
+//  Copyright (c) 2014 Strik. All rights reserved.
+//
+
+#import "STKAvatarPage.h"
+#import "STKAvatar.h"
+#import "STKAvatarNode.h"
+
+#define AVATAR_BORDER_COLOR [CCColor colorWithRed:61.0f/255.0f green:60.0f/255.0f blue:62.0f/255.0f]
+#define AVATAR_SCALE 0.78f
+#define AVATAR_PADDING 8
+
+#define TOP_PADDING 14
+#define LEFT_PADDING 14
+
+#define CONTAINER_SIZE 100
+
+@interface STKAvatarPage()
+
+@property NSArray *avatars;
+
+@end
+
+@implementation STKAvatarPage
+
+- (id)initWithAvatars:(NSArray *)avatars
+{
+	if(self = [super init])
+	{
+		self.avatars = avatars;
+		
+		self.contentSizeType = CCSizeTypeNormalized;
+		self.contentSize = CGSizeMake(1, 1);
+	}
+	
+	return self;
+}
+
++ (id)avatarPageWithAvatars:(NSArray *)avatars
+{
+	return [[STKAvatarPage alloc] initWithAvatars:avatars];
+}
+
+- (void)onEnterTransitionDidFinish
+{
+	[super onEnter];
+	
+	NSLog(@"Size %@", NSStringFromCGSize(self.contentSizeInPoints));
+	
+	[self layoutAvatars];
+}
+
+- (void)layoutAvatars
+{
+	int collumnCount = 3;
+	
+	// Todo: change it based on size of screen
+	for(STKAvatar *avatar in self.avatars)
+	{
+		int index = [self.avatars indexOfObject:avatar];
+		
+		// Determine collumn and row for index
+		int collumn = index % collumnCount;
+		int row = floor((float)index / (float)collumnCount);
+		
+		// Get the avatar container node for this avatar
+		CCNode *container = [self nodeForAvatar:avatar];
+				
+		// Position it
+		
+		container.position = [self positionForCollumn:collumn andRow:row];
+		[self addChild:container];
+	}
+}
+
+- (CCNode *)nodeForAvatar:(STKAvatar *)avatar
+{
+	CCNode *container = [CCNode node];
+
+	// Set size and anchor point for container so we can position from top left
+	container.contentSizeType = CCSizeTypePoints;
+	container.contentSize = CGSizeMake(CONTAINER_SIZE, CONTAINER_SIZE);
+	
+	container.positionType = CCPositionTypeMake(CCPositionUnitPoints, CCPositionUnitPoints, CCPositionReferenceCornerTopLeft);
+	container.anchorPoint = CGPointMake(0, 1);
+	
+	// Scale it a bit down so there fit three nicely next to each other
+	container.scale = AVATAR_SCALE;
+	
+	// Load the avatar and center in container
+	STKAvatarNode *avatarNode = [STKAvatarNode new];
+	avatarNode.position = CGPointMake(50, 50);
+	
+	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
+		[avatarNode setAvatarTexture:avatarTexture ofType:avatarType];
+		
+		avatarNode.backgroundColor = PLAYER_ONE_COLOR;
+		avatarNode.borderColor = AVATAR_BORDER_COLOR;
+	}];
+	
+	// Add the avatar to the container
+	[container addChild:avatarNode];
+	
+	return container;
+}
+
+- (CGPoint)positionForCollumn:(int)collumn andRow:(int)row
+{
+	CGFloat fullAvatarWidth = (CONTAINER_SIZE * AVATAR_SCALE) + (2 * AVATAR_PADDING);
+	CGFloat fullAvatarHeight = fullAvatarWidth;
+	
+	return CGPointMake((fullAvatarWidth * collumn) + LEFT_PADDING, (fullAvatarHeight * row) + TOP_PADDING);
+}
+
++ (int)avatarsPerPage
+{
+	// Todo: change this based on size of screen
+	return 12;
+}
+
+@end

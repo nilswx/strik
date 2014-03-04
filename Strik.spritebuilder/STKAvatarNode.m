@@ -183,13 +183,15 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Scale it a bit down
 	imageSprite.scale = 0.8;
 	
+	imageSprite.zOrder = Z_IMAGE;
+	
 	[self addChild:imageSprite];
 }
 
 - (CGFloat)radius
 {
 	// Substract 2px from the size so it wil be not cut of with aliassing
-	return (self.contentSize.width / 2) - 2;
+	return (100 / 2) - 2;
 }
 
 @end

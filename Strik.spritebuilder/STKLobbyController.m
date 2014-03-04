@@ -19,7 +19,6 @@
 // The nodes to display
 @property NSMutableArray *friendsNodes;
 @property NSMutableArray *facebookNodes;
-@property CCNode *inviteInformationNode;
 
 // The facebook users and friends
 @property NSArray *facebookUsers;

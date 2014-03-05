@@ -71,6 +71,8 @@
 - (void)onRandomOpponentButton:(CCButton *)button
 {
 	NSLog(@"Pressed random game button.");
+	
+	[[[UIAlertView alloc] initWithTitle:@"Random Opponent" message:@"Would you like to play against a random opponent?" delegate:nil cancelButtonTitle:@"NEIN!" otherButtonTitles:nil] show];
 }
 
 - (void)onScrollTopButton:(CCButton *)button

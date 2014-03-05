@@ -11,9 +11,17 @@
 #import "STKAvatarNode.h"
 #import "STKAvatar.h"
 
+#import "Fluent.h"
+
 #import "NSObject+Observer.h"
 
 @interface STKTimelineItemNode()
+
+// The player for this timeline event
+@property (nonatomic) STKPlayer *actor;
+
+// The content for this timeline
+@property (nonatomic) NSString *content;
 
 // The avatar node
 @property STKAvatarNode *avatarNode;
@@ -28,6 +36,15 @@
 
 @implementation STKTimelineItemNode
 
++ (id)newTimelineItemNodeWithActor:(STKPlayer *)actor action:(NSString *)action subject:(NSString *)subject andTimestamp:(int)timestamp
+{
+	STKTimelineItemNode *timelineItemNode = (STKTimelineItemNode *)[CCBReader load:@"Home Scene/TimelineItemNode.ccbi"];
+	timelineItemNode.actor = actor;
+	
+	timelineItemNode.content = [Fluent fluentStringWithActor:actor.name action:action subject:subject atTime:[NSDate dateWithTimeIntervalSince1970:timestamp]];
+	
+	return timelineItemNode;
+}
 
 - (void)setContent:(NSString *)content
 {

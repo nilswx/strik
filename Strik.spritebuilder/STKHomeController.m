@@ -34,6 +34,11 @@
 #import "STKDirector.h"
 #import "STKDirector+Modal.h"
 
+#define TIMELINE_ITEM_ACTOR_KEY @"actor"
+#define TIMELINE_ITEM_ACTION_KEY @"action"
+#define TIMELINE_ITEM_SUBJECT_KEY @"subject"
+#define TIMELINE_ITEM_DATE_KEY @"date"
+
 @interface STKHomeController()
 
 // The grid for the timeline
@@ -194,10 +199,14 @@
 		NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:row];
 		
 		// Load it and set the properties
-		timelineItem = (STKTimelineItemNode *)[CCBReader load:@"Home Scene/TimelineItemNode.ccbi"];
-		timelineItem.actor = nodeInfo[@"actor"];
-		timelineItem.content = nodeInfo[@"content"];
-		timelineItem.timestamp = [nodeInfo[@"timestamp"] intValue];
+
+		// Get the needed information for this timeline item node
+		STKPlayer *actor = nodeInfo[TIMELINE_ITEM_ACTOR_KEY];
+		NSString *action = nodeInfo[TIMELINE_ITEM_ACTION_KEY];
+		NSString *subject = nodeInfo[TIMELINE_ITEM_SUBJECT_KEY];
+		int timestamp = [nodeInfo[TIMELINE_ITEM_DATE_KEY] intValue];
+		
+		timelineItem = [STKTimelineItemNode newTimelineItemNodeWithActor:actor action:action subject:subject andTimestamp:timestamp];
 		
 		// Add to cache
 		[self.timelineItemNodes addObject:timelineItem];
@@ -309,30 +318,32 @@
 		// Process extra stuff based on type
 		char type = [msg readByte];
 		
-		NSString *contentString;
+		// Action is e.g joined / reached
+		NSString *action;
+
+		// Subject is 'Strik', 'level x', 'item that'
+		NSString *subject;
 		
+		// Todo: localize
 		switch(type)
 		{
 			// Actor joined!
 			case 'j':
 			{
-				// Format the content string
-                NSString *localizedContents = NSLocalizedString(@"%@ joined Strik!", nil);
-                contentString = [NSString stringWithFormat:localizedContents, actor.name];
-				
+				action = @"joined";
+				subject = @"Strik";
 				break;
 			}
 				
 			// Actor leveled up!
 			case 'l':
 			{
-				// Parse the level
+				// Get the level the level
 				int level = [msg readInt];
 				
-				// Format the content string
-                NSString *localizedContents = NSLocalizedString(@"%@ reached level %d!", nil);
-                contentString = [NSString stringWithFormat:localizedContents, actor.name, level];
-				
+				action = @"reached";
+				subject= [NSString stringWithFormat:@"level %d", level];
+
 				break;
 			}
 				
@@ -343,9 +354,8 @@
 				STKItemType* item = [self.core[@"items"] typeForID:[msg readInt]];
 				if(item)
 				{
-					// Format the content string
-					NSString *localizedContents = NSLocalizedString(@"%@ received %@!", nil);
-					contentString = [NSString stringWithFormat:localizedContents, actor.name, item.name];
+					action = @"received";
+					subject = item.name;
 				}
 				break;
 			}
@@ -355,10 +365,9 @@
 			{
 				STKPlayer* loser = [self resolveActivityActor:[msg readInt]];
 				
-				// Format the content string
-				NSString *localizedContents = NSLocalizedString(@"%@ beat %@!", nil);
-				contentString = [NSString stringWithFormat:localizedContents, actor.name, loser.name];
-				
+				action = @"beat";
+				subject = loser.name; // with x points?
+
 				break;
 			}
 				
@@ -371,12 +380,13 @@
 		}
 		
         // Create it and add it to the array if we could parse the content
-        if(contentString)
+        if(action)
         {
 			[self.timelineItems addObject:@{
-										   @"content": contentString,
-										   @"actor": actor,
-										   @"timestamp": @(timestamp)}];
+										   TIMELINE_ITEM_ACTION_KEY: action,
+										   TIMELINE_ITEM_SUBJECT_KEY: subject,
+										   TIMELINE_ITEM_ACTOR_KEY: actor,
+										   TIMELINE_ITEM_DATE_KEY: @(timestamp)}];
         }
 	}
 	

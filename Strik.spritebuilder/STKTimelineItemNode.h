@@ -19,16 +19,10 @@ typedef NS_ENUM(NSInteger, TimelinePositionType)
 
 @interface STKTimelineItemNode : CCNode
 
-// The player for this timeline event
-@property (nonatomic) STKPlayer *actor;
-
-// The content for the label
-@property (nonatomic) NSString *content;
-
-// And the time
-@property (nonatomic, assign) int *timestamp;
-
 // Based on the property the line will be changes so the top and bottom have the correct lines
 @property (nonatomic, assign) TimelinePositionType timelinePosition;
+
+// Returns a new timeline item node from disk
++ (id)newTimelineItemNodeWithActor:(STKPlayer *)actor action:(NSString *)action subject:(NSString *)subject andTimestamp:(int)timestamp;
 
 @end

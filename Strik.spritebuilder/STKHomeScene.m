@@ -42,6 +42,7 @@
 
 - (void)onEnterTransitionDidFinish
 {
+	// Todo: Get actual value
 	// Setting value of progress bar on transition completion, so it starts animating after it completes
 	[self.playerProgress setValue:930 ofTotalValue:1500];
 }

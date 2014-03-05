@@ -14,6 +14,8 @@
 #import "STKLobbyScene.h"
 #import "GridNode.h"
 
+#import "STKMatchController.h"
+
 @interface STKLobbyController()
 
 // The nodes to display
@@ -70,7 +72,9 @@
 
 - (void)onRandomOpponentButton:(CCButton *)button
 {
-	NSLog(@"Pressed random game button.");
+	// Requesting a random match
+    STKMatchController *matchController = self.core[@"match"];
+    [matchController requestNewMatch];
 }
 
 - (void)onScrollTopButton:(CCButton *)button

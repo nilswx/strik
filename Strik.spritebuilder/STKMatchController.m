@@ -19,6 +19,8 @@
 #import "STKTileSelectionBuffer.h"
 #import "STKAlertView.h"
 
+#import "STKVSController.h"
+
 @interface STKMatchController()
 
 // The MatchSceneController needs to be created before the countdown starts, so it can start to receive network events
@@ -63,10 +65,11 @@
 		NSString *queueName = [message readStr];
 		NSLog(@"Match: entered '%@' queue", queueName);
 		
-		// Show queue scene
+		// Show VS scene
 		STKDirector *director = self.core[@"director"];
-		// Todo: Present Queue scene
-//		[director presentScene:[STKQueueScene class]];
+		
+		CCTransition *transition = [CCTransition transitionCrossFadeWithDuration:0.25];
+		[director presentScene:(STKSceneController *)[STKVSController new] withTransition:transition];
 	}
 }
 

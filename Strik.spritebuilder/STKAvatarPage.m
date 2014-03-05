@@ -12,7 +12,6 @@
 
 #import "STKButton.h"
 
-#define AVATAR_BORDER_COLOR [CCColor colorWithRed:61.0f/255.0f green:60.0f/255.0f blue:62.0f/255.0f]
 #define AVATAR_SCALE 0.78f
 #define AVATAR_PADDING 8
 
@@ -21,9 +20,13 @@
 
 #define CONTAINER_SIZE 100
 
+#import "STKAvatarPickerController.h"
+
 @interface STKAvatarPage()
 
 @property NSArray *avatars;
+
+@property (readonly) STKAvatarPickerController *avatarController;
 
 @end
 
@@ -95,8 +98,16 @@
 	avatarNode.position = CGPointMake(50, 50);
 
 	avatarNode.backgroundColor = PLAYER_ONE_COLOR;
-	avatarNode.borderColor = AVATAR_BORDER_COLOR;
 	
+	if([avatar.identifier isEqualToString:self.avatarController.currentAvatar.identifier])
+	{
+		avatarNode.borderColor = AVATAR_ACTIVE_BORDER_COLOR;
+	}
+	else
+	{
+		avatarNode.borderColor = AVATAR_BORDER_COLOR;
+	}
+
 	avatarNode.avatar = avatar;
 	
 	
@@ -126,6 +137,11 @@
 	CGFloat fullAvatarHeight = fullAvatarWidth;
 	
 	return CGPointMake((fullAvatarWidth * collumn) + LEFT_PADDING, (fullAvatarHeight * row) + TOP_PADDING);
+}
+
+- (STKAvatarPickerController *)avatarController
+{
+	return self.controller;
 }
 
 + (int)avatarsPerPage

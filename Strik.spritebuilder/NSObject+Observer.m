@@ -102,13 +102,22 @@
 
 - (void)model:(STKModel*)model valueChangedForKey:(NSString*)key { }
 
-- (void)removeAsObserver
+- (void)removeAsObserverForAllModels
 {
 	for(STKModel* model in [self.models allValues])
 	{
 		[model removeObserverForAllProperties:self];
 	}
 	[((NSMutableDictionary*)self.models) removeAllObjects];
+}
+
+- (void)removeAsObserverForModel:(STKModel *)model
+{
+	NSString *alias = [self aliasForModel:model];
+	if([self.models valueForKey:alias])
+	{
+		[model removeObserverForAllProperties:self];
+	}
 }
 
 - (void)setModels:(NSDictionary *)models

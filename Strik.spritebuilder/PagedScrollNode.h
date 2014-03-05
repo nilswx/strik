@@ -25,4 +25,7 @@
 
 - (void)reload;
 
+// Scroll to a given page
+- (void)scrollToPage:(int)page animated:(BOOL)animated;
+
 @end

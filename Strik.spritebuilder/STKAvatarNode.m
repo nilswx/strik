@@ -8,7 +8,6 @@
 
 #import "STKAvatarNode.h"
 #import "STKAvatar.h"
-#import "NSObject+Observer.h"
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
@@ -101,27 +100,16 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (void)setAvatar:(STKAvatar *)avatar
 {
-	// Remove old observing if avatar changes
-	if(_avatar)
-	{
-		[self removeAsObserver];
-	}
-	
 	_avatar = avatar;
 	
 	// Observe new avatar
 	if(avatar)
 	{
-		[self observeModel:avatar];
+		// Now listening to avatar changes :)
+		[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
+			[self setAvatarTexture:avatarTexture ofType:avatarType];
+		}];
 	}
-}
-
-- (void)avatar:(STKAvatar *)avatar valueChangedForIdentifier:(NSString *)identifier
-{
-	// Now listening to avatar changes :) 
-	[avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
-		[self setAvatarTexture:avatarTexture ofType:avatarType];
-	}];
 }
 
 - (void)setAvatarTexture:(CCTexture *)avatarTexture ofType:(AvatarType)avatarType
@@ -216,11 +204,6 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	// Substract 2px from the size so it wil be not cut of with aliassing
 	return (100 / 2) - 2;
-}
-
-- (void)dealloc
-{
-	[self removeAsObserver];
 }
 
 @end

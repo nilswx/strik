@@ -10,6 +10,9 @@
 
 @interface STKAvatar()
 
+// The avatar identifier
+@property NSString *identifier;
+
 @end
 
 @implementation STKAvatar
@@ -25,7 +28,17 @@
 
 + (STKAvatar*)avatarWithIdentifier:(NSString*)identifier
 {
-	return [[STKAvatar alloc] initWithAvatarIdentifier:identifier];
+	STKAvatar *avatar = [[self avatarCache] valueForKey:identifier];
+	if(!avatar)
+	{
+		// Create an avatar if it has not been created before
+		avatar = [[STKAvatar alloc] initWithAvatarIdentifier:identifier];
+
+		// Add to cache
+		[[self avatarCache] setValue:avatar forKey:identifier];
+	}
+	
+	return avatar;
 }
 
 - (void)fetchAvatarWithCallback:(AvatarFetchResultBlock)callback
@@ -115,6 +128,23 @@
 	}
 	
 	return AvatarTypeClient;
+}
+
++ (NSMutableDictionary *)avatarCache
+{
+	// Making sure there is only one avatar instance for each identifier
+	static NSMutableDictionary *avatars = nil;
+	if(!avatars)
+	{
+		avatars = [NSMutableDictionary dictionary];
+	}
+	
+	return avatars;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<STKAvatar: identifier:%@> - %@", self.identifier, [super description]];
 }
 
 @end

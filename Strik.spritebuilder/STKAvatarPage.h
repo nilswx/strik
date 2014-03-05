@@ -8,6 +8,11 @@
 
 #import "CCNode.h"
 
+#define AVATAR_BORDER_COLOR [CCColor colorWithRed:61.0f/255.0f green:60.0f/255.0f blue:62.0f/255.0f]
+#define AVATAR_ACTIVE_BORDER_COLOR PLAYER_TWO_COLOR
+
+@class STKAvatar;
+
 @interface STKAvatarPage : CCNode
 
 @property (weak) id controller;

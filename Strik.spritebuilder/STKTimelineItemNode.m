@@ -11,6 +11,8 @@
 #import "STKAvatarNode.h"
 #import "STKAvatar.h"
 
+#import "NSObject+Observer.h"
+
 @interface STKTimelineItemNode()
 
 // The avatar node
@@ -35,12 +37,27 @@
 
 - (void)setActor:(STKPlayer *)actor
 {
+	if(actor)
+	{
+		[self removeAsObserverForModel:actor];
+	}
+	
 	_actor = actor;
 
+	if(actor)
+	{
+		[self observeModel:actor];
+	}
+
+}
+
+- (void)player:(STKPlayer *)player valueChangedForAvatar:(STKAvatar *)avatar
+{
+	// Todo: Move this to player status and change based on player status
 	self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
 	self.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
 	
-	self.avatarNode.avatar = actor.avatar;
+	self.avatarNode.avatar = player.avatar;
 }
 
 - (void)setTimelinePosition:(TimelinePositionType)timelinePosition
@@ -72,6 +89,11 @@
 	{
 		self.connectingLine.opacity = 0;
 	}
+}
+
+- (void)dealloc
+{
+	[self removeAsObserverForAllModels];
 }
 
 @end

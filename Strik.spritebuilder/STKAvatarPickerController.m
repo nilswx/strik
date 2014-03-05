@@ -55,19 +55,19 @@
 	STKAvatar *facebookAvatar;
 	
 	// Determine if the user if facebook linked
-//	if(!facebookController.isServerLinked)
+	if(!facebookController.isServerLinked)
 	{
-		// Use
+		// Use default avatar
 		facebookAvatar = [STKAvatar avatarWithIdentifier:AVATAR_TYPE_NO_FACEBOOK_ID];
 	}
-//	else
-//	{
-//		// Use profile image
-//		STKSessionController *sessionController = self.core[@"session"];
-//		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%d", sessionController.user.playerId];
-//		facebookAvatar = [STKAvatar avatarWithIdentifier:facebookIdentifier];
-//	}
-//	
+	else
+	{
+		// Use profile image
+		STKSessionController *sessionController = self.core[@"session"];
+		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%d", sessionController.user.playerId];
+		facebookAvatar = [STKAvatar avatarWithIdentifier:facebookIdentifier];
+	}
+	
 	// Ad facebook avatar as first image to array
 	[avatars addObject:facebookAvatar];
 	
@@ -135,8 +135,10 @@
 	}
 	else
 	{
+		avatarNode.borderColor = AVATAR_ACTIVE_BORDER_COLOR;
+		
 		STKSessionController *sessionController = self.core[@"session"];
-		sessionController.user.avatar.identifier = avatarNode.avatar.identifier;
+		sessionController.user.avatar = avatarNode.avatar;
 		
 		STKDirector *director = self.core[@"director"];
 		[director hideOverlay];
@@ -151,6 +153,25 @@
 - (void)onFacebookConnectNo:(id)sender
 {
 	NSLog(@"Well, I'm not feeling like connecting right now.");
+}
+
+- (STKAvatar *)currentAvatar
+{
+	STKSessionController *sessionController = self.core[@"session"];
+	return sessionController.user.avatar;
+}
+
+// Returns the page a given avatar can be found
+- (int)pageForAvatar:(STKAvatar *)avatar
+{
+	// Determine if the avatar is in the client list (else it returns the first page)
+	int index = 0;
+	if([self.allAvatars containsObject:avatar])
+	{
+		index = [self.allAvatars indexOfObject:avatar];
+	}
+	
+	return floor(index / [STKAvatarPage avatarsPerPage]);
 }
 
 @end

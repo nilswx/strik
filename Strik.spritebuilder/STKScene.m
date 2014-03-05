@@ -44,7 +44,7 @@
 
 - (void)dealloc
 {
-    [self removeAsObserver];
+    [self removeAsObserverForAllModels];
 }
 
 #pragma mark Overrides for Cocos events

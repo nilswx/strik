@@ -202,17 +202,17 @@
 
 - (void)onPageControlLeftButton:(CCButton *)button
 {
-	[self scrollToPage:MAX(0, self.currentPage - 1)];
+	[self scrollToPage:MAX(0, self.currentPage - 1) animated:YES];
 }
 
 - (void)onPageControlRightButton:(CCButton *)button
 {
-	[self scrollToPage:MIN(self.dataSource.numberOfPages - 1, self.currentPage + 1)];
+	[self scrollToPage:MIN(self.dataSource.numberOfPages - 1, self.currentPage + 1) animated:YES];
 }
 
-- (void)scrollToPage:(int)page
+- (void)scrollToPage:(int)page animated:(BOOL)animated
 {
-	[self.scrollView scrollRectToVisible:CGRectMake(self.dataSource.pageSize.width * page, 0, self.dataSource.pageSize.width, self.dataSource.pageSize.height) animated:YES];
+	[self.scrollView scrollRectToVisible:CGRectMake(self.dataSource.pageSize.width * page, 0, self.dataSource.pageSize.width, self.dataSource.pageSize.height) animated:animated];
 } 
 
 - (void)clearContent

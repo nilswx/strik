@@ -9,6 +9,8 @@
 #import "STKAvatarPickerScene.h"
 #import "PagedScrollNode.h"
 
+#import "STKAvatarPickerController.h"
+
 @implementation STKAvatarPickerScene
 
 - (void)onEnterTransitionDidFinish
@@ -19,6 +21,10 @@
 	self.avatarPagedScrollNode.contentSize = CGSizeMake(1, 1);
 	
 	[self.avatarPickerContainer addChild:self.avatarPagedScrollNode];
+	
+	// Scroll to the page which holds the active avatar
+	STKAvatarPickerController *avatarController = self.controller;
+	[self.avatarPagedScrollNode scrollToPage:[avatarController pageForAvatar:avatarController.currentAvatar] animated:NO];
 }
 
 @end

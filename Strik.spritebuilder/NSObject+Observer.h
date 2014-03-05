@@ -16,6 +16,7 @@
 - (void)observeModels:(NSArray*)models;
 - (void)model:(STKModel*)model valueChangedForKey:(NSString*)key;
 
-- (void)removeAsObserver;
+- (void)removeAsObserverForAllModels;
+- (void)removeAsObserverForModel:(STKModel *)model;
 
 @end

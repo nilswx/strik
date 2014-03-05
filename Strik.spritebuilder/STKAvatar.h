@@ -24,12 +24,12 @@ typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture, AvatarType avata
 @interface STKAvatar : STKModel
 
 // The avatar identifier
-@property NSString *identifier;
+@property (readonly) NSString *identifier;
 
 // The avatar type (e.g profile picture, or chosen from the client avatar collection)
 @property (readonly) AvatarType avatarType;
 
-- (id)initWithAvatarIdentifier:(NSString *)identifier;
+// Use this method to get an avatar, it makes sure it returns the same avatar based on an identifier
 + (STKAvatar*)avatarWithIdentifier:(NSString*)identifier;
 
 - (void)fetchAvatarWithCallback:(AvatarFetchResultBlock)callback;

@@ -14,6 +14,8 @@
 #import "STKLobbyScene.h"
 #import "GridNode.h"
 
+#import "STKOutgoingMessage.h"
+
 @interface STKLobbyController()
 
 // The nodes to display
@@ -73,6 +75,8 @@
 	NSLog(@"Pressed random game button.");
 	
 	[[[UIAlertView alloc] initWithTitle:@"Random Opponent" message:@"Would you like to play against a random opponent?" delegate:nil cancelButtonTitle:@"NEIN!" otherButtonTitles:nil] show];
+	
+	[self sendNetMessage:[STKOutgoingMessage withOp:REQUEST_MATCH]];
 }
 
 - (void)onScrollTopButton:(CCButton *)button

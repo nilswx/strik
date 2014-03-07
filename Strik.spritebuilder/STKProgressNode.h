@@ -25,10 +25,10 @@ typedef void(^AnimationCompletion)();
 @property (readonly) int value;
 @property (readonly) int totalValue;
 
-// Give it a value, and a total value, it will take care of the rest
-- (void)setValue:(int)value ofTotalValue:(int)totalValue;
+// Give it a value, and a total value, it will take care of the rest animation is optional
+- (void)setValue:(int)value ofTotalValue:(int)totalValue animated:(BOOL)animated;
 
-// Same, but will call the block once the animation is completed
+// Same, but will call the block once the animation is completed (animation is mandatory)
 - (void)setValue:(int)value ofTotalValue:(int)totalValue withAnimationCompletion:(AnimationCompletion)completionBlock;
 
 @end

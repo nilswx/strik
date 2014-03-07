@@ -8,6 +8,11 @@
 
 #import "STKSceneController.h"
 
+@class STKMatch;
+
 @interface STKVSController : STKSceneController
+
+// Setup the match for this VS Scene
+- (void)setupMatch:(STKMatch *)match;
 
 @end

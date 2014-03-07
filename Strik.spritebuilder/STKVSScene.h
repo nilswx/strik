@@ -14,4 +14,6 @@
 
 @property (readonly) STKVSCard *playerOneCard;
 
+@property (readonly) STKVSCard *playerTwoCard;
+
 @end

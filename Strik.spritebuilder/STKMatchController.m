@@ -107,10 +107,21 @@
 		// Keep in session
 		self.match = match;
 		
-		// And display the loading screen
+		// There are two possibilities here, or we are somewhere else and someone invites us (go to VS Scene) or we are allready @ VS scene
 		STKDirector *director = self.core[@"director"];
-		// Todo: Present match loading scene
-//		[director presentScene:[STKMatchLoadingScene class]];
+		
+		// We are allready on the VS scene
+		if([director.sceneController isKindOfClass:[STKVSController class]])
+		{
+			[(STKVSController *)director.sceneController setupMatch:self.match];
+		}
+		// Go to the VS scene now (when match is set it will get that match when needed)
+		else
+		{
+			CCTransition *transition = [CCTransition transitionCrossFadeWithDuration:0.25];
+			[director presentScene:(STKSceneController *)[STKVSController new] withTransition:transition];
+		}
+		
 	}
 }
 

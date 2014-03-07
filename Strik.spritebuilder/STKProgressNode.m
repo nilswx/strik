@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 @property CCSprite9Slice *darkShadeNode;
 
 // The label
-@property CCLabelTTF *valueLabel;
+@property (nonatomic) CCLabelTTF *valueLabel;
 
 // Current values of the progress bar
 @property int value;
@@ -114,28 +114,28 @@ typedef NS_ENUM(NSInteger, zIndex)
 	return roundedRect;
 }
 
-- (void)setValue:(int)value ofTotalValue:(int)totalValue
+- (void)setValue:(int)value ofTotalValue:(int)totalValue animated:(BOOL)animated
 {
-	[self setValue:value ofTotalValue:totalValue withAnimationCompletion:nil];
+	self.value = value;
+	self.totalValue = totalValue;
+	
+	if(animated)
+	{
+		[self setValue:value ofTotalValue:totalValue withAnimationCompletion:nil];
+	}
+	else
+	{
+		// Set the label
+		self.valueLabel.string = [NSString stringWithFormat:@"%d/%d", self.value, self.totalValue];
+		
+		// Set the progress
+		[self animateProgress:1];
+	}
 }
 
 - (void)setValue:(int)value ofTotalValue:(int)totalValue withAnimationCompletion:(AnimationCompletion)completionBlock
 {
-	self.value = value;
-	self.totalValue = totalValue;
 	self.completionBlock = completionBlock;
-	
-	if(!self.valueLabel)
-	{
-		self.valueLabel = [CCLabelTTF labelWithString:@"" fontName:@"Global/Fonts/UbuntuTitling-Bold.ttf" fontSize:self.contentSize.height * RELATIVE_FONT_SIZE];
-		self.valueLabel.fontColor = [CCColor whiteColor];
-		
-		// Center it
-		self.valueLabel.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
-											   self.contentSize.height * self.anchorPoint.y - 1);
-		
-		[self addChild:self.valueLabel];
-	}
 	
 	// Animate the progress bar there are no "Action blocks" for this, so doing it on the schedule system
 	self.passedTime = 0;
@@ -204,4 +204,22 @@ typedef NS_ENUM(NSInteger, zIndex)
 	return MAX(min, size);
 }
 
+- (CCLabelTTF *)valueLabel
+{
+	if(!_valueLabel)
+	{
+		_valueLabel = [CCLabelTTF labelWithString:@"" fontName:@"Global/Fonts/UbuntuTitling-Bold.ttf" fontSize:self.contentSize.height * RELATIVE_FONT_SIZE];
+		_valueLabel.fontColor = [CCColor whiteColor];
+		
+		// Center it
+		_valueLabel.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+											   self.contentSize.height * self.anchorPoint.y - 1);
+		
+		[self addChild:_valueLabel];
+	}
+	
+	return _valueLabel;
+}
+
 @end
+

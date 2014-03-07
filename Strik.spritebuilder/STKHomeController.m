@@ -31,6 +31,8 @@
 #import "STKSettingsController.h"
 #import "STKAvatarPickerController.h"
 
+#import "STKClientController.h"
+
 #import "STKDirector.h"
 #import "STKDirector+Modal.h"
 
@@ -74,6 +76,9 @@
 	
 	// Get stream begin
 	[self requestStreamFrom:0 to:25];
+	
+	// Todo: Get locale from settings
+	[self.core[@"client"] changeLocale:@"en_US"];
 }
 
 - (void)setupTimeline

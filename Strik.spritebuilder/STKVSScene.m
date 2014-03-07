@@ -13,6 +13,8 @@
 
 @property STKVSCard *playerOneCard;
 
+@property STKVSCard *playerTwoCard;
+
 @end
 
 @implementation STKVSScene

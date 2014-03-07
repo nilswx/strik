@@ -135,7 +135,26 @@
 	// Set country label
 	countryLabel.string = [Linguistics localizedNameFromCountryCode:player.country];
 	
-	// Todo: Set country image
+	// Create a masked flag
+	CCSprite *flagMask = [CCSprite spriteWithImageNamed:@"Global/Images/flag-mask.png"];
+	CCSprite *flag = [CCSprite spriteWithImageNamed:[NSString stringWithFormat:@"Global/Images/Flags/%@.png", player.country]];
+	
+	CCClippingNode *clippingNode = [CCClippingNode clippingNodeWithStencil:flagMask];
+	
+	// Don't know what idiot thought defaulting this to one was a good idea
+	clippingNode.alphaThreshold = 0;
+	
+	[clippingNode addChild:flag];
+	
+	// Make sure it is positioned correctly
+	flag.anchorPoint = CGPointMake(0, 0);
+	flagMask.anchorPoint = CGPointMake(0, 0);
+
+	// And size the flag a bit down
+	flag.scale = 0.36f;
+	
+	// And add to scene
+	[flagContainer addChild:clippingNode];
 }
 
 - (STKVSScene *)vsScene

@@ -313,13 +313,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8304529A18C7538D000BBE18 /* Fluent */ = {
+		8304529A18C7538D000BBE18 /* Linguistics */ = {
 			isa = PBXGroup;
 			children = (
 				8304529C18C753A2000BBE18 /* Linguistics.h */,
 				8304529D18C753A2000BBE18 /* Linguistics.m */,
 			);
-			name = Fluent;
+			name = Linguistics;
 			sourceTree = "<group>";
 		};
 		830452A718C77819000BBE18 /* Nodes */ = {
@@ -535,7 +535,7 @@
 		8393784C18B601DA0007BDE4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8304529A18C7538D000BBE18 /* Fluent */,
+				8304529A18C7538D000BBE18 /* Linguistics */,
 				83EDE60218C38F0B00D3B78D /* PagesScrollNode */,
 				8330170018BA266700F8296B /* GridNode */,
 				833016FE18BA265F00F8296B /* ScrollNode */,

@@ -110,18 +110,24 @@
 		// There are two possibilities here, or we are somewhere else and someone invites us (go to VS Scene) or we are allready @ VS scene
 		STKDirector *director = self.core[@"director"];
 		
+		// Set match on VS controller
+		STKVSController *vsController;
+		
 		// We are allready on the VS scene
 		if([director.sceneController isKindOfClass:[STKVSController class]])
 		{
-			[(STKVSController *)director.sceneController setupMatch:self.match];
+			vsController = (STKVSController *)director.sceneController;
 		}
-		// Go to the VS scene now (when match is set it will get that match when needed)
+		// Go to the VS scene now
 		else
 		{
+			vsController = [STKVSController new];
 			CCTransition *transition = [CCTransition transitionCrossFadeWithDuration:0.25];
-			[director presentScene:(STKSceneController *)[STKVSController new] withTransition:transition];
+			[director presentScene:(STKSceneController *)vsController withTransition:transition];
 		}
 		
+		// And set match
+		vsController.match = match;
 	}
 }
 

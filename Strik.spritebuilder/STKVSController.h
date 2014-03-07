@@ -12,6 +12,9 @@
 
 @interface STKVSController : STKSceneController
 
+// Set the match here when it has been created
+@property (nonatomic) STKMatch *match;
+
 // Setup the match for this VS Scene
 - (void)setupMatch:(STKMatch *)match;
 

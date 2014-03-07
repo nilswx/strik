@@ -703,9 +703,9 @@
 						<key>displayName</key>
 						<string>player-one-country-label</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>_playerOneCountryLabel</string>
 						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -921,9 +921,9 @@
 						<key>displayName</key>
 						<string>player-one-flag-container</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>_playerOneFlagContainer</string>
 						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -1135,9 +1135,9 @@
 						<key>displayName</key>
 						<string>player-two-country-label</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>_playerTwoCountryLabel</string>
 						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -1340,9 +1340,9 @@
 						<key>displayName</key>
 						<string>player-two-flag-container</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>_playerTwoFlagContainer</string>
 						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
+						<integer>1</integer>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -1625,7 +1625,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>3</real>
+			<real>0.0</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -1655,7 +1655,7 @@
 			<key>chainedSequenceId</key>
 			<integer>-1</integer>
 			<key>length</key>
-			<real>4</real>
+			<real>2</real>
 			<key>name</key>
 			<string>OpponentFound</string>
 			<key>offset</key>

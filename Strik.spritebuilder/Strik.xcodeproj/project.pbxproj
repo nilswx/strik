@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
-		8304529E18C753A2000BBE18 /* Fluent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304529D18C753A2000BBE18 /* Fluent.m */; };
+		8304529E18C753A2000BBE18 /* Linguistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304529D18C753A2000BBE18 /* Linguistics.m */; };
 		830452A318C769EC000BBE18 /* STKVSScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A218C769EC000BBE18 /* STKVSScene.m */; };
 		830452A618C769F8000BBE18 /* STKVSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A518C769F8000BBE18 /* STKVSController.m */; };
 		830452AA18C77828000BBE18 /* STKVSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A918C77828000BBE18 /* STKVSCard.m */; };
@@ -119,8 +119,8 @@
 /* Begin PBXFileReference section */
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8304529C18C753A2000BBE18 /* Fluent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fluent.h; sourceTree = "<group>"; };
-		8304529D18C753A2000BBE18 /* Fluent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fluent.m; sourceTree = "<group>"; };
+		8304529C18C753A2000BBE18 /* Linguistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Linguistics.h; sourceTree = "<group>"; };
+		8304529D18C753A2000BBE18 /* Linguistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Linguistics.m; sourceTree = "<group>"; };
 		830452A118C769EC000BBE18 /* STKVSScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKVSScene.h; sourceTree = "<group>"; };
 		830452A218C769EC000BBE18 /* STKVSScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKVSScene.m; sourceTree = "<group>"; };
 		830452A418C769F8000BBE18 /* STKVSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKVSController.h; sourceTree = "<group>"; };
@@ -316,8 +316,8 @@
 		8304529A18C7538D000BBE18 /* Fluent */ = {
 			isa = PBXGroup;
 			children = (
-				8304529C18C753A2000BBE18 /* Fluent.h */,
-				8304529D18C753A2000BBE18 /* Fluent.m */,
+				8304529C18C753A2000BBE18 /* Linguistics.h */,
+				8304529D18C753A2000BBE18 /* Linguistics.m */,
 			);
 			name = Fluent;
 			sourceTree = "<group>";
@@ -1015,7 +1015,7 @@
 				8393788F18B602730007BDE4 /* STKMatchController.m in Sources */,
 				8393788D18B602730007BDE4 /* STKFacebookController.m in Sources */,
 				83EDE61418C60FA900D3B78D /* STKButton.m in Sources */,
-				8304529E18C753A2000BBE18 /* Fluent.m in Sources */,
+				8304529E18C753A2000BBE18 /* Linguistics.m in Sources */,
 				839378A618B60B180007BDE4 /* STKBoard.m in Sources */,
 				8393783A18B5FFDC0007BDE4 /* STKNetConnection.m in Sources */,
 				8393784818B5FFF80007BDE4 /* STKIncomingMessage.m in Sources */,

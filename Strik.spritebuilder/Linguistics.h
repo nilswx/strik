@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Fluent : NSObject
+@interface Linguistics : NSObject
 
 // Returns a "fluent string"
 // Example {actor} {action} {subject} {time}
 // E.g in en {matthijn} {reached} {level 9} {just now}
 // Todo: localize
 + (NSString *)fluentStringWithActor:(NSString *)actor action:(NSString *)action subject:(NSString *)subject atTime:(NSDate *)time;
+
+// Returns a localized version of the country based on country code
++ (NSString *)localizedNameFromCountryCode:(NSString *)countryCode;
 
 @end

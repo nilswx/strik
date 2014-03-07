@@ -11,9 +11,15 @@
 
 @interface STKVSScene()
 
+// Player one nodes
 @property STKVSCard *playerOneCard;
+@property CCLabelTTF *playerOneCountryLabel;
+@property CCNode *playerOneFlagContainer;
 
+// Player two nodes
 @property STKVSCard *playerTwoCard;
+@property CCLabelTTF *playerTwoCountryLabel;
+@property CCNode *playerTwoFlagContainer;
 
 @end
 

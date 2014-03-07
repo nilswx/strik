@@ -27,6 +27,7 @@
 #import "NSObject+Observer.h"
 
 #import "CCNode+Animation.h"
+#import "Linguistics.h"
 
 #define TIMELINE_OPPONENT_FOUND @"OpponentFound"
 #define TIMELINE_INTRO @"Default Timeline"
@@ -82,6 +83,9 @@
 	STKPlayer *playerOne = sessionController.user;
 	STKVSCard *playerOneCard = self.vsScene.playerOneCard;
 	[self setupVSCard:playerOneCard withPlayer:playerOne darkColor:PLAYER_ONE_COLOR andLightColor:PLAYER_ONE_LIGHT_COLOR];
+	
+	// Setup country for player one
+	[self setupCountryName:self.vsScene.playerOneCountryLabel andFlag:self.vsScene.playerOneFlagContainer withPlayer:playerOne];
 }
 
 
@@ -92,9 +96,12 @@
 	STKVSCard *playerTwoCard = self.vsScene.playerTwoCard;
 	[self setupVSCard:playerTwoCard withPlayer:opponent darkColor:PLAYER_TWO_COLOR andLightColor:PLAYER_TWO_LIGHT_COLOR];
 	
+	// Setup opponent country
+	[self setupCountryName:self.vsScene.playerTwoCountryLabel andFlag:self.vsScene.playerTwoFlagContainer withPlayer:opponent];
+	
 	// Animate the card in
 	[self.scene runTimelineNamed:TIMELINE_OPPONENT_FOUND withCallback:^{
-		NSLog(@"Animation completed, show flags");
+		NSLog(@"Animation completed... countdown??");
 	}];
 }
 
@@ -121,6 +128,14 @@
 	
 	// Bottom stroke
 	vsCard.bottomLine.color = darkColor;
+}
+
+- (void)setupCountryName:(CCLabelTTF *)countryLabel andFlag:(CCNode *)flagContainer withPlayer:(STKPlayer *)player
+{
+	// Set country label
+	countryLabel.string = [Linguistics localizedNameFromCountryCode:player.country];
+	
+	// Todo: Set country image
 }
 
 - (STKVSScene *)vsScene

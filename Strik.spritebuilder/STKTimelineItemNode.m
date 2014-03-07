@@ -11,7 +11,7 @@
 #import "STKAvatarNode.h"
 #import "STKAvatar.h"
 
-#import "Fluent.h"
+#import "Linguistics.h"
 
 #import "NSObject+Observer.h"
 
@@ -41,7 +41,7 @@
 	STKTimelineItemNode *timelineItemNode = (STKTimelineItemNode *)[CCBReader load:@"Home Scene/TimelineItemNode.ccbi"];
 	timelineItemNode.actor = actor;
 	
-	timelineItemNode.content = [Fluent fluentStringWithActor:actor.name action:action subject:subject atTime:[NSDate dateWithTimeIntervalSince1970:timestamp]];
+	timelineItemNode.content = [Linguistics fluentStringWithActor:actor.name action:action subject:subject atTime:[NSDate dateWithTimeIntervalSince1970:timestamp]];
 	
 	return timelineItemNode;
 }

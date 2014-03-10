@@ -21,6 +21,7 @@
 #import "STKItemRegistry.h"
 #import "STKInAppPurchasesController.h"
 #import "STKAvatar.h"
+#import "STKFacebookController.h"
 
 #import "STKHomeController.h"
 
@@ -44,6 +45,9 @@
     // Related to XP
     [self routeNetMessagesOf:LEVELS to:@selector(handleLevels:)];
     [self routeNetMessagesOf:EXPERIENCE_ADDED to:@selector(handleExperience:)];
+	
+	// Related to avatar
+	[self routeNetMessagesOf:CHANGE_AVATAR to:@selector(changedAvatar:)];
 
 	// Nice!
 	NSLog(@"Session: I am session #%ld on server %@", self.sessionId, self.server);
@@ -208,5 +212,21 @@
     [STKProgression setLevels:[NSArray arrayWithArray:levels]];
 }
 
+- (void)changedAvatar:(STKIncomingMessage *)message
+{
+	// Avatar changed
+	NSString *identifier = [message readStr];
+	
+	// Determine type
+	if([identifier isEqualToString:@"f"])
+	{
+		STKFacebookController *fbController = self.core[@"facebook"];
+		self.user.avatar = [STKAvatar avatarWithIdentifier:[NSString stringWithFormat:@"f%d", fbController.userId]];
+	}
+	else
+	{
+		self.user.avatar = [STKAvatar avatarWithIdentifier:identifier];
+	}
+}
 
 @end

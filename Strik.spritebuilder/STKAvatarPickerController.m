@@ -26,6 +26,8 @@
 
 #import "STKAlertView.h"
 
+#import "STKOutgoingMessage.h"
+
 @interface STKAvatarPickerController()
 
 @property PagedScrollNode *pagedScrollNode;
@@ -136,9 +138,19 @@
 	else
 	{
 		avatarNode.borderColor = AVATAR_ACTIVE_BORDER_COLOR;
-		
-		STKSessionController *sessionController = self.core[@"session"];
-		sessionController.user.avatar = avatarNode.avatar;
+
+		// Set network message of changed avatar
+		STKOutgoingMessage *message = [[STKOutgoingMessage alloc] initWithOp:AVATAR_CHANGED];
+		if(avatarNode.avatar.avatarType == AvatarTypeProfile)
+		{
+			[message appendStr:@"f"];
+		}
+		else
+		{
+			[message appendStr:avatarNode.avatar.identifier];
+		}
+
+		[self sendNetMessage:message];
 		
 		STKDirector *director = self.core[@"director"];
 		[director hideOverlay];

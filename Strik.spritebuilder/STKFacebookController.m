@@ -178,10 +178,15 @@
 	}
 }
 
+- (BOOL)isServerLinked
+{
+	return (self.userId > 0);
+}
+
 - (void)handleFacebookStatus:(STKIncomingMessage*)msg
 {
 	// Update status
-	self->_isServerLinked = [msg readBool];
+	self->_userId = [msg readLong];
 	self->_hasClaimedLike = [msg readBool];
 	NSLog(@"Facebook: server says %@", (self.isServerLinked ? @"LINKED" : @"UNLINKED"));
 	

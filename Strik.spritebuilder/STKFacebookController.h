@@ -20,6 +20,7 @@
 
 - (STKFriend*)friendByPlayerId:(int)playerId;
 
+@property(readonly) long userId;
 @property(readonly) BOOL isServerLinked;
 
 @property BOOL allowPublishing;

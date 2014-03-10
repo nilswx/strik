@@ -16,7 +16,6 @@
 #import "STKMatchPlayer.h"
 #import "STKSessionController.h"
 #import "STKBoard.h"
-#import "STKTileSelectionBuffer.h"
 #import "STKAlertView.h"
 
 #import "STKVSController.h"

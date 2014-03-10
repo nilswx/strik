@@ -33,8 +33,6 @@
     // Network events
 	[self routeNetMessagesOf:BOARD_INIT to:@selector(setupBoard:)];
     [self routeNetMessagesOf:BOARD_UPDATE to:@selector(handleBoardUpdates:)];
-    [self routeNetMessagesOf:TILE_SELECTION_EXTENDED to:@selector(handleSelectionExtended:)];
-    [self routeNetMessagesOf:TILE_SELECTION_CLEARED to:@selector(handleSelectionCleared:)];
     [self routeNetMessagesOf:WORD_FOUND to:@selector(handleWordFound:)];
 }
 
@@ -45,16 +43,6 @@
 }
 
 - (void)handleBoardUpdates:(STKIncomingMessage *)message
-{
-	
-}
-
-- (void)handleSelectionExtended:(STKIncomingMessage *)message
-{
-	
-}
-
-- (void)handleSelectionCleared:(STKIncomingMessage *)message
 {
 	
 }

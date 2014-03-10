@@ -68,7 +68,6 @@
 		8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788518B602730007BDE4 /* STKInAppPurchasesController.m */; };
 		8393788F18B602730007BDE4 /* STKMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788718B602730007BDE4 /* STKMatchController.m */; };
 		8393789018B602730007BDE4 /* STKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788918B602730007BDE4 /* STKSessionController.m */; };
-		8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */; };
 		8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789B18B60A260007BDE4 /* STKConnectController.m */; };
 		8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789E18B60A340007BDE4 /* STKConnectScene.m */; };
 		839378A318B60B090007BDE4 /* STKTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A218B60B090007BDE4 /* STKTile.m */; };
@@ -246,8 +245,6 @@
 		8393788718B602730007BDE4 /* STKMatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMatchController.m; sourceTree = "<group>"; };
 		8393788818B602730007BDE4 /* STKSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSessionController.h; sourceTree = "<group>"; };
 		8393788918B602730007BDE4 /* STKSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSessionController.m; sourceTree = "<group>"; };
-		8393788A18B602730007BDE4 /* STKTileSelectionBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTileSelectionBuffer.h; sourceTree = "<group>"; };
-		8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTileSelectionBuffer.m; sourceTree = "<group>"; };
 		8393789A18B60A260007BDE4 /* STKConnectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKConnectController.h; sourceTree = "<group>"; };
 		8393789B18B60A260007BDE4 /* STKConnectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKConnectController.m; sourceTree = "<group>"; };
 		8393789D18B60A340007BDE4 /* STKConnectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKConnectScene.h; sourceTree = "<group>"; };
@@ -629,8 +626,6 @@
 				8393788718B602730007BDE4 /* STKMatchController.m */,
 				8393788818B602730007BDE4 /* STKSessionController.h */,
 				8393788918B602730007BDE4 /* STKSessionController.m */,
-				8393788A18B602730007BDE4 /* STKTileSelectionBuffer.h */,
-				8393788B18B602730007BDE4 /* STKTileSelectionBuffer.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1023,7 +1018,6 @@
 				8330171318BB964300F8296B /* STKLobbyPersonNode.m in Sources */,
 				83D32FD618C0C9C900772575 /* STKSettings.m in Sources */,
 				8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */,
-				8393789118B602730007BDE4 /* STKTileSelectionBuffer.m in Sources */,
 				8393787918B6023D0007BDE4 /* STKPlayer.m in Sources */,
 				83EDE60518C38F2500D3B78D /* PagedScrollNode.m in Sources */,
 				83EDE60D18C4D28A00D3B78D /* ScrollNodeScrollView.m in Sources */,

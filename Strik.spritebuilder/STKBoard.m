@@ -9,7 +9,6 @@
 #import "STKBoard.h"
 
 #import "NSStack.h"
-#import "STKTileSelectionBuffer.h"
 
 @interface STKBoard()
 
@@ -168,7 +167,7 @@
 	[self.selectedTiles pushObject:tile];
 	
     // Add it to the tile selection buffer so it can find its way over the world wide web
-    [self.selectionBuffer addTile:tile];
+    // TODO: aaah
 }
 
 - (void)clearSelectionFor:(STKMatchPlayer*)player
@@ -184,7 +183,7 @@
 - (void)endSelection
 {
     // Make sure any tile selection is flushed now
-    [self.selectionBuffer endBuffer];
+	// TODO: aaah
 }
 
 @end

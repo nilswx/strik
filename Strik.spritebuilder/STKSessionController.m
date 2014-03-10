@@ -30,7 +30,7 @@
 - (void)componentDidInstall
 {
 	// No user data yet, empty inventory
-	self.user = nil;
+	self.player = nil;
 	self.inventory = [STKInventory new];
 	
 	// Install some components
@@ -82,7 +82,7 @@
 	if([self.core[@"client"] storePlayerID:playerId andToken:token])
 	{
 		// Already logged in?
-		if(self.user)
+		if(self.player)
 		{
 			// Hurray!
 			NSLog(@"Session: recovered account #%d!", playerId);
@@ -125,10 +125,10 @@
 	int playerId = [msg readInt];
 	
 	// Is it about us?
-	if(!self.user || playerId == self.user.playerId)
+	if(!self.player || playerId == self.player.playerId)
 	{
 		// What happened?
-		if(self.user)
+		if(self.player)
 		{
 			NSLog(@"Session: server deleted account successfully!");
 			
@@ -157,9 +157,9 @@
 - (void)handlePlayerInfo:(STKIncomingMessage*)msg
 {
 	// Process player data
-	self.user = [STKPlayer playerFromMessage:msg];
+	self.player = [STKPlayer playerFromMessage:msg];
 	int lastOnlineTime = [msg readInt];
-	NSLog(@"Session: login OK, identified as #%d (\"%@\"), last online = %d", self.user.playerId, self.user.name, lastOnlineTime);
+	NSLog(@"Session: login OK, identified as #%d (\"%@\"), last online = %d", self.player.playerId, self.player.name, lastOnlineTime);
 	
 	// Get IAP's
 	[self.core[@"iap"] refreshProducts];
@@ -167,7 +167,7 @@
 	// Go Home, matey!
 	
 	// First load the current users avatar, so it won't pop in after showing the scene
-	[self.user.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
+	[self.player.avatar fetchAvatarWithCallback:^(CCTexture *avatarTexture, AvatarType avatarType) {
 		STKDirector *director = self.core[@"director"];
 		[director presentScene:[STKHomeController new]];
 	}];
@@ -178,7 +178,7 @@
     int added = [message readInt];
     int total = [message readInt];
 
-    self.user.progression.xp = total;
+    self.player.progression.xp = total;
 }
 
 - (void)handleLevels:(STKIncomingMessage *)message
@@ -218,6 +218,6 @@
 	NSString *identifier = [message readStr];
 	
 	// Change avatar
-	self.user.avatar = [STKAvatar avatarWithIdentifier:identifier];}
+	self.player.avatar = [STKAvatar avatarWithIdentifier:identifier];}
 
 @end

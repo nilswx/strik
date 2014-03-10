@@ -67,9 +67,9 @@
 	
 	// Let the view observe the userdata models
 	STKSessionController *sessionController = self.core[@"session"];
-	[self.scene observeModel:(STKModel *)sessionController.user];
-	[self.scene observeModel:(STKModel *)sessionController.user.progression];
-	[self.scene observeModel:(STKModel *)sessionController.user.avatar];
+	[self.scene observeModel:(STKModel *)sessionController.player];
+	[self.scene observeModel:(STKModel *)sessionController.player.progression];
+	[self.scene observeModel:(STKModel *)sessionController.player.avatar];
 	
 	// Setup the timeline
 	[self setupTimeline];
@@ -130,7 +130,7 @@
 {
 	STKSessionController *sessionController = self.core[@"session"];
 	
-	STKAlertView *alertView = [STKAlertView promptWithTitle:NSLocalizedString(@"Change Your Name", @"Change your name title") message:NSLocalizedString(@"You can change the name people see in Strik. Think of a good one!", @"Change your name prompt text") defaultValue:sessionController.user.name target:self okSelector:@selector(confirmedUsernameChange:) andCancelSelector:nil];
+	STKAlertView *alertView = [STKAlertView promptWithTitle:NSLocalizedString(@"Change Your Name", @"Change your name title") message:NSLocalizedString(@"You can change the name people see in Strik. Think of a good one!", @"Change your name prompt text") defaultValue:sessionController.player.name target:self okSelector:@selector(confirmedUsernameChange:) andCancelSelector:nil];
 	[alertView show];
 }
 
@@ -162,7 +162,7 @@
 	
 	// Store new name in session
 	STKSessionController* session = self.core[@"session"];
-	session.user.name = newName;
+	session.player.name = newName;
 }
 
 - (void)handleNameRejected:(STKIncomingMessage*)msg
@@ -264,7 +264,7 @@
 	if([msg readBool] == YES)
 	{
 		STKSessionController* session = self.core[@"session"];
-		return session.user;
+		return session.player;
 	}
 	else
 	{
@@ -283,9 +283,9 @@
 - (STKPlayer*)resolveActivityActor:(int)playerId
 {
 	STKSessionController* session = self.core[@"session"];
-	if(playerId == session.user.playerId)
+	if(playerId == session.player.playerId)
 	{
-		return session.user;
+		return session.player;
 	}
 	else
 	{

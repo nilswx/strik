@@ -95,7 +95,7 @@
 		
 		// Build local player
 		STKSessionController *session = self.core[@"session"];
-		match.player = [STKMatchPlayer player:[message readByte] withUser:session.user];
+		match.player = [STKMatchPlayer player:[message readByte] withUser:session.player];
 		
 		// Build opponent
 		match.opponent = [STKMatchPlayer player:[message readByte] withUser:[STKPlayer playerFromMessage:message]];

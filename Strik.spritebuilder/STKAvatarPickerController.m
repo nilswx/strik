@@ -66,7 +66,7 @@
 	{
 		// Use profile image
 		STKSessionController *sessionController = self.core[@"session"];
-		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%d", sessionController.user.playerId];
+		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%d", sessionController.player.playerId];
 		facebookAvatar = [STKAvatar avatarWithIdentifier:facebookIdentifier];
 	}
 	
@@ -159,7 +159,8 @@
 							   
 - (void)onFacebookConnectYes:(id)sender
 {
-	NSLog(@"Sweetness! Connect with facebook please.");
+	// Initiate Facebook link flow
+	[self.core[@"facebook"] openSessionWithCallback:nil];
 }
 
 - (void)onFacebookConnectNo:(id)sender
@@ -170,7 +171,7 @@
 - (STKAvatar *)currentAvatar
 {
 	STKSessionController *sessionController = self.core[@"session"];
-	return sessionController.user.avatar;
+	return sessionController.player.avatar;
 }
 
 // Returns the page a given avatar can be found

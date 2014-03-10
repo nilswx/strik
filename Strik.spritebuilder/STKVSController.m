@@ -80,7 +80,7 @@
 	STKSessionController *sessionController = self.core[@"session"];
 	
 	// Setup card for player one
-	STKPlayer *playerOne = sessionController.user;
+	STKPlayer *playerOne = sessionController.player;
 	STKVSCard *playerOneCard = self.vsScene.playerOneCard;
 	[self setupVSCard:playerOneCard withPlayer:playerOne darkColor:PLAYER_ONE_COLOR andLightColor:PLAYER_ONE_LIGHT_COLOR];
 	

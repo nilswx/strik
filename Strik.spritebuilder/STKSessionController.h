@@ -16,7 +16,7 @@
 @property(nonatomic) long sessionId;
 @property(nonatomic) NSString* server;
 
-@property(nonatomic) STKPlayer* user;
+@property(nonatomic) STKPlayer* player;
 @property(nonatomic) STKInventory* inventory;
 
 - (void)createNewPlayer;

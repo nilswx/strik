@@ -16,6 +16,8 @@
 #import "STKMatchPlayer.h"
 #import "STKPLayer.h"
 
+#define RED_WARNING_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f]
+
 @interface STKGameScene()
 
 // Player one
@@ -33,9 +35,21 @@
 @property CCNodeColor *timeline;
 @property CCLabelTTF *timelineLabel;
 
+// Current game time
+@property int currentTime;
+
+// The scale action, created when first accesing property
+@property (nonatomic) CCAction *scaleAction;
+
 @end
 
 @implementation STKGameScene
+
+- (void)enterTransitionDidFinish
+{
+	// Tick time every second
+	[self schedule:@selector(updateTime:) interval:1 repeat:-1 delay:0];
+}
 
 #pragma mark Model changes
 - (void)match:(STKMatch *)match valueChangedForPlayer:(STKMatchPlayer *)player
@@ -66,4 +80,103 @@
 	self.playerTwoScore.text = @"0";
 }
 
+- (void)match:(STKMatch *)match valueChangedForGameTime:(NSNumber *)gametime
+{
+	self.currentTime = match.gameTime;
+	[self setTime:self.currentTime ofTotalTime:match.gameTime];
+}
+
+#pragma mark time handling
+- (void)setTime:(int)time ofTotalTime:(int)totalTime
+{
+	int minute = floor(time / 60);
+	int seconds = time % 60;
+	
+	// Update the label
+	if(minute > 0)
+	{
+		self.timelineLabel.string = [NSString stringWithFormat:@"%d:%02d", minute, seconds];
+	}
+	else
+	{
+		self.timelineLabel.string = [NSString stringWithFormat:@"%d", seconds];
+	}
+		
+	// When time is 10, tween colors of timeline and label to red
+	if(time == 10)
+	{
+		// Color the bar red
+		CCActionTintTo *redBar = [CCActionTintTo actionWithDuration:0.5 color:RED_WARNING_COLOR];
+		[self.timeline runAction:redBar];
+		
+		// Color the label red (supposedly you can only add an action to one node)
+		CCActionTintTo *redLabel = [CCActionTintTo actionWithDuration:0.5 color:RED_WARNING_COLOR];
+		[self.timelineLabel runAction:redLabel];
+	}
+	// Animate it a bit
+	else if(time < 10)
+	{
+		[self.timelineLabel runAction:self.scaleAction];
+	}
+	
+	// Shorten the timeline bar (perhaps color it based on time?)
+	float currentWidth = self.timeline.contentSize.width;
+	
+	// 1 is substracted from time since it takes time to get to the correct position
+	float relativeTime = (float)(time - 1)/ (float)totalTime;
+	float totalWidth = self.timelineContainer.contentSizeInPoints.width;
+	
+	float newWidth = totalWidth * relativeTime;
+	
+	CCActionTween *tween = [CCActionTween actionWithDuration:1 key:@"width" from:currentWidth to:newWidth];
+	[self.timeline runAction:tween];
+	
+	
+}
+
+- (void)updateTime:(CCTime)time
+{
+	if(self.currentTime > 0)
+	{
+		self.currentTime--;
+		[self setTime:self.currentTime ofTotalTime:self.match.gameTime];
+	}
+}
+
+
+- (void)setMatch:(STKMatch *)match
+{
+	// Stop listening to old match if we are
+	if(_match)
+	{
+		[self removeAsObserverForModel:match];
+	}
+	
+	_match = match;
+	
+	// When setting the match model we start listening
+	if(_match)
+	{
+		[self observeModel:match];
+	}
+}
+
+- (CCAction *)scaleAction
+{
+	if(!_scaleAction)
+	{
+		// Fist scale up, then down
+		CCActionScaleTo *bigger = [CCActionScaleTo actionWithDuration:0.15 scale:1.4];
+		CCActionScaleTo *normal = [CCActionScaleTo actionWithDuration:0.14 scale:1];
+		
+		CCActionSequence *both = [CCActionSequence actionWithArray:@[bigger, normal]];
+		
+		// Aply a little easing
+		CCActionEaseOut *easing = [CCActionEaseOut actionWithAction:both rate:0.7];
+		
+		_scaleAction = easing;
+	}
+	
+	return _scaleAction;
+}
 @end

@@ -8,6 +8,10 @@
 
 #import "STKScene.h"
 
+@class STKMatch;
+
 @interface STKGameScene : STKScene
+
+@property (nonatomic) STKMatch *match;
 
 @end

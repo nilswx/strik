@@ -7,6 +7,7 @@
 //
 
 #import "STKGameController.h"
+#import "STKGameScene.h"
 
 #import "STKMatchController.h"
 
@@ -25,9 +26,10 @@
     // Create a pointer to the matchController to have easier accces
     self.matchController = self.core[@"match"];
     
-    // The scene just wants to listen
-    [self.scene observeModel:(STKModel *)self.matchController.match];
-    
+	// Set match for scene so it can listen to changes
+    STKGameScene *gameScene = self.scene;
+    gameScene.match = self.matchController.match;
+	
     // Network events
 	[self routeNetMessagesOf:BOARD_INIT to:@selector(setupBoard:)];
     [self routeNetMessagesOf:BOARD_UPDATE to:@selector(handleBoardUpdates:)];

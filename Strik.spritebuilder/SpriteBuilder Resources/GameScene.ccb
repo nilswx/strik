@@ -832,8 +832,6 @@
 										<string>Global/Nodes/Level.ccb</string>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 							<dict>
 								<key>baseClass</key>
@@ -1071,7 +1069,7 @@
 										<key>value</key>
 										<array>
 											<real>0.5</real>
-											<real>5</real>
+											<real>13</real>
 											<integer>0</integer>
 											<integer>2</integer>
 											<integer>0</integer>
@@ -1085,7 +1083,7 @@
 										<key>value</key>
 										<array>
 											<real>0.5</real>
-											<real>0.0</real>
+											<real>0.5</real>
 										</array>
 									</dict>
 									<dict>
@@ -1411,7 +1409,7 @@
 						<key>children</key>
 						<array/>
 						<key>customClass</key>
-						<string></string>
+						<string>STKTimelineNode</string>
 						<key>displayName</key>
 						<string>timeline</string>
 						<key>memberVarAssignmentName</key>
@@ -1449,9 +1447,9 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>0.5</real>
+									<real>320</real>
 									<real>3</real>
-									<integer>2</integer>
+									<integer>0</integer>
 									<integer>0</integer>
 								</array>
 							</dict>

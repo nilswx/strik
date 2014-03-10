@@ -47,7 +47,7 @@
     [self routeNetMessagesOf:EXPERIENCE_ADDED to:@selector(handleExperience:)];
 	
 	// Related to avatar
-	[self routeNetMessagesOf:CHANGE_AVATAR to:@selector(changedAvatar:)];
+	[self routeNetMessagesOf:AVATAR_CHANGED to:@selector(handleAvatarChanged:)];
 
 	// Nice!
 	NSLog(@"Session: I am session #%ld on server %@", self.sessionId, self.server);
@@ -212,21 +212,12 @@
     [STKProgression setLevels:[NSArray arrayWithArray:levels]];
 }
 
-- (void)changedAvatar:(STKIncomingMessage *)message
+- (void)handleAvatarChanged:(STKIncomingMessage *)message
 {
 	// Avatar changed
 	NSString *identifier = [message readStr];
 	
-	// Determine type
-	if([identifier isEqualToString:@"f"])
-	{
-		STKFacebookController *fbController = self.core[@"facebook"];
-		self.user.avatar = [STKAvatar avatarWithIdentifier:[NSString stringWithFormat:@"f%d", fbController.userId]];
-	}
-	else
-	{
-		self.user.avatar = [STKAvatar avatarWithIdentifier:identifier];
-	}
-}
+	// Change avatar
+	self.user.avatar = [STKAvatar avatarWithIdentifier:identifier];}
 
 @end

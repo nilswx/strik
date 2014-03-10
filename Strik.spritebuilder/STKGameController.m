@@ -7,9 +7,12 @@
 //
 
 #import "STKGameController.h"
-#import "STKGameScene.h"
 
+#import "STKGameScene.h"
+#import "STKMatchPlayer.h"
+#import "STKMatch.h"
 #import "STKMatchController.h"
+#import "STKIncomingMessage.h"
 
 #import "NSObject+Observer.h"
 
@@ -49,7 +52,19 @@
 
 - (void)handleWordFound:(STKIncomingMessage *)message
 {
+	// Retrieve player that found the word
+	STKMatch* match = self.matchController.match;
+	STKMatchPlayer* player = [match playerByID:[message readByte]];
 	
+	// Parse the found word & score
+	NSString* word = [message readStr];
+	int points = [message readInt];
+	
+	// TODO: read the tile IDs, animate tiles into word, play sound, etc etc
+	NSLog(@"MatchGameScene: %@ found %@ (%d points)", player, word, points);
+	
+	// Boost the score
+	player.score += points;
 }
 
 #pragma mark user events

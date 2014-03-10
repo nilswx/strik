@@ -101,7 +101,10 @@
 	
 	// Animate the card in
 	[self.scene runTimelineNamed:TIMELINE_OPPONENT_FOUND withCallback:^{
-		NSLog(@"Animation completed... countdown??");
+		
+		// Tell the server we are ready freddy!
+		STKMatchController *matchController = self.core[@"match"];
+		[matchController playerIsReady];
 	}];
 }
 

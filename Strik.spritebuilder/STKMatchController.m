@@ -20,11 +20,13 @@
 #import "STKAlertView.h"
 
 #import "STKVSController.h"
+#import "STKHomeController.h"
+#import "STKGameController.h"
 
 @interface STKMatchController()
 
 // The MatchSceneController needs to be created before the countdown starts, so it can start to receive network events
-//@property (nonatomic, strong) STKMatchGameController *gameSceneController;
+@property (nonatomic, strong) STKGameController *gameSceneController;
 
 @end
 
@@ -77,9 +79,7 @@
 {
 	if(!self.match)
 	{
-		STKDirector *director = self.core[@"director"];
-		// Todo: Present home scene
-//		[director presentScene:[STKHomeScene class]];
+		// This doesn't do anything atm (the queue has been removed and combined with the VS scene)
 	}
 }
 
@@ -136,7 +136,7 @@
 	if(self.match)
 	{
 		// First create the new match scene controller, it must be there to handle some network events
-//		self.gameSceneController = [[STKMatchGameController alloc] initWithCore:self.core];
+		self.gameSceneController = [[STKGameController alloc] initWithCore:self.core];
 		NSLog(@"Match: loading done, local player READY!");
 		
 		// Say we're good to go!
@@ -150,10 +150,9 @@
 	{
 		NSLog(@"Match: started!");
 		
-		// Transfer to the actual match
+		// Transition to the actual match
 		STKDirector *director = self.core[@"director"];
-		// Todo: present match game scene
-//		[director presentScene:self.gameSceneController];
+		[director presentScene:self.gameSceneController withTransition:[CCTransition transitionCrossFadeWithDuration:0.25]];
 	}
 }
 

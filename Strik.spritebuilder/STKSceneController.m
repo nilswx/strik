@@ -19,6 +19,15 @@
 
 @implementation STKSceneController
 
+- (id)initWithCore:(STKCore *)core
+{
+	if(self = [self init])
+	{
+		self.core = core;
+	}
+	return self;
+}
+
 - (id)init
 {
 	if(self = [super init])

@@ -12,6 +12,8 @@
 
 @property (nonatomic, readonly) id scene;
 
+- (id)initWithCore:(STKCore *)core;
+
 - (void)sceneCreated;
 - (void)sceneWillBegin;
 - (void)sceneWillEnd;

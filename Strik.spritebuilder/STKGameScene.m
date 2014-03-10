@@ -97,6 +97,10 @@
 	{
 		self.timelineLabel.string = [NSString stringWithFormat:@"%d:%02d", minute, seconds];
 	}
+	else if(time == 0)
+	{
+		self.timelineLabel.string = NSLocalizedString(@"Time's up!", nil);
+	}
 	else
 	{
 		self.timelineLabel.string = [NSString stringWithFormat:@"%d", seconds];

@@ -863,7 +863,7 @@
 										<string>Position</string>
 										<key>value</key>
 										<array>
-											<real>0.49687498807907104</real>
+											<real>0.5</real>
 											<real>55</real>
 											<integer>1</integer>
 											<integer>2</integer>
@@ -951,7 +951,7 @@
 										<key>type</key>
 										<string>IntegerLabeled</string>
 										<key>value</key>
-										<integer>0</integer>
+										<integer>1</integer>
 									</dict>
 									<dict>
 										<key>name</key>
@@ -1069,7 +1069,7 @@
 										<key>value</key>
 										<array>
 											<real>0.5</real>
-											<real>13</real>
+											<real>14</real>
 											<integer>0</integer>
 											<integer>2</integer>
 											<integer>0</integer>

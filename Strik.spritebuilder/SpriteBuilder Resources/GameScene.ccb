@@ -1134,9 +1134,9 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>timeline-label</string>
+								<string>timer-label</string>
 								<key>memberVarAssignmentName</key>
-								<string>_timelineLabel</string>
+								<string>_timerLabel</string>
 								<key>memberVarAssignmentType</key>
 								<integer>1</integer>
 								<key>properties</key>
@@ -1330,6 +1330,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -1499,9 +1501,9 @@
 						<key>customClass</key>
 						<string>STKTimelineNode</string>
 						<key>displayName</key>
-						<string>timeline</string>
+						<string>timer-bar</string>
 						<key>memberVarAssignmentName</key>
-						<string>_timeline</string>
+						<string>_timerBar</string>
 						<key>memberVarAssignmentType</key>
 						<integer>1</integer>
 						<key>properties</key>
@@ -1603,9 +1605,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>timeline-container</string>
+				<string>timer-bar-container</string>
 				<key>memberVarAssignmentName</key>
-				<string>_timelineContainer</string>
+				<string>_timerBarContainer</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>

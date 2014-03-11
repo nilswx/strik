@@ -31,9 +31,9 @@
 @property STKLevelNode *playerTwoScore;
 
 // Timeline
-@property CCNodeColor *timelineContainer;
-@property CCNodeColor *timeline;
-@property CCLabelTTF *timelineLabel;
+@property CCNodeColor *timerBarContainer;
+@property CCNodeColor *timerBar;
+@property CCLabelTTF *timerLabel;
 
 // Current game time
 @property int currentTime;
@@ -95,15 +95,15 @@
 	// Update the label
 	if(minute > 0)
 	{
-		self.timelineLabel.string = [NSString stringWithFormat:@"%d:%02d", minute, seconds];
+		self.timerLabel.string = [NSString stringWithFormat:@"%d:%02d", minute, seconds];
 	}
 	else if(time == 0)
 	{
-		self.timelineLabel.string = NSLocalizedString(@"Time's up!", nil);
+		self.timerLabel.string = NSLocalizedString(@"Time's up!", nil);
 	}
 	else
 	{
-		self.timelineLabel.string = [NSString stringWithFormat:@"%d", seconds];
+		self.timerLabel.string = [NSString stringWithFormat:@"%d", seconds];
 	}
 		
 	// When time is 10, tween colors of timeline and label to red
@@ -111,29 +111,29 @@
 	{
 		// Color the bar red
 		CCActionTintTo *redBar = [CCActionTintTo actionWithDuration:0.5 color:RED_WARNING_COLOR];
-		[self.timeline runAction:redBar];
+		[self.timerBar runAction:redBar];
 		
 		// Color the label red (supposedly you can only add an action to one node)
 		CCActionTintTo *redLabel = [CCActionTintTo actionWithDuration:0.5 color:RED_WARNING_COLOR];
-		[self.timelineLabel runAction:redLabel];
+		[self.timerLabel runAction:redLabel];
 	}
 	// Animate it a bit
 	else if(time < 10)
 	{
-		[self.timelineLabel runAction:self.scaleAction];
+		[self.timerLabel runAction:self.scaleAction];
 	}
 	
 	// Shorten the timeline bar (perhaps color it based on time?)
-	float currentWidth = self.timeline.contentSize.width;
+	float currentWidth = self.timerBar.contentSize.width;
 	
 	// 1 is substracted from time since it takes time to get to the correct position
 	float relativeTime = (float)(time - 1)/ (float)totalTime;
-	float totalWidth = self.timelineContainer.contentSizeInPoints.width;
+	float totalWidth = self.timerBarContainer.contentSizeInPoints.width;
 	
 	float newWidth = totalWidth * relativeTime;
 	
 	CCActionTween *tween = [CCActionTween actionWithDuration:1 key:@"width" from:currentWidth to:newWidth];
-	[self.timeline runAction:tween];
+	[self.timerBar runAction:tween];
 	
 	
 }

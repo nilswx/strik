@@ -8,7 +8,7 @@
 
 #import "CCNode.h"
 
-@interface STKTimelineNode : CCNodeColor
+@interface STKTimerBar : CCNodeColor
 
 @property CGFloat width;
 @property CGFloat height;

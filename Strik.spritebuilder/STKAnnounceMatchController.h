@@ -1,5 +1,5 @@
 //
-//  STKVSSceneController.h
+//  STKAnnounceMatchController.h
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 05/03/14.
@@ -10,7 +10,7 @@
 
 @class STKMatch;
 
-@interface STKVSController : STKSceneController
+@interface STKAnnounceMatchController : STKSceneController
 
 // Set the match here when it has been created
 @property (nonatomic) STKMatch *match;

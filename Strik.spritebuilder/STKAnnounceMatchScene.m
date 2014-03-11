@@ -1,15 +1,15 @@
 //
-//  STKVSScene.m
+//  STKAnnounceMatchScene.m
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 05/03/14.
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKVSScene.h"
+#import "STKAnnounceMatchScene.h"
 #import "STKVSCard.h"
 
-@interface STKVSScene()
+@interface STKAnnounceMatchScene()
 
 // Player one nodes
 @property STKVSCard *playerOneCard;
@@ -23,6 +23,6 @@
 
 @end
 
-@implementation STKVSScene
+@implementation STKAnnounceMatchScene
 
 @end

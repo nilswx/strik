@@ -1,5 +1,5 @@
 //
-//  STKVSScene.h
+//  STKAnnounceMatchScene.h
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 05/03/14.
@@ -10,7 +10,7 @@
 
 @class STKVSCard;
 
-@interface STKVSScene : STKScene
+@interface STKAnnounceMatchScene : STKScene
 
 // Player one nodes
 @property (readonly) STKVSCard *playerOneCard;

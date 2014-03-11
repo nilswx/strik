@@ -18,7 +18,7 @@
 #import "STKBoard.h"
 #import "STKAlertView.h"
 
-#import "STKVSController.h"
+#import "STKAnnounceMatchController.h"
 #import "STKHomeController.h"
 #import "STKGameController.h"
 
@@ -70,7 +70,7 @@
 		STKDirector *director = self.core[@"director"];
 		
 		CCTransition *transition = [CCTransition transitionCrossFadeWithDuration:0.25];
-		[director presentScene:(STKSceneController *)[STKVSController new] withTransition:transition];
+		[director presentScene:(STKSceneController *)[STKAnnounceMatchController new] withTransition:transition];
 	}
 }
 
@@ -110,17 +110,17 @@
 		STKDirector *director = self.core[@"director"];
 		
 		// Set match on VS controller
-		STKVSController *vsController;
+		STKAnnounceMatchController *vsController;
 		
 		// We are allready on the VS scene
-		if([director.sceneController isKindOfClass:[STKVSController class]])
+		if([director.sceneController isKindOfClass:[STKAnnounceMatchController class]])
 		{
-			vsController = (STKVSController *)director.sceneController;
+			vsController = (STKAnnounceMatchController *)director.sceneController;
 		}
 		// Go to the VS scene now
 		else
 		{
-			vsController = [STKVSController new];
+			vsController = [STKAnnounceMatchController new];
 			CCTransition *transition = [CCTransition transitionCrossFadeWithDuration:0.25];
 			[director presentScene:(STKSceneController *)vsController withTransition:transition];
 		}

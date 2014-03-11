@@ -1,14 +1,14 @@
 //
-//  STKVSSceneController.m
+//  STKAnnounceMatchController.m
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 05/03/14.
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKVSController.h"
+#import "STKAnnounceMatchController.h"
 
-#import "STKVSScene.h"
+#import "STKAnnounceMatchScene.h"
 #import "STKVSCard.h"
 
 #import "STKAvatarNode.h"
@@ -32,16 +32,16 @@
 #define TIMELINE_OPPONENT_FOUND @"OpponentFound"
 #define TIMELINE_INTRO @"Default Timeline"
 
-@interface STKVSController()
+@interface STKAnnounceMatchController()
 
-@property (readonly) STKVSScene *vsScene;
+@property (readonly) STKAnnounceMatchScene *vsScene;
 
 // When set to yes the intro animation is completed
 @property BOOL introAnimationCompleted;
 
 @end
 
-@implementation STKVSController
+@implementation STKAnnounceMatchController
 
 - (void)sceneCreated
 {
@@ -160,7 +160,7 @@
 	[flagContainer addChild:clippingNode];
 }
 
-- (STKVSScene *)vsScene
+- (STKAnnounceMatchScene *)vsScene
 {
 	return self.scene;
 }

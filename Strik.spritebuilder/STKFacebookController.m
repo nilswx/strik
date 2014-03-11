@@ -180,7 +180,7 @@
 
 - (BOOL)isServerLinked
 {
-	return (self.userId > 0);
+	return (self.userId != 0);
 }
 
 - (void)handleFacebookStatus:(STKIncomingMessage*)msg

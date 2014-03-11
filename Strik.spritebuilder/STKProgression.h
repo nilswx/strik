@@ -16,6 +16,7 @@ typedef struct {
 
 @property int xp;
 @property (readonly) int level;
+@property (readonly) int maxExperienceForLevel;
 
 + (void)setLevels:(NSArray *)newLevels;
 

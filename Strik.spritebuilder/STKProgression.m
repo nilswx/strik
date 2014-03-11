@@ -53,4 +53,10 @@ static NSArray *levels;
     return [STKProgression levelForXP:self.xp];
 }
 
+- (int)maxExperienceForLevel
+{
+	STKLevel level = [STKProgression levelForLevelNumber:self.level];
+	return level.end;
+}
+
 @end

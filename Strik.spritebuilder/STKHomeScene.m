@@ -13,6 +13,7 @@
 #import "STKProgressNode.h"
 #import "STKPLayer.h"
 #import "STKAvatar.h"
+#import "STKProgression.h"
 
 @interface STKHomeScene()
 
@@ -40,14 +41,12 @@
 	self.playerProgress.darkShade = PLAYER_ONE_COLOR;
 }
 
-- (void)onEnterTransitionDidFinish
+#pragma mark Model events
+- (void)progression:(STKProgression *)progression valueChangedForXp:(NSNumber *)xp
 {
-	// Todo: Get actual value
-	// Setting value of progress bar on transition completion, so it starts animating after it completes
-	[self.playerProgress setValue:930 ofTotalValue:1500 animated:YES];
+	[self.playerProgress setValue:progression.xp ofTotalValue:progression.maxExperienceForLevel animated:YES];
 }
 
-#pragma mark Model events
 - (void)player:(STKPlayer *)player valueChangedForName:(NSString *)name
 {
 	self.username.title = name;

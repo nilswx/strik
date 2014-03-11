@@ -21,7 +21,6 @@
 
 #import "STKPLayer.h"
 #import "STKMatchPlayer.h"
-
 #import "STKProgression.h"
 
 #import "NSObject+Observer.h"
@@ -122,7 +121,8 @@
 	// Todo: get actual value
 	vsCard.progressNode.lightShade = lightColor;
 	vsCard.progressNode.darkShade = darkColor;
-	[vsCard.progressNode setValue:930 ofTotalValue:1500 animated:NO];
+	
+	[vsCard.progressNode setValue:player.progression.xp ofTotalValue:player.progression.maxExperienceForLevel animated:NO];
 	
 	// Level
 	vsCard.levelNode.backgroundColor = darkColor;

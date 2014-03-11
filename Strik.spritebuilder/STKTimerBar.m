@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKTimelineNode.h"
+#import "STKTimerBar.h"
 
-@implementation STKTimelineNode
+@implementation STKTimerBar
 
 - (void)setWidth:(CGFloat)width
 {

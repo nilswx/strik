@@ -1330,8 +1330,6 @@
 										</array>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -1499,7 +1497,7 @@
 						<key>children</key>
 						<array/>
 						<key>customClass</key>
-						<string>STKTimelineNode</string>
+						<string>STKTimerBar</string>
 						<key>displayName</key>
 						<string>timer-bar</string>
 						<key>memberVarAssignmentName</key>
@@ -1600,6 +1598,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

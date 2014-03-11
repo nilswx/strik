@@ -226,7 +226,7 @@
 						<key>type</key>
 						<string>CCBFile</string>
 						<key>value</key>
-						<string>VSScene/VSCard.ccb</string>
+						<string>AnnounceMatch/AnnouncePlayerCard.ccb</string>
 					</dict>
 				</array>
 				<key>seqExpanded</key>
@@ -626,7 +626,7 @@
 						<key>type</key>
 						<string>CCBFile</string>
 						<key>value</key>
-						<string>VSScene/VSCard.ccb</string>
+						<string>AnnounceMatch/AnnouncePlayerCard.ccb</string>
 					</dict>
 				</array>
 				<key>seqExpanded</key>
@@ -1556,8 +1556,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

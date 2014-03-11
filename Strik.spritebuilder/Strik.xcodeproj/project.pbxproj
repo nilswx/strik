@@ -11,7 +11,7 @@
 		8304529E18C753A2000BBE18 /* Linguistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304529D18C753A2000BBE18 /* Linguistics.m */; };
 		830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A218C769EC000BBE18 /* STKAnnounceMatchScene.m */; };
 		830452A618C769F8000BBE18 /* STKAnnounceMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A518C769F8000BBE18 /* STKAnnounceMatchController.m */; };
-		830452AA18C77828000BBE18 /* STKVSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A918C77828000BBE18 /* STKVSCard.m */; };
+		830452AA18C77828000BBE18 /* STKAnnouncePlayerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A918C77828000BBE18 /* STKAnnouncePlayerCard.m */; };
 		8330170518BA267800F8296B /* GridNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170218BA267800F8296B /* GridNode.m */; };
 		8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170718BA269C00F8296B /* CCNode+ClipVisit.m */; };
 		8330170B18BA269C00F8296B /* ScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170918BA269C00F8296B /* ScrollNode.m */; };
@@ -127,8 +127,8 @@
 		830452A218C769EC000BBE18 /* STKAnnounceMatchScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAnnounceMatchScene.m; sourceTree = "<group>"; };
 		830452A418C769F8000BBE18 /* STKAnnounceMatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAnnounceMatchController.h; sourceTree = "<group>"; };
 		830452A518C769F8000BBE18 /* STKAnnounceMatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAnnounceMatchController.m; sourceTree = "<group>"; };
-		830452A818C77828000BBE18 /* STKVSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKVSCard.h; sourceTree = "<group>"; };
-		830452A918C77828000BBE18 /* STKVSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKVSCard.m; sourceTree = "<group>"; };
+		830452A818C77828000BBE18 /* STKAnnouncePlayerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAnnouncePlayerCard.h; sourceTree = "<group>"; };
+		830452A918C77828000BBE18 /* STKAnnouncePlayerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAnnouncePlayerCard.m; sourceTree = "<group>"; };
 		8330170118BA267800F8296B /* GridNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNode.h; sourceTree = "<group>"; };
 		8330170218BA267800F8296B /* GridNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridNode.m; sourceTree = "<group>"; };
 		8330170318BA267800F8296B /* GridNodeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNodeDataSource.h; sourceTree = "<group>"; };
@@ -331,8 +331,8 @@
 		830452A718C77819000BBE18 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				830452A818C77828000BBE18 /* STKVSCard.h */,
-				830452A918C77828000BBE18 /* STKVSCard.m */,
+				830452A818C77828000BBE18 /* STKAnnouncePlayerCard.h */,
+				830452A918C77828000BBE18 /* STKAnnouncePlayerCard.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -994,7 +994,7 @@
 				8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */,
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
-				830452AA18C77828000BBE18 /* STKVSCard.m in Sources */,
+				830452AA18C77828000BBE18 /* STKAnnouncePlayerCard.m in Sources */,
 				830452A618C769F8000BBE18 /* STKAnnounceMatchController.m in Sources */,
 				8330170B18BA269C00F8296B /* ScrollNode.m in Sources */,
 				8379201518CDE39E0094F3AC /* STKTimelineNode.m in Sources */,

@@ -11,6 +11,7 @@
 #import "STKGameScene.h"
 #import "STKMatchPlayer.h"
 #import "STKMatch.h"
+#import "STKPLayer.h"
 #import "STKMatchController.h"
 #import "STKIncomingMessage.h"
 
@@ -61,7 +62,7 @@
 	int points = [message readInt];
 	
 	// TODO: read the tile IDs, animate tiles into word, play sound, etc etc
-	NSLog(@"MatchGameScene: %@ found %@ (%d points)", player, word, points);
+	NSLog(@"MatchGameScene: %@ found %@ (%d points)", player.user.name, word, points);
 	
 	// Boost the score
 	player.score += points;

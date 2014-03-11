@@ -1,18 +1,18 @@
 //
-//  STKVSCard.m
+//  STKAnnouncePlayerCard.m
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 05/03/14.
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKVSCard.h"
+#import "STKAnnouncePlayerCard.h"
 
 #import "STKAvatarNode.h"
 #import "STKProgressNode.h"
 #import "STKLevelNode.h"
 
-@interface STKVSCard()
+@interface STKAnnouncePlayerCard()
 
 // The name
 @property CCLabelTTF *nameLabel;
@@ -31,6 +31,6 @@
 
 @end
 
-@implementation STKVSCard
+@implementation STKAnnouncePlayerCard
 
 @end

@@ -749,9 +749,9 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string>STKVSCard</string>
+		<string>STKAnnouncePlayerCard</string>
 		<key>displayName</key>
-		<string>STKVSCard</string>
+		<string>STKAnnouncePlayerCard</string>
 		<key>memberVarAssignmentName</key>
 		<string></string>
 		<key>memberVarAssignmentType</key>
@@ -818,6 +818,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

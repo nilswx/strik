@@ -9,7 +9,7 @@
 #import "STKAnnounceMatchController.h"
 
 #import "STKAnnounceMatchScene.h"
-#import "STKVSCard.h"
+#import "STKAnnouncePlayerCard.h"
 
 #import "STKAvatarNode.h"
 #import "STKProgressNode.h"
@@ -81,7 +81,7 @@
 	
 	// Setup card for player one
 	STKPlayer *playerOne = sessionController.player;
-	STKVSCard *playerOneCard = self.vsScene.playerOneCard;
+	STKAnnouncePlayerCard *playerOneCard = self.vsScene.playerOneCard;
 	[self setupVSCard:playerOneCard withPlayer:playerOne darkColor:PLAYER_ONE_COLOR andLightColor:PLAYER_ONE_LIGHT_COLOR];
 	
 	// Setup country for player one
@@ -93,7 +93,7 @@
 {
 	// Setup opponent card
 	STKPlayer *opponent = match.opponent.user;
-	STKVSCard *playerTwoCard = self.vsScene.playerTwoCard;
+	STKAnnouncePlayerCard *playerTwoCard = self.vsScene.playerTwoCard;
 	[self setupVSCard:playerTwoCard withPlayer:opponent darkColor:PLAYER_TWO_COLOR andLightColor:PLAYER_TWO_LIGHT_COLOR];
 	
 	// Setup opponent country
@@ -108,7 +108,7 @@
 	}];
 }
 
-- (void)setupVSCard:(STKVSCard *)vsCard withPlayer:(STKPlayer *)player darkColor:(CCColor *)darkColor andLightColor:(CCColor *)lightColor
+- (void)setupVSCard:(STKAnnouncePlayerCard *)vsCard withPlayer:(STKPlayer *)player darkColor:(CCColor *)darkColor andLightColor:(CCColor *)lightColor
 {
 	// The name
 	vsCard.nameLabel.string = player.name;

@@ -8,17 +8,17 @@
 
 #import "STKScene.h"
 
-@class STKVSCard;
+@class STKAnnouncePlayerCard;
 
 @interface STKAnnounceMatchScene : STKScene
 
 // Player one nodes
-@property (readonly) STKVSCard *playerOneCard;
+@property (readonly) STKAnnouncePlayerCard *playerOneCard;
 @property (readonly) CCLabelTTF *playerOneCountryLabel;
 @property (readonly) CCNode *playerOneFlagContainer;
 
 // Player two nodes
-@property (readonly) STKVSCard *playerTwoCard;
+@property (readonly) STKAnnouncePlayerCard *playerTwoCard;
 @property (readonly) CCLabelTTF *playerTwoCountryLabel;
 @property (readonly) CCNode *playerTwoFlagContainer;
 

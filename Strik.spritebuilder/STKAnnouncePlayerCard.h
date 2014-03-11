@@ -1,5 +1,5 @@
 //
-//  STKVSCard.h
+//  STKAnnouncePlayerCard.h
 //  Strik
 //
 //  Created by Matthijn Dijkstra on 05/03/14.
@@ -10,7 +10,7 @@
 
 @class STKAvatarNode, STKProgressNode, STKLevelNode;
 
-@interface STKVSCard : CCNode
+@interface STKAnnouncePlayerCard : CCNode
 
 // The name
 @property (readonly) CCLabelTTF *nameLabel;

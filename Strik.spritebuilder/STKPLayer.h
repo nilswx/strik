@@ -21,7 +21,6 @@
 // Customizable
 @property NSString *name;
 @property STKAvatar *avatar;
-@property NSString *motto;
 @property NSString *country;
 
 // Statistics

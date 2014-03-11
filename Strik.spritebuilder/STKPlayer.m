@@ -20,7 +20,6 @@
 	user.playerId = [msg readInt];
 	user.name = [msg readStr];
 	user.avatar = [STKAvatar avatarWithIdentifier:[msg readStr]];
-	user.motto = [msg readStr];
 	user.country = [msg readStr];
 
     int xp = [msg readInt];

@@ -20,7 +20,6 @@
 @property int32_t playerId;
 @property NSString *name;
 @property STKAvatar *avatar;
-@property NSString *motto;
 @property BOOL isOnline;
 @property BOOL isInMatch;
 @property (readonly) BOOL isPlayer;

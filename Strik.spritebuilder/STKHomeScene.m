@@ -44,20 +44,19 @@
 #pragma mark Model events
 - (void)progression:(STKProgression *)progression valueChangedForXp:(NSNumber *)xp
 {
+	// First set XP
 	[self.playerProgress setValue:progression.xp ofTotalValue:progression.maxExperienceForLevel animated:YES];
+	
+	// Then level
+	self.levelNode.backgroundColor = [CCColor whiteColor];
+	
+	self.levelNode.fontColor = PLAYER_ONE_COLOR;
+	self.levelNode.text = [NSString stringWithFormat:@"%d", progression.level];
 }
 
 - (void)player:(STKPlayer *)player valueChangedForName:(NSString *)name
 {
 	self.username.title = name;
-}
-
-- (void)progression:(STKProgression *)progression valueChangedForLevel:(NSNumber*)level
-{
-	self.levelNode.backgroundColor = [CCColor whiteColor];
-	
-	self.levelNode.fontColor = PLAYER_ONE_COLOR;
-	self.levelNode.text = [NSString stringWithFormat:@"%d", [level intValue]];
 }
 
 - (void)player:(STKPlayer *)player valueChangedForAvatar:(STKAvatar *)avatar

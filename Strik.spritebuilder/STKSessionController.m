@@ -33,9 +33,11 @@
 	self.player = nil;
 	self.inventory = [STKInventory new];
 	
-	// Install some components
+	// Install match controller
     [self.core installComponent:[STKMatchController new] withKey:@"match"];
-	[self.core installComponent:[STKItemRegistry new] withKey:@"items"];
+	
+	// Don't install the item registry for now
+	//[self.core installComponent:[STKItemRegistry new] withKey:@"items"];
 	
 	// Related to session user and login
 	[self routeNetMessagesOf:CREDENTIALS to:@selector(handlePlayerCredentials:)];

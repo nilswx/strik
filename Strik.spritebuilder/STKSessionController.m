@@ -22,6 +22,7 @@
 #import "STKInAppPurchasesController.h"
 #import "STKAvatar.h"
 #import "STKFacebookController.h"
+#import "STKDirector+Modal.h"
 
 #import "STKHomeController.h"
 
@@ -220,6 +221,11 @@
 	NSString *identifier = [message readStr];
 	
 	// Change avatar
-	self.player.avatar = [STKAvatar avatarWithIdentifier:identifier];}
+	self.player.avatar = [STKAvatar avatarWithIdentifier:identifier];
+	
+	// Hide the overlay
+	STKDirector *director = self.core[@"director"];
+	[director hideOverlay];
+}
 
 @end

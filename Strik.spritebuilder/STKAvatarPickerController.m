@@ -139,8 +139,8 @@
 	{
 		avatarNode.borderColor = AVATAR_ACTIVE_BORDER_COLOR;
 
-		// Set network message of changed avatar
-		STKOutgoingMessage *message = [[STKOutgoingMessage alloc] initWithOp:AVATAR_CHANGED];
+		// Request avatar change on the server
+		STKOutgoingMessage *message = [[STKOutgoingMessage alloc] initWithOp:CHANGE_AVATAR];
 		if(avatarNode.avatar.avatarType == AvatarTypeProfile)
 		{
 			[message appendStr:@"f"];
@@ -149,11 +149,7 @@
 		{
 			[message appendStr:avatarNode.avatar.identifier];
 		}
-
 		[self sendNetMessage:message];
-		
-		STKDirector *director = self.core[@"director"];
-		[director hideOverlay];
 	}
 }
 							   

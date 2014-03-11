@@ -65,8 +65,8 @@
 	else
 	{
 		// Use profile image
-		STKSessionController *sessionController = self.core[@"session"];
-		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%d", sessionController.player.playerId];
+		STKFacebookController *facebookController = self.core[@"facebook"];		
+		NSString *facebookIdentifier = [NSString stringWithFormat:@"f%lld", facebookController.userId];
 		facebookAvatar = [STKAvatar avatarWithIdentifier:facebookIdentifier];
 	}
 	

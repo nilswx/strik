@@ -13,16 +13,9 @@
 @interface STKMatchPlayer : STKModel
 
 @property int playerId;
-@property STKPlayer* user;
+@property STKPlayer* info;
 @property int score;
 
-- (id)initWithID:(int8_t)playerId andUser:(STKPlayer*)user;
-+ (STKMatchPlayer*)player:(int8_t)playerId withUser:(STKPlayer*)user;
+- (id)initWithID:(int8_t)playerId andPlayer:(STKPlayer*)player;
 
 @end
-
-typedef NS_ENUM(char, Player)
-{
-	ONE,
-	TWO
-};

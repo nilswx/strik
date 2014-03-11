@@ -92,7 +92,7 @@
 - (void)setupMatch:(STKMatch *)match
 {
 	// Setup opponent card
-	STKPlayer *opponent = match.opponent.user;
+	STKPlayer *opponent = match.opponent.info;
 	STKAnnouncePlayerCard *playerTwoCard = self.vsScene.playerTwoCard;
 	[self setupVSCard:playerTwoCard withPlayer:opponent darkColor:PLAYER_TWO_COLOR andLightColor:PLAYER_TWO_LIGHT_COLOR];
 	

@@ -55,11 +55,11 @@
 - (void)match:(STKMatch *)match valueChangedForPlayer:(STKMatchPlayer *)player
 {
 	// Setup player one
-	self.playerOneLabel.string = player.user.name;
+	self.playerOneLabel.string = player.info.name;
 	
 	self.playerOneAvatar.backgroundColor = PLAYER_ONE_COLOR;
 	self.playerOneAvatar.borderColor = PLAYER_ONE_COLOR;
-	self.playerOneAvatar.avatar = player.user.avatar;
+	self.playerOneAvatar.avatar = player.info.avatar;
 	
 	self.playerOneScore.backgroundColor = PLAYER_ONE_COLOR;
 	self.playerOneScore.fontColor = [CCColor whiteColor];
@@ -69,11 +69,11 @@
 - (void)match:(STKMatch *)match valueChangedForOpponent:(STKMatchPlayer *)oppponent
 {
 	// Setup player two
-	self.playerTwoLabel.string = oppponent.user.name;
+	self.playerTwoLabel.string = oppponent.info.name;
 	
 	self.playerTwoAvatar.backgroundColor = PLAYER_TWO_COLOR;
 	self.playerTwoAvatar.borderColor = PLAYER_TWO_COLOR;
-	self.playerTwoAvatar.avatar = oppponent.user.avatar;
+	self.playerTwoAvatar.avatar = oppponent.info.avatar;
 	
 	self.playerTwoScore.backgroundColor = PLAYER_TWO_COLOR;
 	self.playerTwoScore.fontColor = [CCColor whiteColor];

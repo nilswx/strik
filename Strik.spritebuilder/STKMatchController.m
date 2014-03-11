@@ -95,10 +95,10 @@
 		
 		// Build local player
 		STKSessionController *session = self.core[@"session"];
-		match.player = [STKMatchPlayer player:[message readByte] withUser:session.player];
+		match.player = [[STKMatchPlayer alloc] initWithID:[message readByte] andPlayer:session.player];
 		
 		// Build opponent
-		match.opponent = [STKMatchPlayer player:[message readByte] withUser:[STKPlayer playerFromMessage:message]];
+		match.opponent = [[STKMatchPlayer alloc] initWithID:[message readByte] andPlayer:[STKPlayer playerFromMessage:message]];
 		
 		// Create board
 		match.countdownTime = [message readByte];
@@ -175,7 +175,7 @@
 		NSString* resultMessage;
 		if(winner)
 		{
-			resultMessage = [NSString stringWithFormat:@"%@ won!", winner.user.name];
+			resultMessage = [NSString stringWithFormat:@"%@ won!", winner.info.name];
 		}
 		else
 		{

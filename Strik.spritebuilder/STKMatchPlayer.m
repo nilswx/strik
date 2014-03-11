@@ -11,20 +11,15 @@
 
 @implementation STKMatchPlayer
 
-- (id)initWithID:(int8_t)playerId andUser:(STKPlayer*)user
+- (id)initWithID:(int8_t)playerId andPlayer:(STKPlayer*)player
 {
     self = [super init];
     if(self)
     {
         self.playerId = playerId;
-        self.user = user;
+        self.info = player;
     }
     return self;
-}
-
-+ (STKMatchPlayer*)player:(int8_t)playerId withUser:(STKPlayer*)user
-{
-    return [[STKMatchPlayer alloc] initWithID:playerId andUser:user];
 }
 
 @end

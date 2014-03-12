@@ -1846,44 +1846,6 @@
 						<string></string>
 						<key>memberVarAssignmentType</key>
 						<integer>0</integer>
-						<key>physicsBody</key>
-						<dict>
-							<key>affectedByGravity</key>
-							<true/>
-							<key>allowsRotation</key>
-							<true/>
-							<key>bodyShape</key>
-							<integer>0</integer>
-							<key>cornerRadius</key>
-							<real>0.0</real>
-							<key>density</key>
-							<real>1</real>
-							<key>dynamic</key>
-							<true/>
-							<key>elasticity</key>
-							<real>0.30000001192092896</real>
-							<key>friction</key>
-							<real>0.30000001192092896</real>
-							<key>points</key>
-							<array>
-								<array>
-									<real>0.0</real>
-									<real>0.0</real>
-								</array>
-								<array>
-									<real>0.0</real>
-									<real>64.5</real>
-								</array>
-								<array>
-									<real>64.5</real>
-									<real>64.5</real>
-								</array>
-								<array>
-									<real>64.5</real>
-									<real>0.0</real>
-								</array>
-							</array>
-						</dict>
 						<key>properties</key>
 						<array>
 							<dict>
@@ -1930,8 +1892,6 @@
 								<string>Game Scene/Tile.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -1941,7 +1901,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNodeColor</string>
+						<string>floor</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -1967,20 +1927,20 @@
 							<key>points</key>
 							<array>
 								<array>
-									<real>1</real>
-									<real>0.0</real>
+									<real>-0.57550793886184692</real>
+									<real>4.2862033843994141</real>
 								</array>
 								<array>
-									<real>317.41796875</real>
-									<real>1.77734375</real>
+									<real>-0.36946719884872437</real>
+									<real>0.10979030281305313</real>
 								</array>
 								<array>
-									<real>319.63671875</real>
-									<real>96.66015625</real>
+									<real>319.66412353515625</real>
+									<real>-0.37860256433486938</real>
 								</array>
 								<array>
-									<real>1</real>
-									<real>100</real>
+									<real>319.41995239257812</real>
+									<real>4.308006763458252</real>
 								</array>
 							</array>
 						</dict>
@@ -2002,7 +1962,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>106</real>
+									<real>50</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2016,7 +1976,7 @@
 								<key>value</key>
 								<array>
 									<real>1</real>
-									<real>100</real>
+									<real>5</real>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
@@ -2052,9 +2012,9 @@
 								<string>Color3</string>
 								<key>value</key>
 								<array>
-									<real>0.20999999344348907</real>
-									<real>0.64999997615814209</real>
-									<real>0.87000000476837158</real>
+									<real>0.88235300779342651</real>
+									<real>0.21960785984992981</real>
+									<real>0.92156869173049927</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -2106,7 +2066,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>-0.57870370149612427</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>

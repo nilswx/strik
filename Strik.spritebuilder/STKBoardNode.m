@@ -7,11 +7,20 @@
 //
 
 #import "STKBoardNode.h"
+#import "STKTileNode.h"
 
 #define BOARD_LINE_COLOR [CCColor colorWithWhite:0 alpha:0.3f]
 #define LINE_PADDING 64.5f
 
+typedef NS_ENUM(NSInteger, zIndex)
+{
+	
+	Z_INDEX_BOARD_LINE
+};
+
 @interface STKBoardNode()
+
+@property CCPhysicsNode *background;
 
 @end
 
@@ -22,6 +31,18 @@
 	[super onEnter];
 	
 	[self addBoardLines];
+}
+
+- (void)onEnterTransitionDidFinish
+{
+	[super onEnterTransitionDidFinish];
+	
+	STKTileNode *tile = [STKTileNode newTileNode];
+	
+	tile.position = CGPointMake(160, 200);
+	
+	[self.parent addChild:tile];
+	
 }
 
 - (void)addBoardLines
@@ -36,6 +57,7 @@
 		verticalLine.contentSize = CGSizeMake(0.5, 1);
 		
 		verticalLine.position = CGPointMake(x, 0);
+		verticalLine.zOrder = Z_INDEX_BOARD_LINE;
 		
 		[self addChild:verticalLine];
 	}
@@ -50,6 +72,7 @@
 		horizontalLine.contentSize = CGSizeMake(1, 0.5);
 		
 		horizontalLine.position = CGPointMake(0, y);
+		horizontalLine.zOrder = Z_INDEX_BOARD_LINE;
 		
 		[self addChild:horizontalLine];
 	}

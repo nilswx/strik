@@ -10,4 +10,10 @@
 
 @implementation STKTileNode
 
++ (id)newTileNode
+{
+	STKTileNode *tileNode = (STKTileNode *)[CCBReader load:@"Game Scene/Tile.ccbi"];
+	return tileNode;
+}
+
 @end

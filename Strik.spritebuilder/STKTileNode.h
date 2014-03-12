@@ -8,6 +8,8 @@
 
 #import "CCNode.h"
 
-@interface STKTileNode : CCNode
+@interface STKTileNode : CCPhysicsNode
+
++ (id)newTileNode;
 
 @end

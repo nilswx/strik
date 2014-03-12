@@ -352,7 +352,7 @@
 			<key>affectedByGravity</key>
 			<true/>
 			<key>allowsRotation</key>
-			<false/>
+			<true/>
 			<key>bodyShape</key>
 			<integer>0</integer>
 			<key>cornerRadius</key>
@@ -372,16 +372,16 @@
 					<real>0.0</real>
 				</array>
 				<array>
+					<real>59.078125</real>
 					<real>0.0</real>
+				</array>
+				<array>
+					<real>59.078125</real>
 					<real>64.5</real>
 				</array>
 				<array>
-					<real>63.5</real>
-					<real>64.5</real>
-				</array>
-				<array>
-					<real>63.5</real>
 					<real>0.0</real>
+					<real>64.5</real>
 				</array>
 			</array>
 		</dict>
@@ -416,7 +416,7 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>63.5</real>
+					<real>64.5</real>
 					<real>64.5</real>
 					<integer>0</integer>
 					<integer>0</integer>

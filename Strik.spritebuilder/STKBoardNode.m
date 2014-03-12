@@ -33,18 +33,6 @@ typedef NS_ENUM(NSInteger, zIndex)
 	[self addBoardLines];
 }
 
-- (void)onEnterTransitionDidFinish
-{
-	[super onEnterTransitionDidFinish];
-	
-	STKTileNode *tile = [STKTileNode newTileNode];
-	
-	tile.position = CGPointMake(160, 200);
-	
-	[self addChild:tile];
-	
-}
-
 - (void)addBoardLines
 {
 	// Vertical lines

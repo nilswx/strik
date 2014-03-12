@@ -23,7 +23,7 @@
 // The user avatar
 @property STKAvatarNode *avatarNode;
 
-// The user level
+// The user levelecl
 @property STKLevelNode *levelNode;
 
 // The user progress bar

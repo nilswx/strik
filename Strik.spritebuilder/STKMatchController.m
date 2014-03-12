@@ -15,7 +15,6 @@
 #import "STKPlayer.h"
 #import "STKMatchPlayer.h"
 #import "STKSessionController.h"
-#import "STKBoard.h"
 #import "STKAlertView.h"
 
 #import "STKAnnounceMatchController.h"

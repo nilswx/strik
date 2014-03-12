@@ -8,8 +8,6 @@
 
 #import "STKMatch.h"
 #import "STKMatchPlayer.h"
-#import "STKTile.h"
-#import "STKBoard.h"
 
 @implementation STKMatch
 

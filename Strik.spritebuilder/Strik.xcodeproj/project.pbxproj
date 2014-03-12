@@ -70,8 +70,8 @@
 		8393789018B602730007BDE4 /* STKSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393788918B602730007BDE4 /* STKSessionController.m */; };
 		8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789B18B60A260007BDE4 /* STKConnectController.m */; };
 		8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393789E18B60A340007BDE4 /* STKConnectScene.m */; };
-		839378A318B60B090007BDE4 /* STKTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A218B60B090007BDE4 /* STKTile.m */; };
-		839378A618B60B180007BDE4 /* STKBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 839378A518B60B180007BDE4 /* STKBoard.m */; };
+		83B0EB2C18D05FD200C54574 /* STKBoardNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0EB2B18D05FD200C54574 /* STKBoardNode.m */; };
+		83B0EB2F18D05FF500C54574 /* STKTileNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0EB2E18D05FF500C54574 /* STKTileNode.m */; };
 		83C4424218BE18CC00B417C9 /* CSEEmboss.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
 		83C4424318BE18CC00B417C9 /* CSEEmboss.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4424118BE18CC00B417C9 /* CSEEmboss.m */; };
 		83C4424418BE18DB00B417C9 /* CSEEmboss.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
@@ -249,10 +249,10 @@
 		8393789B18B60A260007BDE4 /* STKConnectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKConnectController.m; sourceTree = "<group>"; };
 		8393789D18B60A340007BDE4 /* STKConnectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKConnectScene.h; sourceTree = "<group>"; };
 		8393789E18B60A340007BDE4 /* STKConnectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKConnectScene.m; sourceTree = "<group>"; };
-		839378A118B60B090007BDE4 /* STKTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTile.h; sourceTree = "<group>"; };
-		839378A218B60B090007BDE4 /* STKTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTile.m; sourceTree = "<group>"; };
-		839378A418B60B180007BDE4 /* STKBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBoard.h; sourceTree = "<group>"; };
-		839378A518B60B180007BDE4 /* STKBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBoard.m; sourceTree = "<group>"; };
+		83B0EB2A18D05FD200C54574 /* STKBoardNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBoardNode.h; sourceTree = "<group>"; };
+		83B0EB2B18D05FD200C54574 /* STKBoardNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBoardNode.m; sourceTree = "<group>"; };
+		83B0EB2D18D05FF500C54574 /* STKTileNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTileNode.h; sourceTree = "<group>"; };
+		83B0EB2E18D05FF500C54574 /* STKTileNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKTileNode.m; sourceTree = "<group>"; };
 		83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CSEEmboss.fsh; sourceTree = "<group>"; };
 		83C4424018BE18CC00B417C9 /* CSEEmboss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEEmboss.h; sourceTree = "<group>"; };
 		83C4424118BE18CC00B417C9 /* CSEEmboss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEEmboss.m; sourceTree = "<group>"; };
@@ -406,6 +406,10 @@
 			children = (
 				8379201318CDE39E0094F3AC /* STKTimerBar.h */,
 				8379201418CDE39E0094F3AC /* STKTimerBar.m */,
+				83B0EB2A18D05FD200C54574 /* STKBoardNode.h */,
+				83B0EB2B18D05FD200C54574 /* STKBoardNode.m */,
+				83B0EB2D18D05FF500C54574 /* STKTileNode.h */,
+				83B0EB2E18D05FF500C54574 /* STKTileNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -764,10 +768,6 @@
 		839378A018B60AF90007BDE4 /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				839378A418B60B180007BDE4 /* STKBoard.h */,
-				839378A518B60B180007BDE4 /* STKBoard.m */,
-				839378A118B60B090007BDE4 /* STKTile.h */,
-				839378A218B60B090007BDE4 /* STKTile.m */,
 			);
 			name = Board;
 			sourceTree = "<group>";
@@ -999,6 +999,7 @@
 				8330170B18BA269C00F8296B /* ScrollNode.m in Sources */,
 				8379201518CDE39E0094F3AC /* STKTimerBar.m in Sources */,
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
+				83B0EB2F18D05FF500C54574 /* STKTileNode.m in Sources */,
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
 				8383A65418B7F651003816BF /* STKLevelNode.m in Sources */,
 				8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */,
@@ -1015,6 +1016,7 @@
 				8383A66218B8E642003816BF /* STKLobbyScene.m in Sources */,
 				835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */,
 				8393783318B5FFB60007BDE4 /* STKScene.m in Sources */,
+				83B0EB2C18D05FD200C54574 /* STKBoardNode.m in Sources */,
 				8330171318BB964300F8296B /* STKLobbyPersonNode.m in Sources */,
 				83D32FD618C0C9C900772575 /* STKSettings.m in Sources */,
 				8393788E18B602730007BDE4 /* STKInAppPurchasesController.m in Sources */,
@@ -1034,7 +1036,6 @@
 				8393788D18B602730007BDE4 /* STKFacebookController.m in Sources */,
 				83EDE61418C60FA900D3B78D /* STKButton.m in Sources */,
 				8304529E18C753A2000BBE18 /* Linguistics.m in Sources */,
-				839378A618B60B180007BDE4 /* STKBoard.m in Sources */,
 				8393783A18B5FFDC0007BDE4 /* STKNetConnection.m in Sources */,
 				8393784818B5FFF80007BDE4 /* STKIncomingMessage.m in Sources */,
 				8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */,
@@ -1062,7 +1063,6 @@
 				83EDE61018C5D5EE00D3B78D /* STKAvatarPage.m in Sources */,
 				830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */,
 				8383A65118B79E58003816BF /* STKAchievementsController.m in Sources */,
-				839378A318B60B090007BDE4 /* STKTile.m in Sources */,
 				8393787418B6023D0007BDE4 /* STKInventory.m in Sources */,
 				8379200E18CDBD5D0094F3AC /* STKGameScene.m in Sources */,
 				8393789C18B60A260007BDE4 /* STKConnectController.m in Sources */,

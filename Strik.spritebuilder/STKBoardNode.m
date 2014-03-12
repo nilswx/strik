@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 	
 	tile.position = CGPointMake(160, 200);
 	
-	[self.parent addChild:tile];
+	[self addChild:tile];
 	
 }
 

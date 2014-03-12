@@ -16,6 +16,8 @@
 #import "STKMatchPlayer.h"
 #import "STKPLayer.h"
 
+#import "STKBoardNode.h"
+
 #define RED_WARNING_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f]
 
 @interface STKGameScene()
@@ -37,6 +39,9 @@
 
 // Current game time
 @property int currentTime;
+
+// Board
+@property STKBoardNode *board;
 
 // The scale action, created when first accesing property
 @property (nonatomic) CCAction *scaleAction;

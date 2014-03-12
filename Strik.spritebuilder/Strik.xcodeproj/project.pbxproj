@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
+		483B595918D0C50500F013C9 /* STKBlurLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B595818D0C50500F013C9 /* STKBlurLayer.m */; };
 		8304529E18C753A2000BBE18 /* Linguistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304529D18C753A2000BBE18 /* Linguistics.m */; };
 		830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A218C769EC000BBE18 /* STKAnnounceMatchScene.m */; };
 		830452A618C769F8000BBE18 /* STKAnnounceMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A518C769F8000BBE18 /* STKAnnounceMatchController.m */; };
@@ -120,6 +121,8 @@
 
 /* Begin PBXFileReference section */
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		483B595718D0C50400F013C9 /* STKBlurLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBlurLayer.h; sourceTree = "<group>"; };
+		483B595818D0C50500F013C9 /* STKBlurLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBlurLayer.m; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8304529C18C753A2000BBE18 /* Linguistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Linguistics.h; sourceTree = "<group>"; };
 		8304529D18C753A2000BBE18 /* Linguistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Linguistics.m; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 				8383A65A18B8D255003816BF /* STKProgressNode.m */,
 				83EDE61218C60FA900D3B78D /* STKButton.h */,
 				83EDE61318C60FA900D3B78D /* STKButton.m */,
+				483B595718D0C50400F013C9 /* STKBlurLayer.h */,
+				483B595818D0C50500F013C9 /* STKBlurLayer.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -993,6 +998,7 @@
 				8393783118B5FFB60007BDE4 /* STKModel.m in Sources */,
 				8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */,
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
+				483B595918D0C50500F013C9 /* STKBlurLayer.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				830452AA18C77828000BBE18 /* STKAnnouncePlayerCard.m in Sources */,
 				830452A618C769F8000BBE18 /* STKAnnounceMatchController.m in Sources */,

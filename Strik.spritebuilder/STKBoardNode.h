@@ -8,6 +8,11 @@
 
 #import "CCNode.h"
 
+@class STKBoard;
+
 @interface STKBoardNode : CCNodeColor
+
+// The board for this node (who would have thought that by reading the name)
+@property (nonatomic, weak) STKBoard *board;
 
 @end

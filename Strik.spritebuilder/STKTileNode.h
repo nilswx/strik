@@ -8,8 +8,13 @@
 
 #import "CCNode.h"
 
+@class STKTile;
+
 @interface STKTileNode : CCNode
 
-+ (id)newTileNode;
+// The current tile model for this node
+@property (weak, readonly) STKTile *tile;
+
++ (id)newTileNodeWithTile:(STKTile *)tile;
 
 @end

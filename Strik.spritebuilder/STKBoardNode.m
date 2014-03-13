@@ -9,6 +9,11 @@
 #import "STKBoardNode.h"
 #import "STKTileNode.h"
 
+#import "STKBoard.h"
+#import "STKTile.h"
+
+#import "NSObject+Observer.h"
+
 #define BOARD_LINE_COLOR [CCColor colorWithWhite:0 alpha:0.3f]
 #define LINE_PADDING 64.5f
 
@@ -20,6 +25,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 @interface STKBoardNode()
 
+// The background node
 @property CCPhysicsNode *background;
 
 @end
@@ -66,4 +72,22 @@ typedef NS_ENUM(NSInteger, zIndex)
 	}
 }
 
+- (void)setBoard:(STKBoard *)board
+{
+	if(_board)
+	{
+		NSAssert(false, @"Can only assign board once!");
+	}
+	
+	if(board)
+	{
+		_board = board;
+		[self observeModel:board];
+	}
+}
+
+- (void)dealloc
+{
+	[self removeAsObserverForAllModels];
+}
 @end

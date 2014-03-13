@@ -772,7 +772,6 @@
 			children = (
 				8331F60F18D1B62700ECEDCA /* Models */,
 				8379201618CDE50F0094F3AC /* Nodes */,
-				839378A018B60AF90007BDE4 /* Board */,
 				8379200918CDB9A10094F3AC /* STKGameController.h */,
 				8379200A18CDB9A10094F3AC /* STKGameController.m */,
 				8379200C18CDBD5D0094F3AC /* STKGameScene.h */,
@@ -786,13 +785,6 @@
 			children = (
 			);
 			name = "End Game";
-			sourceTree = "<group>";
-		};
-		839378A018B60AF90007BDE4 /* Board */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Board;
 			sourceTree = "<group>";
 		};
 		83C4423418BDF6D700B417C9 /* Shaders */ = {

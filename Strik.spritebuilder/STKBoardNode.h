@@ -8,6 +8,6 @@
 
 #import "CCNode.h"
 
-@interface STKBoardNode : CCPhysicsNode
+@interface STKBoardNode : CCNodeColor
 
 @end

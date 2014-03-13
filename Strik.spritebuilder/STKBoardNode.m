@@ -28,6 +28,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 // The background node
 @property CCPhysicsNode *background;
 
+// The first drop for all tiles shows all tiles where they should be instead of dropping them all down
+@property BOOL isFirstDrop;
+
 @end
 
 @implementation STKBoardNode
@@ -36,6 +39,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 - (void)onEnter
 {
 	[super onEnter];
+	
+	// The initial drop places tiles at the bottom, so you won't see them fall
+	self.isFirstDrop = YES;
 	
 	[self addBoardLines];
 }
@@ -90,9 +96,59 @@ typedef NS_ENUM(NSInteger, zIndex)
 #pragma mark model events
 - (void)board:(STKBoard *)board valueChangedForFreshTiles:(NSArray *)freshTiles
 {
-	NSLog(@"Board tiles %@", freshTiles);
-	NSLog(@"Physics %@", self.physicsWorld);
+	[self insertNodeFromTiles:freshTiles];
 }
+
+- (void)insertNodeFromTiles:(NSArray *)tiles
+{
+	// The starting Y position (they fall from this height)
+	CGFloat startY;
+	
+	// The initial tiles are drawn where they should be
+	if(self.isFirstDrop)
+	{
+		startY = LINE_PADDING;
+	}
+	// And the new ones are drawn at top
+	else
+	{
+		startY = self.scene.contentSizeInPoints.height;
+	}
+	
+	// The Y position might be different for different collumns while adding (e.g an L shape)
+	NSMutableArray *yPositions = [NSMutableArray arrayWithCapacity:self.board.size.width];
+	for(int col = 0; col < self.board.size.width; col++)
+	{
+		[yPositions addObject:[NSNumber numberWithFloat:startY]];
+	}
+	
+	// Loop through every tile and position them
+	for(STKTile *tile in tiles)
+	{
+		// Create a new tile node for this tile
+		STKTileNode *tileNode = [STKTileNode newTileNodeWithTile:tile];
+		
+		// Get the tile size
+		CGSize tileSize = [tileNode contentSizeInPoints];
+		
+		// Get the Y position for the tile in this collumn
+		CGFloat yPosition = [[yPositions objectAtIndex:tile.column] floatValue];
+		
+		// Get the X position for this tile
+		CGFloat xPosition = tileSize.width * tile.column;
+		
+		// Position the tile
+		tileNode.position = CGPointMake(xPosition, yPosition);
+		
+		// And add it to the physics world
+		[self.physicsWorld addChild:tileNode];
+		
+		// Increase Y Position for this collumn (so we can stack)
+		yPosition += tileSize.height;
+		[yPositions setObject:[NSNumber numberWithFloat:yPosition] atIndexedSubscript:tile.column];
+	}
+}
+
 
 - (void)dealloc
 {

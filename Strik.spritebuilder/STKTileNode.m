@@ -15,7 +15,11 @@
 
 @interface STKTileNode()
 
+// The tile for this node
 @property STKTile *tile;
+
+// The letter label
+@property CCLabelTTF *letterLabel;
 
 @end
 
@@ -27,12 +31,17 @@
 	
 	// Set the tile and listen for changes
 	tileNode.tile = tile;
-	[tile observeModel:tile];
+	[tileNode observeModel:tile];
 	
 	return tileNode;
 }
 
 #pragma mark Model state changes
+- (void)tile:(STKTile *)tile valueChangedForLetter:(NSNumber *)letter
+{
+	self.letterLabel.string = [NSString stringWithFormat:@"%c", tile.letter];
+}
+
 - (void)tile:(STKTile *)tile valueChangedForIsRemoved:(NSNumber *)isRemoved
 {
     if([isRemoved boolValue])

@@ -29,7 +29,7 @@
 	[core installComponent:connection withKey:@"connection"];
 	
 	// Begin connecting (async)...
-	[connection beginConnectToHost:@"192.168.178.20" onPort:13381
+	[connection beginConnectToHost:@"localhost" onPort:13381
 	 
 	 // Connected!
 						 onConnect:^
@@ -92,7 +92,7 @@
 		[connection enableDecryptionWithKey:[serverKey dataUsingEncoding:NSUTF8StringEncoding]];
 		
 		// Now generate a client-> server encryption key
-		NSString* clientKey = @"edwardsnowden";
+		NSString* clientKey = [[NSUUID UUID] UUIDString];
 		
 		// Inform the server (plaintext)
 		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CLIENT_CRYPTO];

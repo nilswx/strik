@@ -41,7 +41,10 @@
 @property int currentTime;
 
 // Board
-@property STKBoardNode *board;
+@property STKBoardNode *boardNode;
+
+// The physics world
+@property CCPhysicsNode *physicsWorld;
 
 // The scale action, created when first accesing property
 @property (nonatomic) CCAction *scaleAction;
@@ -50,9 +53,15 @@
 
 @implementation STKGameScene
 
-- (void)enterTransitionDidFinish
+#pragma mark init
+- (void)sceneLoaded
 {
-	// Tick time every second
+	// The board node needs access to the physics world, so we can move spawning of tiles the the board node instead of the scene
+	self.boardNode.physicsWorld = self.physicsWorld;
+}
+
+- (void)startTimer
+{
 	[self schedule:@selector(updateTime:) interval:1 repeat:-1 delay:0];
 }
 

@@ -23,9 +23,6 @@
 
 @interface STKMatchController()
 
-// The MatchSceneController needs to be created before the countdown starts, so it can start to receive network events
-@property (nonatomic, strong) STKGameController *gameSceneController;
-
 @end
 
 @implementation STKMatchController
@@ -35,8 +32,6 @@
     [self routeNetMessagesOf:ANNOUNCE_MATCH to:@selector(announcedMatch:)];
 	[self routeNetMessagesOf:QUEUE_ENTERED to:@selector(enteredQueue:)];
 	[self routeNetMessagesOf:QUEUE_EXITED to:@selector(exitedQueue:)];
-    [self routeNetMessagesOf:MATCH_STARTED to:@selector(matchDidStart:)];
-    [self routeNetMessagesOf:MATCH_ENDED to:@selector(matchDidEnd:)];
 }
 
 - (void)exitMatch
@@ -109,23 +104,23 @@
 		STKDirector *director = self.core[@"director"];
 		
 		// Set match on VS controller
-		STKAnnounceMatchController *vsController;
+		STKAnnounceMatchController *anounceMatchController;
 		
 		// We are allready on the VS scene
 		if([director.sceneController isKindOfClass:[STKAnnounceMatchController class]])
 		{
-			vsController = (STKAnnounceMatchController *)director.sceneController;
+			anounceMatchController = (STKAnnounceMatchController *)director.sceneController;
 		}
 		// Go to the VS scene now
 		else
 		{
-			vsController = [STKAnnounceMatchController new];
+			anounceMatchController = [STKAnnounceMatchController new];
 			CCTransition *transition = [CCTransition transitionCrossFadeWithDuration:0.25];
-			[director presentScene:(STKSceneController *)vsController withTransition:transition];
+			[director presentScene:(STKSceneController *)anounceMatchController withTransition:transition];
 		}
 		
 		// And set match
-		vsController.match = match;
+		anounceMatchController.match = match;
 	}
 }
 
@@ -133,53 +128,12 @@
 {
 	if(self.match)
 	{
-		// First create the new match scene controller, it must be there to handle some network events
-		self.gameSceneController = [[STKGameController alloc] initWithCore:self.core];
-		NSLog(@"Match: loading done, local player READY!");
+		// Transition to the actual game scene
+		STKDirector *director = self.core[@"director"];
+		[director presentScene:[STKGameController new] withTransition:[CCTransition transitionCrossFadeWithDuration:0.25]];
 		
 		// Say we're good to go!
 		[self sendNetMessage:[STKOutgoingMessage withOp:PLAYER_READY]];
-	}
-}
-
-- (void)matchDidStart:(STKIncomingMessage *)message
-{
-	if(self.match)
-	{
-		NSLog(@"Match: started!");
-		
-		// Transition to the actual match
-		STKDirector *director = self.core[@"director"];
-		[director presentScene:self.gameSceneController withTransition:[CCTransition transitionCrossFadeWithDuration:0.25]];
-	}
-}
-
-- (void)matchDidEnd:(STKIncomingMessage *)message
-{
-	if(self.match)
-	{
-		// Determine winner
-		STKMatchPlayer* winner = [self.match playerByID:[message readByte]];
-		
-		// Aaaand it's gone
-		self.match = nil;
-		NSLog(@"Match: ended!");
-		
-		// Show statistics from the match
-		STKDirector *director = self.core[@"director"];
-		// Todo: present match ended scene
-//		[director presentScene:[STKMatchEndedScene class]];
-		
-		// Show result alert
-		NSString* resultMessage;
-		if(winner)
-		{
-			resultMessage = [NSString stringWithFormat:@"%@ won!", winner.info.name];
-		}
-		else
-		{
-			resultMessage = @"Draw!";
-		}[[STKAlertView alertWithTitle:@"Match Ended" andMessage:resultMessage] show];
 	}
 }
 

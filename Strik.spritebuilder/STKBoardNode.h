@@ -15,4 +15,7 @@
 // The board for this node (who would have thought that by reading the name)
 @property (nonatomic, weak) STKBoard *board;
 
+// The physics world, tiles should be spawned in here
+@property (weak) CCPhysicsNode *physicsWorld;
+
 @end

@@ -8,10 +8,20 @@
 
 #import "STKScene.h"
 
-@class STKMatch;
+@class STKMatch, STKBoardNode;
 
 @interface STKGameScene : STKScene
 
-@property (nonatomic) STKMatch *match;
+// The match object
+@property (weak, nonatomic) STKMatch *match;
+
+// The board node for this scene
+@property (readonly) STKBoardNode *boardNode;
+
+// The physics world
+@property (readonly) CCPhysicsNode *physicsWorld;
+
+// Call this to start the local timer
+- (void)startTimer;
 
 @end

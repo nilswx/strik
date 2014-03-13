@@ -29,17 +29,17 @@
 	[core installComponent:connection withKey:@"connection"];
 	
 	// Begin connecting (async)...
-	[connection beginConnectToHost:@"localhost" onPort:13381
+	[connection beginConnectToHost:@"192.168.178.20" onPort:13381
 	 
 	 // Connected!
-						 onConnect:^
+	 onConnect:^
 	 {
 		 // Continue with the login etc
 		 [self didConnectToServer];
 	 }
 	 
 	 // Disconnected!
-					  onDisconnect:^
+	 onDisconnect:^
 	 {
 		 // Notify the global client controller
 		 [core[@"client"] didDisconnectFromServer];

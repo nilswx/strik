@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 @implementation STKBoardNode
 
+#pragma mark init
 - (void)onEnter
 {
 	[super onEnter];
@@ -84,6 +85,13 @@ typedef NS_ENUM(NSInteger, zIndex)
 		_board = board;
 		[self observeModel:board];
 	}
+}
+
+#pragma mark model events
+- (void)board:(STKBoard *)board valueChangedForFreshTiles:(NSArray *)freshTiles
+{
+	NSLog(@"Board tiles %@", freshTiles);
+	NSLog(@"Physics %@", self.physicsWorld);
 }
 
 - (void)dealloc

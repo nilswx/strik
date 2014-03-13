@@ -73,7 +73,7 @@
 
 - (void)requestAvailableProductsWithIdentifiers:(NSSet*)identifiers
 {
-	NSLog(@"IAP: getting SKProducts for %d identifiers", identifiers.count);
+	NSLog(@"IAP: getting SKProducts for %lu identifiers", (unsigned long)identifiers.count);
 
 	// Request async...
 	SKProductsRequest* request = [[SKProductsRequest alloc] initWithProductIdentifiers:identifiers];

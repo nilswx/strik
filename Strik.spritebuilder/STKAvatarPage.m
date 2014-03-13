@@ -63,7 +63,7 @@
 	// Todo: change it based on size of screen
 	for(STKAvatar *avatar in self.avatars)
 	{
-		int index = [self.avatars indexOfObject:avatar];
+		int index = (int)[self.avatars indexOfObject:avatar];
 		
 		// Determine collumn and row for index
 		int collumn = index % collumnCount;

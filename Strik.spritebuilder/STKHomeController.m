@@ -190,7 +190,7 @@
 
 - (int)rowCount
 {
-	return self.timelineItems.count;
+	return (int)self.timelineItems.count;
 }
 
 - (CCNode *)nodeForColumn:(int)column andRow:(int)row

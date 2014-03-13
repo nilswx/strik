@@ -291,7 +291,12 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self startAnimation];
+
+    UIApplicationState state = UIApplication.sharedApplication.applicationState;
+    if (state != UIApplicationStateBackground)
+    {
+        [self startAnimation];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -344,7 +349,7 @@
 
 -(void)getFPSImageData:(unsigned char**)datapointer length:(NSUInteger*)len contentScale:(CGFloat *)scale
 {
-	int device = [[CCConfiguration sharedConfiguration] runningDevice];
+	NSInteger device = [[CCConfiguration sharedConfiguration] runningDevice];
 
 	if( device == CCDeviceiPadRetinaDisplay) {
 		*datapointer = cc_fps_images_ipadhd_png;
@@ -411,9 +416,9 @@
 
 #else
 	// setup DisplayLink in main thread
-#pragma mark warning Fix for scrolling so it keeps rendering while scrolling
 //	[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+	
 #endif
 
     _animating = YES;
@@ -471,10 +476,10 @@
 -(void) threadMainLoop
 {
 	@autoreleasepool {
-#pragma mark warning Fix for scrolling so it keeps rendering while scrolling.
+
 //		[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 		[_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-		 
+		
 		// start the run loop
 		[[NSRunLoop currentRunLoop] run];
 

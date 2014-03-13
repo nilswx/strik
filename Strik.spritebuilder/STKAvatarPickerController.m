@@ -107,7 +107,7 @@
 {
 	// Determine range for page
 	int start = page * [STKAvatarPage avatarsPerPage];
-	int length = MIN(self.allAvatars.count - start, [STKAvatarPage avatarsPerPage]);
+	int length = (int)MIN(self.allAvatars.count - start, [STKAvatarPage avatarsPerPage]);
 	
 	NSRange avatarRange = NSMakeRange(start, length);
 	

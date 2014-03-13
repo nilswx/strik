@@ -101,54 +101,60 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (void)insertNodeFromTiles:(NSArray *)tiles
 {
-	// The starting Y position (they fall from this height)
-	CGFloat startY;
-	
-	// The initial tiles are drawn where they should be
-	if(self.isFirstDrop)
+	if(tiles)
 	{
-		startY = LINE_PADDING;
-	}
-	// And the new ones are drawn at top
-	else
-	{
-		startY = self.scene.contentSizeInPoints.height;
-	}
-	
-	// The Y position might be different for different collumns while adding (e.g an L shape)
-	NSMutableArray *yPositions = [NSMutableArray arrayWithCapacity:self.board.size.width];
-	for(int col = 0; col < self.board.size.width; col++)
-	{
-		[yPositions addObject:[NSNumber numberWithFloat:startY]];
-	}
-	
-	// Loop through every tile and position them
-	for(STKTile *tile in tiles)
-	{
-		// Create a new tile node for this tile
-		STKTileNode *tileNode = [STKTileNode newTileNodeWithTile:tile];
+		// The starting Y position (they fall from this height)
+		CGFloat startY;
 		
-		// Get the tile size
-		CGSize tileSize = [tileNode contentSizeInPoints];
+		// The initial tiles are drawn where they should be
+		if(self.isFirstDrop && tiles)
+		{
+			startY = LINE_PADDING;
+			
+			// There is only one first drop
+			self.isFirstDrop = NO;
+		}
+		// And the new ones are drawn at top
+		else
+		{
+			startY = self.scene.contentSizeInPoints.height;
+		}
 		
-		// Get the Y position for the tile in this collumn
-		CGFloat yPosition = [[yPositions objectAtIndex:tile.column] floatValue];
+		// Todo: Fix this somehow that it knows other tiles are in place up there...
+		// The Y position might be different for different collumns while adding (e.g an L shape)
+		NSMutableArray *yPositions = [NSMutableArray arrayWithCapacity:self.board.size.width];
+		for(int col = 0; col < self.board.size.width; col++)
+		{
+			[yPositions addObject:[NSNumber numberWithFloat:startY]];
+		}
 		
-		// Get the X position for this tile
-		CGFloat xPosition = tileSize.width * tile.column;
-		
-		// Position the tile
-		tileNode.position = CGPointMake(xPosition, yPosition);
-		
-		// And add it to the physics world
-		[self.physicsWorld addChild:tileNode];
-		
-		// Increase Y Position for this collumn (so we can stack)
-		yPosition += tileSize.height;
-		[yPositions setObject:[NSNumber numberWithFloat:yPosition] atIndexedSubscript:tile.column];
+		// Loop through every tile and position them
+		for(STKTile *tile in tiles)
+		{
+			// Create a new tile node for this tile
+			STKTileNode *tileNode = [STKTileNode newTileNodeWithTile:tile];
+			
+			// Get the tile size
+			CGSize tileSize = [tileNode contentSizeInPoints];
+			
+			// Get the Y position for the tile in this collumn
+			CGFloat yPosition = [[yPositions objectAtIndex:tile.column] floatValue];
+			
+			// Get the X position for this tile
+			CGFloat xPosition = tileSize.width * tile.column;
+			
+			// Position the tile
+			tileNode.position = CGPointMake(xPosition, yPosition);
+			
+			// And add it to the physics world
+			[self.physicsWorld addChild:tileNode];
+			
+			// Increase Y Position for this collumn (so we can stack)
+			yPosition += tileSize.height;
+			[yPositions setObject:[NSNumber numberWithFloat:yPosition] atIndexedSubscript:tile.column];
+		}
 	}
 }
-
 
 - (void)dealloc
 {

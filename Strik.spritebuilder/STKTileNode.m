@@ -68,7 +68,7 @@
 
 - (void)animateToRemovedState
 {
-	NSLog(@"animating removed state");
+	[self removeFromParent];
 }
 
 - (void)animateToSelectedByPlayer:(BOOL)byPlayer andOpponent:(BOOL)byOpponent

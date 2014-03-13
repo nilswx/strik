@@ -30,6 +30,7 @@
 @property (readonly) STKMatch *match;
 @property (readonly) STKMatchController *matchController;
 @property (readonly) STKGameScene *gameScene;
+@property (readonly) STKBoard *board;
 
 @end
 
@@ -89,7 +90,50 @@
 
 - (void)handleBoardUpdates:(STKIncomingMessage *)message
 {
+	// First remove old tiles
+	int removedTilesCount = [message readByte];
+	if(removedTilesCount > 0)
+	{
+		// Tiles are removed as a group
+		NSMutableArray *tilesToRemove = [NSMutableArray array];
+		
+		for(int i = 0; i < removedTilesCount; i++)
+		{
+			STKTile *tile = [self.board tileWithTileId:[message readByte]];
+			if(tile)
+			{
+				[tilesToRemove addObject:tile];
+			}
+		}
+		
+		// And remove tiles from board
+		[self.board removeTiles:tilesToRemove];
+	}
 	
+	// And perhaps add some new!
+	int newTilesCount = [message readByte];
+	if(newTilesCount > 0)
+	{
+		// New tiles are added as a group too!
+		NSMutableArray *freshTiles = [NSMutableArray array];
+		
+		for(int i = 0; i < newTilesCount; i++)
+		{
+			// Get the information for this tile
+			SInt8 tileId = [message readByte];
+			int collumn = [message readByte];
+			char letter = [message readByte];
+			
+			// Create a tile from information
+			STKTile *tile = [STKTile tileForBoard:self.board column:collumn andTileId:tileId];
+			tile.letter = letter;
+			
+			[freshTiles addObject:tile];
+		}
+		
+		// And add em all to the board
+		[self.board addNewTiles:freshTiles];
+	}
 }
 
 - (void)handleWordFound:(STKIncomingMessage *)message
@@ -166,6 +210,11 @@
 - (STKGameScene *)gameScene
 {
 	return self.scene;
+}
+
+- (STKBoard *)board
+{
+	return self.match.board;
 }
 
 @end

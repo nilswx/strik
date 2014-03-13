@@ -21,6 +21,9 @@
 #import "STKHomeController.h"
 #import "STKGameController.h"
 
+#import "STKFriend.h"
+#import "STKFacebookController.h"
+
 @interface STKMatchController()
 
 @end
@@ -32,6 +35,7 @@
     [self routeNetMessagesOf:ANNOUNCE_MATCH to:@selector(announcedMatch:)];
 	[self routeNetMessagesOf:QUEUE_ENTERED to:@selector(enteredQueue:)];
 	[self routeNetMessagesOf:QUEUE_EXITED to:@selector(exitedQueue:)];
+	[self routeNetMessagesOf:CHALLENGE to:@selector(handleChallenge:)];
 }
 
 - (void)exitMatch
@@ -134,6 +138,23 @@
 		
 		// Say we're good to go!
 		[self sendNetMessage:[STKOutgoingMessage withOp:PLAYER_READY]];
+	}
+}
+
+- (void)handleChallenge:(STKIncomingMessage*)message
+{
+	// Is player Facebook linked?
+	STKFacebookController* facebook = self.core[@"facebook"];
+	if(facebook.isServerLinked)
+	{
+		// Known friend?
+		STKFriend* friend = [facebook friendByPlayerId:[message readInt]];
+		if(friend)
+		{
+			// TODO: ask user to accept yes/no
+			// On 'yes', issue a counter CHALLENGE_PLAYER [playerId] to accept? ('no' = don't send anything)
+			NSLog(@"Received a new match challenge from '%@' (%@)", friend.name, friend.fullName);
+		}
 	}
 }
 

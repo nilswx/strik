@@ -14,6 +14,8 @@
 
 #import "NSObject+Observer.h"
 
+#define SELECTION_ANIMATION_TIME 0.5
+
 @interface STKTileNode()
 
 // The tile for this node
@@ -27,6 +29,9 @@
 
 // The background
 @property CCNodeColor *background;
+
+// When this flag is set we are animating!
+@property (nonatomic) BOOL isAnimating;
 
 @end
 
@@ -54,13 +59,14 @@
 
 - (void)tile:(STKTile *)tile valueChangedForIsRemoved:(NSNumber *)isRemoved
 {
-    if([isRemoved boolValue])
+	// Only remove now when we are not animating anything else
+    if([isRemoved boolValue] && !self.isAnimating)
     {
         [self animateToRemovedState];
     }
 }
 
-- (void)tile:(STKTile *)tile valueChangedForSelectedBy:(STKMatchPlayer *)player
+- (void)tile:(STKTile *)tile valueChangedForSelectedBy:(NSNumber *)player
 {
     // Determine who have selected it
     BOOL byPlayer = [tile isSelectedBy:tile.board.player];
@@ -73,12 +79,11 @@
 #pragma mark animation
 - (void)animateToNormalState
 {
-	NSLog(@"animating to normal state");
+	[self animateToBackgroundColor:[CCColor colorWithWhite:244.0f/255.0f alpha:1] andLabelColor:[CCColor colorWithRed:61.0f/255.0f green:60.0f/255.0f blue:62.0f/255.0f]];
 }
 
 - (void)animateToRemovedState
 {
-	self.background.color = [CCColor redColor];
 	[self removeFromParent];
 	[self.boardNode.backgroundPhysicsWorld addChild:self];
 }
@@ -92,13 +97,55 @@
 	}
 	else
 	{
-		NSLog(@"Amimating to selection by player %d and opponent %d", byPlayer, byOpponent);
+		if(byPlayer)
+		{
+			[self animateToBackgroundColor:PLAYER_ONE_COLOR andLabelColor:[CCColor whiteColor]];
+		}
+		else if(byOpponent)
+		{
+			[self animateToBackgroundColor:PLAYER_TWO_COLOR andLabelColor:[CCColor whiteColor]];
+		}
 	}
 }
 
 - (void)dealloc
 {
 	[self removeAsObserverForAllModels];
+}
+
+#pragma mark CCACtion getters (for lazy loading)
+- (void)animateToBackgroundColor:(CCColor *)backgroundColor andLabelColor:(CCColor *)labelColor
+{
+	// Setting flag for animating
+	self.isAnimating = YES;
+	
+	// Putting the block at the end for the animation so we no when we stopped animating
+	CCActionCallBlock *animationCompleted = [CCActionCallBlock actionWithBlock:^{
+		self.isAnimating = NO;
+	}];
+	
+	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[[self selectActionWithColor:backgroundColor], animationCompleted]];
+	
+	// Can't run the action on the element itself, it should be on label and background
+	[self.background runAction:sequence];
+	[self.letterLabel runAction:[self selectActionWithColor:labelColor]];
+}
+
+- (CCAction *)selectActionWithColor:(CCColor *)color
+{
+	CCActionTintTo *tintToAction = [CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:color];
+	return tintToAction;
+}
+
+- (void)setIsAnimating:(BOOL)isAnimating
+{
+	_isAnimating = isAnimating;
+	
+	// We should be removed but we were busy animating!
+	if(!isAnimating && self.tile.isRemoved)
+	{
+		[self animateToRemovedState];
+	}
 }
 
 @end

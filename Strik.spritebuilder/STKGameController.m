@@ -157,6 +157,8 @@
 		STKTile *tile = [self.board tileWithTileId:tileId];
 		if(tile)
 		{
+			// Select the tile by the player
+			[tile selectFor:player];
 			[tilesForWord addObject:tile];
 		}
 	}

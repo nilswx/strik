@@ -46,6 +46,9 @@
 // The physics world
 @property CCPhysicsNode *physicsWorld;
 
+// The background physics world
+@property CCPhysicsNode *backgroundPhysicsWorld;
+
 // The scale action, created when first accesing property
 @property (nonatomic) CCAction *scaleAction;
 
@@ -56,8 +59,9 @@
 #pragma mark init
 - (void)sceneLoaded
 {
-	// The board node needs access to the physics world, so we can move spawning of tiles the the board node instead of the scene
+	// The board node needs access to the physics world and background physics world, so we can move spawning of tiles the the board node instead of the scene
 	self.boardNode.physicsWorld = self.physicsWorld;
+	self.boardNode.backgroundPhysicsWorld = self.backgroundPhysicsWorld;
 }
 
 - (void)startTimer
@@ -98,6 +102,16 @@
 {
 	self.currentTime = match.gameTime;
 	[self setTime:self.currentTime ofTotalTime:match.gameTime];
+}
+
+- (void)player:(STKMatchPlayer *)player valueChangedForScore:(NSNumber *)score
+{
+	self.playerOneScore.text = [NSString stringWithFormat:@"%d", [score intValue]];
+}
+
+- (void)opponent:(STKMatchPlayer *)opponent valueChangedForScore:(NSNumber *)score
+{
+	self.playerTwoScore.text = [NSString stringWithFormat:@"%d", [score intValue]];
 }
 
 #pragma mark time handling
@@ -167,7 +181,9 @@
 	// Stop listening to old match if we are
 	if(_match)
 	{
-		[self removeAsObserverForModel:match];
+		[self removeAsObserverForModel:_match];
+		[self removeAsObserverForModel:_match.player];
+		[self removeAsObserverForModel:_match.opponent];
 	}
 	
 	_match = match;
@@ -176,6 +192,8 @@
 	if(_match)
 	{
 		[self observeModel:match];
+		[self observeModel:match.player];
+		[self observeModel:match.opponent];
 	}
 }
 

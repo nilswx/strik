@@ -43,6 +43,103 @@
 										<key>baseClass</key>
 										<string>CCPhysicsNode</string>
 										<key>children</key>
+										<array/>
+										<key>customClass</key>
+										<string></string>
+										<key>displayName</key>
+										<string>falling-tiles-physics</string>
+										<key>memberVarAssignmentName</key>
+										<string>_backgroundPhysicsWorld</string>
+										<key>memberVarAssignmentType</key>
+										<integer>1</integer>
+										<key>properties</key>
+										<array>
+											<dict>
+												<key>name</key>
+												<string>name</string>
+												<key>type</key>
+												<string>StringSimple</string>
+												<key>value</key>
+												<string></string>
+											</dict>
+											<dict>
+												<key>name</key>
+												<string>position</string>
+												<key>type</key>
+												<string>Position</string>
+												<key>value</key>
+												<array>
+													<real>0.0</real>
+													<real>0.0</real>
+													<integer>0</integer>
+													<integer>0</integer>
+													<integer>0</integer>
+												</array>
+											</dict>
+											<dict>
+												<key>name</key>
+												<string>contentSize</string>
+												<key>type</key>
+												<string>Size</string>
+												<key>value</key>
+												<array>
+													<real>1</real>
+													<real>1</real>
+													<integer>2</integer>
+													<integer>2</integer>
+												</array>
+											</dict>
+											<dict>
+												<key>name</key>
+												<string>anchorPoint</string>
+												<key>type</key>
+												<string>Point</string>
+												<key>value</key>
+												<array>
+													<real>0.0</real>
+													<real>0.0</real>
+												</array>
+											</dict>
+											<dict>
+												<key>name</key>
+												<string>scale</string>
+												<key>type</key>
+												<string>ScaleLock</string>
+												<key>value</key>
+												<array>
+													<real>1</real>
+													<real>1</real>
+													<false/>
+													<integer>0</integer>
+												</array>
+											</dict>
+											<dict>
+												<key>name</key>
+												<string>gravity</string>
+												<key>type</key>
+												<string>Point</string>
+												<key>value</key>
+												<array>
+													<real>0.0</real>
+													<real>-2500</real>
+												</array>
+											</dict>
+											<dict>
+												<key>name</key>
+												<string>sleepTimeThreshold</string>
+												<key>type</key>
+												<string>Float</string>
+												<key>value</key>
+												<real>0.5</real>
+											</dict>
+										</array>
+										<key>selected</key>
+										<true/>
+									</dict>
+									<dict>
+										<key>baseClass</key>
+										<string>CCPhysicsNode</string>
+										<key>children</key>
 										<array>
 											<dict>
 												<key>baseClass</key>
@@ -194,7 +291,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCPhysicsNode</string>
+										<string>board-physics</string>
 										<key>memberVarAssignmentName</key>
 										<string>_physicsWorld</string>
 										<key>memberVarAssignmentType</key>
@@ -268,7 +365,7 @@
 												<key>value</key>
 												<array>
 													<real>0.0</real>
-													<real>-200</real>
+													<real>-1500</real>
 												</array>
 											</dict>
 											<dict>
@@ -280,8 +377,6 @@
 												<real>0.5</real>
 											</dict>
 										</array>
-										<key>selected</key>
-										<true/>
 									</dict>
 								</array>
 								<key>customClass</key>

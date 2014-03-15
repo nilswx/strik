@@ -7,6 +7,7 @@
 //
 
 #import "STKTileNode.h"
+#import "STKBoardNode.h"
 
 #import "STKTile.h"
 #import "STKBoard.h"
@@ -16,22 +17,31 @@
 @interface STKTileNode()
 
 // The tile for this node
-@property STKTile *tile;
+@property (weak) STKTile *tile;
+
+// The board node where this tile is on
+@property (weak) STKBoardNode *boardNode;
 
 // The letter label
 @property CCLabelTTF *letterLabel;
+
+// The background
+@property CCNodeColor *background;
 
 @end
 
 @implementation STKTileNode
 
-+ (id)newTileNodeWithTile:(STKTile *)tile
++ (id)newTileNodeWithTile:(STKTile *)tile andBoardNode:(STKBoardNode *)boardNode
 {
 	STKTileNode *tileNode = (STKTileNode *)[CCBReader load:@"Game Scene/Tile.ccbi"];
 	
 	// Set the tile and listen for changes
 	tileNode.tile = tile;
 	[tileNode observeModel:tile];
+	
+	// Set the board node
+	tileNode.boardNode = boardNode;
 	
 	return tileNode;
 }
@@ -68,7 +78,9 @@
 
 - (void)animateToRemovedState
 {
+	self.background.color = [CCColor redColor];
 	[self removeFromParent];
+	[self.boardNode.backgroundPhysicsWorld addChild:self];
 }
 
 - (void)animateToSelectedByPlayer:(BOOL)byPlayer andOpponent:(BOOL)byOpponent

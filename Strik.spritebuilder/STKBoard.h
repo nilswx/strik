@@ -60,6 +60,9 @@ typedef NS_ENUM(int8_t, STKBoardDirection)
 - (void)removeTile:(STKTile *)tile;
 - (void)removeTiles:(NSArray *)tiles;
 
+// Animate found tiles
+- (void)wordFoundWithTiles:(NSArray *)tiles byPlayer:(STKMatchPlayer *)player;
+
 // Determine the relative position of the tile seen from the other tile. E.g if you stand on "other tile" which direction do you have to look to see the tile?
 // Works only for direct neightbors!
 - (STKBoardDirection)directionFromTile:(STKTile *)originTile toTile:(STKTile *)tile;

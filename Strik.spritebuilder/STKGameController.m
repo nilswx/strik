@@ -146,8 +146,23 @@
 	NSString* word = [message readStr];
 	int points = [message readInt];
 	
-	// TODO: read the tile IDs, animate tiles into word, play sound, etc etc
 	NSLog(@"MatchGameScene: %@ found %@ (%d points)", player.info.name, word, points);
+	
+	// Get all the tiles for this word
+	NSMutableArray *tilesForWord = [NSMutableArray array];
+	int numberOfTiles = [message readByte];
+	for(int i = 0; i < numberOfTiles; i++)
+	{
+		SInt8 tileId = [message readByte];
+		STKTile *tile = [self.board tileWithTileId:tileId];
+		if(tile)
+		{
+			[tilesForWord addObject:tile];
+		}
+	}
+	
+	// Animate word found
+	[self.board wordFoundWithTiles:tilesForWord byPlayer:player];
 	
 	// Boost the score
 	player.score += points;

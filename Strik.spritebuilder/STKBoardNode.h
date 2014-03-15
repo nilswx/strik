@@ -18,4 +18,7 @@
 // The physics world, tiles should be spawned in here
 @property (weak) CCPhysicsNode *physicsWorld;
 
+// When a tile is removed, move it foromt he physicsWorld to the background Physicis World, it will fall out of screen
+@property (weak) CCPhysicsNode *backgroundPhysicsWorld;
+
 @end

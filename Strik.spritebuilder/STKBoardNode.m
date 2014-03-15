@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 @interface STKBoardNode()
 
 // The background node
-@property CCPhysicsNode *background;
+@property CCNodeColor *background;
 
 // The first drop for all tiles shows all tiles where they should be instead of dropping them all down
 @property BOOL isFirstDrop;
@@ -43,7 +43,11 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// The initial drop places tiles at the bottom, so you won't see them fall
 	self.isFirstDrop = YES;
 	
+	// Add the board lines
 	[self addBoardLines];
+	
+	// Remove tiles who are in the background physicis world and off screen (clear it at a rate of 5fps)
+	[self schedule:@selector(clearBackgroundPhysicsWorld) interval:1.0f/5.0f];
 }
 
 - (void)addBoardLines
@@ -132,7 +136,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 		for(STKTile *tile in tiles)
 		{
 			// Create a new tile node for this tile
-			STKTileNode *tileNode = [STKTileNode newTileNodeWithTile:tile];
+			STKTileNode *tileNode = [STKTileNode newTileNodeWithTile:tile andBoardNode:self];
 			
 			// Get the tile size
 			CGSize tileSize = [tileNode contentSizeInPoints];
@@ -152,6 +156,23 @@ typedef NS_ENUM(NSInteger, zIndex)
 			// Increase Y Position for this collumn (so we can stack)
 			yPosition += tileSize.height;
 			[yPositions setObject:[NSNumber numberWithFloat:yPosition] atIndexedSubscript:tile.column];
+		}
+	}
+}
+
+- (void)clearBackgroundPhysicsWorld
+{
+	// Clearing nodes from the background physics world when they are outside of its bounding box
+	
+	// You can't enumerate over the same array and remove items, so creating a copy first
+	NSArray *copy = [NSArray arrayWithArray:self.backgroundPhysicsWorld.children];
+	for(CCNode *node in copy)
+	{
+		// Determine if the node is outside the bounds of parent
+		if(!CGRectIntersectsRect(node.boundingBox, self.backgroundPhysicsWorld.boundingBox))
+		{
+			// Remove it from parent when it is
+			[node removeFromParent];
 		}
 	}
 }

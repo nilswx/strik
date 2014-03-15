@@ -240,9 +240,9 @@
 				<key>displayName</key>
 				<string>background</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_background</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -368,19 +368,19 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>0.0</real>
-					<real>0.0</real>
-				</array>
-				<array>
-					<real>59.078125</real>
+					<real>14.7734375</real>
 					<real>0.0</real>
 				</array>
 				<array>
-					<real>59.078125</real>
+					<real>45.85546875</real>
+					<real>0.0</real>
+				</array>
+				<array>
+					<real>45.85546875</real>
 					<real>64.5</real>
 				</array>
 				<array>
-					<real>0.0</real>
+					<real>14.7734375</real>
 					<real>64.5</real>
 				</array>
 			</array>

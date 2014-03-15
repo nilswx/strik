@@ -112,6 +112,12 @@
 	}
 }
 
+// Animate found tiles
+- (void)wordFoundWithTiles:(NSArray *)tiles byPlayer:(STKMatchPlayer *)player
+{
+	NSLog(@"Tiles for word: %@", tiles);
+}
+
 #pragma Information about Tiles
 - (int)rowForTile:(STKTile *)tile
 {

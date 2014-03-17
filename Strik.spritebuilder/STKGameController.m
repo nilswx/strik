@@ -152,6 +152,9 @@
 	NSString* word = [message readStr];
 	int points = [message readInt];
 	
+	// Boost the score
+	player.score += points;
+	
 	NSLog(@"MatchGameScene: %@ found %@ (%d points)", player.info.name, word, points);
 	
 	// Get all the tiles for this word
@@ -171,9 +174,6 @@
 	
 	// Animate word found
 	[self.board wordFoundWithTiles:tilesForWord byPlayer:player];
-	
-	// Boost the score
-	player.score += points;
 }
 
 - (void)matchDidStart:(STKIncomingMessage *)message

@@ -17,9 +17,14 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 @interface STKLevelNode()
 
+// The background circle
 @property CCDrawNode *backgroundCircle;
 
+// The label which holds the contens
 @property CCLabelTTF *label;
+
+// The scale action for animation
+@property (nonatomic) CCAction *scaleAction;
 
 @end
 
@@ -52,6 +57,18 @@ typedef NS_ENUM(NSInteger, zIndex)
 	}
 }
 
+- (void)setText:(NSString *)text animated:(BOOL)animated
+{
+	// First set text
+	self.text = text;
+	
+	// And animate a bit
+	if(animated)
+	{
+		[self runAction:self.scaleAction];
+	}
+}
+
 - (void)setText:(NSString *)text
 {
 	_text = text;
@@ -69,11 +86,8 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 		[self addChild:self.label];
 	}
-	else
-	{
-		self.label.string = text;
-	}
-
+	
+	self.label.string = text;
 }
 
 - (void)setFontColor:(CCColor *)fontColor
@@ -86,6 +100,24 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	// Substract 2px from the size so it wil be not cut of with aliassing
 	return (self.contentSize.width / 2) - 2;
+}
+
+- (CCAction *)scaleAction
+{
+	if(!_scaleAction)
+	{
+		// First scale up
+		CCActionScaleTo *scaleUp = [CCActionScaleTo actionWithDuration:0.25f scale:1.3f];
+		CCActionEaseElasticOut *scaleUpEased = [CCActionEaseElasticOut actionWithAction:scaleUp period:1.0f];
+		
+		// Then scale down
+		CCActionScaleTo *scaleDown = [CCActionScaleTo actionWithDuration:0.25f scale:1.0f];
+		CCActionEaseElasticOut *scaleDownEased = [CCActionEaseElasticOut actionWithAction:scaleDown period:1.0f];
+		// And combine
+		_scaleAction = [CCActionSequence actionWithArray:@[scaleUpEased, scaleDownEased]];
+	}
+	
+	return _scaleAction;
 }
 
 @end

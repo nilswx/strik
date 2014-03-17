@@ -91,14 +91,28 @@
 	[self setTime:self.currentTime ofTotalTime:match.gameTime];
 }
 
-- (void)player:(STKMatchPlayer *)player valueChangedForScore:(NSNumber *)score
+- (void)matchPlayer:(STKMatchPlayer *)matchPlayer valueChangedForScore:(NSNumber *)score
 {
-	self.playerOneScore.text = [NSString stringWithFormat:@"%d", [score intValue]];
-}
+	NSString *newScore = [NSString stringWithFormat:@"%d", matchPlayer.score];
+	
+	// Only animate when the score is not 0 (e.g not the first time)
+	BOOL animated = YES;
+	if(matchPlayer.score == 0)
+	{
+		animated = NO;
+	}
 
-- (void)opponent:(STKMatchPlayer *)opponent valueChangedForScore:(NSNumber *)score
-{
-	self.playerTwoScore.text = [NSString stringWithFormat:@"%d", [score intValue]];
+	// Update player one
+	if(matchPlayer == self.match.player)
+	{
+		[self.playerOneScore setText:newScore animated:animated];
+	}
+	// Update player two
+	else
+	{
+		[self.playerTwoScore setText:newScore animated:animated];
+	}
+
 }
 
 #pragma mark time handling

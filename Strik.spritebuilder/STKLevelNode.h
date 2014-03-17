@@ -19,4 +19,7 @@
 // And the contents of the label
 @property (nonatomic) NSString *text;
 
+// You can also have a neat little animation!
+- (void)setText:(NSString *)text animated:(BOOL)animated;
+
 @end

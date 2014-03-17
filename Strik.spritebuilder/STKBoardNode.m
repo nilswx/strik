@@ -21,8 +21,8 @@
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
-	Z_INDEX_BOARD_LINE,
-	Z_INDEX_TILE_CONTAINER
+	Z_INDEX_TILE_CONTAINER,
+	Z_INDEX_BOARD_LINE
 };
 
 @interface STKBoardNode()

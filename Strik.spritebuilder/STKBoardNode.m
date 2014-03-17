@@ -17,7 +17,7 @@
 #define BOARD_LINE_COLOR [CCColor colorWithWhite:0 alpha:0.3f]
 
 // Falling speed per second in UI points
-#define FALLING_SPEED 1000
+#define FALLING_SPEED 500
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 	// Set touch enabled
 	self.userInteractionEnabled = YES;
+	self.userSelectionEnabled = YES;
 	
 	// The initial drop places tiles at the bottom, so you won't see them fall
 	self.isFirstDrop = YES;
@@ -246,44 +247,50 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (void)touchUpdatedAtLocation:(CGPoint)location
 {
-	// Only continue when we are touching inside the tile container box
-	if(CGRectContainsPoint(self.tileContainer.boundingBox, location))
+	if(self.userSelectionEnabled)
 	{
-		// Get the tile for current location
-		STKTile *tile = [self tileAtLocation:location];
-		
-		// You can't select a tile the same time as an opponent (since the opponent now allready played the word when you receive the selection)
-		if(![tile isSelectedBy:self.board.opponent])
+		// Only continue when we are touching inside the tile container box
+		if(CGRectContainsPoint(self.tileContainer.boundingBox, location))
 		{
-			STKTileNode *node = tile.node;
+			// Get the tile for current location
+			STKTile *tile = [self tileAtLocation:location];
 			
-			// Don't update the selection mulitple times for the same tile node
-			if(self.lastTileNode != node)
+			// You can't select a tile the same time as an opponent (since the opponent now allready played the word when you receive the selection)
+			if(![tile isSelectedBy:self.board.opponent])
 			{
-				// Determine if we should select the next node based on the angle of entrance (better for diagonal detection)
-				BOOL shouldSelectTileNode = ((self.lastTileNode == nil) || [self tileNode:node testAngleInPoint:location]);
-				if(shouldSelectTileNode)
+				STKTileNode *node = tile.node;
+				
+				// Don't update the selection mulitple times for the same tile node
+				if(self.lastTileNode != node)
 				{
-					// Select the tile
-					[self.board selectTile:tile];
-					
-					// Set new node as last node
-					self.lastTileNode = node;
+					// Determine if we should select the next node based on the angle of entrance (better for diagonal detection)
+					BOOL shouldSelectTileNode = ((self.lastTileNode == nil) || [self tileNode:node testAngleInPoint:location]);
+					if(shouldSelectTileNode)
+					{
+						// Select the tile
+						[self.board selectTile:tile];
+						
+						// Set new node as last node
+						self.lastTileNode = node;
+					}
 				}
 			}
 		}
-	}
-	// When going outside of the bounding box we end the touches
-	else
-	{
-		[self touchEndedAtLocation:location];
+		// When going outside of the bounding box we end the touches
+		else
+		{
+			[self touchEndedAtLocation:location];
+		}
 	}
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
 {
+	// Clear last tile node
 	self.lastTileNode = nil;
-	[self.board clearSelectionFor:self.board.player];
+	
+	// And send selection to the server
+	[self.board sendSelection];
 }
 
 - (BOOL)tileNode:(STKTileNode *)tileNode testAngleInPoint:(CGPoint)point
@@ -363,7 +370,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (STKTile *)tileAtLocation:(CGPoint)location
 {
-	// Get the node for this position
+	// Get the tile for this position
 	STKTilePosition position;
 	position.column = floor(location.x / TILE_SIZE);
 	position.row = floor(location.y / TILE_SIZE);
@@ -375,4 +382,5 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	[self removeAsObserverForAllModels];
 }
+
 @end

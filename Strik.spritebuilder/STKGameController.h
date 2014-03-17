@@ -8,6 +8,8 @@
 
 #import "STKSceneController.h"
 
+@class NSStack;
+
 @interface STKGameController : STKSceneController
 
 @end

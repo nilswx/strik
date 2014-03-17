@@ -126,17 +126,12 @@
 		self.isAnimating = NO;
 	}];
 	
-	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[[self selectActionWithColor:backgroundColor], animationCompleted]];
+	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[[CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:backgroundColor], animationCompleted]];
 	
 	// Can't run the action on the element itself, it should be on label and background
 	[self.background runAction:sequence];
-	[self.letterLabel runAction:[self selectActionWithColor:labelColor]];
-}
-
-- (CCAction *)selectActionWithColor:(CCColor *)color
-{
-	CCActionTintTo *tintToAction = [CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:color];
-	return tintToAction;
+//	[self.letterLabel runAction:[CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:labelColor]];
+	self.letterLabel.fontColor = labelColor;
 }
 
 - (void)setIsAnimating:(BOOL)isAnimating

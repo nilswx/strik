@@ -23,7 +23,7 @@ typedef NS_ENUM(int8_t, STKBoardDirection)
 	STKBoardDirectionUnknown = 8
 };
 
-@class STKMatchPlayer, NSStack;
+@class STKMatchPlayer, NSStack, STKGameController;
 
 @interface STKBoard : STKModel
 
@@ -40,6 +40,9 @@ typedef NS_ENUM(int8_t, STKBoardDirection)
 // The tiles currently selected by the player
 @property (readonly) NSStack *selectedTiles;
 
+// The game controller for this board
+@property (weak) STKGameController *gameController;
+
 // Init
 - (id)initWithSize:(CGSize)size player:(STKMatchPlayer *)player andOpponent:(STKMatchPlayer *)opponent;
 + (id)boardWithSize:(CGSize)size player:(STKMatchPlayer *)player andOpponent:(STKMatchPlayer *)opponent;
@@ -55,6 +58,9 @@ typedef NS_ENUM(int8_t, STKBoardDirection)
 // Select tiles
 - (void)selectTile:(STKTile *)tile;
 - (void)clearSelectionFor:(STKMatchPlayer*)player;
+
+// Send selection to server
+- (void)sendSelection;
 
 // Remove tiles
 - (void)removeTile:(STKTile *)tile;

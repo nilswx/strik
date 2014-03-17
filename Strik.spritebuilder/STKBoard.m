@@ -9,6 +9,9 @@
 #import "STKBoard.h"
 
 #import "NSStack.h"
+#import "STKOutgoingMessage.h"
+
+#import "STKGameController.h"
 
 @interface STKBoard()
 
@@ -212,5 +215,24 @@
 	[self.selectedTiles clear];
 }
 
+#pragma mark networking
+- (void)sendSelection
+{
+	if(self.selectedTiles.count > 0)
+	{
+		// Create the outgoing message
+		STKOutgoingMessage *message = [STKOutgoingMessage withOp:SELECT_TILES];
+		[message appendByte:self.selectedTiles.count];
+		
+		STKTile *tile;
+		while((tile = [self.selectedTiles pop]) != nil)
+		{
+			[message appendByte:tile.tileId];
+		}
+		
+		// Send it out to the great wide world, bye bye!
+		[self.gameController sendNetMessage:message];
+	}
+}
 
 @end

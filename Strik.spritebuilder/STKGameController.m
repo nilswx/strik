@@ -16,6 +16,8 @@
 #import "STKBoard.h"
 #import "STKTile.h"
 
+#import "NSStack.h"
+
 #import "STKMatchController.h"
 
 #import "STKIncomingMessage.h"
@@ -52,6 +54,7 @@
 	[self routeNetMessagesOf:BOARD_INIT to:@selector(setupBoard:)];
     [self routeNetMessagesOf:BOARD_UPDATE to:@selector(handleBoardUpdates:)];
     [self routeNetMessagesOf:WORD_FOUND to:@selector(handleWordFound:)];
+	[self routeNetMessagesOf:WORD_NOT_FOUND to:@selector(clearSelection:)];
 }
 
 #pragma mark networking
@@ -62,6 +65,9 @@
 	
 	STKBoard *board = [STKBoard boardWithSize:boardSize player:self.match.player andOpponent:self.match.opponent];
 	self.match.board = board;
+
+	// Add self to board
+	board.gameController = self;
 	
 	// Add board to board node
 	self.gameScene.boardNode.board = board;
@@ -211,8 +217,16 @@
 	}
 }
 
-#pragma mark user events
+- (void)clearSelection:(STKIncomingMessage *)message
+{
+	// Clear the selection
+	[self.board clearSelectionFor:self.match.player];
+	
+	// And allow selection again!
+	self.gameScene.boardNode.userSelectionEnabled = YES;
+}
 
+#pragma mark user events
 // For easier access
 - (STKMatch *)match
 {

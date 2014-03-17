@@ -12,7 +12,6 @@
 
 @property (nonatomic, readonly) int count;
 
-
 - (void)pushObject: (id)object;
 - (id)peek;
 - (id)peekAtIndex:(int)index;

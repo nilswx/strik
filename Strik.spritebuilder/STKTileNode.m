@@ -45,6 +45,9 @@
 	tileNode.tile = tile;
 	[tileNode observeModel:tile];
 	
+	// Set tilenode on tile
+	tile.node = tileNode;
+	
 	// Set the board node
 	tileNode.boardNode = boardNode;
 	
@@ -145,6 +148,11 @@
 	{
 		[self animateToRemovedState];
 	}
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<STKTileNode with tile> %@", [self.tile description]];
 }
 
 @end

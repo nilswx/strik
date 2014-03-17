@@ -36,6 +36,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 // The tile container (every tile must be placed in here)
 @property CCNode *tileContainer;
 
+// The last tile node is used for "directions" from a tile to another tile with detection for improved direction detection
+@property (nonatomic) STKTileNode *lastTileNode;
+
 @end
 
 @implementation STKBoardNode
@@ -44,6 +47,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 - (void)onEnter
 {
 	[super onEnter];
+
+	// Set touch enabled
+	self.userInteractionEnabled = YES;
 	
 	// The initial drop places tiles at the bottom, so you won't see them fall
 	self.isFirstDrop = YES;
@@ -215,6 +221,154 @@ typedef NS_ENUM(NSInteger, zIndex)
 			tileNode.position = CGPointMake(tileNode.position.x, currentY - distanceToMove);
 		}
 	}
+}
+
+#pragma mark User interaction
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+	[self touchUpdatedAtLocation:[touch locationInNode:self.tileContainer]];
+}
+
+- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+	[self touchUpdatedAtLocation:[touch locationInNode:self.tileContainer]];
+}
+
+- (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+	[self touchEndedAtLocation:[touch locationInNode:self.tileContainer]];
+}
+
+- (void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+	[self touchEndedAtLocation:[touch locationInNode:self.tileContainer]];
+}
+
+- (void)touchUpdatedAtLocation:(CGPoint)location
+{
+	// Only continue when we are touching inside the tile container box
+	if(CGRectContainsPoint(self.tileContainer.boundingBox, location))
+	{
+		// Get the tile for current location
+		STKTile *tile = [self tileAtLocation:location];
+		
+		// You can't select a tile the same time as an opponent (since the opponent now allready played the word when you receive the selection)
+		if(![tile isSelectedBy:self.board.opponent])
+		{
+			STKTileNode *node = tile.node;
+			
+			// Don't update the selection mulitple times for the same tile node
+			if(self.lastTileNode != node)
+			{
+				// Determine if we should select the next node based on the angle of entrance (better for diagonal detection)
+				BOOL shouldSelectTileNode = ((self.lastTileNode == nil) || [self tileNode:node testAngleInPoint:location]);
+				if(shouldSelectTileNode)
+				{
+					// Select the tile
+					[self.board selectTile:tile];
+					
+					// Set new node as last node
+					self.lastTileNode = node;
+				}
+			}
+		}
+	}
+	// When going outside of the bounding box we end the touches
+	else
+	{
+		[self touchEndedAtLocation:location];
+	}
+}
+
+- (void)touchEndedAtLocation:(CGPoint)location
+{
+	self.lastTileNode = nil;
+	[self.board clearSelectionFor:self.board.player];
+}
+
+- (BOOL)tileNode:(STKTileNode *)tileNode testAngleInPoint:(CGPoint)point
+{
+	CGRect centerOfLastTileNode = [self.lastTileNode boundingBox];
+	
+	// The angles are in radian, radian does not start at "the north" but "east"
+	float angle = atan2f(point.y - centerOfLastTileNode.origin.y - centerOfLastTileNode.size.height / 2, point.x - centerOfLastTileNode.origin.x - centerOfLastTileNode.size.width / 2);
+	
+	// Determine the position on the board of the tile which wants to be selected viewing from the last selected tile
+	STKBoardDirection direction = [self.board directionFromTile:self.lastTileNode.tile toTile:tileNode.tile];
+	
+	// Based on the angle and the relative position we can now say if we want the selection or not.
+	return [self angleDirection:angle isCorrectForDirection:direction];
+}
+
+- (BOOL)angleDirection:(float)angle isCorrectForDirection:(STKBoardDirection)direction
+{
+	// Each direction (north, nortwest, ...) is two times one eighth PI (smaller and larger than)
+	float eighthPI = M_PI / 8;
+	
+	// A static array containing the angles in radian for each direction (got it with help from: http://paulboxley.com/blog/2012/05/angles) somehow it is inverted here?
+	static float WIND_DIRECTIONS[8] = {
+		// North
+		M_PI / 4 * 2,
+		// North East
+		M_PI / 4 * 1,
+		// East
+		0,
+		// South East
+		-M_PI / 4 * 1,
+		// South
+		-M_PI / 4 * 2,
+		// South West
+		-M_PI / 4 * 3,
+		// West
+		-M_PI,
+		// North West
+		M_PI / 4 * 3
+	};
+	
+	// With these the algorithm can be tweaked, higher numbers mean a wider angle hit detection, the sum of the numbers should be 2
+	static float DIAGONAL_MULTIPLIER = 1.4;
+	static float HORIZONTAL_VERTICAL_MULTIPLIER = 0.6;
+	
+	// Yeah, West is the strange kid on the block
+	float calculationAngle = angle;
+	if(direction == STKBoardDirectionWest)
+	{
+		// West can be positive or negative, this is how we solve that. We make it an always negative number
+		calculationAngle = ABS(angle) * -1;
+	}
+	
+	// Get the direction fromt the array for the current wind direction and check if the angle is correct.
+	float directionAngle = WIND_DIRECTIONS[direction];
+	
+	// Apply the direction tweaking
+	float angleSize;
+	if(direction == STKBoardDirectionNorth || direction == STKBoardDirectionEast || direction == STKBoardDirectionSouth || direction == STKBoardDirectionWest)
+	{
+		angleSize = eighthPI * HORIZONTAL_VERTICAL_MULTIPLIER;
+	}
+	else
+	{
+		angleSize = eighthPI * DIAGONAL_MULTIPLIER;
+	}
+	
+	if(calculationAngle >= directionAngle - angleSize  && calculationAngle <= directionAngle + angleSize)
+	{
+		return YES;
+	}
+	else
+	{
+		return NO;
+	}
+}
+
+- (STKTile *)tileAtLocation:(CGPoint)location
+{
+	// Get the node for this position
+	STKTilePosition position;
+	position.column = floor(location.x / TILE_SIZE);
+	position.row = floor(location.y / TILE_SIZE);
+	
+	return [self.board tileAtPoint:position];
 }
 
 - (void)dealloc

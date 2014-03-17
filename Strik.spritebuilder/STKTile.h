@@ -13,7 +13,7 @@ typedef struct {
     int row;
 } STKTilePosition;
 
-@class STKBoard, STKMatchPlayer;
+@class STKBoard, STKMatchPlayer, STKTileNode;
 
 @interface STKTile : STKModel
 
@@ -32,7 +32,10 @@ typedef struct {
 @property (nonatomic, assign) char letter;
 
 // Determine if it is still on the board
-@property(nonatomic) BOOL isRemoved;
+@property (nonatomic) BOOL isRemoved;
+
+// Will be set when there is a node for this tile
+@property (weak) STKTileNode *node;
 
 // Init
 - (id)initWithBoard:(STKBoard *)board column:(int)column andTileId:(SInt8)tileId;

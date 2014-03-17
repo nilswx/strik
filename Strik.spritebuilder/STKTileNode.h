@@ -8,6 +8,8 @@
 
 #import "CCNode.h"
 
+#define TILE_SIZE 64.5f
+
 @class STKTile, STKBoardNode;
 
 @interface STKTileNode : CCNode

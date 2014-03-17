@@ -18,9 +18,6 @@
 // The board node for this scene
 @property (readonly) STKBoardNode *boardNode;
 
-// The physics world
-@property (readonly) CCPhysicsNode *physicsWorld;
-
 // Call this to start the local timer
 - (void)startTimer;
 

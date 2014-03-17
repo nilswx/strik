@@ -85,7 +85,6 @@
 - (void)animateToRemovedState
 {
 	[self removeFromParent];
-	[self.boardNode.backgroundPhysicsWorld addChild:self];
 }
 
 - (void)animateToSelectedByPlayer:(BOOL)byPlayer andOpponent:(BOOL)byOpponent

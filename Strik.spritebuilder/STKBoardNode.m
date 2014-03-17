@@ -15,12 +15,14 @@
 #import "NSObject+Observer.h"
 
 #define BOARD_LINE_COLOR [CCColor colorWithWhite:0 alpha:0.3f]
-#define LINE_PADDING 64.5f
+
+// Falling speed per second in UI points
+#define FALLING_SPEED 1000
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
-	
-	Z_INDEX_BOARD_LINE
+	Z_INDEX_BOARD_LINE,
+	Z_INDEX_TILE_CONTAINER
 };
 
 @interface STKBoardNode()
@@ -30,6 +32,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 // The first drop for all tiles shows all tiles where they should be instead of dropping them all down
 @property BOOL isFirstDrop;
+
+// The tile container (every tile must be placed in here)
+@property CCNode *tileContainer;
 
 @end
 
@@ -46,14 +51,14 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Add the board lines
 	[self addBoardLines];
 	
-	// Remove tiles who are in the background physicis world and off screen (clear it at a rate of 5fps)
-	[self schedule:@selector(clearBackgroundPhysicsWorld) interval:1.0f/5.0f];
+	// Setup the tile container
+	[self setupTileContainer];
 }
 
 - (void)addBoardLines
 {
 	// Vertical lines
-	for(CGFloat x = LINE_PADDING; x < self.contentSizeInPoints.width; x += LINE_PADDING)
+	for(CGFloat x = TILE_SIZE; x < self.contentSizeInPoints.width; x += TILE_SIZE)
 	{
 		CCNodeColor *verticalLine = [CCNodeColor nodeWithColor:BOARD_LINE_COLOR];
 
@@ -68,7 +73,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 	}
 	
 	// Horizontal lines
-	for(CGFloat y = LINE_PADDING; y < self.contentSizeInPoints.height; y += LINE_PADDING)
+	for(CGFloat y = TILE_SIZE; y < self.contentSizeInPoints.height; y += TILE_SIZE)
 	{
 		CCNodeColor *horizontalLine = [CCNodeColor nodeWithColor:BOARD_LINE_COLOR];
 		
@@ -81,6 +86,20 @@ typedef NS_ENUM(NSInteger, zIndex)
 		
 		[self addChild:horizontalLine];
 	}
+}
+
+- (void)setupTileContainer
+{
+	// Create the tilecontainer
+	self.tileContainer = [CCNode node];
+	self.tileContainer.contentSizeType = CCSizeTypeNormalized;
+	self.tileContainer.contentSize = CGSizeMake(1, 1);
+	
+	self.tileContainer.anchorPoint = CGPointMake(0, 0);
+	
+	self.tileContainer.zOrder = Z_INDEX_TILE_CONTAINER;
+	
+	[self addChild:self.tileContainer];
 }
 
 - (void)setBoard:(STKBoard *)board
@@ -113,7 +132,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 		// The initial tiles are drawn where they should be
 		if(self.isFirstDrop && tiles)
 		{
-			startY = LINE_PADDING;
+			startY = TILE_SIZE;
 			
 			// There is only one first drop
 			self.isFirstDrop = NO;
@@ -151,7 +170,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 			tileNode.position = CGPointMake(xPosition, yPosition);
 			
 			// And add it to the physics world
-			[self.physicsWorld addChild:tileNode];
+			[self.tileContainer addChild:tileNode];
 			
 			// Increase Y Position for this collumn (so we can stack)
 			yPosition += tileSize.height;
@@ -160,19 +179,40 @@ typedef NS_ENUM(NSInteger, zIndex)
 	}
 }
 
-- (void)clearBackgroundPhysicsWorld
+#pragma mark Moving of tiles
+- (void)update:(CCTime)delta
 {
-	// Clearing nodes from the background physics world when they are outside of its bounding box
+	[self moveTiles:delta];
+}
+
+- (void)moveTiles:(CCTime)delta
+{
+	// Note: The tiles are added bottom left (the tiles anchor point is top left) so 0.0 would just move the tile bottom left ouff screen tile height.tile height would move it at bottom left in screen
 	
-	// You can't enumerate over the same array and remove items, so creating a copy first
-	NSArray *copy = [NSArray arrayWithArray:self.backgroundPhysicsWorld.children];
-	for(CCNode *node in copy)
+	// The maximum distance to move (when possible)
+	CGFloat maxDistanceToMove = delta * FALLING_SPEED;
+	
+	// Itterate over every tile and move it the required distance
+	for(STKTileNode *tileNode in self.tileContainer.children)
 	{
-		// Determine if the node is outside the bounds of parent
-		if(!CGRectIntersectsRect(node.boundingBox, self.backgroundPhysicsWorld.boundingBox))
+		STKTile *tile = tileNode.tile;
+		
+		CGFloat currentY = tileNode.position.y;
+		
+		// This is the minimum Y a tile can have for its position (e.g on the bottom of the screen or just above another node)
+		CGFloat minY = (tile.row + 1) * TILE_SIZE;
+		
+		// We can still move a certain distance
+		if(currentY > minY)
 		{
-			// Remove it from parent when it is
-			[node removeFromParent];
+			// Determine the space available to move
+			CGFloat currentSpaceToMove = currentY - minY;
+			
+			// Calculating the distance to move based on maximum space to move at this speed and the available space
+			CGFloat distanceToMove = MIN(maxDistanceToMove, currentSpaceToMove);
+			
+			// And move given distance
+			tileNode.position = CGPointMake(tileNode.position.x, currentY - distanceToMove);
 		}
 	}
 }

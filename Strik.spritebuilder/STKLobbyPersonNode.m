@@ -29,55 +29,106 @@
 
 - (void)setFriend:(STKFriend *)friend
 {
+	if(_friend)
+	{
+		[self removeAsObserverForModel:_friend];
+	}
+	
 	_friend = friend;
 	
 	if(friend)
 	{
+		[self observeModel:friend];
+	}
+}
+
+#pragma mark model listening
+- (void)friend:(STKFriend *)friend valueChangedForIsOnline:(NSNumber *)isOnline
+{
+	[self updatePlayerStatus];
+}
+
+- (void)friend:(STKFriend *)friend valueChangedForIsInMatch:(NSNumber *)isInMatch
+{
+	[self updatePlayerStatus];
+}
+
+- (void)updatePlayerStatus
+{
+	// Set ring colors
+	if(self.friend.isOnline && self.friend.isInMatch)
+	{
+		self.avatarNode.borderColor = PLAYER_BUSY_COLOR;
+	}
+	else if(self.friend.isOnline)
+	{
+		self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
+	}
+	else
+	{
+		self.avatarNode.borderColor = PLAYER_OFFLINE_COLOR;
+	}
+	
+	// Change icon based on status
+	if(self.friend.isPlayer)
+	{
+		// Remove icon (cant challenge)
+		if(!self.friend.isOnline || self.friend.isInMatch)
+		{
+			self.icon.opacity = 0;
+		}
+		// Challenge icon
+		else
+		{
+			self.icon.opacity = 1;
+			self.icon.texture = [CCTexture textureWithFile:@"Lobby Scene/arrow-icon.png"];
+		}
+	}
+	// Invite icon
+	else
+	{
+		self.icon.opacity = 1;
+		self.icon.texture = [CCTexture textureWithFile:@"Lobby Scene/plus-icon.png"];
+	}
+}
+
+- (void)friend:(STKFriend *)friend valueChangedForAvatar:(STKAvatar *)avatar
+{
+	self.avatarNode.avatar = friend.avatar;
+}
+
+- (void)friend:(STKFriend *)friend valueChangedForName:(NSString *)name
+{
+	// We have both, so we can set both labels
+	if(friend.name && friend.fullName)
+	{
+		self.playerNameLabel.string = friend.name;
+		self.realNameLabel.string = friend.fullName;
+	}
+	// There is only one, removing the smallest label and centering it
+	else
+	{
+		// Removing the smaller label
+		[self.realNameLabel removeFromParent];
 		
-		// Todo: check for reaallly long names
+		// Centering the bigger label
+		self.playerNameLabel.position = CGPointMake(self.playerNameLabel.position.x, self.playerNameLabel.position.y - 9);
 		
-		// We have both, so we can set both labels
-		if(friend.name && friend.fullName)
+		// Setting the correct text of bigger label
+		if(friend.fullName)
+		{
+			self.playerNameLabel.string = friend.fullName;
+		}
+		else
 		{
 			self.playerNameLabel.string = friend.name;
-			self.realNameLabel.string = friend.fullName;
 		}
-		// There is only one, removing the smallest label and centering it
-		else
-		{
-			// Removing the smaller label
-			[self.realNameLabel removeFromParent];
-
-			// Centering the bigger label
-			self.playerNameLabel.position = CGPointMake(self.playerNameLabel.position.x, self.playerNameLabel.position.y - 9);
-			
-			// Setting the correct text of bigger label
-			if(friend.fullName)
-			{
-				self.playerNameLabel.string = friend.fullName;
-			}
-			else
-			{
-				self.playerNameLabel.string = friend.name;
-			}
-		}
-		
-		// Set ring colors
-		if(friend.isOnline && friend.isInMatch)
-		{
-			self.avatarNode.borderColor = PLAYER_BUSY_COLOR;
-		}
-		else if(friend.isOnline)
-		{
-			self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
-		}
-		else
-		{
-			self.avatarNode.borderColor = PLAYER_OFFLINE_COLOR;
-		}
-		
-		self.avatarNode.avatar = friend.avatar;
 	}
+}
+
+- (void)dealloc
+{
+	[self removeAsObserverForAllModels];
 }
 
 @end

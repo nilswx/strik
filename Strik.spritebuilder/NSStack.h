@@ -11,6 +11,7 @@
 @interface NSStack : NSObject
 
 @property (nonatomic, readonly) int count;
+@property (nonatomic, readonly) NSArray *internalData;
 
 - (void)pushObject: (id)object;
 - (id)peek;

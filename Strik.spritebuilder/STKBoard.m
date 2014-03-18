@@ -179,30 +179,24 @@
 #pragma mark Selection of Tiles
 - (void)selectTile:(STKTile *)tile
 {
-	// Already select it clientside (no latency!)
-	[tile selectFor:self.player];
-	
-	// Maintain selected tiles here
-	[self.selectedTiles pushObject:tile];
-
-	// Todo: fix this, so we can "go back" on selection
-	//    if(tile != [self.selectedTiles peek])
-	//    {
-	//        // Determine if the tile is the tile before the current tile. If so deselect the last tile on the stack
-	//        if(tile == [self.selectedTiles peekAtIndex:self.selectedTiles.count - 2])
-	//        {
-	//            STKTile *lastTile = [self.selectedTiles pop];
-	////            [tile selectWithState:STKTileStateSelectedByPlayer];
-	//
-	//            // Clear it from the tile buffer
-	//            [self.tileSelectionBuffer deselectTile:lastTile];
-	//        }
-	//        // It is a new tile, mark it as selected
-	//        else
-	//        {
-	
-	//        }
-	//    }
+	if(tile != [self.selectedTiles peek])
+	{
+		// Determine if the tile is the tile before the current tile. If so deselect the last tile on the stack
+		if(tile == [self.selectedTiles peekAtIndex:self.selectedTiles.count - 2])
+		{
+			STKTile *lastTile = [self.selectedTiles pop];
+			[lastTile deselectFor:self.player];
+		}
+		// It is a new tile, mark it as selected
+		else
+		{
+			// Already select it clientside (no latency!)
+			[tile selectFor:self.player];
+			
+			// Maintain selected tiles here
+			[self.selectedTiles pushObject:tile];
+		}
+	}
 }
 
 - (void)clearSelectionFor:(STKMatchPlayer*)player
@@ -226,14 +220,17 @@
 		STKOutgoingMessage *message = [STKOutgoingMessage withOp:SELECT_TILES];
 		[message appendByte:self.selectedTiles.count];
 		
-		STKTile *tile;
-		while((tile = [self.selectedTiles pop]) != nil)
+		// Itterate of tiles
+		for(STKTile *tile in self.selectedTiles.internalData)
 		{
 			[message appendByte:tile.tileId];
 		}
 		
 		// Send it out to the great wide world, bye bye!
 		[self.gameController sendNetMessage:message];
+		
+		// and clear
+		[self.selectedTiles clear];
 	}
 }
 

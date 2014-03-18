@@ -70,4 +70,9 @@
 	return [self.stackData description];
 }
 
+- (NSArray *)internalData
+{
+	return self.stackData;
+}
+
 @end

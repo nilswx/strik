@@ -15,6 +15,9 @@
 #import "GridNode.h"
 
 #import "STKMatchController.h"
+#import "STKHomeController.h"
+
+#import "STKDirector.h"
 
 @interface STKLobbyController()
 
@@ -32,13 +35,23 @@
 
 - (void)sceneCreated
 {
-	// These will be filled when needed
-	self.friendsNodes = [NSMutableArray array];
-	self.facebookNodes = [NSMutableArray array];
-	
-	// Get the facebook users and friends
-	self.facebookUsers = [self getSortedFacebookUsers];
-	self.friends = [self getSortedFriends];
+	// Determine if we can show friends or not
+	STKFacebookController *facebookController = self.core[@"facebook"];
+
+	// We can show friends!
+	if(facebookController.isServerLinked)
+	{
+		// Show the friends on the scene
+		[(STKLobbyScene *)(self.scene) showFriends];
+		
+		// These will be filled when needed with friends
+		self.friendsNodes = [NSMutableArray array];
+		self.facebookNodes = [NSMutableArray array];
+		
+		// Get the facebook users and friends
+		self.facebookUsers = [self getSortedFacebookUsers];
+		self.friends = [self getSortedFriends];
+	}
 }
 
 # pragma mark Loading friends
@@ -81,7 +94,25 @@
 {
 	// Scrolling back to top when tapping top bar
 	STKLobbyScene *lobbyScene = self.scene;
-	[lobbyScene.friendsGridNode.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+	
+	if(lobbyScene.friendsGridNode)
+	{
+		[lobbyScene.friendsGridNode.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+	}
+}
+
+#pragma mark User interaction
+- (void)onNoFriendsButton:(CCButton *)sender
+{
+	// Go back to home and show settings
+	STKHomeController *homeSceneController = [STKHomeController new];
+	
+	// Make sure we display the settings after transition
+	homeSceneController.shouldDisplaySettingsAfterEnterTransition = YES;
+	
+	// And start transition
+	STKDirector *director = self.core[@"director"];
+	[director presentScene:homeSceneController withTransition:[CCTransition transitionRevealWithDirection:CCTransitionDirectionRight duration:0.25f]];
 }
 
 #pragma mark Grid datasource

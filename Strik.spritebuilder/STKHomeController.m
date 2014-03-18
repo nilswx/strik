@@ -56,6 +56,16 @@
 
 @implementation STKHomeController
 
+- (void)enterTransitionDidFinish
+{
+	// Determine if we should display settings after transition completes
+	if(self.shouldDisplaySettingsAfterEnterTransition)
+	{
+		// Ad a small delay, it looks odd without
+		[self performSelector:@selector(onSettingsButton:) withObject:nil afterDelay:0.5f];
+	}
+}
+
 - (void)sceneCreated
 {
 	// Listen for name changes

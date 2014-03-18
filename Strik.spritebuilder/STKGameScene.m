@@ -18,7 +18,7 @@
 
 #import "STKBoardNode.h"
 
-#define RED_WARNING_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f]
+#define RED_WARNING_COLOR PLAYER_OFFLINE_COLOR
 
 @interface STKGameScene()
 

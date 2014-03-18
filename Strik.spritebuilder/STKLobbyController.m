@@ -126,7 +126,6 @@
 	return 1;
 }
 
-
 - (int)rowCount
 {
 	int rowCount = (int)(self.facebookUsers.count + self.friends.count);

@@ -42,7 +42,7 @@
 - (void)onEnter
 {
 	[super onEnter];
-	[self displayNodes];
+	[self reload];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

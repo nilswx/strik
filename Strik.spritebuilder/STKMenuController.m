@@ -13,9 +13,9 @@
 
 #import "STKHomeController.h"
 
-#import "STKOutgoingMessage.h"
-
 #import "STKAlertView.h"
+
+#import "STKMatchController.h"
 
 @interface STKMenuController()
 
@@ -41,9 +41,8 @@
 
 - (void)onConfirmedForfeit:(id)sender
 {
-	// First send a message to the server so the other person can respond
-	STKOutgoingMessage *message = [[STKOutgoingMessage alloc] initWithOp:EXIT_MATCH];
-	[self sendNetMessage:message];
+	STKMatchController *matchController = self.core[@"match"];
+	[matchController exitMatch];
 }
 
 - (STKDirector *)director

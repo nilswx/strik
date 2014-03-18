@@ -30,6 +30,7 @@
 #import "STKDirector+Modal.h"
 
 #import "STKMenuController.h"
+#import "STKEndGameController.h"
 
 @interface STKGameController()
 
@@ -191,34 +192,25 @@
 {
 	if(self.match)
 	{
-		// Determine winner
-		STKMatchPlayer* winner = [self.match playerByID:[message readByte]];
-		
-		// Clear match
-		STKMatchController *matchController = self.core[@"match"];
-		
-		// Aaaand it's gone
-		matchController.match = nil;
-		NSLog(@"Match: ended!");
-		
-		
-		// Show statistics from the match
-		// STKDirector *director = self.core[@"director"];
-		// Todo: present match ended scene
-		//		[director presentScene:[STKMatchEndedScene class]];
-		
-		// Show result alert
-		NSString* resultMessage;
-		if(winner)
+		// Same message structure comes along twice
+		for(int i = 0; i < 2; i++)
 		{
-			resultMessage = [NSString stringWithFormat:@"%@ won!", winner.info.name];
-		}
-		else
-		{
-			resultMessage = @"Draw!";
+			// Get correct player for this part of message
+			STKMatchPlayer *player = [self.match playerByID:[message readByte]];
+					
+			// Set match values
+			player.wordsFound = [message readInt];
+			player.lettersFound = [message readInt];
 		}
 		
-		[[STKAlertView alertWithTitle:@"Match Ended" andMessage:resultMessage] show];
+		// Get the winner
+		self.match.winner = [self.match playerByID:[message readByte]];
+
+		// Go to the match ended scene
+		STKDirector *director = self.core[@"director"];
+		
+		// Display the end game controller
+		[director presentScene:[STKEndGameController new] withTransition:[CCTransition transitionCrossFadeWithDuration:0.25f]];
 	}
 }
 

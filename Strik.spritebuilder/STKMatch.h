@@ -17,6 +17,9 @@
 @property (nonatomic, strong) STKMatchPlayer *player;
 @property (nonatomic, strong) STKMatchPlayer *opponent;
 
+// The winner will be set here at the end of the match (nil is tie)
+@property STKMatchPlayer *winner;
+
 @property (nonatomic, assign) int gameTime;
 @property (nonatomic, assign) int countdownTime;
 

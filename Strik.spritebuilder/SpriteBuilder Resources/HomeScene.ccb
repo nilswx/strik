@@ -172,8 +172,8 @@
 										<string>Size</string>
 										<key>value</key>
 										<array>
-											<real>31</real>
-											<real>45.5</real>
+											<real>41</real>
+											<real>55.5</real>
 											<integer>0</integer>
 											<integer>0</integer>
 										</array>
@@ -541,8 +541,8 @@
 										<string>Size</string>
 										<key>value</key>
 										<array>
-											<real>28</real>
-											<real>28</real>
+											<real>38</real>
+											<real>38</real>
 											<integer>0</integer>
 											<integer>0</integer>
 										</array>

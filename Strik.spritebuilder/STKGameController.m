@@ -26,6 +26,11 @@
 
 #import "STKAlertView.h"
 
+#import "STKDirector.h"
+#import "STKDirector+Modal.h"
+
+#import "STKMenuController.h"
+
 @interface STKGameController()
 
 // For easier access
@@ -227,6 +232,12 @@
 }
 
 #pragma mark user events
+- (void)onMenuButton:(CCButton *)button
+{
+	STKDirector *director = self.core[@"director"];
+	[director overlayScene:[STKMenuController new]];
+}
+
 // For easier access
 - (STKMatch *)match
 {

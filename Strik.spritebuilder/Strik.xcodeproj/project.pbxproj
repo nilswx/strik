@@ -80,6 +80,8 @@
 		83C4424418BE18DB00B417C9 /* CSEEmboss.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 83C4423F18BE18CC00B417C9 /* CSEEmboss.fsh */; };
 		83D32FD218C0B02D00772575 /* STKHolePunchedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D32FD118C0B02D00772575 /* STKHolePunchedButton.m */; };
 		83D32FD618C0C9C900772575 /* STKSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D32FD518C0C9C900772575 /* STKSettings.m */; };
+		83D87DB318D88DFD0083443E /* STKMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D87DB218D88DFD0083443E /* STKMenuScene.m */; };
+		83D87DB618D88E0A0083443E /* STKMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D87DB518D88E0A0083443E /* STKMenuController.m */; };
 		83EDE5FE18C3654400D3B78D /* STKAvatarPickerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EDE5FD18C3654400D3B78D /* STKAvatarPickerScene.m */; };
 		83EDE60118C3655D00D3B78D /* STKAvatarPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EDE60018C3655D00D3B78D /* STKAvatarPickerController.m */; };
 		83EDE60518C38F2500D3B78D /* PagedScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EDE60418C38F2500D3B78D /* PagedScrollNode.m */; };
@@ -269,6 +271,10 @@
 		83D32FD118C0B02D00772575 /* STKHolePunchedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHolePunchedButton.m; sourceTree = "<group>"; };
 		83D32FD418C0C9C900772575 /* STKSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSettings.h; sourceTree = "<group>"; };
 		83D32FD518C0C9C900772575 /* STKSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSettings.m; sourceTree = "<group>"; };
+		83D87DB118D88DFD0083443E /* STKMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMenuScene.h; sourceTree = "<group>"; };
+		83D87DB218D88DFD0083443E /* STKMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMenuScene.m; sourceTree = "<group>"; };
+		83D87DB418D88E0A0083443E /* STKMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMenuController.h; sourceTree = "<group>"; };
+		83D87DB518D88E0A0083443E /* STKMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMenuController.m; sourceTree = "<group>"; };
 		83EDE5FC18C3654400D3B78D /* STKAvatarPickerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatarPickerScene.h; sourceTree = "<group>"; };
 		83EDE5FD18C3654400D3B78D /* STKAvatarPickerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAvatarPickerScene.m; sourceTree = "<group>"; };
 		83EDE5FF18C3655D00D3B78D /* STKAvatarPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAvatarPickerController.h; sourceTree = "<group>"; };
@@ -770,6 +776,7 @@
 		8393789818B602E70007BDE4 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				83D87DAF18D88DD30083443E /* Menu */,
 				8331F60F18D1B62700ECEDCA /* Models */,
 				8379201618CDE50F0094F3AC /* Nodes */,
 				8379200918CDB9A10094F3AC /* STKGameController.h */,
@@ -795,6 +802,17 @@
 				83C4424118BE18CC00B417C9 /* CSEEmboss.m */,
 			);
 			name = Shaders;
+			sourceTree = "<group>";
+		};
+		83D87DAF18D88DD30083443E /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				83D87DB118D88DFD0083443E /* STKMenuScene.h */,
+				83D87DB218D88DFD0083443E /* STKMenuScene.m */,
+				83D87DB418D88E0A0083443E /* STKMenuController.h */,
+				83D87DB518D88E0A0083443E /* STKMenuController.m */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		83EDE5FA18C3652400D3B78D /* AvatarPicker */ = {
@@ -1076,8 +1094,10 @@
 				8393789F18B60A340007BDE4 /* STKConnectScene.m in Sources */,
 				8383A63F18B762AC003816BF /* CCNode+Animation.m in Sources */,
 				8393787F18B602500007BDE4 /* STKAlertView.m in Sources */,
+				83D87DB618D88E0A0083443E /* STKMenuController.m in Sources */,
 				835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */,
 				8379200B18CDB9A10094F3AC /* STKGameController.m in Sources */,
+				83D87DB318D88DFD0083443E /* STKMenuScene.m in Sources */,
 				83EDE61018C5D5EE00D3B78D /* STKAvatarPage.m in Sources */,
 				830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */,
 				8383A65118B79E58003816BF /* STKAchievementsController.m in Sources */,

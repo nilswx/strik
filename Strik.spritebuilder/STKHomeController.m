@@ -41,6 +41,8 @@
 #define TIMELINE_ITEM_SUBJECT_KEY @"subject"
 #define TIMELINE_ITEM_DATE_KEY @"date"
 
+#define MAX_NAME_LENGTH 22
+
 @interface STKHomeController()
 
 // The grid for the timeline
@@ -141,6 +143,9 @@
 	STKSessionController *sessionController = self.core[@"session"];
 	
 	STKAlertView *alertView = [STKAlertView promptWithTitle:NSLocalizedString(@"Change Your Name", @"Change your name title") message:NSLocalizedString(@"You can change the name people see in Strik. Think of a good one!", @"Change your name prompt text") defaultValue:sessionController.player.name target:self okSelector:@selector(confirmedUsernameChange:) andCancelSelector:nil];
+	
+	alertView.textFieldLimit = MAX_NAME_LENGTH;
+	
 	[alertView show];
 }
 

@@ -20,6 +20,9 @@ typedef NS_ENUM(int8_t, STKAlertButtonType)
 @property (nonatomic, assign) SEL okSelector;
 @property (nonatomic, assign) SEL cancelSelector;
 
+// The alert type for this alert
+@property AlertType alertType;
+
 @end
 
 
@@ -35,6 +38,10 @@ typedef NS_ENUM(int8_t, STKAlertButtonType)
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message
 {
 	self = [self initWithTitle:title message:message cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", @"OK button alert")];
+	if(self)
+	{
+		self.alertType = AlertTypeAlert;
+	}
 	return self;
 }
 
@@ -46,6 +53,8 @@ typedef NS_ENUM(int8_t, STKAlertButtonType)
 		self.target = target;
 		self.okSelector = yesSelector;
 		self.cancelSelector = noSelector;
+		
+		self.alertType = AlertTypeConfirmation;
 	}
 	return self;
 }
@@ -64,6 +73,8 @@ typedef NS_ENUM(int8_t, STKAlertButtonType)
 		UITextField *textField = [self textFieldAtIndex:0];
 		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 		textField.placeholder = defaultValue;
+		
+		self.alertType = AlertTypePrompt;
 	}
 	return self;
 }
@@ -127,6 +138,31 @@ typedef NS_ENUM(int8_t, STKAlertButtonType)
 			[self.target performSelector:self.cancelSelector withObject:nil];
 		}
 	}
+}
+
+#pragma mark Text field limit
+- (BOOL)textField:(UITextField *) textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+	
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+	
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+	
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+	
+    return newLength <= self.textFieldLimit || returnKey;
+}
+
+- (void)setTextFieldLimit:(int)textFieldLimit
+{
+	// Can only set max length on prompt alerts
+	NSAssert(self.alertType == AlertTypePrompt, @"Can only set text field limit on prompt type alerts.");
+
+	_textFieldLimit = textFieldLimit;
+	
+	UITextField *textField = [self textFieldAtIndex:0];
+	textField.delegate = self;
 }
 
 @end

@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STKAlertView : UIAlertView <UIAlertViewDelegate>
+@interface STKAlertView : UIAlertView <UIAlertViewDelegate, UITextFieldDelegate>
+
+typedef NS_ENUM(NSInteger, AlertType)
+{
+	AlertTypeAlert,
+	AlertTypePrompt,
+	AlertTypeConfirmation
+};
+
+// Can only be set when field is a prompt
+@property (nonatomic) int textFieldLimit;
+
+// Returns the type of alert
+@property (readonly) AlertType alertType;
 
 - (id)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message;

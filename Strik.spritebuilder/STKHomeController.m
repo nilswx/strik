@@ -36,6 +36,8 @@
 #import "STKDirector.h"
 #import "STKDirector+Modal.h"
 
+#import "STKAvatarNode.h"
+
 #define TIMELINE_ITEM_ACTOR_KEY @"actor"
 #define TIMELINE_ITEM_ACTION_KEY @"action"
 #define TIMELINE_ITEM_SUBJECT_KEY @"subject"
@@ -227,6 +229,19 @@
 		int timestamp = [nodeInfo[TIMELINE_ITEM_DATE_KEY] intValue];
 		
 		timelineItem = [STKTimelineItemNode newTimelineItemNodeWithActor:actor action:action subject:subject andTimestamp:timestamp];
+		
+		// Get local player and compare, so the correct color for the person can be set
+		STKSessionController *sessionController = self.core[@"session"];
+		if(sessionController.player == actor)
+		{
+			timelineItem.avatarNode.borderColor = PLAYER_ONE_COLOR;
+			timelineItem.avatarNode.backgroundColor = PLAYER_ONE_COLOR;
+		}
+		else
+		{
+			timelineItem.avatarNode.borderColor = PLAYER_TWO_COLOR;
+			timelineItem.avatarNode.backgroundColor = PLAYER_TWO_COLOR;
+		}
 		
 		// Add to cache
 		[self.timelineItemNodes addObject:timelineItem];

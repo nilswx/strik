@@ -17,7 +17,12 @@ typedef NS_ENUM(NSInteger, TimelinePositionType)
 	TimelinePositionTypeOnly
 };
 
+@class STKAvatarNode;
+
 @interface STKTimelineItemNode : CCNode
+
+// The avatar node 
+@property (readonly) STKAvatarNode *avatarNode;
 
 // Based on the property the line will be changes so the top and bottom have the correct lines
 @property (nonatomic, assign) TimelinePositionType timelinePosition;

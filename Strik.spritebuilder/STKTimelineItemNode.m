@@ -69,11 +69,7 @@
 }
 
 - (void)player:(STKPlayer *)player valueChangedForAvatar:(STKAvatar *)avatar
-{
-	// Todo: Move this to player status and change based on player status
-	self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
-	self.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
-	
+{	
 	self.avatarNode.avatar = player.avatar;
 }
 

@@ -218,6 +218,8 @@
 #pragma mark networking
 - (void)sendSelection
 {
+	NSLog(@"Sending words %@", self.selectedTiles);
+	
 	if(self.selectedTiles.count > 0)
 	{
 		// Create the outgoing message

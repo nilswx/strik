@@ -65,4 +65,9 @@
 	[self.stackData removeAllObjects];
 }
 
+- (NSString *)description
+{
+	return [self.stackData description];
+}
+
 @end

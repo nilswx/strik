@@ -200,7 +200,7 @@
 		if(friend)
 		{
 			// Such a sad notification
-			[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]];
+			[[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]] show];
 		}
 	}
 }

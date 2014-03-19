@@ -406,19 +406,6 @@
 							</dict>
 							<dict>
 								<key>name</key>
-								<string>color</string>
-								<key>type</key>
-								<string>Color3</string>
-								<key>value</key>
-								<array>
-									<real>0.23137255012989044</real>
-									<real>0.27843138575553894</real>
-									<real>0.29411765933036804</real>
-									<real>1</real>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
 								<string>dimensions</string>
 								<key>type</key>
 								<string>Size</string>
@@ -453,9 +440,9 @@
 								<string>Color4</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
-									<real>1</real>
+									<real>0.23921568691730499</real>
+									<real>0.23529411852359772</real>
+									<real>0.24313725531101227</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -818,8 +805,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

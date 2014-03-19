@@ -29,7 +29,7 @@
 	[core installComponent:connection withKey:@"connection"];
 	
 	// Begin connecting (async)...
-	[connection beginConnectToHost:@"192.168.178.20" onPort:13381
+	[connection beginConnectToHost:SERVER_HOST onPort:SERVER_PORT
 	 
 	 // Connected!
 	 onConnect:^

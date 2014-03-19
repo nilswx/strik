@@ -17,5 +17,6 @@
 - (void)requestNewMatch;
 - (void)playerIsReady;
 - (void)exitMatch;
+- (void)clearMatch;
 
 @end

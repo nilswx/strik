@@ -131,6 +131,11 @@
 	}
 }
 
+- (void)clearMatch
+{
+	self.match = nil;
+}
+
 - (void)playerIsReady
 {
 	if(self.match)

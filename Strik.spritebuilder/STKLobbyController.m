@@ -217,11 +217,24 @@
 	{
 		// Get the friend
 		STKFriend* friend = node.friend;
-		
-		// Challenge him/her (and animate etc)
-		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
-		[msg appendInt:friend.playerId];
-		[self sendNetMessage:msg];
+		if(friend.isPlayer)
+		{
+			// Available?
+			if(friend.isOnline && !friend.isInMatch)
+			{
+				NSLog(@"Lobby: challenge #%d (%@)", friend.playerId, friend.fullName);
+				
+				// Challenge him/her (and animate etc)
+				STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
+				[msg appendInt:friend.playerId];
+				[self sendNetMessage:msg];
+			}
+		}
+		else
+		{
+			// TODO: invite
+			NSLog(@"Lobby: invite Facebook user #%lld (%@)", friend.userId, friend.fullName);
+		}
 	}
 }
 

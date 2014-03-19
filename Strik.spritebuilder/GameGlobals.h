@@ -26,3 +26,6 @@
 #define PLAYER_ONLINE_COLOR [CCColor colorWithRed:34.0f/255.0f green:189.0f/255.0f blue:60.0f/255.0f]
 #define PLAYER_BUSY_COLOR [CCColor colorWithRed:241.0f/255.0f green:192.0f/255.0f blue:75.0f/255.0f]
 #define PLAYER_OFFLINE_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f]
+
+// Player names (emojis count for multiple chars0
+#define MAX_NAME_LENGTH 32

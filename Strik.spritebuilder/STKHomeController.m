@@ -43,8 +43,6 @@
 #define TIMELINE_ITEM_SUBJECT_KEY @"subject"
 #define TIMELINE_ITEM_DATE_KEY @"date"
 
-#define MAX_NAME_LENGTH 22
-
 @interface STKHomeController()
 
 // The grid for the timeline

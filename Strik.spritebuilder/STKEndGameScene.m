@@ -8,7 +8,7 @@
 
 #import "STKEndGameScene.h"
 
-#import "STKProgressNode.h"
+#import "STKSplittedProgressNode.h"
 #import "STKAvatarNode.h"
 
 @interface STKEndGameScene()
@@ -22,9 +22,9 @@
 @property STKAvatarNode *playerTwoAvatar;
 
 // The progress bars
-@property STKProgressNode *wordsFoundProgress;
-@property STKProgressNode *lettersFoundProgress;
-@property STKProgressNode *scoreProgress;
+@property STKSplittedProgressNode *wordsFoundProgress;
+@property STKSplittedProgressNode *lettersFoundProgress;
+@property STKSplittedProgressNode *scoreProgress;
 
 // The results label
 @property CCLabelTTF *resultsLabel;
@@ -35,5 +35,12 @@
 @end
 
 @implementation STKEndGameScene
+
+
+- (NSArray *)allProgressNodes
+{
+	// Todo: change me some day
+	return @[self.wordsFoundProgress, self.lettersFoundProgress, self.scoreProgress];
+}
 
 @end

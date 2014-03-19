@@ -19,16 +19,17 @@
 typedef NS_ENUM(NSInteger, zIndex)
 {
 	Z_BORDER,
-	Z_LIGHT_SHADE,
-	Z_DARK_SHADE
+	Z_BACKGROUND_SHADE,
+	Z_FILL_SHADE,
+	Z_LABEL
 };
 
 @interface STKProgressNode()
 
 // The nodes which make up the progress bar
 @property CCSprite9Slice *borderNode;
-@property CCSprite9Slice *lightShadeNode;
-@property CCSprite9Slice *darkShadeNode;
+@property CCSprite9Slice *backgroundShadeNode;
+@property CCSprite9Slice *fillShadeNode;
 
 // The label
 @property (nonatomic) CCLabelTTF *valueLabel;
@@ -37,11 +38,11 @@ typedef NS_ENUM(NSInteger, zIndex)
 @property int value;
 @property int totalValue;
 
-// The passed time for the animation
+// The passed time
 @property double passedTime;
 
-// The completionblock which will get called when set
-@property (strong) AnimationCompletion completionBlock;
+// And the completion block
+@property (copy) AnimationCompletion completionBlock;
 
 @end
 
@@ -54,6 +55,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 	if(!self.borderNode)
 	{
 		self.borderNode = [self createFillingRoundedRect];
+		self.borderNode.zOrder = Z_BORDER;
 	}
 	
 	if(borderColor)
@@ -62,39 +64,42 @@ typedef NS_ENUM(NSInteger, zIndex)
 	}
 }
 
-- (void)setLightShade:(CCColor *)lightShade
+- (void)setBackgroundShade:(CCColor *)backgroundShade
 {
-	_lightShade = lightShade;
+	_backgroundShade = backgroundShade;
 	
-	if(!self.lightShadeNode)
+	if(!self.backgroundShadeNode)
 	{
-		self.lightShadeNode = [self createFillingRoundedRect];
-		self.lightShadeNode.contentSize = CGSizeMake(self.contentSize.width - VERTICAL_BORDER_MARGIN, self.contentSize.height - HORIZONTAL_BORDER_MARGIN);
+		self.backgroundShadeNode = [self createFillingRoundedRect];
+		self.backgroundShadeNode.contentSize = CGSizeMake(self.contentSize.width - VERTICAL_BORDER_MARGIN, self.contentSize.height - HORIZONTAL_BORDER_MARGIN);
+		self.backgroundShadeNode.zOrder = Z_BACKGROUND_SHADE;
 	}
 	
-	if(lightShade)
+	if(backgroundShade)
 	{
-		self.lightShadeNode.color = lightShade;
+		self.backgroundShadeNode.color = backgroundShade;
 	}
 }
 
-- (void)setDarkShade:(CCColor *)darkShade
+- (void)setFillShade:(CCColor *)fillShade
 {
-	_darkShade = darkShade;
+	_fillShade = fillShade;
 	
-	if(!self.darkShadeNode)
+	if(!self.fillShadeNode)
 	{
-		self.darkShadeNode = [self createFillingRoundedRect];
-		self.darkShadeNode.contentSize = CGSizeMake(10, self.contentSize.height - HORIZONTAL_BORDER_MARGIN);
+		self.fillShadeNode = [self createFillingRoundedRect];
+		self.fillShadeNode.contentSize = CGSizeMake(10, self.contentSize.height - HORIZONTAL_BORDER_MARGIN);
 
 		// It is easier with a anchor point on the left, since we "anchor" it to the left of the progress bar
-		self.darkShadeNode.anchorPoint = CGPointMake(0, 0);
-		self.darkShadeNode.position = CGPointMake(VERTICAL_BORDER_MARGIN / 2, HORIZONTAL_BORDER_MARGIN / 2);
+		self.fillShadeNode.anchorPoint = CGPointMake(0, 0);
+		self.fillShadeNode.position = CGPointMake(VERTICAL_BORDER_MARGIN / 2, HORIZONTAL_BORDER_MARGIN / 2);
+		
+		self.fillShadeNode.zOrder = Z_FILL_SHADE;
 	}
 	
-	if(darkShade)
+	if(fillShade)
 	{
-		self.darkShadeNode.color = darkShade;
+		self.fillShadeNode.color = fillShade;
 	}
 }
 
@@ -116,34 +121,34 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (void)setValue:(int)value ofTotalValue:(int)totalValue animated:(BOOL)animated
 {
+	[self setValue:value ofTotalValue:totalValue animated:animated withAnimationCompletion:nil];
+}
+
+- (void)setValue:(int)value ofTotalValue:(int)totalValue withAnimationCompletion:(AnimationCompletion)completionBlock
+{
+	[self setValue:value ofTotalValue:totalValue animated:YES withAnimationCompletion:completionBlock];
+}
+
+- (void)setValue:(int)value ofTotalValue:(int)totalValue animated:(BOOL)animated withAnimationCompletion:(AnimationCompletion)completionBlock
+{
 	self.value = value;
 	self.totalValue = totalValue;
 	
 	if(animated)
 	{
-		[self setValue:value ofTotalValue:totalValue withAnimationCompletion:nil];
+		self.completionBlock = completionBlock;
+		
+		// Animate the progress bar there are no "Action blocks" for this, so doing it on the schedule system
+		self.passedTime = 0;
+		[self schedule:@selector(animationTick:) interval:1.0f/60.0f repeat:-1 delay:0];
 	}
 	else
 	{
-		// Set the label
-		self.valueLabel.string = [NSString stringWithFormat:@"%d/%d", self.value, self.totalValue];
-		
-		// Set the progress
-		[self animateProgress:1];
+		[self animate:1];
 	}
 }
 
-- (void)setValue:(int)value ofTotalValue:(int)totalValue withAnimationCompletion:(AnimationCompletion)completionBlock
-{
-	self.completionBlock = completionBlock;
-	
-	// Animate the progress bar there are no "Action blocks" for this, so doing it on the schedule system
-	self.passedTime = 0;
-	[self unschedule:@selector(animate:)];
-	[self schedule:@selector(animate:) interval:1.0f/60.0f repeat:-1 delay:0];
-}
-
-- (void)animate:(CCTime)time
+- (void)animationTick:(CCTime)time
 {
 	// Increment time within animation time range, make sure it does not exceed max
 	self.passedTime += time;
@@ -152,17 +157,13 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Get relative time (eased)
 	float relativeTime = QuadraticEaseOut(self.passedTime / ANIMATION_TIME);
 	
-	// Animate the progress bar
-	[self animateProgress:relativeTime];
-	
-	// Animate the label
-	[self animateLabel:relativeTime];
+	[self animate:relativeTime];
 	
 	// Stop animating when the animation is completed
 	if(self.passedTime == ANIMATION_TIME)
 	{
 		self.passedTime = 0;
-		[self unschedule:@selector(animate:)];
+		[self unschedule:@selector(animationTick:)];
 		
 		// Call the completion block if it is there
 		if(self.completionBlock)
@@ -173,18 +174,32 @@ typedef NS_ENUM(NSInteger, zIndex)
 	}
 }
 
+- (void)animate:(float)relativeTime
+{
+	// Set the label
+	[self animateLabel:relativeTime];
+	
+	// Set the progress
+	[self animateProgress:relativeTime];
+}
+
 - (void)animateProgress:(float)relativeTime
 {
 	// Get the percentage for the bar
 	float percentageForBar = (float)self.value / (float)self.totalValue;
 	
-	// Apply a little easing
-	float easedPercentage = relativeTime * percentageForBar;
+	// Change it based on passed time
+	float timedPercentage = relativeTime * percentageForBar;
 	
-	// Resize the bar
-	CGFloat barWidth = [self fillWidthForValue:easedPercentage];
-	self.darkShadeNode.contentSize = CGSizeMake(barWidth, self.darkShadeNode.contentSize.height);
+	// And resize the bar
+	[self resizeFillShade:timedPercentage];
+}
 
+- (void)resizeFillShade:(CGFloat)relativeSize
+{
+	// Resize the bar
+	CGFloat barWidth = [self fillWidthForValue:relativeSize];
+	self.fillShadeNode.contentSize = CGSizeMake(barWidth, self.fillShadeNode.contentSize.height);
 }
 
 - (void)animateLabel:(float)relativeTime
@@ -197,7 +212,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 - (CGFloat)fillWidthForValue:(float)value
 {
 	float min = 10;
-	float max = self.lightShadeNode.contentSize.width;
+	float max = self.backgroundShadeNode.contentSize.width;
 	
 	float size = max * value;
 	
@@ -208,17 +223,39 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	if(!_valueLabel)
 	{
-		_valueLabel = [CCLabelTTF labelWithString:@"" fontName:@"Global/Fonts/UbuntuTitling-Bold.ttf" fontSize:self.contentSize.height * RELATIVE_FONT_SIZE];
-		_valueLabel.fontColor = [CCColor whiteColor];
-		
-		// Center it
-		_valueLabel.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
-											   self.contentSize.height * self.anchorPoint.y - 1);
-		
-		[self addChild:_valueLabel];
+		_valueLabel = [self createValueLabel];
 	}
 	
 	return _valueLabel;
+}
+
+- (CCLabelTTF *)createValueLabel
+{
+	// Create the label with the correct size, font and color
+	CCLabelTTF *valueLabel = [CCLabelTTF labelWithString:@"" fontName:@"Global/Fonts/UbuntuTitling-Bold.ttf" fontSize:self.contentSize.height * RELATIVE_FONT_SIZE];
+	valueLabel.fontColor = [CCColor whiteColor];
+	
+	// Center it
+	valueLabel.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
+									   self.contentSize.height * self.anchorPoint.y - 1);
+
+	valueLabel.zOrder = Z_LABEL;
+	valueLabel.verticalAlignment = CCVerticalTextAlignmentCenter;
+	valueLabel.horizontalAlignment = CCTextAlignmentCenter;
+	
+	valueLabel.string = [NSString stringWithFormat:@"0"];
+	
+	// Add it as child
+	[self addChild:valueLabel];
+	
+	return valueLabel;
+}
+
+// When called while animating the animation wil stop
+- (void)stopAnimation
+{
+	// Unschedule animation
+	[self unschedule:@selector(animationTick:)];
 }
 
 @end

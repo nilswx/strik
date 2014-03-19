@@ -119,8 +119,8 @@
 	
 	// Progress
 	// Todo: get actual value
-	vsCard.progressNode.lightShade = lightColor;
-	vsCard.progressNode.darkShade = darkColor;
+	vsCard.progressNode.backgroundShade = lightColor;
+	vsCard.progressNode.fillShade = darkColor;
 	
 	[vsCard.progressNode setValue:player.progression.xp ofTotalValue:player.progression.maxExperienceForLevel animated:NO];
 	

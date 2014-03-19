@@ -29,25 +29,40 @@
 	if(self = [super initWithContent:contentNode])
 	{
 		self.dataSource = dataSource;
-		
-		// Detect single tapping
-		UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewWasTapped:)];
-		singleTap.numberOfTapsRequired = 1;
-		singleTap.numberOfTouchesRequired = 1;
-		singleTap.cancelsTouchesInView = YES;
-		[self.scrollView addGestureRecognizer:singleTap];
 	}
 	
 	return self;
+}
+
+- (void)setupScrollView
+{
+	[super setupScrollView];
+	[self setupTapDetection];
+}
+
+- (void)setupTapDetection
+{
+	// Detect single tapping
+	UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewWasTapped:)];
+	
+	singleTap.numberOfTapsRequired = 1;
+	singleTap.numberOfTouchesRequired = 1;
+	singleTap.cancelsTouchesInView = YES;
+	
+	[self.scrollView addGestureRecognizer:singleTap];
 }
 
 - (void)scrollViewWasTapped:(UITapGestureRecognizer *)sender
 {
 	if (sender.state == UIGestureRecognizerStateEnded)
 	{
-		NSLog(@"Scrollview tapped");
+		CGPoint point = [sender locationInView:[[self.scrollView subviews] firstObject]];
+		CGPoint nodeLocation = CGPointMake([self columnForXOffset:point.x], [self rowForYOffset:point.y + self.scrollView.frame.size.height]);
 		
-		// handling code
+		if(self.delegate)
+		{
+			[self.delegate tappedNodeAtColumn:nodeLocation.x andRow:nodeLocation.y];
+		}
 	}
 }
 

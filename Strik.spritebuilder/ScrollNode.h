@@ -19,4 +19,7 @@
 - (void)enableScrolling:(BOOL)enableScrolling;
 - (CGRect)visibleFrame;
 
+#pragma mark Protected
+- (void)setupScrollView;
+
 @end

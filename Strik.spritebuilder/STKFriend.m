@@ -15,4 +15,9 @@
 	return (self.playerId > 0);
 }
 
+- (NSString*)description
+{
+	return [NSString stringWithFormat:@"#%lld (%@)", self.userId, self.fullName];
+}
+
 @end

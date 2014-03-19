@@ -224,7 +224,7 @@
 			// Available?
 			if(friend.isOnline && !friend.isInMatch)
 			{
-				NSLog(@"Lobby: challenge #%d (%@)", friend.playerId, friend.fullName);
+				NSLog(@"Lobby: challenging %@", friend);
 				
 				// Challenge him/her (and animate etc)
 				STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
@@ -234,7 +234,7 @@
 		}
 		else
 		{
-			NSLog(@"Lobby: invite Facebook user #%lld (%@)", friend.userId, friend.fullName);
+			NSLog(@"Lobby: invite Facebook user %@", friend);
 			
 			// Present invite dialog
 			id params = @{@"to": [NSString stringWithFormat:@"%lld", friend.userId]};
@@ -244,16 +244,16 @@
 				{
 					if(error)
 					{
-						NSLog(@"Lobby: could not invite Facebook user! (error=%@)", error);
+						NSLog(@"Lobby: could not invite %@! (error=%@)", friend, error);
 					}
 					else
 					{
-						NSLog(@"Lobby: invited successfully! (error=%@)", error);
+						NSLog(@"Lobby: invited %@ successfully!", friend);
 					}
 				}
 				else
 				{
-					NSLog(@"Lobby: canceled invite.");
+					NSLog(@"Lobby: canceled Facebook invite...");
 				}
 			}];
 		}

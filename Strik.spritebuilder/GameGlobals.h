@@ -11,7 +11,7 @@
 #define SERVER_PORT 13381
 
 // Load balancer (default)
-#define LOADBALANCER_HOST @"strik.it"
+#define LOADBALANCER_HOST @"connect.strik.it"
 #define LOADBALANCER_PORT 80
 
 // Strik 'red'

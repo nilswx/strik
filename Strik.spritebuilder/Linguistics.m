@@ -7,6 +7,8 @@
 //
 
 #import "Linguistics.h"
+
+#import "STKSettings.h"
 #import <NSDate+TimeAgo/NSDate+TimeAgo.h>
 
 @implementation Linguistics
@@ -20,8 +22,15 @@
 + (NSString *)localizedNameFromCountryCode:(NSString *)countryCode
 {
 	// Countrycooooode take me hooooome...
-	// Todo: Get actual code
-	return countryCode;
+	
+	// Get the current language
+	NSString *language = [STKSettings objectForkey:SETTINGS_KEY_LANGUAGE];
+	
+	// Get the locale (contains the country list based on locale :) ) phew!
+	NSLocale *locale = [NSLocale localeWithLocaleIdentifier:language];
+
+	// And return the country name for code
+	return [locale displayNameForKey:NSLocaleCountryCode value:countryCode];
 }
 
 @end

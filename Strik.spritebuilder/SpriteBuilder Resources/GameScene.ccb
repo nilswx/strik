@@ -397,7 +397,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>player-one-label</string>
+						<string>player-two-label</string>
 						<key>memberVarAssignmentName</key>
 						<string>_playerOneLabel</string>
 						<key>memberVarAssignmentType</key>
@@ -457,7 +457,7 @@
 								<string>Text</string>
 								<key>value</key>
 								<array>
-									<string>Valeri Rodent</string>
+									<string>Valerie Rodent</string>
 									<false/>
 								</array>
 							</dict>
@@ -487,19 +487,6 @@
 								<string>Check</string>
 								<key>value</key>
 								<false/>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>color</string>
-								<key>type</key>
-								<string>Color3</string>
-								<key>value</key>
-								<array>
-									<real>0.95686274766921997</real>
-									<real>0.95686274766921997</real>
-									<real>0.95686274766921997</real>
-									<real>1</real>
-								</array>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -537,9 +524,9 @@
 								<string>Color4</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
-									<real>1</real>
+									<real>0.95686274766921997</real>
+									<real>0.95686274766921997</real>
+									<real>0.95686274766921997</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -606,6 +593,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -862,9 +851,9 @@
 								<string>Color4</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
-									<real>1</real>
+									<real>0.95686274766921997</real>
+									<real>0.95686274766921997</real>
+									<real>0.95686274766921997</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -1769,8 +1758,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

@@ -20,6 +20,9 @@
 
 #import "CCNode+Animation.h"
 
+#import "STKDirector.h"
+#import "STKHomeController.h"
+
 #define DISPLAY_WINNER_TIMELINE @"Display Winner"
 
 @interface STKEndGameController()
@@ -112,11 +115,11 @@
 	NSString *endGameResults;
 	
 	// Display winner
-	if(self.match.player.score == self.match.opponent.score)
+	if(self.match.winner == nil)
 	{
 		endGameResults = NSLocalizedString(@"It's a Draw!", nil);
 	}
-	else if(self.match.player.score > self.match.opponent.score)
+	else if(self.match.winner == self.match.player)
 	{
 		endGameResults = NSLocalizedString(@"You Won!", nil);
 	}
@@ -131,7 +134,8 @@
 #pragma mark User interaction
 - (void)onCloseButton:(CCButton *)button
 {
-	NSLog(@"Close please");
+	// Go home
+	[((STKDirector *)(self.core[@"director"])) presentScene:[STKHomeController new] withTransition:[CCTransition transitionCrossFadeWithDuration:0.25f]];
 }
 
 - (void)onRematchButton:(CCButton *)button

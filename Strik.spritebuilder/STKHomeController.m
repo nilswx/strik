@@ -401,7 +401,7 @@
 		}
 		
         // Create it and add it to the array if we could parse the content
-        if(action)
+        if(action && actor)
         {
 			[self.timelineItems addObject:@{
 										   TIMELINE_ITEM_ACTION_KEY: action,

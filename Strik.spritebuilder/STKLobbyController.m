@@ -7,8 +7,10 @@
 //
 
 #import "STKLobbyController.h"
+
 #import "STKHomeScene.h"
 
+#import "STKFriend.h"
 #import "STKFacebookController.h"
 #import "STKLobbyPersonNode.h"
 #import "STKLobbyScene.h"
@@ -209,7 +211,18 @@
 
 - (void)tappedNodeAtColumn:(int)column andRow:(int)row
 {
-	
+	// Get the node
+	STKLobbyPersonNode* node = (STKLobbyPersonNode*)[self nodeForColumn:column andRow:row];
+	if(node)
+	{
+		// Get the friend
+		STKFriend* friend = node.friend;
+		
+		// Challenge him/her (and animate etc)
+		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
+		[msg appendInt:friend.playerId];
+		[self sendNetMessage:msg];
+	}
 }
 
 - (void)handleChallengeOK:(STKIncomingMessage*)msg

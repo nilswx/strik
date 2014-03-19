@@ -19,6 +19,9 @@
 
 #import "STKDirector.h"
 
+#import "STKIncomingMessage.h"
+#import "STKOutgoingMessage.h"
+
 @interface STKLobbyController()
 
 // The nodes to display
@@ -32,6 +35,14 @@
 @end
 
 @implementation STKLobbyController
+
+- (void)componentDidInstall
+{
+	[self routeNetMessagesOf:CHALLENGE_OK to:@selector(handleChallengeOK:)];
+	[self routeNetMessagesOf:CHALLENGE_FAILED to:@selector(handleChallengeFailed:)];
+	[self routeNetMessagesOf:CHALLENGE_REDIRECT to:@selector(handleChallengeRedirect:)];
+	[self routeNetMessagesOf:CHALLENGE_LOCALE_MISMATCH to:@selector(handleChallengeLocaleMismatch:)];
+}
 
 - (void)sceneCreated
 {
@@ -201,6 +212,47 @@
 	}
 	
 	return listNode;
+}
+
+- (void)handleChallengeOK:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		// Challenge was delivered successfully, waiting now...
+	}
+}
+
+- (void)handleChallengeFailed:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		// Challenge could not be delivered
+	}
+}
+
+- (void)handleChallengeRedirect:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		NSString* host = [msg readStr];
+		int port = [msg readInt];
+		
+		// Friend is available, but need to reconnect to specified server and re-challenge him/her
+	}
+}
+
+- (void)handleChallengeLocaleMismatch:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		NSString* requiredLocale = [msg readStr];
+		
+		// Friend is available, but is playing in a different locale. Ask user if he wants to change
+	}
 }
 
 @end

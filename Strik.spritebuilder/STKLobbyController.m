@@ -24,6 +24,8 @@
 #import "STKIncomingMessage.h"
 #import "STKOutgoingMessage.h"
 
+#import <FacebookSDK/FBWebDialogs.h>
+
 @interface STKLobbyController()
 
 // The nodes to display
@@ -232,8 +234,28 @@
 		}
 		else
 		{
-			// TODO: invite
 			NSLog(@"Lobby: invite Facebook user #%lld (%@)", friend.userId, friend.fullName);
+			
+			// Present invite dialog
+			id params = @{@"to": [NSString stringWithFormat:@"%lld", friend.userId]};
+			[FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Welcome to Strik!" title:@"Invite Friends" parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error)
+			{
+				if(result == FBWebDialogResultDialogCompleted)
+				{
+					if(error)
+					{
+						NSLog(@"Lobby: could not invite Facebook user! (error=%@)", error);
+					}
+					else
+					{
+						NSLog(@"Lobby: invited successfully! (error=%@)", error);
+					}
+				}
+				else
+				{
+					NSLog(@"Lobby: canceled invite.");
+				}
+			}];
 		}
 	}
 }

@@ -38,8 +38,6 @@
 
 #import "STKAvatarNode.h"
 
-#import <FacebookSDK.h>
-
 #define TIMELINE_ITEM_ACTOR_KEY @"actor"
 #define TIMELINE_ITEM_ACTION_KEY @"action"
 #define TIMELINE_ITEM_SUBJECT_KEY @"subject"
@@ -113,14 +111,7 @@
 #pragma mark buttons
 - (void)onAchievementsButton:(CCButton *)button
 {
-	//[self transitionTo:[STKAchievementsScene class] direction:CCTransitionDirectionLeft];
-	
-	int64_t userId = 100008019757296; // Rosie Rodent
-	id params = @{@"to": [NSString stringWithFormat:@"%lld", userId]};
-	
-	[FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Welcome to Strik!" title:@"Invite Friends" parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-		
-	}];
+	[self transitionTo:[STKAchievementsScene class] direction:CCTransitionDirectionLeft];
 }
 
 - (void)onNewGameButton:(CCButton *)button

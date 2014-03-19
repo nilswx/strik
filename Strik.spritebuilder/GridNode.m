@@ -61,7 +61,7 @@
 		
 		if(self.delegate)
 		{
-			if(point.y <= self.dataSource.rowCount && point.x <= self.dataSource.columnCount)
+			if(nodeLocation.y <= self.dataSource.rowCount && nodeLocation.x <= self.dataSource.columnCount)
 			{
 				[self.delegate tappedNodeAtColumn:nodeLocation.x andRow:nodeLocation.y];
 			}

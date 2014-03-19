@@ -7,8 +7,10 @@
 //
 
 #import "STKLobbyController.h"
+
 #import "STKHomeScene.h"
 
+#import "STKFriend.h"
 #import "STKFacebookController.h"
 #import "STKLobbyPersonNode.h"
 #import "STKLobbyScene.h"
@@ -18,6 +20,9 @@
 #import "STKHomeController.h"
 
 #import "STKDirector.h"
+
+#import "STKIncomingMessage.h"
+#import "STKOutgoingMessage.h"
 
 @interface STKLobbyController()
 
@@ -32,6 +37,14 @@
 @end
 
 @implementation STKLobbyController
+
+- (void)componentDidInstall
+{
+	[self routeNetMessagesOf:CHALLENGE_OK to:@selector(handleChallengeOK:)];
+	[self routeNetMessagesOf:CHALLENGE_FAILED to:@selector(handleChallengeFailed:)];
+	[self routeNetMessagesOf:CHALLENGE_REDIRECT to:@selector(handleChallengeRedirect:)];
+	[self routeNetMessagesOf:CHALLENGE_LOCALE_MISMATCH to:@selector(handleChallengeLocaleMismatch:)];
+}
 
 - (void)sceneCreated
 {
@@ -92,13 +105,7 @@
 
 - (void)onScrollTopButton:(CCButton *)button
 {
-	// Scrolling back to top when tapping top bar
-	STKLobbyScene *lobbyScene = self.scene;
-	
-	if(lobbyScene.friendsGridNode)
-	{
-		[lobbyScene.friendsGridNode.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-	}
+	[[self scene] scrollUp];
 }
 
 #pragma mark User interaction
@@ -133,15 +140,14 @@
 	if(rowCount >= 6)
 	{
 		// This makes sure the background of the bottom of the app matches the node with the last color when needed
-		STKLobbyScene *lobyyScene = self.scene;
-		
+		STKLobbyScene *lobbyScene = self.scene;
 		if(rowCount % 2 == 0)
 		{
-			lobyyScene.bottomColorNode.opacity = 1;
+			[lobbyScene showBottom];
 		}
 		else
 		{
-			lobyyScene.bottomColorNode.opacity = 0;
+			[lobbyScene hideBottom];
 		}
 	}
 	return rowCount;
@@ -201,6 +207,63 @@
 	}
 	
 	return listNode;
+}
+
+- (void)tappedNodeAtColumn:(int)column andRow:(int)row
+{
+	// Get the node
+	STKLobbyPersonNode* node = (STKLobbyPersonNode*)[self nodeForColumn:column andRow:row];
+	if(node)
+	{
+		// Get the friend
+		STKFriend* friend = node.friend;
+		
+		// Challenge him/her (and animate etc)
+		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
+		[msg appendInt:friend.playerId];
+		[self sendNetMessage:msg];
+	}
+}
+
+- (void)handleChallengeOK:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		// Challenge was delivered successfully, waiting now...
+	}
+}
+
+- (void)handleChallengeFailed:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		// Challenge could not be delivered
+	}
+}
+
+- (void)handleChallengeRedirect:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		NSString* host = [msg readStr];
+		int port = [msg readInt];
+		
+		// Friend is available, but need to reconnect to specified server and re-challenge him/her
+	}
+}
+
+- (void)handleChallengeLocaleMismatch:(STKIncomingMessage*)msg
+{
+	STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:[msg readInt]];
+	if(friend)
+	{
+		NSString* requiredLocale = [msg readStr];
+		
+		// Friend is available, but is playing in a different locale. Ask user if he wants to change
+	}
 }
 
 @end

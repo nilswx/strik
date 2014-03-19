@@ -35,7 +35,10 @@
     [self routeNetMessagesOf:ANNOUNCE_MATCH to:@selector(announcedMatch:)];
 	[self routeNetMessagesOf:QUEUE_ENTERED to:@selector(enteredQueue:)];
 	[self routeNetMessagesOf:QUEUE_EXITED to:@selector(exitedQueue:)];
+	
+	// Challenge system
 	[self routeNetMessagesOf:CHALLENGE to:@selector(handleChallenge:)];
+	[self routeNetMessagesOf:CHALLENGE_DECLINED to:@selector(handleChallengeDeclined:)];
 }
 
 - (void)exitMatch
@@ -151,9 +154,53 @@
 		STKFriend* friend = [facebook friendByPlayerId:[message readInt]];
 		if(friend)
 		{
-			// TODO: ask user to accept yes/no
-			// On 'yes', issue a counter CHALLENGE_PLAYER [playerId] to accept? ('no' = don't send anything)
-			NSLog(@"Received a new match challenge from '%@' (%@)", friend.name, friend.fullName);
+			// Cool, we're popular!
+			NSLog(@"Challenge: received a new match challenge from #%d '%@' (%@)", friend.playerId, friend.name, friend.fullName);
+			
+			// Format text
+			NSString* title = [NSString stringWithFormat:NSLocalizedString(@"Challenged by %@", nil), friend.name];
+			NSString* message = [NSString stringWithFormat:NSLocalizedString(@"%@ has challenged you to a match!", nil), friend.fullName];
+			
+			// Create and identify alert view
+			UIAlertView* view = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+			view.tag = friend.playerId;
+			
+			// Add buttons
+			view.delegate = self;
+			[view addButtonWithTitle:NSLocalizedString(@"Accept", nil)];
+			[view addButtonWithTitle:NSLocalizedString(@"Decline", nil)];
+			
+			// Pop the big question!
+			[view show];
+		}
+	}
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	// Collect details
+	int playerId = alertView.tag;
+	BOOL acceptChallenge = (buttonIndex == 0);
+	NSLog(@"Challenge: %@ challenge from player #%d", (acceptChallenge ? @"accepting" : @"declining"), playerId);
+	
+	// Relay decision to server
+	STKOutgoingMessage* msg = [STKOutgoingMessage withOp:(acceptChallenge ? ACCEPT_CHALLENGE : DECLINE_CHALLENGE)];
+	[msg appendInt:playerId];
+	[self sendNetMessage:msg];
+}
+
+- (void)handleChallengeDeclined:(STKIncomingMessage*)msg
+{
+	// Is player Facebook linked?
+	STKFacebookController* facebook = self.core[@"facebook"];
+	if(facebook.isServerLinked)
+	{
+		// Known friend?
+		STKFriend* friend = [facebook friendByPlayerId:[msg readInt]];
+		if(friend)
+		{
+			// Such a sad notification
+			[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]];
 		}
 	}
 }

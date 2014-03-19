@@ -14,10 +14,14 @@
 
 @property GridNode *friendsGridNode;
 
-// This node will be place at the bottom of the screen behind the table @ 50% height, so when the last item color is blue-ish, it doesnt end @ scrolling bottom
-@property CCNodeColor *bottomColorNode;
-
 // When friends are available, show friends! (call this)
 - (void)showFriends;
+
+- (void)showBottom;
+
+- (void)hideBottom;
+
+// Scroll all the way to the top of the table
+- (void)scrollUp;
 
 @end

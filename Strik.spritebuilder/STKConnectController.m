@@ -21,29 +21,70 @@
 	[self performSelector:@selector(connectToServer) withObject:nil afterDelay:2];
 }
 
+
 - (void)connectToServer
-{    
+{
+	// Get client controller
+	STKClientController* client = self.core[@"client"];
+	
+	// Determine host/port
+	NSString* host;
+	int port;
+
+#if defined(SERVER_HOST) && defined(SERVER_PORT)
+	
+	host = SERVER_HOST;
+	port = SERVER_PORT;
+	
+#else
+
+	// Get url of loadbalancer
+	NSURL* loadBalancerURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%d", LOADBALANCER_HOST, LOADBALANCER_PORT]];
+	NSLog(@"Connect: contacting load balancer at %@:%d...", LOADBALANCER_HOST, LOADBALANCER_PORT);
+	
+	// Fetch result (blocking call)
+	NSError* error;
+	NSString* result = [NSString stringWithContentsOfURL:loadBalancerURL encoding:NSASCIIStringEncoding error:&error];
+	
+	// Error?
+	if(error)
+	{
+		NSLog(@"Connect: error contacting load balancer: %@", error);
+		
+		// Retry later
+		[client didDisconnectFromServer];
+		return;
+	}
+	else
+	{
+		// Parse it!
+		NSArray* parts = [result componentsSeparatedByString:@":"];
+		host = [parts[0] stringValue];
+		port = [parts[1] intValue];
+	}
+#endif
+	
 	// Create and plug connection
 	STKCore* core = self.core;
 	STKNetConnection* connection = [STKNetConnection new];
 	[core installComponent:connection withKey:@"connection"];
 	
 	// Begin connecting (async)...
-	[connection beginConnectToHost:@"192.168.178.20" onPort:13381
-	 
+	[connection beginConnectToHost:host onPort:port
+
 	 // Connected!
-	 onConnect:^
-	 {
-		 // Continue with the login etc
-		 [self didConnectToServer];
-	 }
+	onConnect:^
+	{
+		// Continue with the login etc
+		[self didConnectToServer];
+	}
 	 
 	 // Disconnected!
-	 onDisconnect:^
-	 {
-		 // Notify the global client controller
-		 [core[@"client"] didDisconnectFromServer];
-	 }];
+	onDisconnect:^
+	{
+		// Notify the global client controller
+		[client didDisconnectFromServer];
+	}];
 }
 
 - (void)didConnectToServer

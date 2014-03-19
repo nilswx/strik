@@ -130,6 +130,7 @@
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		483B595718D0C50400F013C9 /* STKBlurLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBlurLayer.h; sourceTree = "<group>"; };
 		483B595818D0C50500F013C9 /* STKBlurLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBlurLayer.m; sourceTree = "<group>"; };
+		48D3252318D9A92700FD774D /* GameGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameGlobals.h; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8304529C18C753A2000BBE18 /* Linguistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Linguistics.h; sourceTree = "<group>"; };
 		8304529D18C753A2000BBE18 /* Linguistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Linguistics.m; sourceTree = "<group>"; };
@@ -631,6 +632,7 @@
 				8393785718B6022C0007BDE4 /* Views */,
 				8393785618B602260007BDE4 /* Controllers */,
 				8393785518B6021C0007BDE4 /* Nodes */,
+				48D3252318D9A92700FD774D /* GameGlobals.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";

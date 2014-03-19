@@ -8,6 +8,8 @@
 
 #import "STKSceneController.h"
 
-@interface STKLobbyController : STKSceneController
+#import "GridNodeDelegate.h"
+
+@interface STKLobbyController : STKSceneController <GridNodeDelegate>
 
 @end

@@ -43,8 +43,6 @@
 #define TIMELINE_ITEM_SUBJECT_KEY @"subject"
 #define TIMELINE_ITEM_DATE_KEY @"date"
 
-#define MAX_NAME_LENGTH 22
-
 @interface STKHomeController()
 
 // The grid for the timeline
@@ -288,49 +286,36 @@
 	[self sendNetMessage:msg];
 }
 
-- (STKPlayer*)parseActivityActorFromMessage:(STKIncomingMessage*)msg
-{
-	// Is it about self?
-	if([msg readBool] == YES)
-	{
-		STKSessionController* session = self.core[@"session"];
-		return session.player;
-	}
-	else
-	{
-		// Parse actor
-		STKPlayer* actor = [STKPlayer new];
-		actor.playerId = [msg readInt];
-		actor.name = [msg readStr];
-		actor.avatar = [STKAvatar avatarWithIdentifier:[msg readStr]];
-		
-		return actor;
-	}
-	
-	// TODO: use a more efficient class (STKActivityActor?)
-}
-
 - (STKPlayer*)resolveActivityActor:(int)playerId
 {
+	// TODO: use a more lightweight than STKPlayer
+	STKPlayer* actor = nil;
+	
+	// Local player?
 	STKSessionController* session = self.core[@"session"];
 	if(playerId == session.player.playerId)
 	{
-		return session.player;
+		actor = session.player;
 	}
 	else
 	{
+		// Friend exists?
 		STKFriend* friend = [self.core[@"facebook"] friendByPlayerId:playerId];
-		
-		STKPlayer* player = [STKPlayer new];
-		player.playerId = playerId;
-		player.name = friend.fullName;
-		player.avatar = friend.avatar;
-		
-		return player;
+		if(friend)
+		{
+			actor = [STKPlayer new];
+			actor.playerId = playerId;
+			actor.name = friend.fullName;
+			actor.avatar = friend.avatar;
+		}
+		else
+		{
+			NSLog(@"ActivityStream: player #%d is not (loaded as) a friend", playerId);
+		}
 	}
 	
-	
-	// TODO: use a more lightweight than STKPlayer
+	// Return whatever
+	return actor;
 }
 
 - (void)handleActivityStream:(STKIncomingMessage*)msg
@@ -399,10 +384,11 @@
 			case 'm':
 			{
 				STKPlayer* loser = [self resolveActivityActor:[msg readInt]];
-				
-				action = @"beat";
-				subject = loser.name; // with x points?
-
+				if(loser)
+				{
+					action = @"beat";
+					subject = loser.name; // with x points?
+				}
 				break;
 			}
 				

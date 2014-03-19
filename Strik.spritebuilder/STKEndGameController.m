@@ -63,6 +63,8 @@
 	pTwoAvatar.borderColor = PLAYER_TWO_COLOR;
 	pTwoAvatar.backgroundColor = PLAYER_TWO_COLOR;
 	pTwoAvatar.avatar = opponent.avatar;
+	
+	self.endGameScene.playerTwoLabel.string = opponent.name;
 }
 
 - (void)setupProgressBars

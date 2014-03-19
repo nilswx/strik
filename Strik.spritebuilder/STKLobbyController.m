@@ -103,13 +103,7 @@
 
 - (void)onScrollTopButton:(CCButton *)button
 {
-	// Scrolling back to top when tapping top bar
-	STKLobbyScene *lobbyScene = self.scene;
-	
-	if(lobbyScene.friendsGridNode)
-	{
-		[lobbyScene.friendsGridNode.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-	}
+	[[self scene] scrollUp];
 }
 
 #pragma mark User interaction
@@ -144,15 +138,14 @@
 	if(rowCount >= 6)
 	{
 		// This makes sure the background of the bottom of the app matches the node with the last color when needed
-		STKLobbyScene *lobyyScene = self.scene;
-		
+		STKLobbyScene *lobbyScene = self.scene;
 		if(rowCount % 2 == 0)
 		{
-			lobyyScene.bottomColorNode.opacity = 1;
+			[lobbyScene showBottom];
 		}
 		else
 		{
-			lobyyScene.bottomColorNode.opacity = 0;
+			[lobbyScene hideBottom];
 		}
 	}
 	return rowCount;
@@ -212,6 +205,11 @@
 	}
 	
 	return listNode;
+}
+
+- (void)tappedNodeAtColumn:(int)column andRow:(int)row
+{
+	
 }
 
 - (void)handleChallengeOK:(STKIncomingMessage*)msg

@@ -11,6 +11,9 @@
 
 @interface STKLobbyScene()
 
+// This node will be place at the bottom of the screen behind the table @ 50% height, so when the last item color is blue-ish, it doesnt end @ scrolling bottom
+@property CCNodeColor *bottomColorNode;
+
 // The container where the friends and none friends will be shown
 @property CCNode *peepsContainer;
 
@@ -32,6 +35,24 @@
 	self.friendsGridNode.contentSize = CGSizeMake(1, 1);
 	
 	[self.peepsContainer addChild:self.friendsGridNode];
+}
+
+- (void)showBottom
+{
+	self.bottomColorNode.opacity = 1;
+}
+
+- (void)hideBottom
+{
+	self.bottomColorNode.opacity = 0;
+}
+
+- (void)scrollUp
+{
+	if(self.friendsGridNode)
+	{
+		[self.friendsGridNode.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+	}
 }
 
 @end

@@ -61,7 +61,10 @@
 		
 		if(self.delegate)
 		{
-			[self.delegate tappedNodeAtColumn:nodeLocation.x andRow:nodeLocation.y];
+			if(point.y <= self.dataSource.rowCount && point.x <= self.dataSource.columnCount)
+			{
+				[self.delegate tappedNodeAtColumn:nodeLocation.x andRow:nodeLocation.y];
+			}
 		}
 	}
 }

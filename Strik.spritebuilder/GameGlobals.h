@@ -6,9 +6,13 @@
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-// Network host
-#define SERVER_HOST @"localhost" // TODO: change to load balancer
+// DEV: override server host (uncomment to use)
+#define SERVER_HOST @"localhost"
 #define SERVER_PORT 13381
+
+// Load balancer (default)
+#define LOADBALANCER_HOST @"strik.it"
+#define LOADBALANCER_PORT 80
 
 // Strik 'red'
 #define PLAYER_ONE_COLOR [CCColor colorWithRed:34.0f/255.0f green:189.0f/255.0f blue:175.0f/255.0f]

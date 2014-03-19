@@ -29,11 +29,13 @@
 	// First remove the no friends container
 	[self.noFriendsContainer removeFromParent];
 	
-	// And show the friends
+	// Create grid node
 	self.friendsGridNode = [GridNode gridWithDataSource:self.controller];
 	self.friendsGridNode.contentSizeType = CCSizeTypeNormalized;
 	self.friendsGridNode.contentSize = CGSizeMake(1, 1);
+	self.friendsGridNode.delegate = self.controller;
 	
+	// Add to scene
 	[self.peepsContainer addChild:self.friendsGridNode];
 }
 

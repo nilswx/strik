@@ -162,13 +162,9 @@
 			NSString* message = [NSString stringWithFormat:NSLocalizedString(@"%@ has challenged you to a match!", nil), friend.fullName];
 			
 			// Create and identify alert view
-			UIAlertView* view = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
-			view.tag = friend.playerId;
-			
-			// Add buttons
+			UIAlertView* view = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Decline", nil) otherButtonTitles:NSLocalizedString(@"Accept", nil), nil];
 			view.delegate = self;
-			[view addButtonWithTitle:NSLocalizedString(@"Accept", nil)];
-			[view addButtonWithTitle:NSLocalizedString(@"Decline", nil)];
+			view.tag = friend.playerId;
 			
 			// Pop the big question!
 			[view show];
@@ -180,7 +176,7 @@
 {
 	// Collect details
 	int playerId = alertView.tag;
-	BOOL acceptChallenge = (buttonIndex == 0);
+	BOOL acceptChallenge = (buttonIndex == 1);
 	NSLog(@"Challenge: %@ challenge from player #%d", (acceptChallenge ? @"accepting" : @"declining"), playerId);
 	
 	// Relay decision to server

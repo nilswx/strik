@@ -40,14 +40,6 @@
 
 @implementation STKLobbyController
 
-- (void)componentDidInstall
-{
-	[self routeNetMessagesOf:CHALLENGE_OK to:@selector(handleChallengeOK:)];
-	[self routeNetMessagesOf:CHALLENGE_FAILED to:@selector(handleChallengeFailed:)];
-	[self routeNetMessagesOf:CHALLENGE_REDIRECT to:@selector(handleChallengeRedirect:)];
-	[self routeNetMessagesOf:CHALLENGE_LOCALE_MISMATCH to:@selector(handleChallengeLocaleMismatch:)];
-}
-
 - (void)sceneCreated
 {
 	// Determine if we can show friends or not
@@ -67,6 +59,12 @@
 		self.facebookUsers = [self getSortedFacebookUsers];
 		self.friends = [self getSortedFriends];
 	}
+	
+	// Handle network messages of the challenge system
+	[self routeNetMessagesOf:CHALLENGE_OK to:@selector(handleChallengeOK:)];
+	[self routeNetMessagesOf:CHALLENGE_FAILED to:@selector(handleChallengeFailed:)];
+	[self routeNetMessagesOf:CHALLENGE_REDIRECT to:@selector(handleChallengeRedirect:)];
+	[self routeNetMessagesOf:CHALLENGE_LOCALE_MISMATCH to:@selector(handleChallengeLocaleMismatch:)];
 }
 
 # pragma mark Loading friends
@@ -224,7 +222,7 @@
 			// Available?
 			if(friend.isOnline && !friend.isInMatch)
 			{
-				NSLog(@"Lobby: challenge #%d (%@)", friend.playerId, friend.fullName);
+				NSLog(@"Lobby: challenging %@", friend);
 				
 				// Challenge him/her (and animate etc)
 				STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
@@ -234,7 +232,7 @@
 		}
 		else
 		{
-			NSLog(@"Lobby: invite Facebook user #%lld (%@)", friend.userId, friend.fullName);
+			NSLog(@"Lobby: invite %@", friend);
 			
 			// Present invite dialog
 			id params = @{@"to": [NSString stringWithFormat:@"%lld", friend.userId]};
@@ -244,16 +242,16 @@
 				{
 					if(error)
 					{
-						NSLog(@"Lobby: could not invite Facebook user! (error=%@)", error);
+						NSLog(@"Lobby: could not invite %@! (error=%@)", friend, error);
 					}
 					else
 					{
-						NSLog(@"Lobby: invited successfully! (error=%@)", error);
+						NSLog(@"Lobby: invited %@ successfully!", friend);
 					}
 				}
 				else
 				{
-					NSLog(@"Lobby: canceled invite.");
+					NSLog(@"Lobby: canceled Facebook invite...");
 				}
 			}];
 		}

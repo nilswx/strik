@@ -51,6 +51,12 @@
 @implementation STKGameScene
 
 #pragma mark init
+- (void)enter
+{
+	// Don't know why, but the timer bar doesn't start full width, this forces it
+	self.timerBar.contentSize = CGSizeMake(320, 3);
+}
+
 - (void)startTimer
 {
 	[self schedule:@selector(updateTime:) interval:1 repeat:-1 delay:0];

@@ -29,9 +29,26 @@
 	if(self = [super initWithContent:contentNode])
 	{
 		self.dataSource = dataSource;
+		
+		// Detect single tapping
+		UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewWasTapped:)];
+		singleTap.numberOfTapsRequired = 1;
+		singleTap.numberOfTouchesRequired = 1;
+		singleTap.cancelsTouchesInView = YES;
+		[self.scrollView addGestureRecognizer:singleTap];
 	}
 	
 	return self;
+}
+
+- (void)scrollViewWasTapped:(UITapGestureRecognizer *)sender
+{
+	if (sender.state == UIGestureRecognizerStateEnded)
+	{
+		NSLog(@"Scrollview tapped");
+		
+		// handling code
+	}
 }
 
 + (id)gridWithDataSource:(NSObject<GridNodeDataSource> *)dataSource

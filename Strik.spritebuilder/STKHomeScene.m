@@ -37,8 +37,8 @@
 {
 	// Setting up the progress bar
 	self.playerProgress.borderColor = [CCColor whiteColor];
-	self.playerProgress.lightShade = PLAYER_ONE_LIGHT_COLOR;
-	self.playerProgress.darkShade = PLAYER_ONE_COLOR;
+	self.playerProgress.backgroundShade = PLAYER_ONE_LIGHT_COLOR;
+	self.playerProgress.fillShade = PLAYER_ONE_COLOR;
 }
 
 #pragma mark Model events

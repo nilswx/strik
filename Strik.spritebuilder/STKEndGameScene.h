@@ -8,7 +8,7 @@
 
 #import "STKScene.h"
 
-@class STKAvatarNode, STKProgressNode;
+@class STKAvatarNode, STKSplittedProgressNode;
 
 @interface STKEndGameScene : STKScene
 
@@ -21,14 +21,19 @@
 @property (readonly) STKAvatarNode *playerTwoAvatar;
 
 // The progress bars
-@property (readonly) STKProgressNode *wordsFoundProgress;
-@property (readonly) STKProgressNode *lettersFoundProgress;
-@property (readonly) STKProgressNode *scoreProgress;
+@property (readonly) STKSplittedProgressNode *wordsFoundProgress;
+@property (readonly) STKSplittedProgressNode *lettersFoundProgress;
+@property (readonly) STKSplittedProgressNode *scoreProgress;
 
 // The results label
 @property (readonly) CCLabelTTF *resultsLabel;
 
 // The rematch button
 @property (readonly) CCButton *rematchButton;
+
+// Returns all progress nodes on the scene
+@property (readonly) NSArray *allProgressNodes;
+
+- (NSArray *)allProgressNodes;
 
 @end

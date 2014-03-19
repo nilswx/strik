@@ -26,6 +26,7 @@
 		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
 		835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C818B686AD0008DA0E /* STKBootstrapScene.m */; };
+		836CFFAA18D9927300B523C6 /* STKSplittedProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CFFA918D9927300B523C6 /* STKSplittedProgressNode.m */; };
 		8379200B18CDB9A10094F3AC /* STKGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379200A18CDB9A10094F3AC /* STKGameController.m */; };
 		8379200E18CDBD5D0094F3AC /* STKGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379200D18CDBD5D0094F3AC /* STKGameScene.m */; };
 		8379201518CDE39E0094F3AC /* STKTimerBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379201418CDE39E0094F3AC /* STKTimerBar.m */; };
@@ -166,6 +167,8 @@
 		835803C518B6869A0008DA0E /* STKBootstrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapController.m; sourceTree = "<group>"; };
 		835803C718B686AD0008DA0E /* STKBootstrapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBootstrapScene.h; sourceTree = "<group>"; };
 		835803C818B686AD0008DA0E /* STKBootstrapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapScene.m; sourceTree = "<group>"; };
+		836CFFA818D9927300B523C6 /* STKSplittedProgressNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSplittedProgressNode.h; sourceTree = "<group>"; };
+		836CFFA918D9927300B523C6 /* STKSplittedProgressNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSplittedProgressNode.m; sourceTree = "<group>"; };
 		8379200918CDB9A10094F3AC /* STKGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKGameController.h; sourceTree = "<group>"; };
 		8379200A18CDB9A10094F3AC /* STKGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKGameController.m; sourceTree = "<group>"; };
 		8379200C18CDBD5D0094F3AC /* STKGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKGameScene.h; sourceTree = "<group>"; };
@@ -647,6 +650,8 @@
 				83EDE61318C60FA900D3B78D /* STKButton.m */,
 				483B595718D0C50400F013C9 /* STKBlurLayer.h */,
 				483B595818D0C50500F013C9 /* STKBlurLayer.m */,
+				836CFFA818D9927300B523C6 /* STKSplittedProgressNode.h */,
+				836CFFA918D9927300B523C6 /* STKSplittedProgressNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -1096,6 +1101,7 @@
 				83D32FD218C0B02D00772575 /* STKHolePunchedButton.m in Sources */,
 				8393782F18B5FFB60007BDE4 /* STKController.m in Sources */,
 				8393783018B5FFB60007BDE4 /* STKDirector.m in Sources */,
+				836CFFAA18D9927300B523C6 /* STKSplittedProgressNode.m in Sources */,
 				83C4424318BE18CC00B417C9 /* CSEEmboss.m in Sources */,
 				835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */,
 				8393781F18B5FFA40007BDE4 /* STKCore.m in Sources */,

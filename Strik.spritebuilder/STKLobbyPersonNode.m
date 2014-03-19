@@ -59,14 +59,17 @@
 	if(self.friend.isOnline && self.friend.isInMatch)
 	{
 		self.avatarNode.borderColor = PLAYER_BUSY_COLOR;
+		self.avatarNode.backgroundColor = PLAYER_BUSY_COLOR;
 	}
 	else if(self.friend.isOnline)
 	{
 		self.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
+		self.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
 	}
 	else
 	{
 		self.avatarNode.borderColor = PLAYER_OFFLINE_COLOR;
+		self.avatarNode.backgroundColor = PLAYER_OFFLINE_COLOR;
 	}
 	
 	// Change icon based on status

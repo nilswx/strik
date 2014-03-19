@@ -35,7 +35,10 @@
     [self routeNetMessagesOf:ANNOUNCE_MATCH to:@selector(announcedMatch:)];
 	[self routeNetMessagesOf:QUEUE_ENTERED to:@selector(enteredQueue:)];
 	[self routeNetMessagesOf:QUEUE_EXITED to:@selector(exitedQueue:)];
+	
+	// Challenge system
 	[self routeNetMessagesOf:CHALLENGE to:@selector(handleChallenge:)];
+	[self routeNetMessagesOf:CHALLENGE_DECLINED to:@selector(handleChallengeDeclined:)];
 }
 
 - (void)exitMatch
@@ -184,6 +187,22 @@
 	STKOutgoingMessage* msg = [STKOutgoingMessage withOp:(acceptChallenge ? ACCEPT_CHALLENGE : DECLINE_CHALLENGE)];
 	[msg appendInt:playerId];
 	[self sendNetMessage:msg];
+}
+
+- (void)handleChallengeDeclined:(STKIncomingMessage*)msg
+{
+	// Is player Facebook linked?
+	STKFacebookController* facebook = self.core[@"facebook"];
+	if(facebook.isServerLinked)
+	{
+		// Known friend?
+		STKFriend* friend = [facebook friendByPlayerId:[msg readInt]];
+		if(friend)
+		{
+			// Such a sad notification
+			[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]];
+		}
+	}
 }
 
 @end

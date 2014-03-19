@@ -118,7 +118,7 @@
 	int64_t userId = 100008019757296; // Rosie Rodent
 	id params = @{@"to": [NSString stringWithFormat:@"%lld", userId]};
 	
-	[FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Heyy <3, come play Strik with me!" title:@"Invite Friends" parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+	[FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Welcome to Strik!" title:@"Invite Friends" parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
 		
 	}];
 }

@@ -153,9 +153,6 @@
 	flag.anchorPoint = CGPointMake(0, 0);
 	flagMask.anchorPoint = CGPointMake(0, 0);
 
-	// And size the flag a bit down
-	flag.scale = 0.36f;
-	
 	// And add to scene
 	[flagContainer addChild:clippingNode];
 }

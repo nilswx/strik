@@ -29,11 +29,21 @@
 
 // For convenience
 @property (nonatomic, readonly) STKEndGameScene *endGameScene;
-@property (nonatomic, readonly) STKMatch *match;
+@property (nonatomic) STKMatch *match;
 
 @end
 
 @implementation STKEndGameController
+
+- (id)initWithMatch:(STKMatch*)match
+{
+	if(self = [super init])
+	{
+		self.match = match;
+	}
+	
+	return self;
+}
 
 - (void)sceneWillBegin
 {
@@ -148,11 +158,6 @@
 	return self.scene;
 }
 
-- (STKMatch *)match
-{
-	return ((STKMatchController *)(self.core[@"match"])).match;
-}
-
 - (void)onStopAnimatingButton:(CCButton *)button
 {
 	// Stop the animation (go to animation completed state)
@@ -163,12 +168,6 @@
 	
 	// And display end results without animation
 	[self displayProgress:NO];
-}
-
-- (void)dealloc
-{
-	// Clear up the match when leaving this scene
-	((STKMatchController *)(self.core[@"match"])).match = nil;
 }
 
 @end

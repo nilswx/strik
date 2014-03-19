@@ -8,8 +8,10 @@
 
 #import "STKSceneController.h"
 
-@class STKMatchPlayer;
+@class STKMatch, STKMatchPlayer;
 
 @interface STKEndGameController : STKSceneController
+
+- (id)initWithMatch:(STKMatch*)match;
 
 @end

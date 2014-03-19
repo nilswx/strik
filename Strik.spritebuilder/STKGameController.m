@@ -190,28 +190,29 @@
 
 - (void)matchDidEnd:(STKIncomingMessage *)message
 {
-	if(self.match)
+	// Same message structure comes along twice
+	for(int i = 0; i < 2; i++)
 	{
-		// Same message structure comes along twice
-		for(int i = 0; i < 2; i++)
-		{
-			// Get correct player for this part of message
-			STKMatchPlayer *player = [self.match playerByID:[message readByte]];
-					
-			// Set match values
-			player.wordsFound = [message readInt];
-			player.lettersFound = [message readInt];
-		}
-		
-		// Get the winner
-		self.match.winner = [self.match playerByID:[message readByte]];
-
-		// Go to the match ended scene
-		STKDirector *director = self.core[@"director"];
-		
-		// Display the end game controller
-		[director presentScene:[STKEndGameController new] withTransition:[CCTransition transitionCrossFadeWithDuration:0.25f]];
+		// Get correct player for this part of message
+		STKMatchPlayer *player = [self.match playerByID:[message readByte]];
+				
+		// Set match values
+		player.wordsFound = [message readInt];
+		player.lettersFound = [message readInt];
 	}
+	
+	// Get the winner
+	self.match.winner = [self.match playerByID:[message readByte]];
+
+	// Create the end game controller
+	STKEndGameController* end = [[STKEndGameController alloc] initWithMatch:self.match];
+	
+	// Go to the match ended scene
+	STKDirector *director = self.core[@"director"];
+	[director presentScene:end withTransition:[CCTransition transitionCrossFadeWithDuration:0.25f]];
+	
+	// Drop the match
+	[self.core[@"match"] clearMatch];
 }
 
 - (void)clearSelection:(STKIncomingMessage *)message

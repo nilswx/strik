@@ -19,4 +19,7 @@
 // Returns a localized version of the country based on country code
 + (NSString *)localizedNameFromCountryCode:(NSString *)countryCode;
 
+// Shorten a given string and add an elipsis if needed
++ (NSString *)shorten:(NSString *)string withMaxLength:(int)maxLength;
+
 @end

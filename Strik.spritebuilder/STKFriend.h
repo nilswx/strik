@@ -14,7 +14,11 @@
 
 // Facebook
 @property int64_t userId;
-@property NSString *fullName;
+
+@property (readonly) NSString *fullName;
+
+@property NSString *firstName;
+@property NSString *lastName;
 
 // Game
 @property int32_t playerId;

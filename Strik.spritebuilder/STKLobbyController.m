@@ -75,8 +75,9 @@
 	NSArray *facebookUsers = [facebookController.facebookOnlyFriends allValues];
 	
 	// Sort the crap out of em (on fullname)
-	NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES];
-	return [facebookUsers sortedArrayUsingDescriptors:@[sortDescriptor]];
+	NSSortDescriptor *lastNameSorter = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
+	NSSortDescriptor *firstNameSorter = [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES];
+	return [facebookUsers sortedArrayUsingDescriptors:@[lastNameSorter, firstNameSorter]];
 }
 
 - (NSArray *)getSortedFriends

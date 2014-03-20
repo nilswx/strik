@@ -19,7 +19,7 @@
 #import "STKAvatar.h"
 
 #define READ_PERMISSIONS @[@"basic_info", @"user_likes", @"user_location"]
-#define FRIENDS_FQL @"SELECT uid,name,is_app_user FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())"
+#define FRIENDS_FQL @"SELECT uid,first_name, last_name,is_app_user FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())"
 
 @interface STKFacebookController()
 
@@ -253,7 +253,8 @@
 				 // Parse basic friend data
 				 STKFriend* friend = [STKFriend new];
 				 friend.userId = [data[@"uid"] longLongValue];
-				 friend.fullName = data[@"name"];
+				 friend.firstName = data[@"first_name"];
+				 friend.lastName = data[@"last_name"];
 				 friend.avatar = [STKAvatar avatarWithIdentifier:[NSString stringWithFormat:@"f%lld", friend.userId]];
 				 
 				 self.friends[@(friend.userId)] = friend;

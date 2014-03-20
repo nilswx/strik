@@ -127,6 +127,8 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
+	[super applicationDidReceiveMemoryWarning:application];
+	
 	// Clear any caches here :)
 	[STKAvatar clearAvatarCache];
 }

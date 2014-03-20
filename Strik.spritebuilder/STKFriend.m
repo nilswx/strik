@@ -20,4 +20,9 @@
 	return [NSString stringWithFormat:@"#%lld (%@)", self.userId, self.fullName];
 }
 
+- (NSString *)fullName
+{
+	return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
 @end

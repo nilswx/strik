@@ -24,7 +24,7 @@
 
 @interface STKCoreComponent : NSObject
 
-@property (nonatomic) STKCore *core;
+@property STKCore *core;
 
 - (void)componentDidInstall;
 

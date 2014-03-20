@@ -26,8 +26,8 @@
 @property BOOL wantServerLink;
 
 @property FBSession* session;
-@property (nonatomic) NSMutableDictionary* friends; // Player ID -> STKFriend
-@property (nonatomic) NSMutableDictionary* playerFriends;
+@property NSMutableDictionary* friends; // Player ID -> STKFriend
+@property NSMutableDictionary* playerFriends;
 
 @end
 

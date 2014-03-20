@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 @property CCNode *tileContainer;
 
 // The last tile node is used for "directions" from a tile to another tile with detection for improved direction detection
-@property (nonatomic) STKTileNode *lastTileNode;
+@property STKTileNode *lastTileNode;
 
 @end
 

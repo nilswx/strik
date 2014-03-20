@@ -14,13 +14,13 @@
 @interface STKAvatarNode : CCNode
 
 // The avatar itself
-@property (nonatomic) STKAvatar *avatar;
+@property(nonatomic) STKAvatar *avatar;
 
 // The border color
-@property (nonatomic) CCColor *borderColor;
+@property(nonatomic) CCColor *borderColor;
 
 // The background color
-@property (nonatomic) CCColor *backgroundColor;
+@property(nonatomic) CCColor *backgroundColor;
 
 // The masked image will be masked to a circle the size of the background
 @property (readonly, nonatomic) CCSprite *maskedImage;

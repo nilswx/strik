@@ -19,13 +19,13 @@ typedef NS_ENUM(NSInteger, zIndex)
 @interface STKAvatarNode()
 
 // The circle which makes up the outer border
-@property (nonatomic)  CCDrawNode *outerCircle;
+@property CCDrawNode *outerCircle;
 
 // The background
-@property (nonatomic) CCDrawNode *backgroundCircle;
+@property CCDrawNode *backgroundCircle;
 
 // The radius of the border circle
-@property (readonly) CGFloat radius;
+@property(readonly) CGFloat radius;
 
 // The clipping node which will clip the image
 @property CCClippingNode *clippingNode;

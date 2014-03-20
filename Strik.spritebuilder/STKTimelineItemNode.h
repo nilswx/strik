@@ -22,10 +22,10 @@ typedef NS_ENUM(NSInteger, TimelinePositionType)
 @interface STKTimelineItemNode : CCNode
 
 // The avatar node 
-@property (readonly) STKAvatarNode *avatarNode;
+@property(readonly) STKAvatarNode *avatarNode;
 
 // Based on the property the line will be changes so the top and bottom have the correct lines
-@property (nonatomic, assign) TimelinePositionType timelinePosition;
+@property(nonatomic) TimelinePositionType timelinePosition;
 
 // Returns a new timeline item node from disk
 + (id)newTimelineItemNodeWithActor:(STKPlayer *)actor action:(NSString *)action subject:(NSString *)subject andTimestamp:(int)timestamp;

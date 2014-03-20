@@ -18,10 +18,10 @@
 @interface STKTimelineItemNode()
 
 // The player for this timeline event
-@property (nonatomic) STKPlayer *actor;
+@property(nonatomic) STKPlayer *actor;
 
 // The content for this timeline
-@property (nonatomic) NSString *content;
+@property(nonatomic) NSString *content;
 
 // The avatar node
 @property STKAvatarNode *avatarNode;

@@ -31,8 +31,8 @@
 @interface STKEndGameController()
 
 // For convenience
-@property (nonatomic, readonly) STKEndGameScene *endGameScene;
-@property (nonatomic) STKMatch *match;
+@property(readonly) STKEndGameScene *endGameScene;
+@property STKMatch *match;
 
 @end
 

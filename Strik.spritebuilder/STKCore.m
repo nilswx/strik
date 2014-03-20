@@ -10,7 +10,7 @@
 
 @interface STKCore()
 
-@property(nonatomic) NSMutableDictionary* components;
+@property NSMutableDictionary* components;
 
 @end
 

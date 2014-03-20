@@ -8,24 +8,7 @@
 
 #import "STKScene.h"
 
-@interface STKScene()
-
-@property CCScene *cocosScene;
-
-@end
-
 @implementation STKScene
-
-- (id)init
-{
-	if(self = [super init])
-	{
-		self.cocosScene = [CCScene new];
-		[self.cocosScene addChild:self];
-	}
-	
-	return self;
-}
 
 - (NSString*)description
 {

@@ -64,7 +64,7 @@
 	// Initial scene?
 	if(!self.cocosDirector.runningScene)
 	{
-		[self.cocosDirector runWithScene:self.scene.cocosScene];
+		[self.cocosDirector runWithScene:self.scene];
 	}
 	else
 	{
@@ -75,7 +75,7 @@
 		}
 		
 		// Go!
-		[self.cocosDirector replaceScene:self.scene.cocosScene withTransition:transition];
+		[self.cocosDirector replaceScene:self.scene withTransition:transition];
 	}
 }
 

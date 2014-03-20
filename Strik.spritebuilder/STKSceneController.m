@@ -35,8 +35,8 @@
 		// Create scene and run post-creation logic
 		Class sceneClass = [[self class] sceneClass];
 		
+		// Read the nodegraph from a file, (STKScene extends CCNode, the director will wrap it in a CCScene when it needs to be displayed)
 		NSString *ccbFile = [sceneClass ccbFileName];
-		// Read the nodegraph from a file, (STKScene extends CCNode, the director will wrap it in a CCScene when it needs to be displayed)		
 		STKScene *scene = (STKScene *)[CCBReader load:ccbFile owner:self];
 
 		// Tell the scene it is loaded (so we can do some extra things when needed)

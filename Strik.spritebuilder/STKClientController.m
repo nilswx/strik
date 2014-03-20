@@ -108,7 +108,6 @@
 {
 	// Get current scene
 	STKDirector* director = self.core[@"director"];
-
     STKScene *scene = [director isCurrentScene:[STKConnectScene class]];
 	
 	// Already in connect scene?

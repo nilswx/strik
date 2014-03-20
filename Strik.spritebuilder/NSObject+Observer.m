@@ -13,7 +13,7 @@
 
 @interface NSObject()
 
-@property (nonatomic, strong) NSMutableDictionary *models;
+@property(weak) NSMutableDictionary *models;
 
 @end
 
@@ -31,10 +31,12 @@
 
 - (void)observeModel:(STKModel*)model onKeys:(NSArray*)keys
 {
+	// Lazily created dictionary of models
     if(!self.models)
     {
         self.models = [NSMutableDictionary dictionary];
     }
+	
 	// Determine alias (can be overridden by a scene for custom aliasing per model instance)
 	NSString* alias = [self aliasForModel:model];
 	
@@ -44,10 +46,11 @@
 		((NSMutableDictionary*)self.models)[alias] = model;
 	}
 	
-	// Observe specified keys or all keys?
+	// What to observe?
 	NSKeyValueObservingOptions options = (NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew);
 	if(keys)
 	{
+		// Specified keys!
 		for(id key in keys)
 		{
 			[model addObserver:self forKeyPath:key options:options context:nil];
@@ -55,6 +58,7 @@
 	}
 	else
 	{
+		// ALL keys
 		[model addObserverForAllProperties:self options:options context:nil];
 	}
 }

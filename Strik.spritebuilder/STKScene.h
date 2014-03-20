@@ -10,7 +10,7 @@
 
 #import "NSObject+Observer.h"
 
-@interface STKScene : CCScene
+@interface STKScene : CCNode
 
 @property(weak) id controller;
 

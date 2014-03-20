@@ -12,6 +12,12 @@
 #import "STKAchievementsScene.h"
 #import "GridNode.h"
 
+@interface STKAchievementsController();
+
+@property GridNode *achievementsGrid;
+
+@end
+
 @implementation STKAchievementsController
 
 #pragma mark buttons
@@ -23,8 +29,7 @@
 - (void)onScrollTopButton:(CCButton *)button
 {
 	// Scrolling back to top when tapping top bar
-	STKAchievementsScene *achievementsScene = self.scene;
-	[achievementsScene.achievementsGrid.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+	[self.achievementsGrid.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
 

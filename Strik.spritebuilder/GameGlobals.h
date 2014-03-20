@@ -7,7 +7,7 @@
 //
 
 // DEV: override server host (uncomment to use)
-#define SERVER_HOST @"192.168.178.20"
+#define SERVER_HOST @"localhost"
 #define SERVER_PORT 13381
 
 // Load balancer (default)

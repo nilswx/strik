@@ -34,4 +34,7 @@ typedef void(^AvatarFetchResultBlock)(CCTexture *avatarTexture, AvatarType avata
 
 - (void)fetchAvatarWithCallback:(AvatarFetchResultBlock)callback;
 
+// Clears the avatar cache
++ (void)clearAvatarCache;
+
 @end

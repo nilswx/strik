@@ -142,6 +142,11 @@
 	return avatars;
 }
 
++ (void)clearAvatarCache
+{
+	[[STKAvatar avatarCache] removeAllObjects];
+}
+
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"<STKAvatar: identifier:%@> - %@", self.identifier, [super description]];

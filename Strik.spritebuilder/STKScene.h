@@ -10,10 +10,7 @@
 
 #import "NSObject+Observer.h"
 
-@class STKSceneController;
-@class SKTextureAtlas;
-
-@interface STKScene : CCNode // It's the root node
+@interface STKScene : CCScene
 
 @property(weak) id controller;
 

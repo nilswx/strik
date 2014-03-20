@@ -175,13 +175,14 @@
 		// Calculate the correct index, since we are further in this table allready
 		int index = row - ((int)self.friends.count);
 		
-		// Create the node if it has not been created before
-		if(self.facebookNodes.count <= index)
+		// Create and add ALL missing nodes
+		for(int x = self.facebookNodes.count; x <= index; x++)
 		{
-			STKLobbyPersonNode *facebookNode = [STKLobbyPersonNode newLobbyPersonNodeWithFriend:[self.facebookUsers objectAtIndex:index]];
+			STKLobbyPersonNode *facebookNode = [STKLobbyPersonNode newLobbyPersonNodeWithFriend:[self.facebookUsers objectAtIndex:x]];
 			[self.facebookNodes addObject:facebookNode];
 		}
 		
+		// Get the node we need
 		listNode = [self.facebookNodes objectAtIndex:index];
 	}
 	

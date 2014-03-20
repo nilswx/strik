@@ -10,7 +10,7 @@
 
 @interface STKSceneController : STKController
 
-@property (nonatomic, readonly) id scene;
+@property(readonly) id scene;
 
 - (id)initWithCore:(STKCore *)core;
 

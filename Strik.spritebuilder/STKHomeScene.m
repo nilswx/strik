@@ -71,4 +71,9 @@
 	self.avatarNode.avatar = avatar;
 }
 
+- (void)dealloc
+{
+	
+}
+
 @end

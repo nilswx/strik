@@ -10,11 +10,22 @@
 
 @interface STKScene()
 
-@property (nonatomic) CCScene *cocosScene;
+@property CCScene *cocosScene;
 
 @end
 
 @implementation STKScene
+
+- (id)init
+{
+	if(self = [super init])
+	{
+		self.cocosScene = [CCScene new];
+		[self.cocosScene addChild:self];
+	}
+	
+	return self;
+}
 
 - (NSString*)description
 {
@@ -30,16 +41,6 @@
 + (NSString *)ccbFileName
 {
 	return [NSStringFromClass([self class]) stringByReplacingOccurrencesOfString:@"STK" withString:@""];
-}
-
-- (CCScene *)cocosScene
-{
-	if(!_cocosScene)
-	{
-		_cocosScene = [CCScene new];
-		[_cocosScene addChild:self];
-	}
-	return _cocosScene;
 }
 
 - (void)dealloc

@@ -13,7 +13,7 @@
 
 @interface STKSceneController()
 
-@property (nonatomic, strong) id scene;
+@property id scene;
 
 @end
 

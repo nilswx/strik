@@ -28,6 +28,8 @@
 
 - (void)dealloc
 {
+	NSLog(@"Scene: deallocating %@", self);
+	
     [self removeAsObserverForAllModels];
 }
 

@@ -12,9 +12,6 @@
 
 #import "STKFacebookController.h"
 
-#define SETTINGS_DISABLED_COLOR [CCColor colorWithRed:198.0f/255.0f green:198.0f/255.0f blue:198.0f/255.0f]
-#define SETTINGS_ENABLED_COLOR [CCColor colorWithRed:241.0f/255.0f green:75.0f/255.0f blue:106.0f/255.0f]
-
 @interface STKSettingsController()
 
 @property (readonly) STKSettingsScene *settingsScene;
@@ -27,8 +24,8 @@
 - (void)sceneWillBegin
 {
 	// Set the correct color to the checkboxes for settings and ads
-	[self colorSoundsCheckmark];
-	[self colorAdFreeCheckMark];
+	[self.settingsScene enableSetting:[STKSettings boolforKey:SETTINGS_KEY_SOUND] forKey:SETTINGS_KEY_SOUND];
+	[self.settingsScene enableSetting:[STKSettings boolforKey:SETTINGS_KEY_HIDE_ADS] forKey:SETTINGS_KEY_HIDE_ADS];
 	
 	// Determine if facebook linked, if linked remove facebook settings container
 	STKFacebookController *facebookController = self.core[@"facebook"];
@@ -36,30 +33,6 @@
 	{
 		[self.settingsScene removeFacebookLinkSettings];
 	}
-}
-
-- (void)colorSoundsCheckmark
-{
-	if([STKSettings boolforKey:SETTINGS_KEY_SOUND])
-	{
-		[self colorButton:self.settingsScene.checkmarkSound withColor:SETTINGS_ENABLED_COLOR];
-	}
-	else
-	{
-		[self colorButton:self.settingsScene.checkmarkSound withColor:SETTINGS_DISABLED_COLOR];
-	}
-}
-
-- (void)colorAdFreeCheckMark
-{
-	
-}
-
-- (void)colorButton:(CCButton *)button withColor:(CCColor *)color
-{
-	[button setBackgroundColor:color forState:CCControlStateHighlighted];
-	[button setBackgroundColor:color forState:CCControlStateNormal];
-	[button setBackgroundColor:color forState:CCControlStateSelected];
 }
 
 #pragma mark Button events
@@ -81,7 +54,7 @@
 - (void)onSoundButton:(CCButton *)button
 {
 	[STKSettings setBool:![STKSettings boolforKey:SETTINGS_KEY_SOUND] forKey:SETTINGS_KEY_SOUND];
-	[self colorSoundsCheckmark];
+	[self.settingsScene enableSetting:[STKSettings boolforKey:SETTINGS_KEY_SOUND] forKey:SETTINGS_KEY_SOUND];
 }
 
 - (void)onAdFreeButton:(CCButton *)button

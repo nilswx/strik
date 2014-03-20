@@ -29,6 +29,9 @@
 // The user progress bar
 @property STKProgressNode *playerProgress;
 
+// The timeline will be placed in here
+@property CCNode *timeLineContainer;
+
 @end
 
 @implementation STKHomeScene

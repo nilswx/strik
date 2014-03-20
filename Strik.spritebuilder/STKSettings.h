@@ -10,6 +10,7 @@
 
 #define SETTINGS_KEY_SOUND @"sound"
 #define SETTINGS_KEY_LANGUAGE @"language"
+#define SETTINGS_KEY_HIDE_ADS @"ads"
 
 @interface STKSettings : NSObject
 

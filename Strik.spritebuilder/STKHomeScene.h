@@ -11,6 +11,6 @@
 @interface STKHomeScene : STKScene
 
 // The timeline will be place in here using this size
-@property CCNode *timelineContainer;
+@property (readonly) CCNode *timelineContainer;
 
 @end

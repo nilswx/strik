@@ -12,6 +12,6 @@
 
 @interface STKAchievementsScene : STKScene
 
-@property GridNode *achievementsGrid;
+@property (readonly) CCNodeColor *achievementsGridContainer;
 
 @end

@@ -20,8 +20,10 @@
 
 @property CCDirector* cocosDirector;
 
-@property STKScene* scene;
+@property (nonatomic) STKScene* scene;
 @property STKSceneController* sceneController;
+
+@property CCScene *cocosScene;
 
 @end
 
@@ -64,7 +66,7 @@
 	// Initial scene?
 	if(!self.cocosDirector.runningScene)
 	{
-		[self.cocosDirector runWithScene:self.scene.cocosScene];
+		[self.cocosDirector runWithScene:self.cocosScene];
 	}
 	else
 	{
@@ -75,7 +77,7 @@
 		}
 		
 		// Go!
-		[self.cocosDirector replaceScene:self.scene.cocosScene withTransition:transition];
+		[self.cocosDirector replaceScene:self.cocosScene withTransition:transition];
 	}
 }
 
@@ -88,8 +90,8 @@
 	return nil;
 }
 
-// Returns the first scene wich will be displayed by cocos after boot
-- (STKScene *)bootstrapScene
+// Sets the first scene u[ wich will be displayed by cocos after boot
+- (void)setupBootstrapScene
 {
 	// First setup the boot scene
 	self.sceneController = [STKBootstrapController new];
@@ -101,12 +103,16 @@
 	// Fire events
 	[self.sceneController sceneWillBegin];
 	[self.scene sceneWillBegin];
-	
-	// Returning the scene, the startScene event @ AppDelegate will put it on screen
-	return self.scene;
 }
 
-
+- (void)setScene:(STKScene *)scene
+{
+	_scene = scene;
+	
+	// Create a cocos2d scene for this STKScene
+	self.cocosScene = [CCScene node];
+	[self.cocosScene addChild:self.scene];
+}
 
 - (UIView*)view
 {

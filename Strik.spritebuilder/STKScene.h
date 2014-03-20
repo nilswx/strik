@@ -16,7 +16,6 @@
 @interface STKScene : CCNode // It's the root node
 
 @property(weak) id controller;
-@property(readonly) CCScene *cocosScene;
 
 - (void)sceneWillBegin;
 - (void)sceneWillEnd;

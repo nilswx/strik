@@ -102,7 +102,9 @@
 - (CCScene*) startScene
 {
     STKDirector *spielberg = self.core[@"director"];
-	return [spielberg bootstrapScene].cocosScene;
+	[spielberg setupBootstrapScene];
+	
+	return spielberg.cocosScene;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

@@ -13,13 +13,15 @@
 @interface STKDirector : STKCoreComponent
 
 @property (readonly) STKSceneController *sceneController;
-@property (readonly) STKScene *scene;
+@property (nonatomic, readonly) STKScene *scene;
+
+@property (readonly) CCScene *cocosScene;
 
 - (void)presentScene:(STKSceneController *)sceneController;
 - (void)presentScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;
 
 - (id)isCurrentScene:(Class)sceneClass;
 
-- (STKScene *)bootstrapScene;
+- (void)setupBootstrapScene;
 
 @end

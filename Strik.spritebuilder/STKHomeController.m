@@ -210,13 +210,14 @@
 
 - (CCNode *)nodeForColumn:(int)column andRow:(int)row
 {
-	
+	// The item variable
 	STKTimelineItemNode *timelineItem;
 	
-	if(self.timelineItemNodes.count <= row)
+	// Create and add ALL missing nodes
+	for(int x = self.timelineItemNodes.count; x <= row; x++)
 	{
 		// Get the info for this timeline item
-		NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:row];
+		NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:x];
 		
 		// Load it and set the properties
 
@@ -244,10 +245,9 @@
 		// Add to cache
 		[self.timelineItemNodes addObject:timelineItem];
 	}
-	else
-	{
-		timelineItem = [self.timelineItemNodes objectAtIndex:row];
-	}
+	
+	// Get the item we need (it is there!)
+	timelineItem = [self.timelineItemNodes objectAtIndex:row];
 	
 	// Make sure the line is correct based on position
 	if(self.rowCount == 1)

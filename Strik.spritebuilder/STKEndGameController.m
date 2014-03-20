@@ -23,6 +23,9 @@
 #import "STKDirector.h"
 #import "STKHomeController.h"
 
+#import "STKIncomingMessage.h"
+#import "STKOutgoingMessage.h"
+
 #define DISPLAY_WINNER_TIMELINE @"Display Winner"
 
 @interface STKEndGameController()
@@ -43,6 +46,15 @@
 	}
 	
 	return self;
+}
+
+- (void)sceneCreated
+{
+	// Handle network messages of the challenge system (rematch)
+	[self routeNetMessagesOf:CHALLENGE_OK to:@selector(handleChallengeOK:)];
+	[self routeNetMessagesOf:CHALLENGE_FAILED to:@selector(handleChallengeFailed:)];
+	[self routeNetMessagesOf:CHALLENGE_REDIRECT to:@selector(handleChallengeRedirect:)];
+	[self routeNetMessagesOf:CHALLENGE_LOCALE_MISMATCH to:@selector(handleChallengeLocaleMismatch:)];
 }
 
 - (void)sceneWillBegin
@@ -129,15 +141,15 @@
 	// Display winner
 	if(self.match.winner == nil)
 	{
-		endGameResults = NSLocalizedString(@"It's a Draw!", nil);
+		endGameResults = NSLocalizedString(@"Draw!", nil);
 	}
 	else if(self.match.winner == self.match.player)
 	{
-		endGameResults = NSLocalizedString(@"You Won!", nil);
+		endGameResults = NSLocalizedString(@"You win!", nil);
 	}
 	else
 	{
-		endGameResults = NSLocalizedString(@"You Lost!", nil);
+		endGameResults = NSLocalizedString(@"You lose!", nil);
 	}
 	
 	return endGameResults;
@@ -152,7 +164,17 @@
 
 - (void)onRematchButton:(CCButton *)button
 {
-	NSLog(@"Rematch please");
+	if(true) // TODO: if not already checkmarked
+	{
+		NSLog(@"Rematch please");
+		
+		STKMatchPlayer* opponent = self.match.opponent;
+		
+		// Ask for a rematch...
+		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
+		[msg appendInt:opponent.playerId];
+		[self sendNetMessage:msg];
+	}
 }
 
 - (STKEndGameScene *)endGameScene
@@ -170,6 +192,42 @@
 	
 	// And display end results without animation
 	[self displayProgress:NO];
+}
+
+- (void)handleChallengeOK:(STKIncomingMessage*)msg
+{
+	int playerId = [msg readInt];
+	if(playerId == self.match.opponent.playerId)
+	{
+		NSLog(@"Rematch: challenge delivered, place own checkmark now! (waiting...)");
+	}
+}
+
+- (void)handleChallengeFailed:(STKIncomingMessage*)msg
+{
+	int playerId = [msg readInt];
+	if(playerId == self.match.opponent.playerId)
+	{
+		NSLog(@"Rematch: challenge failed to deliver, disable rematch button to avoid spamming?");
+	}
+}
+
+- (void)handleChallengeRedirect:(STKIncomingMessage*)msg
+{
+	int playerId = [msg readInt];
+	if(playerId == self.match.opponent.playerId)
+	{
+		NSLog(@"Rematch: opponent is now on a different server, wat?");
+	}
+}
+
+- (void)handleChallengeLocaleMismatch:(STKIncomingMessage*)msg
+{
+	int playerId = [msg readInt];
+	if(playerId == self.match.opponent.playerId)
+	{
+		NSLog(@"Rematch: opponent is now using a different locale, wat?");
+	}
 }
 
 @end

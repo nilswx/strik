@@ -8,7 +8,6 @@
 
 #import "STKBootstrapController.h"
 
-#import "STKMusicController.h"
 #import "STKClientController.h"
 
 @implementation STKBootstrapController
@@ -21,9 +20,6 @@
 
 - (void)bootstrap
 {
-	// Start music
-	[self.core[@"music"] playMusicWithName:@"menu"];
-	
 	// Register or login!
 	[self.core[@"client"] registerOrLogin];
 }

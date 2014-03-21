@@ -97,6 +97,7 @@
 	
 	// We want music!
 	[self.core installComponent:[STKMusicController new]];
+	[self.core[@"music"] playMusicWithName:@"bg-piano"];
 	
 	// We also want Facebook
 	[self.core installComponent:[STKFacebookController new]];

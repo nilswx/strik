@@ -19,31 +19,37 @@
 
 @implementation STKAdBanner
 
-- (void)onEnter
-{
-	[super onEnter];
-	
-	// I'm just a placeholder
-	super.visible = NO;
-	
-	// Here comes the ad
-	[self reload];
-}
+#pragma mark Ad Management
 
 - (void)reload
 {
 	// Clear old ad
 	[self clear];
 	
-	// Get the ad impl
-	ADBannerView* appleBanner = [ADBannerView new];
-	appleBanner.delegate = self;
-	
-	// Store the ad view
-	self.adView = appleBanner;
-	
-	// Waiting...
-	NSLog(@"Advertisement @ %@: reloading...", self.parentScene);
+	// Rotate to the next ad impl and store the view
+	self.adView = [self nextAdView];
+	if(self.adView)
+	{
+		// Waiting...
+		NSLog(@"%@: reloading...", self);
+	}
+	else
+	{
+		NSLog(@"%@: did not pick an ad implementation", self);
+	}
+}
+
+- (UIView*)nextAdView
+{
+	// Maybe pick other banners
+	if(true)
+	{
+		return [self createAppleBanner];
+	}
+	else
+	{
+		return nil;
+	}
 }
 
 - (void)clear
@@ -54,6 +60,19 @@
 		
 		self.adView = nil;
 	}
+}
+
+#pragma mark cocos2d
+
+- (void)onEnter
+{
+	[super onEnter];
+	
+	// I'm just a placeholder
+	super.visible = NO;
+	
+	// Here comes the ad
+	[self reload];
 }
 
 - (void)onExit
@@ -70,44 +89,7 @@
 	[self clear];
 }
 
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-	/*
-	 This method is triggered when an advertisement could not be loaded from the iAds system (perhaps due to a network connectivity issue). If you have already taken steps to only display an ad when it has successfully loaded it is not typically necessary to implement the code for this method. */
-	
-	NSLog(@"Advertisement @ %@: failed to load! (%@)", self.parentScene, error);
-}
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-	/* Introduced as part of the iOS 5 SDK, this method is triggered when the banner confirms that an advertisement is available but before the ad is downloaded to the device and is ready for presentation to the user. */
-	
-	// Show!
-	[[[CCDirector sharedDirector] view] addSubview:self.adView];
-	NSLog(@"Advertisement @ %@: loaded!", self.parentScene);
-	
-	// Force position update (positions the frame)
-	self.position = self.position;
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
-{
-	/*
-	 This method is triggered when the user touches the iAds banner in your application. If the willLeave argument passed through to the method is YES then your application will be placed into the background while the user is taken elsewhere to interact with or view the ad. If the argument is NO then the ad will be superimposed over your running application in which case the code in this method may optionally suspend the screen output until the user returns.
-	 
-	 f the ad places the application into the background, the application will be resumed automatically once the action is completed.
-	 To prevent the ad from performing the action, return NO from this method, though it is strongly recommended by Apple that you return YES if you wish to earn advertising revenue. */
-	
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner
-{
-	/* This method is called when the ad view removes the ad content currently obscuring the application interface. If the application was paused during the ad view session this method can be used to resume activity: */
-	
-	NSLog(@"Advertisement @ %@: finished viewing!", self.parentScene);
-}
-
+#pragma mark CCNode properties
 - (BOOL)visible
 {
 	return !self.adView.hidden;
@@ -137,16 +119,65 @@
 		// Get ad + win size
 		CGSize adSize = self.adView.frame.size;
 		CGSize winSize = self.adView.superview.bounds.size;
-	
+		
 		// Convert between UI and GL space
 		CGPoint point = CGPointMake(position.x, (winSize.height - adSize.height - position.y));
 		self.adView.frame = CGRectMake(point.x, point.y, adSize.width, adSize.height);
 	}
 }
 
-- (STKScene*)parentScene
+- (NSString*)description
 {
-	return self.scene.children[0];
+	STKScene* parentScene = self.scene.children[0];
+	
+	return [NSString stringWithFormat:@"%@ [%@]", [self class], parentScene];
+}
+
+#pragma mark iAd Banners
+- (ADBannerView*)createAppleBanner
+{
+	ADBannerView* appleBanner = [ADBannerView new];
+	appleBanner.delegate = self;
+	
+	return appleBanner;
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+	/*
+	 This method is triggered when an advertisement could not be loaded from the iAds system (perhaps due to a network connectivity issue). If you have already taken steps to only display an ad when it has successfully loaded it is not typically necessary to implement the code for this method. */
+	
+	NSLog(@"Advertisement @ %@: failed to load! (%@)", self.parentScene, error);
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+	/* Introduced as part of the iOS 5 SDK, this method is triggered when the banner confirms that an advertisement is available but before the ad is downloaded to the device and is ready for presentation to the user. */
+	
+	// Show!
+	[[[CCDirector sharedDirector] view] addSubview:self.adView];
+	NSLog(@"%@: successfully loaded!", self);
+	
+	// Force position update (positions the frame)
+	self.position = self.position;
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+	/*
+	 This method is triggered when the user touches the iAds banner in your application. If the willLeave argument passed through to the method is YES then your application will be placed into the background while the user is taken elsewhere to interact with or view the ad. If the argument is NO then the ad will be superimposed over your running application in which case the code in this method may optionally suspend the screen output until the user returns.
+	 
+	 f the ad places the application into the background, the application will be resumed automatically once the action is completed.
+	 To prevent the ad from performing the action, return NO from this method, though it is strongly recommended by Apple that you return YES if you wish to earn advertising revenue. */
+	
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+	/* This method is called when the ad view removes the ad content currently obscuring the application interface. If the application was paused during the ad view session this method can be used to resume activity: */
+	
+	NSLog(@"%@: finished viewing!", self);
 }
 
 @end

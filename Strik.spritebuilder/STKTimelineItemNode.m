@@ -109,4 +109,9 @@
 	[self removeAsObserverForAllModels];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<TimeLineItemNode> for %@ with content: %@", self.actor, self.content];
+}
+
 @end

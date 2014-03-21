@@ -134,4 +134,9 @@
 	[self removeAsObserverForAllModels];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<LobbyPersonNode> for %@", self.friend];
+}
+
 @end

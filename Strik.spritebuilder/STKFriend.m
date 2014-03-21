@@ -17,7 +17,7 @@
 
 - (NSString*)description
 {
-	return [NSString stringWithFormat:@"#%lld (%@)", self.userId, self.fullName];
+	return [NSString stringWithFormat:@"<STKFriend #%lld (%@)>", self.userId, self.fullName];
 }
 
 - (NSString *)fullName

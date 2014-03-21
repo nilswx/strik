@@ -33,4 +33,9 @@
 	return user;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<Actor %d - %@>", self.playerId, self.name];
+}
+
 @end

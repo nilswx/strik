@@ -31,6 +31,7 @@
 
 #import "STKMenuController.h"
 #import "STKEndGameController.h"
+#import "STKMusicController.h"
 
 @interface STKGameController()
 
@@ -184,6 +185,9 @@
 
 - (void)matchDidStart:(STKIncomingMessage *)message
 {
+	// Start the music
+	[self.core[@"music"] playMusicWithName:@"bg-uplift"];
+	
 	// Start the timer!
 	[self.gameScene startTimer];
 }

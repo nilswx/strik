@@ -120,43 +120,27 @@
     return [[FBSession activeSession] handleOpenURL:url];
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-	[super applicationWillResignActive:application];
-	
-	[self pause];
-}
-
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
 	[super applicationDidEnterBackground:application];
 	
-	[self pause];
+	[self.core[@"audio"] pauseAudio];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	[super applicationWillEnterForeground:application];
 	
-	[self resume];
+	[self.core[@"audio"] resumeAudio];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	[super applicationDidBecomeActive:application];
 	
-	[self resume];
-	
 	// We need to properly handle activation of the application with regards to Facebook Login
 	// (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
 	[[FBSession activeSession] handleDidBecomeActive];
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-	[super applicationWillTerminate:application];
-	
-	[self pause];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
@@ -166,16 +150,6 @@
 	
 	// Clear any caches here :)
 	[STKAvatar clearAvatarCache];
-}
-
-- (void)pause
-{
-	[self.core[@"audio"] pauseAudio];
-}
-
-- (void)resume
-{
-	[self.core[@"audio"] resumeAudio];
 }
 
 @end

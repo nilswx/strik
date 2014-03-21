@@ -119,6 +119,7 @@
 	
 }
 
+
 - (void)handleServerCrypto:(STKIncomingMessage*)msg
 {
 	NSString* serverKey = [msg readStr];
@@ -133,8 +134,7 @@
 		[connection enableDecryptionWithKey:[serverKey dataUsingEncoding:NSUTF8StringEncoding]];
 		
 		// Now generate a client-> server encryption key
-//		NSString* clientKey = [[NSUUID UUID] UUIDString];
-		NSString *clientKey = @"Top secret!";
+		NSString* clientKey = [self getUUID];
 		
 		// Inform the server (plaintext)
 		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CLIENT_CRYPTO];
@@ -157,6 +157,15 @@
 	session.sessionId = [msg readLong];
 	session.server = [msg readStr];
 	[self.core installComponent:session];
+}
+
+- (NSString *)generateUUID
+{
+	CFUUIDRef theUUID = CFUUIDCreate(NULL);
+	CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+	CFRelease(theUUID);
+	
+	return (__bridge NSString *)string;
 }
 
 @end

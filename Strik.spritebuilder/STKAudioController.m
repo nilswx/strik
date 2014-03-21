@@ -15,6 +15,7 @@
 @interface STKAudioController()
 
 @property(nonatomic) OALSimpleAudio* audio;
+@property(nonatomic) int fxpitch;
 
 @end
 
@@ -87,9 +88,14 @@
 
 - (void)playEffectWithName:(NSString*)effectName
 {
+	[self playEffectWithName:effectName pitch:1.0];
+}
+
+- (void)playEffectWithName:(NSString*)effectName pitch:(float)pitch
+{
 	NSString* fileName = [NSString stringWithFormat:@"audio/sfx/%@.caf", effectName];
 	
-	[self.audio playEffect:fileName];
+	[self.audio playEffect:fileName volume:self.audio.effectsVolume pitch:pitch pan:0 loop:NO];
 }
 
 @end

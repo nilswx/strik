@@ -22,4 +22,6 @@
 
 - (void)playEffectWithName:(NSString*)effectName;
 
+- (void)playEffectWithName:(NSString*)effectName pitch:(float)pitch;
+
 @end

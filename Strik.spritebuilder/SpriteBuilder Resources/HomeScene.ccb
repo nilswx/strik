@@ -2841,6 +2841,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -2978,7 +2980,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>STKAdView</string>
+				<string>STKAdBanner</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -3026,7 +3028,7 @@
 						<key>type</key>
 						<string>CCBFile</string>
 						<key>value</key>
-						<string>Global/Nodes/AdView.ccb</string>
+						<string>Global/Nodes/AdBanner.ccb</string>
 					</dict>
 				</array>
 			</dict>

@@ -61,8 +61,8 @@
 	// Boo!
 	NSLog(@"%@: meh, %@ did not load!", self, [self.adView class]);
 	
-	// Next network!
-	[self rotateToNextNetwork];
+	// Next network in x seconds!
+	[self scheduleOnce:@selector(rotateToNextNetwork) delay:1.0];
 }
 
 - (void)clearBanner
@@ -149,7 +149,7 @@
 #pragma mark Apple iAd Banners
 - (ADBannerView*)createAppleBanner
 {
-	ADBannerView* appleBanner = [[ADBannerView alloc] init];
+	ADBannerView* appleBanner = [ADBannerView new];
 	appleBanner.delegate = self;
 	
 	return appleBanner;

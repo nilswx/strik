@@ -19,19 +19,18 @@
 
 @implementation STKAdBanner
 
-#pragma mark Ad Management
+#pragma mark Rotate & Clear
 
-- (void)reload
+- (void)rotateToNextNetwork
 {
 	// Clear old ad
 	[self clear];
 	
 	// Rotate to the next ad impl and store the view
-	self.adView = [self nextAdView];
+	self.adView = [self pickNextAdView];
 	if(self.adView)
 	{
-		// Waiting...
-		NSLog(@"%@: reloading...", self);
+		NSLog(@"%@: rotating to %@...", self, [self.adView class]);
 	}
 	else
 	{
@@ -39,9 +38,9 @@
 	}
 }
 
-- (UIView*)nextAdView
+- (UIView*)pickNextAdView
 {
-	// Maybe pick other banners
+	// Always use iAd
 	if(true)
 	{
 		return [self createAppleBanner];
@@ -62,6 +61,26 @@
 	}
 }
 
+#pragma mark Banner Events
+
+- (void)bannerDidLoad
+{
+	// Hurray!
+	NSLog(@"%@: successfully loaded %@!", self, [self.adView class]);
+	
+	// Show the view!
+	[[[CCDirector sharedDirector] view] addSubview:self.adView];
+	
+	// Force position update (positions the view)
+	self.position = self.position;
+}
+
+- (void)bannerDidNotLoad
+{
+	// Next network!
+	[self rotateToNextNetwork];
+}
+
 #pragma mark cocos2d
 
 - (void)onEnter
@@ -72,7 +91,7 @@
 	super.visible = NO;
 	
 	// Here comes the ad
-	[self reload];
+	[self rotateToNextNetwork];
 }
 
 - (void)onExit
@@ -89,7 +108,7 @@
 	[self clear];
 }
 
-#pragma mark CCNode properties
+#pragma mark cocos2d node properties
 - (BOOL)visible
 {
 	return !self.adView.hidden;
@@ -130,10 +149,10 @@
 {
 	STKScene* parentScene = self.scene.children[0];
 	
-	return [NSString stringWithFormat:@"%@ [%@]", [self class], parentScene];
+	return [NSString stringWithFormat:@"%@ (%@)", [self class], [parentScene class]];
 }
 
-#pragma mark iAd Banners
+#pragma mark Apple iAd Banners
 - (ADBannerView*)createAppleBanner
 {
 	ADBannerView* appleBanner = [ADBannerView new];
@@ -147,19 +166,14 @@
 	/*
 	 This method is triggered when an advertisement could not be loaded from the iAds system (perhaps due to a network connectivity issue). If you have already taken steps to only display an ad when it has successfully loaded it is not typically necessary to implement the code for this method. */
 	
-	NSLog(@"Advertisement @ %@: failed to load! (%@)", self.parentScene, error);
+	[self bannerDidNotLoad];
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
 	/* Introduced as part of the iOS 5 SDK, this method is triggered when the banner confirms that an advertisement is available but before the ad is downloaded to the device and is ready for presentation to the user. */
 	
-	// Show!
-	[[[CCDirector sharedDirector] view] addSubview:self.adView];
-	NSLog(@"%@: successfully loaded!", self);
-	
-	// Force position update (positions the frame)
-	self.position = self.position;
+	[self bannerDidLoad];
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -177,7 +191,7 @@
 {
 	/* This method is called when the ad view removes the ad content currently obscuring the application interface. If the application was paused during the ad view session this method can be used to resume activity: */
 	
-	NSLog(@"%@: finished viewing!", self);
+	NSLog(@"%@: finished viewing! (iAd)", self);
 }
 
 @end

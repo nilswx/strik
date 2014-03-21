@@ -12,6 +12,6 @@
 
 @interface STKAdBanner : CCNode <ADBannerViewDelegate>
 
-- (void)reload;
+- (void)rotateToNextNetwork;
 
 @end

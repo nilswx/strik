@@ -1946,6 +1946,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = cocos2d;
+				SDKROOT = iphoneos5.1;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1980,6 +1981,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = cocos2d;
+				SDKROOT = iphoneos5.1;
 				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};

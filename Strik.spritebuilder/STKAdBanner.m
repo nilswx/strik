@@ -30,25 +30,18 @@
 	self.adView = [self pickNextAdView];
 	if(self.adView)
 	{
-		NSLog(@"%@: rotating to %@...", self, [self.adView class]);
+		NSLog(@"%@: next = %@", self, [self.adView class]);
 	}
 	else
 	{
-		NSLog(@"%@: did not pick an ad implementation", self);
+		NSLog(@"%@: next = NULL", self);
 	}
 }
 
 - (UIView*)pickNextAdView
 {
 	// Always use iAd
-	if(true)
-	{
-		return [self createAppleBanner];
-	}
-	else
-	{
-		return nil;
-	}
+	return [self createAppleBanner];
 }
 
 - (void)clear

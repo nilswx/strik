@@ -36,7 +36,7 @@
 	[self clear];
 	
 	// Start loading the new ad
-	self.ad = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+	self.ad = [ADBannerView new];
 	self.ad.delegate = self;
 	
 	// Waiting...

@@ -12,7 +12,7 @@
 
 @interface STKAdBanner()
 
-@property ADBannerView* ad;
+@property UIView* adView;
 @property(readonly,nonatomic) STKScene* parentScene;
 
 @end
@@ -35,9 +35,12 @@
 	// Clear old ad
 	[self clear];
 	
-	// Start loading the new ad
-	self.ad = [ADBannerView new];
-	self.ad.delegate = self;
+	// Get the ad impl
+	ADBannerView* appleBanner = [ADBannerView new];
+	appleBanner.delegate = self;
+	
+	// Store the ad view
+	self.adView = appleBanner;
 	
 	// Waiting...
 	NSLog(@"Advertisement @ %@: reloading...", self.parentScene);
@@ -45,11 +48,11 @@
 
 - (void)clear
 {
-	if(self.ad)
+	if(self.adView)
 	{
-		[self.ad removeFromSuperview];
+		[self.adView removeFromSuperview];
 		
-		self.ad = nil;
+		self.adView = nil;
 	}
 }
 
@@ -80,7 +83,7 @@
 	/* Introduced as part of the iOS 5 SDK, this method is triggered when the banner confirms that an advertisement is available but before the ad is downloaded to the device and is ready for presentation to the user. */
 	
 	// Show!
-	[[[CCDirector sharedDirector] view] addSubview:self.ad];
+	[[[CCDirector sharedDirector] view] addSubview:self.adView];
 	NSLog(@"Advertisement @ %@: loaded!", self.parentScene);
 	
 	// Force position update (positions the frame)
@@ -107,37 +110,37 @@
 
 - (BOOL)visible
 {
-	return !self.ad.hidden;
+	return !self.adView.hidden;
 }
 
 - (void)setVisible:(BOOL)visible
 {
-	self.ad.hidden = !visible;
+	self.adView.hidden = !visible;
 }
 
 - (void)setOpacity:(CGFloat)opacity
 {
-	self.ad.alpha = opacity;
+	self.adView.alpha = opacity;
 }
 
 - (CGFloat)opacity
 {
-	return self.ad.alpha;
+	return self.adView.alpha;
 }
 
 - (void)setPosition:(CGPoint)position
 {
 	[super setPosition:position];
 	
-	if(self.ad)
+	if(self.adView)
 	{
 		// Get ad + win size
-		CGSize adSize = self.ad.frame.size;
-		CGSize winSize = self.ad.superview.bounds.size;
+		CGSize adSize = self.adView.frame.size;
+		CGSize winSize = self.adView.superview.bounds.size;
 	
 		// Convert between UI and GL space
 		CGPoint point = CGPointMake(position.x, (winSize.height - adSize.height - position.y));
-		self.ad.frame = CGRectMake(point.x, point.y, adSize.width, adSize.height);
+		self.adView.frame = CGRectMake(point.x, point.y, adSize.width, adSize.height);
 	}
 }
 

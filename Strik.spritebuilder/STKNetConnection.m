@@ -20,6 +20,7 @@
 
 #define TAG_MSG_LENGTH 1
 #define TAG_MSG_DATA 2
+#define USE_TCP_NODELAY NO
 
 @interface STKNetConnection()
 
@@ -76,18 +77,21 @@
 	}
 	
 	// Disable Nagle's algorithm to reduce latency on small packets
-	[sock performBlock:^
+	if(USE_TCP_NODELAY)
 	{
-		int on = 1;
-		if(setsockopt([sock socketFD], IPPROTO_TCP, TCP_NODELAY, (char*)&on, sizeof(on)) == 0)
-		{
-			NSLog(@"Network: TCP_NODELAY enabled");
-		}
-		else
-		{
-			NSLog(@"Network: could not enable TCP_NODELAY?!");
-		}
-	}];
+		[sock performBlock:^
+		 {
+			 int on = 1;
+			 if(setsockopt([sock socketFD], IPPROTO_TCP, TCP_NODELAY, (char*)&on, sizeof(on)) == 0)
+			 {
+				 NSLog(@"Network: TCP_NODELAY enabled");
+			 }
+			 else
+			 {
+				 NSLog(@"Network: could not enable TCP_NODELAY?!");
+			 }
+		 }];
+	}
     
     // Kick off the message reading & handling loop
     [self beginReceiveMessage];

@@ -30,9 +30,6 @@ typedef NS_ENUM(NSInteger, zIndex)
 // The background node
 @property CCNodeColor *background;
 
-// The first drop for all tiles shows all tiles where they should be instead of dropping them all down
-@property BOOL isFirstDrop;
-
 // The tile container (every tile must be placed in here)
 @property CCNode *tileContainer;
 
@@ -51,9 +48,6 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Set touch enabled
 	self.userInteractionEnabled = YES;
 	self.userSelectionEnabled = YES;
-	
-	// The initial drop places tiles at the bottom, so you won't see them fall
-	self.isFirstDrop = YES;
 	
 	// Add the board lines
 	[self addBoardLines];
@@ -134,21 +128,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 	if(tiles)
 	{
 		// The starting Y position (they fall from this height)
-		CGFloat startY;
-		
-		// The initial tiles are drawn where they should be
-		if(self.isFirstDrop && tiles)
-		{
-			startY = TILE_SIZE;
-			
-			// There is only one first drop
-			self.isFirstDrop = NO;
-		}
-		// And the new ones are drawn at top
-		else
-		{
-			startY = self.scene.contentSizeInPoints.height;
-		}
+		CGFloat startY = self.scene.contentSizeInPoints.height;
 		
 		// Todo: Fix this somehow that it knows other tiles are in place up there...
 		// The Y position might be different for different collumns while adding (e.g an L shape)

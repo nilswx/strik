@@ -91,7 +91,7 @@
 			NSLog(@"Session: recovered account #%d!", playerId);
 			
 			// Give the user something to look at (lol fix this)
-			[[STKAlertView alertWithTitle:NSLocalizedString(@"Account Downloaded", nil) andMessage:NSLocalizedString(@"Downloaded your previous account. Hang on...", nil)] show];
+			//[[STKAlertView alertWithTitle:NSLocalizedString(@"Account Downloaded", nil) andMessage:NSLocalizedString(@"Downloaded your previous account. Hang on...", nil)] show];
 			
 			// Server will disconnect us now. Wait for client to reconnect, so it logs in to the account.
 
@@ -178,10 +178,13 @@
 
 - (void)handleExperience:(STKIncomingMessage *)message
 {
-    int added = [message readInt];
-    int total = [message readInt];
-
-    self.player.progression.xp = total;
+	// Nice!
+	int added = [message readInt];
+	NSLog(@"Player: received %d XP", added);
+	
+	// Update the total
+	int total = [message readInt];
+	self.player.progression.xp = total;
 }
 
 - (void)handleLevels:(STKIncomingMessage *)message

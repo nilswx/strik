@@ -305,7 +305,7 @@
 		{
 			actor = [STKPlayer new];
 			actor.playerId = playerId;
-			actor.name = friend.fullName;
+			actor.name = friend.name;
 			actor.avatar = friend.avatar;
 		}
 		else

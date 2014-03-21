@@ -178,10 +178,13 @@
 
 - (void)handleExperience:(STKIncomingMessage *)message
 {
-    int added = [message readInt];
-    int total = [message readInt];
-
-    self.player.progression.xp = total;
+	// Nice!
+	int added = [message readInt];
+	NSLog(@"Player: received %d XP", added);
+	
+	// Update the total
+	int total = [message readInt];
+	self.player.progression.xp = total;
 }
 
 - (void)handleLevels:(STKIncomingMessage *)message

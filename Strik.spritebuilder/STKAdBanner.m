@@ -24,10 +24,10 @@
 - (void)rotateToNextNetwork
 {
 	// Clear old ad
-	[self clear];
+	[self clearBanner];
 	
 	// Rotate to the next ad impl and store the view
-	self.adView = [self pickNextAdView];
+	self.adView = [self pickNextBanner];
 	if(self.adView)
 	{
 		NSLog(@"%@: next = %@", self, [self.adView class]);
@@ -38,7 +38,7 @@
 	}
 }
 
-- (UIView*)pickNextAdView
+- (UIView*)pickNextBanner
 {
 	// Always use iAd
 	return [self createAppleBanner];
@@ -65,7 +65,7 @@
 	[self rotateToNextNetwork];
 }
 
-- (void)clear
+- (void)clearBanner
 {
 	if(self.adView)
 	{
@@ -92,14 +92,14 @@
 {
 	[super onExit];
 	
-	[self clear];
+	[self clearBanner];
 }
 
 - (void)removeFromParent
 {
 	[super removeFromParent];
 	
-	[self clear];
+	[self clearBanner];
 }
 
 #pragma mark cocos2d node properties
@@ -149,7 +149,7 @@
 #pragma mark Apple iAd Banners
 - (ADBannerView*)createAppleBanner
 {
-	ADBannerView* appleBanner = [ADBannerView new];
+	ADBannerView* appleBanner = [[ADBannerView alloc] init];
 	appleBanner.delegate = self;
 	
 	return appleBanner;

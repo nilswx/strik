@@ -3236,7 +3236,7 @@
 										<key>value</key>
 										<array>
 											<real>26</real>
-											<real>104</real>
+											<real>88</real>
 											<integer>0</integer>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -3455,7 +3455,7 @@ friends and see their progress.</string>
 										<key>value</key>
 										<array>
 											<real>0.5</real>
-											<real>53</real>
+											<real>37</real>
 											<integer>0</integer>
 											<integer>2</integer>
 											<integer>0</integer>
@@ -3759,7 +3759,7 @@ friends and see their progress.</string>
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>415</real>
+									<real>398</real>
 									<integer>1</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -3773,7 +3773,7 @@ friends and see their progress.</string>
 								<key>value</key>
 								<array>
 									<real>1</real>
-									<real>137</real>
+									<real>120</real>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
@@ -4087,8 +4087,6 @@ friends and see their progress.</string>
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array>

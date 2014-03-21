@@ -107,8 +107,6 @@
 	/* This method is called when the ad view removes the ad content currently obscuring the application interface. If the application was paused during the ad view session this method can be used to resume activity: */
 	
 	NSLog(@"Advertisement @ %@: finished viewing!", self.parentScene);
-	
-	[self reload];
 }
 
 - (STKScene*)parentScene

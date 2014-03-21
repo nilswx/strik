@@ -31,6 +31,7 @@
 #import "STKCore.h"
 #import "STKDirector.h"
 #import "STKInAppPurchasesController.h"
+#import "STKAudioPlayer.h"
 #import "STKFacebookController.h"
 #import "STKClientController.h"
 #import "STKScene.h"
@@ -94,6 +95,9 @@
 	// In App Purchases
 	//[self.core installComponent:[STKInAppPurchasesController new] withKey:@"iap"];
 	
+	// We want audio!
+	[self.core installComponent:[STKAudioPlayer new]];
+	
 	// We also want Facebook
 	[self.core installComponent:[STKFacebookController new]];
 	
@@ -115,9 +119,29 @@
     return [[FBSession activeSession] handleOpenURL:url];
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+	[super applicationWillResignActive:application];
+	
+	[self pause];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+	[super applicationDidEnterBackground:application];
+	
+	[self pause];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+	[super applicationWillEnterForeground:application];
+	
+	[self resume];
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	// YOU AND ME BABI WE BE NO NOTHING BUT MAMMAL
 	[super applicationDidBecomeActive:application];
 	
 	// We need to properly handle activation of the application with regards to Facebook Login
@@ -125,12 +149,30 @@
 	[[FBSession activeSession] handleDidBecomeActive];
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	[super applicationWillTerminate:application];
+	
+	[self pause];
+}
+
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
+	// cocos2d is down there, too!
 	[super applicationDidReceiveMemoryWarning:application];
 	
 	// Clear any caches here :)
 	[STKAvatar clearAvatarCache];
+}
+
+- (void)pause
+{
+	[self.core[@"audio"] pauseAudio];
+}
+
+- (void)resume
+{
+	[self.core[@"audio"] resumeAudio];
 }
 
 @end

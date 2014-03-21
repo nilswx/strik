@@ -31,7 +31,7 @@
 #import "STKCore.h"
 #import "STKDirector.h"
 #import "STKInAppPurchasesController.h"
-#import "STKAudioPlayer.h"
+#import "STKMusicController.h"
 #import "STKFacebookController.h"
 #import "STKClientController.h"
 #import "STKScene.h"
@@ -95,8 +95,8 @@
 	// In App Purchases
 	//[self.core installComponent:[STKInAppPurchasesController new] withKey:@"iap"];
 	
-	// We want audio!
-	[self.core installComponent:[STKAudioPlayer new]];
+	// We want music!
+	[self.core installComponent:[STKMusicController new]];
 	
 	// We also want Facebook
 	[self.core installComponent:[STKFacebookController new]];
@@ -167,12 +167,12 @@
 
 - (void)pause
 {
-	[self.core[@"audio"] pauseAudio];
+	[self.core[@"music"] disableAudio];
 }
 
 - (void)resume
 {
-	[self.core[@"audio"] resumeAudio];
+	[self.core[@"music"] enableAudio];
 }
 
 @end

@@ -1,34 +1,36 @@
 //
-//  STKAudioPlayer.h
+//  STKMusicController.m
 //  Strik
 //
 //  Created by Nils on Nov 21, 2013.
 //  Copyright (c) 2013 Indev. All rights reserved.
 //
 
-#import "STKAudioPlayer.h"
+#import "STKMusicController.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define BACKGROUND_MUSIC_VOLUME 0.3f
 
-@interface STKAudioPlayer()
+@interface STKMusicController()
 
 @property(nonatomic) BOOL isLooping;
 @property(nonatomic) AVAudioPlayer* music;
 
 @end
 
-@implementation STKAudioPlayer
+@implementation STKMusicController
 
-- (void)pauseAudio
+- (void)disableAudio
 {
 	[self pauseMusic];
+	
 	[[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
-- (void)resumeAudio
+- (void)enableAudio
 {
 	[[AVAudioSession sharedInstance] setActive:YES error:nil];
+	
 	[self resumeMusic];
 }
 

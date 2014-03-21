@@ -8,6 +8,7 @@
 
 #import "STKBootstrapController.h"
 
+#import "STKMusicController.h"
 #import "STKClientController.h"
 
 @implementation STKBootstrapController
@@ -20,8 +21,11 @@
 
 - (void)bootstrap
 {
-	STKClientController *clientController = self.core[@"client"];
-	[clientController registerOrLogin];
+	// Start music
+	[self.core[@"music"] playMusicWithName:@"menu"];
+	
+	// Register or login!
+	[self.core[@"client"] registerOrLogin];
 }
 
 @end

@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
 		483B595918D0C50500F013C9 /* STKBlurLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B595818D0C50500F013C9 /* STKBlurLayer.m */; };
-		485F09F418DC5BB7001C6F00 /* STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 485F09F318DC5BB7001C6F00 /* STKAudioPlayer.m */; };
+		485F09F418DC5BB7001C6F00 /* STKMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 485F09F318DC5BB7001C6F00 /* STKMusicController.m */; };
+		485F09F718DC5D38001C6F00 /* menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 485F09F618DC5D38001C6F00 /* menu.mp3 */; };
 		8304529E18C753A2000BBE18 /* Linguistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304529D18C753A2000BBE18 /* Linguistics.m */; };
 		830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A218C769EC000BBE18 /* STKAnnounceMatchScene.m */; };
 		830452A618C769F8000BBE18 /* STKAnnounceMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A518C769F8000BBE18 /* STKAnnounceMatchController.m */; };
@@ -131,8 +132,9 @@
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		483B595718D0C50400F013C9 /* STKBlurLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBlurLayer.h; sourceTree = "<group>"; };
 		483B595818D0C50500F013C9 /* STKBlurLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBlurLayer.m; sourceTree = "<group>"; };
-		485F09F218DC5BB7001C6F00 /* STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAudioPlayer.h; sourceTree = "<group>"; };
-		485F09F318DC5BB7001C6F00 /* STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAudioPlayer.m; sourceTree = "<group>"; };
+		485F09F218DC5BB7001C6F00 /* STKMusicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKMusicController.h; sourceTree = "<group>"; };
+		485F09F318DC5BB7001C6F00 /* STKMusicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKMusicController.m; sourceTree = "<group>"; };
+		485F09F618DC5D38001C6F00 /* menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menu.mp3; sourceTree = "<group>"; };
 		48D3252318D9A92700FD774D /* GameGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameGlobals.h; sourceTree = "<group>"; };
 		6F9DC8090A134F69888D13FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8304529C18C753A2000BBE18 /* Linguistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Linguistics.h; sourceTree = "<group>"; };
@@ -350,8 +352,16 @@
 		485F09F018DC5B94001C6F00 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				485F09F218DC5BB7001C6F00 /* STKAudioPlayer.h */,
-				485F09F318DC5BB7001C6F00 /* STKAudioPlayer.m */,
+				485F09F218DC5BB7001C6F00 /* STKMusicController.h */,
+				485F09F318DC5BB7001C6F00 /* STKMusicController.m */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		485F09F518DC5D2E001C6F00 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				485F09F618DC5D38001C6F00 /* menu.mp3 */,
 			);
 			name = Audio;
 			sourceTree = "<group>";
@@ -516,6 +526,7 @@
 		8393781918B5FEAE0007BDE4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				485F09F518DC5D2E001C6F00 /* Audio */,
 				83C4423418BDF6D700B417C9 /* Shaders */,
 				83F6024818B4DA1100AC2EB1 /* Images.xcassets */,
 				B737893A180761570076A88C /* Published-iOS */,
@@ -1010,6 +1021,7 @@
 				83C4424418BE18DB00B417C9 /* CSEEmboss.fsh in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				83F6024918B4DA1100AC2EB1 /* Images.xcassets in Resources */,
+				485F09F718DC5D38001C6F00 /* menu.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,7 +1069,7 @@
 				8393783118B5FFB60007BDE4 /* STKModel.m in Sources */,
 				8383A64B18B79273003816BF /* STKAvatarNode.m in Sources */,
 				8393783218B5FFB60007BDE4 /* STKRemoteServerChallenge.m in Sources */,
-				485F09F418DC5BB7001C6F00 /* STKAudioPlayer.m in Sources */,
+				485F09F418DC5BB7001C6F00 /* STKMusicController.m in Sources */,
 				483B595918D0C50500F013C9 /* STKBlurLayer.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				830452AA18C77828000BBE18 /* STKAnnouncePlayerCard.m in Sources */,

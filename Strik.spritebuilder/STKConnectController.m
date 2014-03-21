@@ -133,7 +133,8 @@
 		[connection enableDecryptionWithKey:[serverKey dataUsingEncoding:NSUTF8StringEncoding]];
 		
 		// Now generate a client-> server encryption key
-		NSString* clientKey = [[NSUUID UUID] UUIDString];
+//		NSString* clientKey = [[NSUUID UUID] UUIDString];
+		NSString *clientKey = @"Top secret!";
 		
 		// Inform the server (plaintext)
 		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CLIENT_CRYPTO];

@@ -1213,6 +1213,7 @@
 				);
 				PRODUCT_NAME = Strik;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1250,6 +1251,7 @@
 				);
 				PRODUCT_NAME = Strik;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

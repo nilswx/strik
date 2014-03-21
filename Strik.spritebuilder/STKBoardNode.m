@@ -58,6 +58,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 - (void)addBoardLines
 {
+	// It should be one pixel wide regardless of DPI
+	CGFloat aPixel = 1 / [UIScreen mainScreen].scale;
+	
 	// Vertical lines
 	for(CGFloat x = TILE_SIZE; x < self.contentSizeInPoints.width; x += TILE_SIZE)
 	{
@@ -65,7 +68,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 
 		// Size is full height and 1px width
 		verticalLine.contentSizeType = CCSizeTypeMake(CCSizeUnitPoints, CCSizeUnitNormalized);
-		verticalLine.contentSize = CGSizeMake(0.5, 1);
+		verticalLine.contentSize = CGSizeMake(aPixel, 1);
 		
 		verticalLine.position = CGPointMake(x, 0);
 		verticalLine.zOrder = Z_INDEX_BOARD_LINE;
@@ -80,7 +83,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 		
 		// Size is full width and 1px height
 		horizontalLine.contentSizeType = CCSizeTypeMake(CCSizeUnitNormalized, CCSizeUnitPoints);
-		horizontalLine.contentSize = CGSizeMake(1, 0.5);
+		horizontalLine.contentSize = CGSizeMake(1, aPixel);
 		
 		horizontalLine.position = CGPointMake(0, y);
 		horizontalLine.zOrder = Z_INDEX_BOARD_LINE;

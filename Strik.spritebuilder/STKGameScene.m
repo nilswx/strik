@@ -40,17 +40,98 @@
 // Current game time
 @property int currentTime;
 
+// The container for the board
+@property CCNode *boardContainer;
+
 // Board
 @property STKBoardNode *boardNode;
 
 // The scale action, created when first accesing property
 @property (nonatomic) CCAction *scaleAction;
 
+// The container for the header
+@property CCNode *headerContainer;
+
+// The header background
+@property CCSprite *headerBackground;
+
+// The advertisment node
+@property CCNode *advertisment;
+
+// The VS label
+@property CCLabelTTF *vsLabel;
+
 @end
 
 @implementation STKGameScene
 
 #pragma mark init
+- (void)sceneLoaded
+{
+	// Determine screen size, if it doesn't fit remove the ad (It aint the prettiest thing ever written, but it does the job for now)
+	if([UIScreen mainScreen].bounds.size.height < 568)
+	{
+		// Get advertismentSize size
+		CGSize advertismentSize = self.advertisment.contentSizeInPoints;
+		
+		// Remove the avatar
+		[self.advertisment removeFromParent];
+		
+		// Move board the available space down
+		self.boardNode.position = CGPointMake(self.boardNode.position.x, self.boardNode.position.y - advertismentSize.height);
+		
+		// Decrease header container size
+		self.headerContainer.contentSize = CGSizeMake(self.headerContainer.contentSize.width, self.headerContainer.contentSizeInPoints.height - 38.5f);
+		
+		// Remove the VS label
+		[self.vsLabel removeFromParent];
+		
+		// Get the smaller texture for the header
+		[self.headerBackground removeFromParent];
+		self.headerBackground = [CCSprite spriteWithImageNamed:@"Game Scene/game-header-small.png"];
+		self.headerBackground.anchorPoint = CGPointMake(0, 0);
+		self.headerBackground.zOrder = -1;
+		[self.headerContainer addChild:self.headerBackground];
+		
+		// Re-align the nodes
+		[self relocateLabels];
+		
+		// And relocate avatars
+		[self relocateAvatars];
+		
+		// And score
+		[self relocateScore];
+	}
+}
+
+- (void)relocateLabels
+{
+	NSArray *nodes = @[self.playerOneLabel, self.playerTwoLabel];
+	for(CCNode *node in nodes)
+	{
+		node.position = CGPointMake(node.position.x, node.position.y - 13);
+	}
+}
+
+- (void)relocateAvatars
+{
+	NSArray *avatars = @[self.playerOneAvatar, self.playerTwoAvatar];
+	for(CCNode *node in avatars)
+	{
+		node.position = CGPointMake(node.position.x, node.position.y - 20);
+		node.scale = 0.5f;
+	}
+}
+
+- (void)relocateScore
+{
+	self.playerOneScore.position = CGPointMake(self.playerOneScore.position.x - 4, self.playerOneScore.position.y - 17);
+	self.playerOneScore.scale = 0.7f;
+	
+	self.playerTwoScore.position = CGPointMake(self.playerTwoScore.position.x + 4, self.playerTwoScore.position.y - 17);
+	self.playerTwoScore.scale = 0.7f;
+}
+
 - (void)enter
 {
 	// Don't know why, but the timer bar doesn't start full width, this forces it
@@ -209,8 +290,19 @@
 	if(!_scaleAction)
 	{
 		// Fist scale up, then down
-		CCActionScaleTo *bigger = [CCActionScaleTo actionWithDuration:0.15 scale:1.4];
-		CCActionScaleTo *normal = [CCActionScaleTo actionWithDuration:0.14 scale:1];
+		CCActionScaleTo *bigger;
+		CCActionScaleTo *normal;
+		
+		if([UIScreen mainScreen].bounds.size.height < 568)
+		{
+			bigger = [CCActionScaleTo actionWithDuration:0.15 scale:1.2f];
+			normal = [CCActionScaleTo actionWithDuration:0.15 scale:0.8f];
+		}
+		else
+		{
+			bigger = [CCActionScaleTo actionWithDuration:0.15 scale:0.9f];
+			normal = [CCActionScaleTo actionWithDuration:0.15 scale:0.7f];
+		}
 		
 		CCActionSequence *both = [CCActionSequence actionWithArray:@[bigger, normal]];
 		

@@ -146,8 +146,15 @@
 
 + (int)avatarsPerPage
 {
-	// Todo: change this based on size of screen
-	return 12;
+	// Perhaps in the future change this based on screens sizes, for now it is just 3.5" and 4"
+	if([UIScreen mainScreen].bounds.size.height < 568)
+	{
+		return 9;
+	}
+	else
+	{
+		return 12;
+	}
 }
 
 @end

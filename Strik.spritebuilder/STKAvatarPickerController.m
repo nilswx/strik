@@ -117,7 +117,15 @@
 
 - (CGSize)pageSize
 {
-	return CGSizeMake(295, 385);
+	// Perhaps in the future change this based on screens sizes, for now it is just 3.5" and 4"
+	if([UIScreen mainScreen].bounds.size.height < 568)
+	{
+		return CGSizeMake(295, 295);
+	}
+	else
+	{
+		return CGSizeMake(295, 385);
+	}
 }
 
 - (STKAvatarPickerScene *)avatarPickerScene

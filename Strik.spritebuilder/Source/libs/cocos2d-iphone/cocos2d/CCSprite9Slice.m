@@ -302,7 +302,7 @@ typedef NS_ENUM(NSInteger, CCSprite9SliceSizes)
     _marginLeft = clampf(marginLeft, 0, 1);
     _quadNineDirty = YES;
     // sum of left and right margin, can not exceed 1
-    NSAssert((_marginLeft + _marginRight) <= 1, @"Sum of left and right margine, can not exceed 1");
+//    NSAssert((_marginLeft + _marginRight) <= 1, @"Sum of left and right margine, can not exceed 1");
 }
 
 - (void)setMarginRight:(float)marginRight
@@ -310,7 +310,7 @@ typedef NS_ENUM(NSInteger, CCSprite9SliceSizes)
     _marginRight = clampf(marginRight, 0, 1);
     _quadNineDirty = YES;
     // sum of left and right margin, can not exceed 1
-    NSAssert((_marginLeft + _marginRight) <= 1, @"Sum of left and right margine, can not exceed 1");
+//    NSAssert((_marginLeft + _marginRight) <= 1, @"Sum of left and right margine, can not exceed 1");
 }
 
 - (void)setMarginTop:(float)marginTop
@@ -318,7 +318,7 @@ typedef NS_ENUM(NSInteger, CCSprite9SliceSizes)
     _marginTop = clampf(marginTop, 0, 1);
     _quadNineDirty = YES;
     // sum of top and bottom margin, can not exceed 1
-    NSAssert((_marginTop + _marginBottom) <= 1, @"Sum of top and bottom margine, can not exceed 1");
+//    NSAssert((_marginTop + _marginBottom) <= 1, @"Sum of top and bottom margine, can not exceed 1");
 }
 
 - (void)setMarginBottom:(float)marginBottom
@@ -326,7 +326,7 @@ typedef NS_ENUM(NSInteger, CCSprite9SliceSizes)
     _marginBottom = clampf(marginBottom, 0, 1);
     _quadNineDirty = YES;
     // sum of top and bottom margin, can not exceed 1
-    NSAssert((_marginTop + _marginBottom) <= 1, @"Sum of top and bottom margine, can not exceed 1");
+//    NSAssert((_marginTop + _marginBottom) <= 1, @"Sum of top and bottom margine, can not exceed 1");
 }
 
 // ---------------------------------------------------------------------

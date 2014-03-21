@@ -186,7 +186,7 @@
 - (void)matchDidStart:(STKIncomingMessage *)message
 {
 	// Start the music
-	[self.core[@"music"] playMusicWithName:@"bg-uplift"];
+	[self.core[@"music"] playMusicWithName:@"bg-bells"];
 	
 	// Start the timer!
 	[self.gameScene startTimer];

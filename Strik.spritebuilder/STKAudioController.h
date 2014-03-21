@@ -1,5 +1,5 @@
 //
-//  STKMusicController.h
+//  STKAudioController.h
 //  Strik
 //
 //  Created by Nils on Nov 21, 2013.
@@ -8,14 +8,13 @@
 
 #import "STKCore.h"
 
-@interface STKMusicController : STKCoreComponent
+@interface STKAudioController : STKCoreComponent
 
 @property(nonatomic,readonly) NSString* currentMusicName;
-@property(nonatomic,getter=isPlayingMusic) BOOL isPlayingMusic;
 
-- (void)disableAudio;
+- (void)pauseAudio;
 
-- (void)enableAudio;
+- (void)resumeAudio;
 
 - (void)playMusicWithName:(NSString*)name;
 

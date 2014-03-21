@@ -11,7 +11,7 @@
 		483B595918D0C50500F013C9 /* STKBlurLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B595818D0C50500F013C9 /* STKBlurLayer.m */; };
 		4856CEA418DC7EEC008FC004 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4856CEA318DC7EEC008FC004 /* audio */; };
 		4856CEA718DC92B4008FC004 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4856CEA618DC92B4008FC004 /* iAd.framework */; };
-		4856CEAB18DC93C8008FC004 /* STKAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4856CEAA18DC93C8008FC004 /* STKAdView.m */; };
+		4856CEAB18DC93C8008FC004 /* STKAdBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4856CEAA18DC93C8008FC004 /* STKAdBanner.m */; };
 		485F09F418DC5BB7001C6F00 /* STKAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 485F09F318DC5BB7001C6F00 /* STKAudioController.m */; };
 		8304529E18C753A2000BBE18 /* Linguistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304529D18C753A2000BBE18 /* Linguistics.m */; };
 		830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A218C769EC000BBE18 /* STKAnnounceMatchScene.m */; };
@@ -136,8 +136,8 @@
 		483B595818D0C50500F013C9 /* STKBlurLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBlurLayer.m; sourceTree = "<group>"; };
 		4856CEA318DC7EEC008FC004 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		4856CEA618DC92B4008FC004 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		4856CEA918DC93C8008FC004 /* STKAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAdView.h; sourceTree = "<group>"; };
-		4856CEAA18DC93C8008FC004 /* STKAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAdView.m; sourceTree = "<group>"; };
+		4856CEA918DC93C8008FC004 /* STKAdBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAdBanner.h; sourceTree = "<group>"; };
+		4856CEAA18DC93C8008FC004 /* STKAdBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAdBanner.m; sourceTree = "<group>"; };
 		485F09F218DC5BB7001C6F00 /* STKAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAudioController.h; sourceTree = "<group>"; };
 		485F09F318DC5BB7001C6F00 /* STKAudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAudioController.m; sourceTree = "<group>"; };
 		48D3252318D9A92700FD774D /* GameGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameGlobals.h; sourceTree = "<group>"; };
@@ -358,8 +358,8 @@
 		4856CEA818DC93A8008FC004 /* Advertising */ = {
 			isa = PBXGroup;
 			children = (
-				4856CEA918DC93C8008FC004 /* STKAdView.h */,
-				4856CEAA18DC93C8008FC004 /* STKAdView.m */,
+				4856CEA918DC93C8008FC004 /* STKAdBanner.h */,
+				4856CEAA18DC93C8008FC004 /* STKAdBanner.m */,
 			);
 			name = Advertising;
 			sourceTree = "<group>";
@@ -1119,7 +1119,7 @@
 				835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */,
 				8393787A18B6023D0007BDE4 /* STKPowerUp.m in Sources */,
 				8383A64518B77B27003816BF /* STKHomeScene.m in Sources */,
-				4856CEAB18DC93C8008FC004 /* STKAdView.m in Sources */,
+				4856CEAB18DC93C8008FC004 /* STKAdBanner.m in Sources */,
 				8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */,
 				8331F61318D1B64C00ECEDCA /* STKBoard.m in Sources */,
 				8393788F18B602730007BDE4 /* STKMatchController.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  STKAdView.h
+//  STKAdBanner.h
 //  Strik
 //
 //  Created by Nils Wiersema on Mar 21, 2014.
@@ -10,6 +10,6 @@
 
 #import <iAd/iAd.h>
 
-@interface STKAdView : CCNode <ADBannerViewDelegate>
+@interface STKAdBanner : CCNode <ADBannerViewDelegate>
 
 @end

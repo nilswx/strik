@@ -1,30 +1,42 @@
 //
-//  STKAdView.m
+//  STKAdBanner.m
 //  Strik
 //
 //  Created by Nils Wiersema on Mar 21, 2014.
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKAdView.h"
+#import "STKAdBanner.h"
 
-@interface STKAdView()
+#import "STKScene.h"
+
+@interface STKAdBanner()
 
 @property ADBannerView* ad;
+@property(readonly,nonatomic) STKScene* parentScene;
 
 @end
 
-@implementation STKAdView
+@implementation STKAdBanner
 
-- (id)init
+- (void)onEnter
 {
-	if(self = [super init])
-	{
-		self.ad = [[ADBannerView alloc] initWithFrame:CGRectZero];
-		self.ad.delegate = self;
-	}
+	[super onEnter];
 	
-	return self;
+	// Hide me! (I'm a placeholder)
+	self.visible = NO;
+	
+	// Load the ad...
+	self.ad = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+	self.ad.delegate = self;
+}
+
+- (void)onExit
+{
+	[super onExit];
+	
+	// Remove the ad
+	[self.ad removeFromSuperview];
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -41,20 +53,37 @@
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
 	/* This method is called when the ad view removes the ad content currently obscuring the application interface. If the application was paused during the ad view session this method can be used to resume activity: */
+	
+	NSLog(@"Advertisement @ %@: finished viewing!", self.parentScene);
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
 	/* 
 	 This method is triggered when an advertisement could not be loaded from the iAds system (perhaps due to a network connectivity issue). If you have already taken steps to only display an ad when it has successfully loaded it is not typically necessary to implement the code for this method. */
+	
+	NSLog(@"Advertisement @ %@: failed to load! (%@)", self.parentScene, error);
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
 	/* Introduced as part of the iOS 5 SDK, this method is triggered when the banner confirms that an advertisement is available but before the ad is downloaded to the device and is ready for presentation to the user. */
 	
-   // _tableView.tableHeaderView = _bannerView;
+	// Get size of parent node
+	CGSize parentSize = self.parent.boundingBox.size;
+	
+	// Position in the bottom of the parent
+	CGSize size = self.boundingBox.size;
+	self.ad.frame = CGRectMake((parentSize.width - size.width), (parentSize.height - size.height), size.width, size.height);
+	
+	// Show!
+	[[[CCDirector sharedDirector] view] addSubview:self.ad];
+	NSLog(@"Advertisement @ %@: loaded!", self.parentScene);
 }
 
+- (STKScene*)parentScene
+{
+	return self.scene.children[0];
+}
 
 @end

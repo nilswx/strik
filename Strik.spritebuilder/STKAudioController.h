@@ -16,8 +16,10 @@
 
 - (void)resumeAudio;
 
+- (void)stopMusic;
+
 - (void)playMusicWithName:(NSString*)name;
 
-- (void)stopMusic;
+- (void)playEffectWithName:(NSString*)effectName;
 
 @end

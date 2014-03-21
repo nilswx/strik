@@ -53,10 +53,10 @@
 	}
 }
 
-- (void)playMusicWithName:(NSString*)name
+- (void)playMusicWithName:(NSString*)musicName
 {
 	// Already playing?
-	if([name isEqual:self.currentMusicName])
+	if([musicName isEqual:self.currentMusicName])
 	{
 		// Don't re-start it, that sounds like suck. Stop it first, then we'll talk
 		return;
@@ -66,10 +66,10 @@
 	[self stopMusic];
 	
 	// Attempt to preload
-	NSString* fileName = [NSString stringWithFormat:@"%@.mp3", name];
+	NSString* fileName = [NSString stringWithFormat:@"%@.mp3", musicName];
 	if([self.audio playBg:fileName loop:YES])
 	{
-		_currentMusicName = name;
+		_currentMusicName = musicName;
 		
 		NSLog(@"Audio: now bg playing '%@'", self.currentMusicName);
 	}
@@ -79,10 +79,15 @@
 {
 	if(self.audio.bgPlaying)
 	{
-		NSLog(@"Music: stopping bg '%@'", self.currentMusicName);
+		NSLog(@"Audio: stopping bg '%@'", self.currentMusicName);
 		
 		[self.audio stopBg];
 	}
+}
+
+- (void)playEffectWithName:(NSString*)effectName
+{
+	[self.audio playEffect:effectName];
 }
 
 @end

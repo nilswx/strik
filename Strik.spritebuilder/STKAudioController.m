@@ -65,8 +65,8 @@
 	// Please stop the music
 	[self stopMusic];
 	
-	// Attempt to preload
-	NSString* fileName = [NSString stringWithFormat:@"%@.mp3", musicName];
+	// Give it a spin (preloads if needed)
+	NSString* fileName = [NSString stringWithFormat:@"audio/music/%@.mp3", musicName];
 	if([self.audio playBg:fileName loop:YES])
 	{
 		_currentMusicName = musicName;
@@ -87,7 +87,9 @@
 
 - (void)playEffectWithName:(NSString*)effectName
 {
-	[self.audio playEffect:effectName];
+	NSString* fileName = [NSString stringWithFormat:@"audio/sfx/%@.caf", effectName];
+	
+	[self.audio playEffect:fileName];
 }
 
 @end

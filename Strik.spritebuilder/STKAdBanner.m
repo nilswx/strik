@@ -19,7 +19,7 @@
 
 @implementation STKAdBanner
 
-#pragma mark Rotate & Clear
+#pragma mark Banner Management
 
 - (void)rotateToNextNetwork
 {
@@ -44,18 +44,6 @@
 	return [self createAppleBanner];
 }
 
-- (void)clear
-{
-	if(self.adView)
-	{
-		[self.adView removeFromSuperview];
-		
-		self.adView = nil;
-	}
-}
-
-#pragma mark Banner Events
-
 - (void)bannerDidLoad
 {
 	// Hurray!
@@ -70,8 +58,21 @@
 
 - (void)bannerDidNotLoad
 {
+	// Boo!
+	NSLog(@"%@: meh, %@ did not load!", self, [self.adView class]);
+	
 	// Next network!
 	[self rotateToNextNetwork];
+}
+
+- (void)clear
+{
+	if(self.adView)
+	{
+		[self.adView removeFromSuperview];
+		
+		self.adView = nil;
+	}
 }
 
 #pragma mark cocos2d

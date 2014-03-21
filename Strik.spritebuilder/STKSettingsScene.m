@@ -39,7 +39,7 @@
 	[self.facebookLinkContainer removeFromParent];
 	
 	// Decrease height of settings so there is no big gaping hole.
-	self.contentSize = CGSizeMake(self.contentSize.width, self.contentSize.height - facebookSettingsHeight + 2); // It looks odd without the extra pixels
+	self.contentSize = CGSizeMake(self.contentSize.width, self.contentSize.height - facebookSettingsHeight - 3); // It looks odd without the extra pixels
 }
 
 - (void)enableSetting:(BOOL)enable forKey:(NSString *)key

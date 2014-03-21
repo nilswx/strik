@@ -12,4 +12,6 @@
 
 @interface STKAdBanner : CCNode <ADBannerViewDelegate>
 
+- (void)reload;
+
 @end

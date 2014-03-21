@@ -7,7 +7,6 @@
 //
 
 #import "STKAudioController.h"
-#import <AVFoundation/AVFoundation.h>
 
 #import <OALSimpleAudio.h>
 
@@ -27,6 +26,8 @@
 	{
 		self.audio = [OALSimpleAudio sharedInstance];
 		self.audio.bgVolume = BACKGROUND_MUSIC_VOLUME;
+		
+		NSLog(@"Audio: initialized OpenAL engine (bg=%f)", self.audio.bgVolume);
 	}
 	
 	return self;
@@ -34,12 +35,22 @@
 
 - (void)pauseAudio
 {
-	[self pauseMusic];
+	if(!self.audio.paused)
+	{
+		self.audio.paused = YES;
+		
+		NSLog(@"Audio: paused ALL audio");
+	}
 }
 
 - (void)resumeAudio
 {
-	[self resumeMusic];
+	if(self.audio.paused)
+	{
+		self.audio.paused = NO;
+		
+		NSLog(@"Audio: resumed ALL audio");
+	}
 }
 
 - (void)playMusicWithName:(NSString*)name
@@ -54,43 +65,21 @@
 	// Please stop the music
 	[self stopMusic];
 	
-	// Attempt to preload, then resume
-	if([self.audio preloadBg:[NSString stringWithFormat:@"%@.mp3", name]])
+	// Attempt to preload
+	NSString* fileName = [NSString stringWithFormat:@"%@.mp3", name];
+	if([self.audio playBg:fileName loop:YES])
 	{
 		_currentMusicName = name;
-		[self resumeMusic];
+		
+		NSLog(@"Audio: now bg playing '%@'", self.currentMusicName);
 	}
-}
-
-- (void)pauseMusic
-{
-	if(self.audio.bgPlaying && !self.audio.bgPaused)
-	{
-		NSLog(@"Music: pausing '%@'", self.currentMusicName);
-
-		self.audio.bgPaused = YES;
-	}
-}
-
-- (void)resumeMusic
-{
-	if(self.audio.bgPaused)
-	{
-		self.audio.bgPaused = NO;
-	}
-	else if(!self.audio.bgPlaying)
-	{
-		[self.audio playBgWithLoop:YES];
-	}
-	
-	NSLog(@"Music: now playing '%@'", self.currentMusicName);
 }
 
 - (void)stopMusic
 {
 	if(self.audio.bgPlaying)
 	{
-		NSLog(@"Music: stopping '%@'", self.currentMusicName);
+		NSLog(@"Music: stopping bg '%@'", self.currentMusicName);
 		
 		[self.audio stopBg];
 	}

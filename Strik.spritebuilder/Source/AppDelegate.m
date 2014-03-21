@@ -95,15 +95,15 @@
 	// In App Purchases
 	//[self.core installComponent:[STKInAppPurchasesController new] withKey:@"iap"];
 	
-	// We want music!
-	[self.core installComponent:[STKAudioController new]];
-	[self.core[@"audio"] playMusicWithName:@"bg-piano"];
-	
 	// We also want Facebook
 	[self.core installComponent:[STKFacebookController new]];
 	
 	// Plug client controller
 	[self.core installComponent:[STKClientController new]];
+	
+	// Install audio & play music
+	[self.core installComponent:[STKAudioController new]];
+	[self.core[@"audio"] playMusicWithName:@"bg-piano"];
 }
 
 - (CCScene*) startScene

@@ -24,7 +24,7 @@
 	[super onEnter];
 	
 	// I'm just a placeholder
-	self.visible = NO;
+	super.visible = NO;
 	
 	// Here comes the ad
 	[self reload];
@@ -79,16 +79,12 @@
 {
 	/* Introduced as part of the iOS 5 SDK, this method is triggered when the banner confirms that an advertisement is available but before the ad is downloaded to the device and is ready for presentation to the user. */
 	
-	// Get size of parent node
-	CGSize parentSize = self.parent.boundingBox.size;
-	
-	// Position in the bottom of the parent
-	CGSize size = self.boundingBox.size;
-	self.ad.frame = CGRectMake((parentSize.width - size.width), (parentSize.height - size.height), size.width, size.height);
-	
 	// Show!
 	[[[CCDirector sharedDirector] view] addSubview:self.ad];
 	NSLog(@"Advertisement @ %@: loaded!", self.parentScene);
+	
+	// Force position update (positions the frame)
+	self.position = self.position;
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -107,6 +103,42 @@
 	/* This method is called when the ad view removes the ad content currently obscuring the application interface. If the application was paused during the ad view session this method can be used to resume activity: */
 	
 	NSLog(@"Advertisement @ %@: finished viewing!", self.parentScene);
+}
+
+- (BOOL)visible
+{
+	return !self.ad.hidden;
+}
+
+- (void)setVisible:(BOOL)visible
+{
+	self.ad.hidden = !visible;
+}
+
+- (void)setOpacity:(CGFloat)opacity
+{
+	self.ad.alpha = opacity;
+}
+
+- (CGFloat)opacity
+{
+	return self.ad.alpha;
+}
+
+- (void)setPosition:(CGPoint)position
+{
+	[super setPosition:position];
+	
+	if(self.ad)
+	{
+		// Get ad + win size
+		CGSize adSize = self.ad.frame.size;
+		CGSize winSize = self.ad.superview.bounds.size;
+	
+		// Convert between UI and GL space
+		CGPoint point = CGPointMake(position.x, (winSize.height - adSize.height - position.y));
+		self.ad.frame = CGRectMake(point.x, point.y, adSize.width, adSize.height);
+	}
 }
 
 - (STKScene*)parentScene

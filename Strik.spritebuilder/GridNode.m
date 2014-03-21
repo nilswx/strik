@@ -11,7 +11,7 @@
 #import "STKTimelineItemNode.h"
 
 // The distance to load ahead (e.g it loads x% of the container node size before it is displayed so it wont' pop in during scrolling)
-#define PRELOAD_DISTANCE 1.5f
+#define PRELOAD_DISTANCE 1.2
 
 @interface GridNode()
 

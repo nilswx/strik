@@ -18,7 +18,7 @@
 
 #import "STKMatchController.h"
 #import "STKHomeController.h"
-#import "STKMusicController.h"
+#import "STKAudioController.h"
 
 #import "STKDirector.h"
 
@@ -44,7 +44,7 @@
 - (void)sceneCreated
 {
 	// Start music
-	[self.core[@"music"] playMusicWithName:@"bg-lobby"];
+	[self.core[@"audio"] playMusicWithName:@"bg-lobby"];
 	
 	// Determine if we can show friends or not
 	STKFacebookController *facebookController = self.core[@"facebook"];

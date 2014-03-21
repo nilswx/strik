@@ -31,7 +31,7 @@
 
 #import "STKMenuController.h"
 #import "STKEndGameController.h"
-#import "STKMusicController.h"
+#import "STKAudioController.h"
 
 @interface STKGameController()
 
@@ -181,12 +181,15 @@
 	
 	// Animate word found
 	[self.board wordFoundWithTiles:tilesForWord byPlayer:player];
+	
+	// Play sound
+	[self.core[@"audio"] playEffectWithName:@"word-found" pitch:points];
 }
 
 - (void)matchDidStart:(STKIncomingMessage *)message
 {
 	// Start the music
-	[self.core[@"music"] playMusicWithName:@"bg-bells"];
+	[self.core[@"audio"] playMusicWithName:@"bg-bells"];
 	
 	// Start the timer!
 	[self.gameScene startTimer];

@@ -290,20 +290,9 @@
 	if(!_scaleAction)
 	{
 		// Fist scale up, then down
-		CCActionScaleTo *bigger;
-		CCActionScaleTo *normal;
-		
-		if([UIScreen mainScreen].bounds.size.height < 568)
-		{
-			bigger = [CCActionScaleTo actionWithDuration:0.15 scale:1.2f];
-			normal = [CCActionScaleTo actionWithDuration:0.15 scale:0.8f];
-		}
-		else
-		{
-			bigger = [CCActionScaleTo actionWithDuration:0.15 scale:0.9f];
-			normal = [CCActionScaleTo actionWithDuration:0.15 scale:0.7f];
-		}
-		
+		CCActionScaleTo	*bigger = [CCActionScaleTo actionWithDuration:0.15 scale:1.4f];
+		CCActionScaleTo *normal = [CCActionScaleTo actionWithDuration:0.15 scale:1.0f];
+
 		CCActionSequence *both = [CCActionSequence actionWithArray:@[bigger, normal]];
 		
 		// Aply a little easing

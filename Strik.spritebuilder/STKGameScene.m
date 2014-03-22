@@ -50,7 +50,7 @@
 @property STKBoardNode *boardNode;
 
 // The scale action, created when first accesing property
-@property (nonatomic) CCAction *scaleAction;
+@property (nonatomic) CCAction *timerScaleAction;
 
 // The container for the header
 @property CCNode *headerContainer;
@@ -239,7 +239,7 @@
 	// Animate it a bit
 	else if(time < 10)
 	{
-		[self.timerLabel runAction:self.scaleAction];
+		[self.timerLabel runAction:self.timerScaleAction];
 	}
 	
 	// Shorten the timeline bar (perhaps color it based on time?)

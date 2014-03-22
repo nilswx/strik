@@ -11,9 +11,9 @@
 #import "STKAvatarNode.h"
 #import "STKLevelNode.h"
 #import "STKProgressNode.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 #import "STKAvatar.h"
-#import "STKProgression.h"
+#import "STKExperience.h"
 
 @interface STKHomeScene()
 
@@ -45,16 +45,19 @@
 }
 
 #pragma mark Model events
-- (void)progression:(STKProgression *)progression valueChangedForXp:(NSNumber *)xp
+
+- (void)player:(STKPlayer*)player valueChangedForXp:(NSNumber*)xp
 {
-	// First set XP
-	[self.playerProgress setValue:progression.xp ofTotalValue:progression.maxExperienceForLevel animated:YES];
+	// Get latest level
+	STKLevel* level = player.level;
 	
-	// Then level
+	// Update progress
+	[self.playerProgress setValue:[level progressToNext:player.xp] ofTotalValue:level.totalToNext animated:YES];
+	
+	// Update level
 	self.levelNode.backgroundColor = [CCColor whiteColor];
-	
 	self.levelNode.fontColor = PLAYER_ONE_COLOR;
-	self.levelNode.text = [NSString stringWithFormat:@"%d", progression.level];
+	self.levelNode.text = [NSString stringWithFormat:@"%d", level.num];
 }
 
 - (void)player:(STKPlayer *)player valueChangedForName:(NSString *)name

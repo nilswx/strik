@@ -12,11 +12,12 @@
 
 @class STKAvatar;
 @class STKProgression;
+@class STKLevel;
 
 @interface STKPlayer : STKModel
 
 // Identity
-@property(nonatomic) int playerId;
+@property int playerId;
 
 // Customizable
 @property NSString *name;
@@ -24,8 +25,8 @@
 @property NSString *country;
 
 // Statistics
-@property  STKProgression *progression;
-
+@property(nonatomic) int xp;
+@property STKLevel* level;
 @property int matches;
 @property int wins;
 @property int losses;

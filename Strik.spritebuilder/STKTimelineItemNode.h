@@ -7,7 +7,7 @@
 //
 
 #import "CCNode.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 
 typedef NS_ENUM(NSInteger, TimelinePositionType)
 {

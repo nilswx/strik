@@ -16,7 +16,7 @@
 #import "STKClientController.h"
 #import "STKAlertView.h"
 #import "STKOutgoingMessage.h"
-#import "STKProgression.h"
+#import "STKExperience.h"
 #import "STKMatchController.h"
 #import "STKItemRegistry.h"
 #import "STKInAppPurchasesController.h"
@@ -184,38 +184,21 @@
 	
 	// Update the total
 	int total = [message readInt];
-	self.player.progression.xp = total;
+	self.player.xp = total;
 }
 
 - (void)handleLevels:(STKIncomingMessage *)message
 {
-    NSMutableArray *levels = [NSMutableArray array];
+    NSMutableArray* levels = [NSMutableArray array];
 
-    int length = [message readByte];
-
-    int currentXP;
-    int lastXP;
-
-    for(int i = 0; i < length; i++)
-    {
-        if(i > 0)
-        {
-            lastXP = currentXP;
-        }
-
-        currentXP = [message readInt];
-
-        if(i > 0)
-        {
-            STKLevel level;
-            level.begin = lastXP;
-            level.end = currentXP -1;
-
-            [levels addObject:[NSValue value:&level withObjCType:@encode(STKLevel)]];
-        }
-    }
-
-    [STKProgression setLevels:[NSArray arrayWithArray:levels]];
+    int numLevels = [message readByte];
+	for(int levelNumber = 1; levelNumber < numLevels; levelNumber++)
+	{
+		STKLevel* level = [STKLevel level:levelNumber beginXP:[message readInt]];
+		[levels addObject:level];
+	}
+	
+    [STKExperience setLevels:levels];
 }
 
 - (void)handleAvatarChanged:(STKIncomingMessage *)message

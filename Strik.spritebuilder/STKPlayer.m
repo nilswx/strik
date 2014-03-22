@@ -10,9 +10,33 @@
 
 #import "STKIncomingMessage.h"
 #import "STKAvatar.h"
-#import "STKProgression.h"
+#import "STKExperience.h"
 
 @implementation STKPlayer
+
+- (void)setXp:(int)xp
+{
+	if(self.level)
+	{
+		// Level up...
+		while(xp >= self.level.next.beginXP)
+		{
+			self.level = self.level.next;
+		}
+	}
+	else
+	{
+		// Initial fetch
+		self.level = [STKExperience levelForXP:xp];
+	}
+	
+	_xp = xp;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<Actor %d - %@>", self.playerId, self.name];
+}
 
 + (STKPlayer*)playerFromMessage:(STKIncomingMessage *)msg
 {
@@ -21,11 +45,7 @@
 	user.name = [msg readStr];
 	user.avatar = [STKAvatar avatarWithIdentifier:[msg readStr]];
 	user.country = [msg readStr];
-
-    int xp = [msg readInt];
-    user.progression = [STKProgression new];
-	user.progression.xp = xp;
-
+	user.xp = [msg readInt];
 	user.matches = [msg readInt];
 	user.wins = [msg readInt];
 	user.losses = [msg readInt];
@@ -33,9 +53,5 @@
 	return user;
 }
 
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"<Actor %d - %@>", self.playerId, self.name];
-}
 
 @end

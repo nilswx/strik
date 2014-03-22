@@ -12,7 +12,7 @@
 
 #import "STKMatchPlayer.h"
 #import "STKMatch.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 #import "STKBoard.h"
 #import "STKTile.h"
 

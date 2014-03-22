@@ -10,7 +10,7 @@
 #import "STKEndGameScene.h"
 
 #import "STKMatchPlayer.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 #import "STKMatch.h"
 
 #import "STKMatchController.h"

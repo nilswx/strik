@@ -50,7 +50,7 @@
 @property STKBoardNode *boardNode;
 
 // The scale action, created when first accesing property
-@property (nonatomic) CCAction *scaleAction;
+@property (nonatomic) CCAction *timerScaleAction;
 
 // The container for the header
 @property CCNode *headerContainer;
@@ -239,7 +239,7 @@
 	// Animate it a bit
 	else if(time < 10)
 	{
-		[self.timerLabel runAction:self.scaleAction];
+		[self.timerLabel runAction:self.timerScaleAction];
 	}
 	
 	// Shorten the timeline bar (perhaps color it based on time?)
@@ -290,7 +290,7 @@
 
 - (CCAction *)timerScaleAction
 {
-	if(!_scaleAction)
+	if(!_timerScaleAction)
 	{
 		// Get the current scale
 		CGFloat currentScale = self.timerLabel.scale;
@@ -304,9 +304,9 @@
 		// Aply a little easing
 		CCActionEaseOut *easing = [CCActionEaseOut actionWithAction:both rate:0.7];
 		
-		_scaleAction = easing;
+		_timerScaleAction = easing;
 	}
 	
-	return _scaleAction;
+	return _timerScaleAction;
 }
 @end

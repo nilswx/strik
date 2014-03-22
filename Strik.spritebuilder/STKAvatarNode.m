@@ -148,8 +148,38 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Only set new if there is one
 	if(maskedImage)
 	{
+		// Get the clipping sprite
+		CCSprite *clippingSprite = [CCSprite spriteWithImageNamed:@"Global/Images/circle-mask.png"];
+		
 		// Create the clipping node
-		self.clippingNode = [CCClippingNode clippingNodeWithStencil:[CCSprite spriteWithImageNamed:@"Global/Images/circle-mask.png"]];
+		self.clippingNode = [CCClippingNode clippingNodeWithStencil:clippingSprite];
+		
+		// Scale the maskedImage up if needed
+		if(maskedImage.contentSizeInPoints.width < clippingSprite.contentSizeInPoints.width || maskedImage.contentSizeInPoints.height < clippingSprite.contentSizeInPoints.height)
+		{
+			// Determine smallest direction (horizontal, vertical)
+			CGFloat smallestImageSize;
+			CGFloat correspondingClippingSpriteSize;
+			
+			// It is the width
+			if(maskedImage.contentSizeInPoints.width < clippingSprite.contentSizeInPoints.width)
+			{
+				smallestImageSize = maskedImage.contentSizeInPoints.width;
+				correspondingClippingSpriteSize = clippingSprite.contentSizeInPoints.width;
+			}
+			// It is the height
+			else
+			{
+				smallestImageSize = maskedImage.contentSizeInPoints.height;
+				correspondingClippingSpriteSize = clippingSprite.contentSizeInPoints.height;
+			}
+			
+			// Determine the needed scale
+			float difference = 1 - (smallestImageSize / correspondingClippingSpriteSize);
+			
+			// And scale up
+			maskedImage.scale = 1 + difference;
+		}
 		
 		// Add the image
 		[self.clippingNode addChild:self.maskedImage];

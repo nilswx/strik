@@ -20,6 +20,9 @@
 
 #define RED_WARNING_COLOR PLAYER_OFFLINE_COLOR
 
+// The relative increase for time scaling
+#define TIME_SCALE_SIZE 0.4f
+
 @interface STKGameScene()
 
 // Player one
@@ -285,13 +288,16 @@
 	}
 }
 
-- (CCAction *)scaleAction
+- (CCAction *)timerScaleAction
 {
 	if(!_scaleAction)
 	{
+		// Get the current scale
+		CGFloat currentScale = self.timerLabel.scale;
+		
 		// Fist scale up, then down
-		CCActionScaleTo	*bigger = [CCActionScaleTo actionWithDuration:0.15 scale:1.4f];
-		CCActionScaleTo *normal = [CCActionScaleTo actionWithDuration:0.15 scale:1.0f];
+		CCActionScaleTo	*bigger = [CCActionScaleTo actionWithDuration:0.15 scale:currentScale + TIME_SCALE_SIZE];
+		CCActionScaleTo *normal = [CCActionScaleTo actionWithDuration:0.15 scale:currentScale];
 
 		CCActionSequence *both = [CCActionSequence actionWithArray:@[bigger, normal]];
 		

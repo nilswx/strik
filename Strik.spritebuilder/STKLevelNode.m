@@ -8,12 +8,14 @@
 
 #import "STKLevelNode.h"
 
+// The relative increasse of scaling size
+#define LEVEL_SCALE_SIZE 0.3f
+
 typedef NS_ENUM(NSInteger, zIndex)
 {
 	Z_BACKGROUND,
 	Z_LABEL
 };
-
 
 @interface STKLevelNode()
 
@@ -106,13 +108,16 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	if(!_scaleAction)
 	{
+		CGFloat currentScale = self.backgroundCircle.scale;
+		
 		// First scale up
-		CCActionScaleTo *scaleUp = [CCActionScaleTo actionWithDuration:0.25f scale:1.3f];
+		CCActionScaleTo *scaleUp = [CCActionScaleTo actionWithDuration:0.25 scale:currentScale + LEVEL_SCALE_SIZE];
 		CCActionEaseElasticOut *scaleUpEased = [CCActionEaseElasticOut actionWithAction:scaleUp period:1.0f];
 		
 		// Then scale down
-		CCActionScaleTo *scaleDown = [CCActionScaleTo actionWithDuration:0.25f scale:1.0f];
+		CCActionScaleTo *scaleDown = [CCActionScaleTo actionWithDuration:0.25 scale:currentScale];
 		CCActionEaseElasticOut *scaleDownEased = [CCActionEaseElasticOut actionWithAction:scaleDown period:1.0f];
+
 		// And combine
 		_scaleAction = [CCActionSequence actionWithArray:@[scaleUpEased, scaleDownEased]];
 	}

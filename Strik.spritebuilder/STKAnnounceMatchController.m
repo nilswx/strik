@@ -14,14 +14,14 @@
 #import "STKAvatarNode.h"
 #import "STKProgressNode.h"
 #import "STKLevelNode.h"
+#import "STKExperience.h"
 
 #import "STKSessionController.h"
 #import "STKMatchController.h"
 #import "STKMatch.h"
 
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 #import "STKMatchPlayer.h"
-#import "STKProgression.h"
 
 #import "NSObject+Observer.h"
 
@@ -117,17 +117,15 @@
 	vsCard.avatarNode.backgroundColor = darkColor;
 	vsCard.avatarNode.avatar = player.avatar;
 	
-	// Progress
-	// Todo: get actual value
-	vsCard.progressNode.backgroundShade = lightColor;
-	vsCard.progressNode.fillShade = darkColor;
-	
-	[vsCard.progressNode setValue:player.progression.xp ofTotalValue:player.progression.maxExperienceForLevel animated:NO];
-	
 	// Level
 	vsCard.levelNode.backgroundColor = darkColor;
 	vsCard.levelNode.fontColor = [CCColor whiteColor];
-	vsCard.levelNode.text = [NSString stringWithFormat:@"%d", player.progression.level];
+	vsCard.levelNode.text = [NSString stringWithFormat:@"%d", player.level.num];
+	
+	// Progress
+	vsCard.progressNode.backgroundShade = lightColor;
+	vsCard.progressNode.fillShade = darkColor;
+	[vsCard.progressNode setValue:[player.level progressToNext:player.xp] ofTotalValue:player.level.totalToNext animated:NO];
 	
 	// Bottom stroke
 	vsCard.bottomLine.color = darkColor;

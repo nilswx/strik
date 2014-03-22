@@ -14,7 +14,7 @@
 #import "STKMatch.h"
 
 #import "STKMatchPlayer.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 
 #import "STKBoardNode.h"
 

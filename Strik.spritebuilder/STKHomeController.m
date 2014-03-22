@@ -15,7 +15,7 @@
 #import "STKHomeScene.h"
 
 #import "STKAlertView.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 #import "STKOutgoingMessage.h"
 
 #import "GridNode.h"
@@ -80,7 +80,6 @@
 	// Let the view observe the userdata models
 	STKSessionController *sessionController = self.core[@"session"];
 	[self.scene observeModel:(STKModel *)sessionController.player];
-	[self.scene observeModel:(STKModel *)sessionController.player.progression];
 	[self.scene observeModel:(STKModel *)sessionController.player.avatar];
 	
 	// Setup the timeline

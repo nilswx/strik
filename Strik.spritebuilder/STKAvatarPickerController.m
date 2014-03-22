@@ -19,7 +19,7 @@
 
 #import "STKSessionController.h"
 #import "STKFacebookController.h"
-#import "STKPLayer.h"
+#import "STKPlayer.h"
 
 #import "STKDirector.h"
 #import "STKDirector+Modal.h"

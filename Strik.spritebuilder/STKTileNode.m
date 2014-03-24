@@ -33,6 +33,9 @@
 // When this flag is set we are animating!
 @property (nonatomic) BOOL isAnimating;
 
+// If there is a shadow, it will be placed in here
+@property CCNode *shadowContainer;
+
 @end
 
 @implementation STKTileNode
@@ -143,6 +146,35 @@
 	{
 		[self animateToRemovedState];
 	}
+}
+
+#pragma mark Shadows
+// Clear the shadows from this tile
+- (void)clearShadows
+{
+	NSArray *children = [NSArray arrayWithArray:self.shadowContainer.children];
+	for(CCNode *child in children)
+	{
+		[child removeFromParent];
+	}
+}
+
+- (void)addShadowForPosition:(ShadowPosition)shadowPosition
+{
+	CCSprite *shadowSprite = [CCSprite spriteWithImageNamed:@"Game Scene/shadow.png"];
+	
+	// Center it
+	shadowSprite.anchorPoint = CGPointMake(0.5, 0.5);
+	
+	shadowSprite.positionType = CCPositionTypeNormalized;
+	shadowSprite.position = CGPointMake(0.5, 0.5);
+	
+	// Rotate it based on position
+	static int rotations[4] = {0, 90, 180, 270};
+	shadowSprite.rotation = rotations[shadowPosition];
+	
+	// And add
+	[self.shadowContainer addChild:shadowSprite];
 }
 
 - (NSString *)description

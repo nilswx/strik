@@ -56,6 +56,8 @@
 
 - (void)playMusicWithName:(NSString*)musicName
 {
+	return;
+	
 	// Already playing?
 	if([musicName isEqual:self.currentMusicName])
 	{

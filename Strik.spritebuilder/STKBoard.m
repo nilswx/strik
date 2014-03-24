@@ -11,6 +11,8 @@
 #import "NSStack.h"
 #import "STKOutgoingMessage.h"
 
+#import "STKTileNode.h"
+
 #import "STKGameController.h"
 
 @interface STKBoard()
@@ -118,6 +120,8 @@
 // Animate found tiles
 - (void)wordFoundWithTiles:(NSArray *)tiles byPlayer:(STKMatchPlayer *)player
 {
+	[self updateShadowsForTiles:tiles forPlayer:player];
+	
 	NSLog(@"Tiles for word: %@", tiles);
 }
 
@@ -130,7 +134,11 @@
 
 - (STKTile *)tileAtPoint:(STKTilePosition)position
 {
-	return self.tiles[position.column][position.row];
+	if(self.tiles.count > position.column && ((NSArray *)self.tiles[position.column]).count > position.row)
+	{
+		return self.tiles[position.column][position.row];
+	}
+	return nil;
 }
 
 - (STKTile *)tileWithTileId:(SInt8)tileId
@@ -196,6 +204,41 @@
 			// Maintain selected tiles here
 			[self.selectedTiles pushObject:tile];
 		}
+		
+		[self updateShadowsForTiles:self.selectedTiles.internalData forPlayer:self.player];
+	}
+}
+
+- (void)updateShadowsForTiles:(NSArray *)tiles forPlayer:player
+{
+	// Go through every tile and determine if it should have a selection
+	for(STKTile *tile in tiles)
+	{
+		// Clear the old shadows
+		[tile.node clearShadows];
+		
+		// Don't change the order it matches the ShadowPosition
+		static int DIRECTIONS[4][2] = {
+			{0, +1}, // North
+			{+1, 0}, // East
+			{0, -1}, // South
+			{-1, 0} // West
+		};
+		
+		for(int i = 0; i < 4; i++)
+		{
+			int *direction = DIRECTIONS[i];
+			
+			STKTilePosition neighbourPosition;
+			neighbourPosition.column = tile.column + direction[0];
+			neighbourPosition.row = tile.row + direction[1];
+			
+			STKTile *neighbour = [self tileAtPoint:neighbourPosition];
+			if(neighbour && ![neighbour isSelectedBy:player])
+			{
+				[tile.node addShadowForPosition:i];
+			}
+		}
 	}
 }
 
@@ -205,6 +248,7 @@
 	for(STKTile* tile in [self.tileIndex allValues])
 	{
 		[tile deselectFor:player];
+		[tile.node clearShadows];
 	}
 	[self.selectedTiles clear];
 }

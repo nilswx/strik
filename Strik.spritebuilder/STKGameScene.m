@@ -41,7 +41,7 @@
 @property CCLabelTTF *timerLabel;
 
 // Current game time
-@property int currentTime;
+@property int totalTime;
 
 // The container for the board
 @property CCNode *boardContainer;
@@ -63,6 +63,9 @@
 
 // The VS label
 @property CCLabelTTF *vsLabel;
+
+// The starting time of the scene
+@property NSTimeInterval startingTime;
 
 @end
 
@@ -139,6 +142,12 @@
 {
 	// Don't know why, but the timer bar doesn't start full width, this forces it
 	self.timerBar.contentSize = CGSizeMake(320, 3);
+	
+	// Set the starting time
+	self.startingTime = [NSDate timeIntervalSinceReferenceDate];
+	
+	// Set timer @ start
+	[self setTime:self.match.gameTime ofTotalTime:self.match.gameTime];
 }
 
 - (void)startTimer
@@ -173,12 +182,6 @@
 	self.playerTwoScore.backgroundColor = PLAYER_TWO_COLOR;
 	self.playerTwoScore.fontColor = [CCColor whiteColor];
 	self.playerTwoScore.text = @"0";
-}
-
-- (void)match:(STKMatch *)match valueChangedForGameTime:(NSNumber *)gametime
-{
-	self.currentTime = match.gameTime;
-	[self setTime:self.currentTime ofTotalTime:match.gameTime];
 }
 
 - (void)matchPlayer:(STKMatchPlayer *)matchPlayer valueChangedForScore:(NSNumber *)score
@@ -259,10 +262,14 @@
 
 - (void)updateTime:(CCTime)time
 {
-	if(self.currentTime > 0)
+	NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+	double difference = currentTime - self.startingTime;
+	
+	double secondsPast = self.match.gameTime - difference;
+	
+	if(secondsPast > 0)
 	{
-		self.currentTime--;
-		[self setTime:self.currentTime ofTotalTime:self.match.gameTime];
+		[self setTime:secondsPast ofTotalTime:self.match.gameTime];
 	}
 }
 

@@ -3,26 +3,23 @@ PODS:
   - CocoaAsyncSocket (7.3.4)
   - Facebook-iOS-SDK (3.8.0)
   - NSDate+TimeAgo (1.0.2)
-  - NSHash (1.0.1)
-  - SimpleAudioPlayer (0.1.0)
   - UIDeviceIdentifier (0.1)
+  - UIImage+BlurredFrame (0.0.4)
 
 DEPENDENCIES:
   - AHEasing (~> 1.1)
   - CocoaAsyncSocket (~> 7.3.1)
   - Facebook-iOS-SDK (~> 3.8.0)
   - NSDate+TimeAgo
-  - NSHash (~> 1.0.1)
-  - SimpleAudioPlayer (= 0.1.0)
   - UIDeviceIdentifier (~> 0.1)
+  - UIImage+BlurredFrame (~> 0.0.4)
 
 SPEC CHECKSUMS:
   AHEasing: bab258795266ebce8a965e1fda3613b7ed80f0b7
   CocoaAsyncSocket: 534d09416f992fd51efb23f534742ce70b3a7999
   Facebook-iOS-SDK: 55a22fe8bcaacd638cde9014af6b3ee85f4d71fb
   NSDate+TimeAgo: fe93d3042e83093ae3630bc47ae7d57f782733f6
-  NSHash: 7e728a3e7fdff6828f3fce387049b1e0ca7fe8a0
-  SimpleAudioPlayer: 89cc9085da405073da80e1c0ece8cc97882c85fe
   UIDeviceIdentifier: 38f7035dd0040fc4979d1548d9a63a1ccd339b0d
+  UIImage+BlurredFrame: 9f29c4796105b50742abc31a69e18e37afb080a0
 
 COCOAPODS: 0.29.0

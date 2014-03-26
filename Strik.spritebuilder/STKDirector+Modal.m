@@ -15,6 +15,12 @@
 #import "ScrollNode.h"
 #import "STKHolePunchedButton.h"
 
+#import <UIImage+BlurredFrame/UIImage+BlurredFrame.h>
+
+#define BLUR_TINT_COLOR [UIColor colorWithWhite:0.1 alpha:0.1]
+#define BLUR_RADIUS 15
+#define BLUR_SATURATION 1.8f
+
 @implementation STKDirector (Modal)
 
 @dynamic overlayScene;
@@ -43,7 +49,8 @@
 	// Todo: blur it
 
 	// Create a full screen blurred node
-	self.blurredBackground = [CCNode node];
+	self.blurredBackground = [self createBlurredBackground];
+	
 	self.blurredBackground.contentSizeType = CCSizeTypeNormalized;
 	self.blurredBackground.contentSize = CGSizeMake(1, 1);
 	self.blurredBackground.anchorPoint = CGPointMake(0, 0);
@@ -61,7 +68,19 @@
 	self.overlayScene.anchorPoint = CGPointMake(0.5, 0.5);
 		
 	// And put it on screen
-	[self.blurredBackground addChild:self.overlayScene];
+	[self.scene addChild:self.overlayScene];
+	
+	// Run an animation for the blurred background
+	CCActionFadeIn *opacity = [CCActionFadeIn actionWithDuration:0.1];
+	self.blurredBackground.opacity = 0;
+	[self.blurredBackground runAction:opacity];
+	
+	// And an animation for the overlay scene
+	self.overlayScene.scale = 0;
+	CCActionScaleTo *scale = [CCActionScaleTo actionWithDuration:0.5 scale:1];
+	CCActionEaseElasticOut *eased = [CCActionEaseElasticOut actionWithAction:scale period:1];
+	
+	[self.overlayScene runAction:eased];
 }
 
 - (void)hideOverlay
@@ -79,16 +98,28 @@
 	[self.overlaySceneController sceneWillEnd];
 	[self.overlayScene sceneWillEnd];
 	
-	// Remove the blurred background and overlay
-	[self.blurredBackground removeFromParent];
-	[self.overlayScene removeFromParent];
+	// Animate it
+	CCActionFadeOut *opacity = [CCActionFadeOut actionWithDuration:0.6];
+	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[opacity, [CCActionCallBlock actionWithBlock:^{
+		[self.blurredBackground removeFromParent];
+		self.blurredBackground = nil;
+	}]]];
 	
-	self.overlayScene = nil;
-	self.overlaySceneController = nil;
-	self.blurredBackground = nil;
-	
-	// Re-enable scrolling and touches
-	[self enableScrolling:YES forNodesIntree:self.scene];
+	[self.blurredBackground runAction:sequence];
+
+	CCActionScaleTo *scaleDown = [CCActionScaleTo actionWithDuration:0.4 scale:0];
+	CCActionEaseElasticIn *eased = [CCActionEaseElasticIn actionWithAction:scaleDown period:1];
+	[self.overlayScene runAction:[CCActionSequence actionWithArray:@[eased, [CCActionCallBlock actionWithBlock:^{
+
+		[self.overlayScene removeFromParent];
+		
+		self.overlayScene = nil;
+		self.overlaySceneController = nil;
+
+		// Re-enable scrolling and touches
+		[self enableScrolling:YES forNodesIntree:self.scene];
+
+	}]]]];
 }
 
 // Disable or enable scrolling for any node if it supports it in the tree
@@ -105,6 +136,40 @@
 	{
 		[self enableScrolling:enableScrolling forNodesIntree:child];
 	}
+}
+
+#pragma mark blurring
+- (CCNode *)createBlurredBackground
+{
+	UIImage *cocosState = [self screenshotWithStartNode:self.scene];
+	
+	UIImage *currentState = cocosState;
+	CGRect fullRect = CGRectMake(0, 0, currentState.size.width, currentState.size.height);
+	
+	// Apply the iOS 7 blur look
+    currentState = [currentState applyBlurWithRadius:BLUR_RADIUS tintColor:BLUR_TINT_COLOR saturationDeltaFactor:BLUR_SATURATION maskImage:nil atFrame:fullRect];
+		
+	// Create sprite with blurred texture
+	CCTexture *stateTexture = [[CCTexture alloc] initWithCGImage:currentState.CGImage contentScale:currentState.scale];
+	CCSprite *stateSprite = [CCSprite spriteWithTexture:stateTexture];
+	
+	return stateSprite;
+}
+
+// Returns a cocos only screenshot
+- (UIImage *)screenshotWithStartNode:(CCNode*)stNode
+{
+    [CCDirector sharedDirector].nextDeltaTimeZero = YES;
+	
+    CGSize winSize = self.cocosDirector.view.bounds.size;
+    CCRenderTexture* renTxture =
+    [CCRenderTexture renderTextureWithWidth:winSize.width
+									 height:winSize.height];
+    [renTxture begin];
+    [stNode visit];
+    [renTxture end];
+	
+    return [renTxture getUIImage];
 }
 
 #pragma properties for modal director

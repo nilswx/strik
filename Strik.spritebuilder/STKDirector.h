@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) STKScene *scene;
 
 @property (readonly) CCScene *cocosScene;
+@property (readonly) CCDirector *cocosDirector;
 
 - (void)presentScene:(STKSceneController *)sceneController;
 - (void)presentScene:(STKSceneController *)sceneController withTransition:(CCTransition *)transition;

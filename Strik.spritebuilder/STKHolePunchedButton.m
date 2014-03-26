@@ -41,12 +41,15 @@
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	// When the touch ends outside the center node, it is a touch to dismiss it
-	if(!CGRectContainsPoint(self.centerNode.boundingBox, [touch locationInView:[CCDirector sharedDirector].view]))
+	if(self.centerNode.scale == 1)
 	{
-		if(self.block)
+		// When the touch ends outside the center node, it is a touch to dismiss it
+		if(!CGRectContainsPoint(self.centerNode.boundingBox, [touch locationInView:[CCDirector sharedDirector].view]))
 		{
-			self.block(self);
+			if(self.block)
+			{
+				self.block(self);
+			}
 		}
 	}
 }

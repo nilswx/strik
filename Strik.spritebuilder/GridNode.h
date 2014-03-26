@@ -20,4 +20,8 @@
 // When changing the row and or column count, call this, so it wil be shown
 - (void)reload;
 
+// Returns a cached node for this row and column if it is there
+- (CCNode *)cachedNodeForColumn:(int)col andRow:(int)row;
+
+
 @end

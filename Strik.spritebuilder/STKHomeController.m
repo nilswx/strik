@@ -48,9 +48,6 @@
 // The grid for the timeline
 @property GridNode *timelineGrid;
 
-// The array which will contain the timeline item nodes
-@property NSMutableArray *timelineItemNodes;
-
 // The array containing the timeline items itself
 @property NSMutableArray *timelineItems;
 
@@ -95,7 +92,6 @@
 - (void)setupTimeline
 {
 	self.timelineItems = [NSMutableArray array];
-	self.timelineItemNodes = [NSMutableArray array];
 	
 	// Create the timeline grid (filling its container)
 	self.timelineGrid = [GridNode gridWithDataSource:self];
@@ -209,44 +205,32 @@
 
 - (CCNode *)nodeForColumn:(int)column andRow:(int)row
 {
-	// The item variable
-	STKTimelineItemNode *timelineItem;
+	// Get the info for this timeline item
+	NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:row];
 	
-	// Create and add ALL missing nodes
-	for(int x = self.timelineItemNodes.count; x <= row; x++)
-	{
-		// Get the info for this timeline item
-		NSDictionary *nodeInfo = [self.timelineItems objectAtIndex:x];
-		
-		// Load it and set the properties
+	// Load it and set the properties
 
-		// Get the needed information for this timeline item node
-		STKPlayer *actor = nodeInfo[TIMELINE_ITEM_ACTOR_KEY];
-		NSString *action = nodeInfo[TIMELINE_ITEM_ACTION_KEY];
-		NSString *subject = nodeInfo[TIMELINE_ITEM_SUBJECT_KEY];
-		int timestamp = [nodeInfo[TIMELINE_ITEM_DATE_KEY] intValue];
-		
-		timelineItem = [STKTimelineItemNode newTimelineItemNodeWithActor:actor action:action subject:subject andTimestamp:timestamp];
-		
-		// Get local player and compare, so the correct color for the person can be set
-		STKSessionController *sessionController = self.core[@"session"];
-		if(sessionController.player == actor)
-		{
-			timelineItem.avatarNode.borderColor = PLAYER_ONE_COLOR;
-			timelineItem.avatarNode.backgroundColor = PLAYER_ONE_COLOR;
-		}
-		else
-		{
-			timelineItem.avatarNode.borderColor = PLAYER_TWO_COLOR;
-			timelineItem.avatarNode.backgroundColor = PLAYER_TWO_COLOR;
-		}
-		
-		// Add to cache
-		[self.timelineItemNodes addObject:timelineItem];
-	}
+	// Get the needed information for this timeline item node
+	STKPlayer *actor = nodeInfo[TIMELINE_ITEM_ACTOR_KEY];
+	NSString *action = nodeInfo[TIMELINE_ITEM_ACTION_KEY];
+	NSString *subject = nodeInfo[TIMELINE_ITEM_SUBJECT_KEY];
+	int timestamp = [nodeInfo[TIMELINE_ITEM_DATE_KEY] intValue];
 	
-	// Get the item we need (it is there!)
-	timelineItem = [self.timelineItemNodes objectAtIndex:row];
+	// Create the node
+	STKTimelineItemNode *timelineItem = [STKTimelineItemNode newTimelineItemNodeWithActor:actor action:action subject:subject andTimestamp:timestamp];
+	
+	// Get local player and compare, so the correct color for the person can be set
+	STKSessionController *sessionController = self.core[@"session"];
+	if(sessionController.player == actor)
+	{
+		timelineItem.avatarNode.borderColor = PLAYER_ONE_COLOR;
+		timelineItem.avatarNode.backgroundColor = PLAYER_ONE_COLOR;
+	}
+	else
+	{
+		timelineItem.avatarNode.borderColor = PLAYER_TWO_COLOR;
+		timelineItem.avatarNode.backgroundColor = PLAYER_TWO_COLOR;
+	}
 	
 	// Make sure the line is correct based on position
 	if(self.rowCount == 1)

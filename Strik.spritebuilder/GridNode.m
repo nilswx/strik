@@ -20,6 +20,9 @@
 // Keeping track of the current top row, so we only update when this has changed and not every scroll pixel, but we need to have moved at least enough for a new node to appear
 @property int currentTopRow;
 
+// We cache the nodes so we don't have to ask for the same node multiple times
+@property NSMutableArray *nodeCache;
+
 @end
 
 @implementation GridNode
@@ -34,6 +37,8 @@
 	if(self = [super initWithContent:contentNode])
 	{
 		self.dataSource = dataSource;
+		
+		self.nodeCache = [NSMutableArray array];
 	}
 	
 	return self;
@@ -122,7 +127,7 @@
 				// Make sure there is a node to display (e.g there is only one node but room to display three)
 				if((row < self.dataSource.rowCount && row >= 0) && (col < self.dataSource.columnCount && col >= 0))
 				{
-					CCNode *node = [self.dataSource nodeForColumn:col andRow:row];
+					CCNode *node = [self nodeForColumn:col andRow:row];
 
 					// Only add the node if it has not been added before
 					if(!node.parent)
@@ -139,6 +144,30 @@
 	}
 }
 
+- (CCNode *)nodeForColumn:(int)col andRow:(int)row
+{
+	// Todo: add column support
+	
+	// Load nodes from the data source while needed (e.g when scrolling fast multiple nodes should be loaded)
+	while(self.nodeCache.count < row + 1)
+	{
+		[self.nodeCache addObject:[self.dataSource nodeForColumn:col andRow:(int)self.nodeCache.count]];
+	}
+	
+	// Return the cached node for this position
+	return [self cachedNodeForColumn:col andRow:row];
+}
+
+- (CCNode *)cachedNodeForColumn:(int)col andRow:(int)row
+{
+	// Todo: add column support
+	if(self.nodeCache.count > row)
+	{
+		return [self.nodeCache objectAtIndex:row];
+	}
+	
+	return nil;
+}
 - (BOOL)gridNodeNeedsUpdate
 {
 	// This determines if we need an update for the nodes since we scrolled a big enough distance (we don't want to update after every scroll)
@@ -161,6 +190,9 @@
 
 - (void)reload
 {
+	// Clear cache
+	self.nodeCache = [NSMutableArray array];
+	
 	// We need something which will not be a valid row number
 	self.currentTopRow = INT8_MIN;
 	

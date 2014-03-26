@@ -80,6 +80,7 @@
 #pragma mark Deletion and insertion of tiles
 - (void)removeTiles:(NSArray *)tiles
 {
+	[self checkPlayerSelectionWithChangedTiles:tiles];
 	for(STKTile *tile in tiles)
 	{
 		[self removeTile:tile];
@@ -117,12 +118,43 @@
 	}
 }
 
+- (void)checkPlayerSelectionWithChangedTiles:(NSArray *)tiles
+{
+	// No need to unselect if there is nothing selected
+	if(self.selectedTiles.count > 0)
+	{
+		// Determine if one of the tiles are below or at the position of one of the player selected tiles. This would cause the selection to change so we cancel it
+		
+		// Itterate through each selected tile
+		for(STKTile *selectedTile in self.selectedTiles.internalData)
+		{
+			// And compare it with each tile which changed
+			for(STKTile *changedTile in tiles)
+			{
+				// If the changedTile is at the same column and same row (or below) it affects player selection
+				if(changedTile.column == selectedTile.column && changedTile.row <= selectedTile.row)
+				{
+					// So cancel player selection
+					[self clearSelectionFor:self.player];
+					
+					// And no need to search for more after one hit
+					return;
+				}
+			}
+		}
+	}
+}
+
 // Animate found tiles
 - (void)wordFoundWithTiles:(NSArray *)tiles byPlayer:(STKMatchPlayer *)player
 {
 	[self updateShadowsForTiles:tiles forPlayer:player];
-	
-	NSLog(@"Tiles for word: %@", tiles);
+
+	// When the opponent made a selection we might need to unselect ours
+	if(player != self.player)
+	{
+		[self checkPlayerSelectionWithChangedTiles:tiles];
+	}
 }
 
 #pragma Information about Tiles
@@ -250,7 +282,11 @@
 		[tile deselectFor:player];
 		[tile.node clearShadows];
 	}
-	[self.selectedTiles clear];
+	
+	if(player == self.player)
+	{
+		[self.selectedTiles clear];
+	}
 }
 
 #pragma mark networking

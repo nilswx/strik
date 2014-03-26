@@ -18,6 +18,7 @@
 
 typedef NS_ENUM(NSInteger, TileOrder)
 {
+	TileOrderRemoved,
 	TileOrderSelected,
 	TileOrderDeselected
 };
@@ -69,7 +70,8 @@ typedef NS_ENUM(NSInteger, TileOrder)
 - (void)tile:(STKTile *)tile valueChangedForIsRemoved:(NSNumber *)isRemoved
 {
 	if(tile.isRemoved)
-	{		
+	{
+		self.zOrder = TileOrderRemoved;
 		self.tile = nil;
 	}
 }

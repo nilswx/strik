@@ -16,6 +16,12 @@
 
 #define SELECTION_ANIMATION_TIME 0.5
 
+typedef NS_ENUM(NSInteger, TileOrder)
+{
+	TileOrderSelected,
+	TileOrderDeselected
+};
+
 @interface STKTileNode()
 
 // The tile for this node
@@ -29,9 +35,6 @@
 
 // The background
 @property CCNodeColor *background;
-
-// When this flag is set we are animating!
-@property (nonatomic) BOOL isAnimating;
 
 // If there is a shadow, it will be placed in here
 @property CCNode *shadowContainer;
@@ -65,11 +68,10 @@
 
 - (void)tile:(STKTile *)tile valueChangedForIsRemoved:(NSNumber *)isRemoved
 {
-	// Only remove now when we are not animating anything else
-    if([isRemoved boolValue] && !self.isAnimating)
-    {
-        [self animateToRemovedState];
-    }
+	if(tile.isRemoved)
+	{		
+		self.tile = nil;
+	}
 }
 
 - (void)tile:(STKTile *)tile valueChangedForSelectedBy:(NSNumber *)player
@@ -88,17 +90,14 @@
 	[self animateToBackgroundColor:[CCColor colorWithWhite:244.0f/255.0f alpha:1] andLabelColor:[CCColor colorWithRed:61.0f/255.0f green:60.0f/255.0f blue:62.0f/255.0f]];
 }
 
-- (void)animateToRemovedState
-{
-	[self removeFromParent];
-}
-
 - (void)animateToSelectedByPlayer:(BOOL)byPlayer andOpponent:(BOOL)byOpponent
 {
 	// Selected by none, we can animate to normal state
 	if(!byPlayer && !byOpponent)
 	{
 		[self animateToNormalState];
+		
+		self.zOrder = TileOrderDeselected;
 	}
 	else
 	{
@@ -110,6 +109,8 @@
 		{
 			[self animateToBackgroundColor:PLAYER_TWO_COLOR andLabelColor:[CCColor whiteColor]];
 		}
+		
+		self.zOrder = TileOrderSelected;
 	}
 }
 
@@ -121,31 +122,13 @@
 #pragma mark CCACtion getters (for lazy loading)
 - (void)animateToBackgroundColor:(CCColor *)backgroundColor andLabelColor:(CCColor *)labelColor
 {
-	// Setting flag for animating
-	self.isAnimating = YES;
-	
-	// Putting the block at the end for the animation so we no when we stopped animating
-	CCActionCallBlock *animationCompleted = [CCActionCallBlock actionWithBlock:^{
-		self.isAnimating = NO;
-	}];
-	
-	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[[CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:backgroundColor], animationCompleted]];
+	CCAction *animation = [CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:backgroundColor];
 	
 	// Can't run the action on the element itself, it should be on label and background
-	[self.background runAction:sequence];
+	[self.background runAction:animation];
+	
 //	[self.letterLabel runAction:[CCActionTintTo actionWithDuration:SELECTION_ANIMATION_TIME color:labelColor]];
 	self.letterLabel.fontColor = labelColor;
-}
-
-- (void)setIsAnimating:(BOOL)isAnimating
-{
-	_isAnimating = isAnimating;
-	
-	// We should be removed but we were busy animating!
-	if(!isAnimating && self.tile.isRemoved)
-	{
-		[self animateToRemovedState];
-	}
 }
 
 #pragma mark Shadows

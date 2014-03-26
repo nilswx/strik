@@ -54,6 +54,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 	
 	// Setup the tile container
 	[self setupTileContainer];
+	
+	// Clear the old tiles ones per second
+	[self schedule:@selector(clearOldTiles:) interval:1];
 }
 
 - (void)addBoardLines
@@ -130,8 +133,10 @@ typedef NS_ENUM(NSInteger, zIndex)
 {
 	if(tiles)
 	{
+		CGPoint boardPosition = [self convertToWorldSpace:self.positionInPoints];
+		
 		// The starting Y position (they fall from this height)
-		CGFloat startY = self.scene.contentSizeInPoints.height;
+		CGFloat startY = boardPosition.y + self.contentSizeInPoints.height + TILE_SIZE;
 		
 		// Todo: Fix this somehow that it knows other tiles are in place up there...
 		// The Y position might be different for different collumns while adding (e.g an L shape)
@@ -175,6 +180,25 @@ typedef NS_ENUM(NSInteger, zIndex)
 	[self moveTiles:delta];
 }
 
+- (void)clearOldTiles:(CCTime)delta
+{
+	NSArray *children = [NSArray arrayWithArray:self.tileContainer.children];
+	
+	for(STKTileNode *tileNode in children)
+	{
+		// Only remove it when the node has no tile
+		if(!tileNode.tile)
+		{
+			// Determine if it is outside of the board
+			if(!CGRectIntersectsRect(self.boundingBox, tileNode.boundingBox))
+			{
+				// And remove it
+				[tileNode removeFromParent];
+			}
+		}
+	}
+}
+
 - (void)moveTiles:(CCTime)delta
 {
 	// Note: The tiles are added bottom left (the tiles anchor point is top left) so 0.0 would just move the tile bottom left ouff screen tile height.tile height would move it at bottom left in screen
@@ -186,23 +210,33 @@ typedef NS_ENUM(NSInteger, zIndex)
 	for(STKTileNode *tileNode in self.tileContainer.children)
 	{
 		STKTile *tile = tileNode.tile;
-		
+
 		CGFloat currentY = tileNode.position.y;
 		
-		// This is the minimum Y a tile can have for its position (e.g on the bottom of the screen or just above another node)
-		CGFloat minY = (tile.row + 1) * TILE_SIZE;
-		
-		// We can still move a certain distance
-		if(currentY > minY)
+		// When the node is still with a tile, move it to that position
+		if(tile)
 		{
-			// Determine the space available to move
-			CGFloat currentSpaceToMove = currentY - minY;
+			// This is the minimum Y a tile can have for its position (e.g on the bottom of the screen or just above another node)
+			CGFloat minY = (tile.row + 1) * TILE_SIZE;
 			
-			// Calculating the distance to move based on maximum space to move at this speed and the available space
-			CGFloat distanceToMove = MIN(maxDistanceToMove, currentSpaceToMove);
-			
-			// And move given distance
-			tileNode.position = CGPointMake(tileNode.position.x, currentY - distanceToMove);
+			// We can still move a certain distance
+			if(currentY > minY)
+			{
+				// Determine the space available to move
+				CGFloat currentSpaceToMove = currentY - minY;
+				
+				// Calculating the distance to move based on maximum space to move at this speed and the available space
+				CGFloat distanceToMove = MIN(maxDistanceToMove, currentSpaceToMove);
+				
+				// And move given distance
+				tileNode.position = CGPointMake(tileNode.position.x, currentY - distanceToMove);
+			}
+		}
+		// It has no tile, move it down, and when it is off screen remove the node
+		else
+		{
+			// Move it down (unrelated to other nodes)
+			tileNode.position = CGPointMake(tileNode.position.x, currentY - maxDistanceToMove);
 		}
 	}
 }

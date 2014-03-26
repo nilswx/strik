@@ -168,6 +168,7 @@
 	
 	return nil;
 }
+
 - (BOOL)gridNodeNeedsUpdate
 {
 	// This determines if we need an update for the nodes since we scrolled a big enough distance (we don't want to update after every scroll)

@@ -99,7 +99,7 @@
 	[self.overlayScene sceneWillEnd];
 	
 	// Animate it
-	CCActionFadeOut *opacity = [CCActionFadeOut actionWithDuration:0.6];
+	CCActionFadeOut *opacity = [CCActionFadeOut actionWithDuration:0.4];
 	CCActionSequence *sequence = [CCActionSequence actionWithArray:@[opacity, [CCActionCallBlock actionWithBlock:^{
 		[self.blurredBackground removeFromParent];
 		self.blurredBackground = nil;

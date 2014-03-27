@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		17272ABD8714485A982D2348 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9DC8090A134F69888D13FD /* libPods.a */; };
+		4800C8A418E46B2C00267C85 /* STKNewsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4800C8A318E46B2C00267C85 /* STKNewsCache.m */; };
+		4800C8A818E46B9200267C85 /* STKNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4800C8A718E46B9200267C85 /* STKNewsItem.m */; };
 		4803B40E18DDBEA9009B9E5F /* STKExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = 4803B40D18DDBEA9009B9E5F /* STKExperience.m */; };
 		483B595918D0C50500F013C9 /* STKBlurLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 483B595818D0C50500F013C9 /* STKBlurLayer.m */; };
 		4856CEA418DC7EEC008FC004 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 4856CEA318DC7EEC008FC004 /* audio */; };
@@ -132,6 +134,10 @@
 
 /* Begin PBXFileReference section */
 		1E96447CB20243C193EC8885 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		4800C8A218E46B2C00267C85 /* STKNewsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewsCache.h; sourceTree = "<group>"; };
+		4800C8A318E46B2C00267C85 /* STKNewsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewsCache.m; sourceTree = "<group>"; };
+		4800C8A618E46B9200267C85 /* STKNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKNewsItem.h; sourceTree = "<group>"; };
+		4800C8A718E46B9200267C85 /* STKNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKNewsItem.m; sourceTree = "<group>"; };
 		4803B40C18DDBEA9009B9E5F /* STKExperience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKExperience.h; sourceTree = "<group>"; };
 		4803B40D18DDBEA9009B9E5F /* STKExperience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKExperience.m; sourceTree = "<group>"; };
 		483B595718D0C50400F013C9 /* STKBlurLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBlurLayer.h; sourceTree = "<group>"; };
@@ -703,6 +709,8 @@
 				8393788718B602730007BDE4 /* STKMatchController.m */,
 				8393788818B602730007BDE4 /* STKSessionController.h */,
 				8393788918B602730007BDE4 /* STKSessionController.m */,
+				4800C8A218E46B2C00267C85 /* STKNewsCache.h */,
+				4800C8A318E46B2C00267C85 /* STKNewsCache.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -743,6 +751,8 @@
 				8393787018B6023D0007BDE4 /* STKTrophy.m */,
 				4803B40C18DDBEA9009B9E5F /* STKExperience.h */,
 				4803B40D18DDBEA9009B9E5F /* STKExperience.m */,
+				4800C8A618E46B9200267C85 /* STKNewsItem.h */,
+				4800C8A718E46B9200267C85 /* STKNewsItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1089,6 +1099,7 @@
 				8393787618B6023D0007BDE4 /* STKItemType.m in Sources */,
 				83B0EB2F18D05FF500C54574 /* STKTileNode.m in Sources */,
 				8393784218B5FFEF0007BDE4 /* STKMessageCenter.m in Sources */,
+				4800C8A418E46B2C00267C85 /* STKNewsCache.m in Sources */,
 				8383A65418B7F651003816BF /* STKLevelNode.m in Sources */,
 				8383A64E18B79E49003816BF /* STKAchievementsScene.m in Sources */,
 				83EDE60118C3655D00D3B78D /* STKAvatarPickerController.m in Sources */,
@@ -1097,6 +1108,7 @@
 				8393783D18B5FFE50007BDE4 /* RC4.m in Sources */,
 				8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */,
 				8383A65F18B8E62E003816BF /* STKLobbyController.m in Sources */,
+				4800C8A818E46B9200267C85 /* STKNewsItem.m in Sources */,
 				8383A65B18B8D255003816BF /* STKProgressNode.m in Sources */,
 				8393784F18B601E60007BDE4 /* NSStack.m in Sources */,
 				8330170F18BB4EF000F8296B /* STKTimelineItemNode.m in Sources */,

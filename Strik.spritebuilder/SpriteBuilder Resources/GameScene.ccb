@@ -169,7 +169,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>50</real>
+									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2040,75 +2040,15 @@
 							</dict>
 						</array>
 					</dict>
-					<dict>
-						<key>baseClass</key>
-						<string>CCBFile</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>STKAdBanner</string>
-						<key>memberVarAssignmentName</key>
-						<string>_advertisment</string>
-						<key>memberVarAssignmentType</key>
-						<integer>1</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>name</string>
-								<key>type</key>
-								<string>StringSimple</string>
-								<key>value</key>
-								<string></string>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>position</string>
-								<key>type</key>
-								<string>Position</string>
-								<key>value</key>
-								<array>
-									<real>0.0</real>
-									<real>0.0</real>
-									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ccbFile</string>
-								<key>type</key>
-								<string>CCBFile</string>
-								<key>value</key>
-								<string>Global/Nodes/AdBanner.ccb</string>
-							</dict>
-						</array>
-					</dict>
 				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
 				<string>dark-background</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_rootGameNode</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -2178,7 +2118,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Global/Images/light-background.png</string>
+							<string>Global/Images/dark-background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2301,7 +2241,21 @@
 		</array>
 	</dict>
 	<key>notes</key>
-	<array/>
+	<array>
+		<dict>
+			<key>height</key>
+			<real>150</real>
+			<key>text</key>
+			<string>This bar in the middle will be fixed (it is not there at runtime at the moment)
+</string>
+			<key>width</key>
+			<real>150</real>
+			<key>xPos</key>
+			<real>-301</real>
+			<key>yPos</key>
+			<real>500</real>
+		</dict>
+	</array>
 	<key>resolutions</key>
 	<array>
 		<dict>

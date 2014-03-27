@@ -50,7 +50,7 @@
 - (void)sceneLoaded
 {
 	// Fix smaller screens
-	if([UIScreen mainScreen].bounds.size.height < 568)
+	if(screen_height_less(568))
 	{
 		// Remove top bar
 		[self.topBar removeFromParent];

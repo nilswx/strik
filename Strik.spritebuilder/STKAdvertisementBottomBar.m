@@ -6,18 +6,30 @@
 //  Copyright (c) 2014 Strik. All rights reserved.
 //
 
-#import "STKAdBanner.h"
+#import "STKAdvertisementBottomBar.h"
 
 #import "STKScene.h"
 
-@interface STKAdBanner()
+@interface STKAdvertisementBottomBar()
 
 @property UIView* adView;
 @property(readonly,nonatomic) STKScene* parentScene;
 
 @end
 
-@implementation STKAdBanner
+@implementation STKAdvertisementBottomBar
+
+- (id)init
+{
+	if(self = [super init])
+	{
+		// Set needed content size for this banner type (100% width, 50px high)
+		self.contentSizeType = CCSizeTypeMake(CCSizeUnitPoints, CCSizeUnitPoints);
+		self.contentSize = CGSizeMake(1, 50);
+	}
+	
+	return self;
+}
 
 #pragma mark Banner Management
 

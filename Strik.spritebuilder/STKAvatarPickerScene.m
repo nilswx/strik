@@ -16,7 +16,7 @@
 - (void)sceneLoaded
 {
 	// Resize based on screen size
-	if([UIScreen mainScreen].bounds.size.height < 568)
+	if(screen_height_less(568))
 	{
 		// One row worth of avatars is 90px
 		self.contentSize = CGSizeMake(self.contentSize.width, self.contentSize.height - 90);

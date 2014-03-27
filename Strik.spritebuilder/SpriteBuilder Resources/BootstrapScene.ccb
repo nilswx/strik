@@ -59,11 +59,11 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>12.5</real>
-									<real>321.5</real>
-									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
+									<real>0.0390625</real>
+									<real>0.27500000596046448</real>
+									<integer>1</integer>
+									<integer>2</integer>
+									<integer>2</integer>
 								</array>
 							</dict>
 							<dict>
@@ -74,7 +74,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>0.0</real>
+									<real>1</real>
 								</array>
 							</dict>
 							<dict>
@@ -122,9 +122,9 @@
 				<key>displayName</key>
 				<string>light-background</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_rootGameNode</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>

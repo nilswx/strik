@@ -10,9 +10,15 @@
 
 #import "NSObject+Observer.h"
 
-@interface STKScene : CCNode
+#import "STKAdvertismentDisplayProtocol.h"
+#import "Helpers.h"
+
+@interface STKScene : CCNode <STKAdvertisementDisplayProtocol>
 
 @property(weak) id controller;
+
+// The root node, a scene needs a root node and it must be set in the builder
+@property (nonatomic, readonly) CCNode *rootGameNode;
 
 - (void)sceneWillBegin;
 - (void)sceneWillEnd;

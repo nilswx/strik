@@ -593,9 +593,9 @@
 				<key>displayName</key>
 				<string>light-background</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_rootGameNode</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -714,6 +714,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

@@ -8,9 +8,10 @@
 
 #import "CCNode.h"
 
+#import "STKAdvertisementNode.h"
 #import <iAd/iAd.h>
 
-@interface STKAdBanner : CCNode <ADBannerViewDelegate>
+@interface STKAdvertisementBottomBar : STKAdvertisementNode <ADBannerViewDelegate>
 
 - (void)rotateToNextNetwork;
 

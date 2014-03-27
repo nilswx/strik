@@ -28,6 +28,8 @@
 
 #import "STKOutgoingMessage.h"
 
+#import "Helpers.h"
+
 @interface STKAvatarPickerController()
 
 @property PagedScrollNode *pagedScrollNode;
@@ -118,7 +120,7 @@
 - (CGSize)pageSize
 {
 	// Perhaps in the future change this based on screens sizes, for now it is just 3.5" and 4"
-	if([UIScreen mainScreen].bounds.size.height < 568)
+	if(screen_height_less(568))
 	{
 		return CGSizeMake(295, 295);
 	}

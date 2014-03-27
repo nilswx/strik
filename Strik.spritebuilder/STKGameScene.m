@@ -72,10 +72,11 @@
 @implementation STKGameScene
 
 #pragma mark init
+
 - (void)sceneLoaded
 {
 	// Determine screen size, if it doesn't fit remove the ad (It aint the prettiest thing ever written, but it does the job for now)
-	if([UIScreen mainScreen].bounds.size.height < 568)
+	if(screen_height_less(568))
 	{
 		// Get advertismentSize size
 		CGSize advertismentSize = self.advertisment.contentSizeInPoints;
@@ -316,4 +317,12 @@
 	
 	return _timerScaleAction;
 }
+
+#pragma mark advertisment support
+- (BOOL)canDisplayAdvertismentOfType:(Class)advertismentType
+{
+	// We can only display bottom bar types if we have enought screen space
+	return (screen_height_greater_or_equal(568) && [STKAdvertisementBottomBar isSubclassOfClass:advertismentType]);
+}
+
 @end

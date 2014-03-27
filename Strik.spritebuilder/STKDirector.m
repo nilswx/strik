@@ -16,6 +16,8 @@
 #import "CSEEmboss.h"
 #import "ScrollNode.h"
 
+#import "STKAdController.h"
+
 @interface STKDirector()
 
 @property CCDirector* cocosDirector;
@@ -25,6 +27,8 @@
 
 @property CCScene *cocosScene;
 
+@property (readonly) STKAdController *adController;
+
 @end
 
 @implementation STKDirector
@@ -32,6 +36,9 @@
 - (void)componentDidInstall
 {
 	self.cocosDirector = [CCDirector sharedDirector];
+	
+	// Install the ad controller
+	[self.core installComponent:[STKAdController new]];
 }
 
 - (void)presentScene:(STKSceneController *)sceneController
@@ -44,6 +51,10 @@
 	// End current scene
 	if(self.scene)
 	{
+		// Remove advertisments from scene if needed
+		[self.adController removeAdvertismentsFromScene:self.scene];
+		
+		// And call scene will end
 		[self.sceneController sceneWillEnd];
 		[self.scene sceneWillEnd];
 	}
@@ -59,6 +70,9 @@
 	self.sceneController.core = self.core;
 	[self.sceneController sceneCreated]; // TODO: only call when created, not when popping back
 	
+	// Add advertisments if needed
+	[self.adController adAdvertismentsToScene:self.scene];
+
 	// Will begin (again)!
 	[self.sceneController sceneWillBegin];
 	[self.scene sceneWillBegin];
@@ -117,6 +131,11 @@
 - (UIView*)view
 {
 	return self.cocosDirector.view;
+}
+
+- (STKAdController *)adController
+{
+	return self.core[@"ad"];
 }
 
 @end

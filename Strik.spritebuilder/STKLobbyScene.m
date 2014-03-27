@@ -57,4 +57,11 @@
 	}
 }
 
+#pragma mark advertisment support
+- (BOOL)canDisplayAdvertismentOfType:(Class)advertismentType
+{
+	// We can only display bottom bar types if we have enought screen space
+	return [STKAdvertisementBottomBar isSubclassOfClass:advertismentType];
+}
+
 @end

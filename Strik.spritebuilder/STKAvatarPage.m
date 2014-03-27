@@ -12,6 +12,8 @@
 
 #import "STKButton.h"
 
+#import "Helpers.h"
+
 #define AVATAR_SCALE 0.78f
 #define AVATAR_PADDING 8
 
@@ -147,7 +149,7 @@
 + (int)avatarsPerPage
 {
 	// Perhaps in the future change this based on screens sizes, for now it is just 3.5" and 4"
-	if([UIScreen mainScreen].bounds.size.height < 568)
+	if(screen_height_less(568))
 	{
 		return 9;
 	}

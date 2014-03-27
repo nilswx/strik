@@ -19,6 +19,7 @@
 #import "STKExperience.h"
 #import "STKMatchController.h"
 #import "STKItemRegistry.h"
+#import "STKNewsCache.h"
 #import "STKInAppPurchasesController.h"
 #import "STKAvatar.h"
 #import "STKFacebookController.h"
@@ -35,7 +36,10 @@
 	self.inventory = [STKInventory new];
 	
 	// Install match controller
-    [self.core installComponent:[STKMatchController new] withKey:@"match"];
+    [self.core installComponent:[STKMatchController new]];
+	
+	// Install news cache
+	[self.core installComponent:[STKNewsCache new] withKey:@"news"];
 	
 	// Don't install the item registry for now
 	//[self.core installComponent:[STKItemRegistry new] withKey:@"items"];
@@ -161,10 +165,13 @@
 {
 	// Process player data
 	self.player = [STKPlayer playerFromMessage:msg];
-	int lastOnlineTime = [msg readInt];
-	NSLog(@"Session: login OK, identified as #%d (\"%@\"), last online = %d", self.player.playerId, self.player.name, lastOnlineTime);
+	NSDate* lastOnline = [NSDate dateWithTimeIntervalSince1970:[msg readInt]];
+	NSLog(@"Session: login OK, identified as #%d (\"%@\"), last online = %@", self.player.playerId, self.player.name, lastOnline);
 	
-	// Get IAP's
+	// Get news!
+	[self.core[@"news"] refreshNews];
+	
+	// Get IAPs!
 	[self.core[@"iap"] refreshProducts];
     
 	// Go Home, matey!

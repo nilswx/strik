@@ -100,13 +100,6 @@
 	[self rotateToNextNetwork];
 }
 
-- (void)onExit
-{
-	[super onExit];
-	
-	[self clearBanner];
-}
-
 - (void)removeFromParent
 {
 	[super removeFromParent];

@@ -25,7 +25,7 @@
 // This event will be called when the advertisements needs to be added to the scene
 - (void)displayAdvertisment:(STKAdvertisementNode *)advertisement;
 
-// This event will be called when the advertisement needs to be removed from the scene
-- (void)removeAdvertisement:(STKAdvertisementNode *)advertisement;
+// This event will be called when the advertisement needs to be removed from the scene when update layout is yes, layout will be recaculated to fill new space
+- (void)removeAdvertisement:(STKAdvertisementNode *)advertisement updateLayout:(BOOL)updateLayout;
 
 @end

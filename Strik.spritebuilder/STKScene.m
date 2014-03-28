@@ -137,11 +137,11 @@ typedef NS_ENUM(NSInteger, NodeOrder)
 }
 
 // This event will be called when the advertisement needs to be removed from the scene
-- (void)removeAdvertisement:(STKAdvertisementNode *)advertisement
+- (void)removeAdvertisement:(STKAdvertisementNode *)advertisement updateLayout:(BOOL)updateLayout
 {
 	if([advertisement isKindOfClass:[STKAdvertisementBottomBar class]])
 	{
-		[self removeAdvertismentBottomBar:advertisement];
+		[self removeAdvertismentBottomBar:advertisement updateLayout:updateLayout];
 	}
 }
 
@@ -157,15 +157,19 @@ typedef NS_ENUM(NSInteger, NodeOrder)
 	self.rootGameNode.contentSize = CGSizeMake(1, self.contentSizeInPoints.height - advertisementSize.height);
 }
 
-- (void)removeAdvertismentBottomBar:(STKAdvertisementNode *)advertisement
+- (void)removeAdvertismentBottomBar:(STKAdvertisementNode *)advertisement updateLayout:(BOOL)updateLayout
 {
 	// Remove the ad
 	[advertisement removeFromParent];
 	
-	// And resize the root game node
-	self.rootGameNode.contentSizeType = CCSizeTypeNormalized;
-	self.rootGameNode.contentSize = CGSizeMake(1, 1);
-	self.rootGameNode.position = CGPointMake(0, 0);
+	// We don't want this always, e.g when showing an overlay or transitioning, this looks jumpy then
+	if(updateLayout)
+	{
+		// And resize the root game node
+		self.rootGameNode.contentSizeType = CCSizeTypeNormalized;
+		self.rootGameNode.contentSize = CGSizeMake(1, 1);
+		self.rootGameNode.position = CGPointMake(0, 0);
+	}
 }
 
 - (CCNode *)rootGameNode

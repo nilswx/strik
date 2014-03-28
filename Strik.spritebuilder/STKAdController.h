@@ -16,7 +16,7 @@
 // Adds advertisments to scene
 - (void)adAdvertismentsToScene:(STKScene<STKAdvertisementDisplayProtocol>*)scene;
 
-// Removes advertisments from scene
-- (void)removeAdvertismentsFromScene:(STKScene<STKAdvertisementDisplayProtocol>*)scene;
+// Removes advertisments from scene when updateLayout is yes the layout will be updated to fill the empty space
+- (void)removeAdvertismentsFromScene:(STKScene<STKAdvertisementDisplayProtocol>*)scene updateLayout:(BOOL)updateLayout;
 
 @end

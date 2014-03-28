@@ -52,7 +52,7 @@
 	if(self.scene)
 	{
 		// Remove advertisments from scene if needed
-		[self.adController removeAdvertismentsFromScene:self.scene];
+		[self.adController removeAdvertismentsFromScene:self.scene updateLayout:NO];
 		
 		// And call scene will end
 		[self.sceneController sceneWillEnd];

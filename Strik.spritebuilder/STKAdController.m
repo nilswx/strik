@@ -31,7 +31,7 @@
 	}
 }
 
-- (void)removeAdvertismentsFromScene:(STKScene<STKAdvertisementDisplayProtocol>*)scene
+- (void)removeAdvertismentsFromScene:(STKScene<STKAdvertisementDisplayProtocol>*)scene updateLayout:(BOOL)updateLayout
 {
 	// Get
 	NSArray *children = scene.children;
@@ -43,7 +43,7 @@
 		if([child isKindOfClass:[STKAdvertisementNode class]])
 		{
 			// Let the scene remove it
-			[scene removeAdvertisement:(STKAdvertisementNode *)child];
+			[scene removeAdvertisement:(STKAdvertisementNode *)child updateLayout:updateLayout];
 		}
 	}
 }

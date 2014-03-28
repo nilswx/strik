@@ -8,6 +8,7 @@
 
 #import "STKAvatarNode.h"
 #import "STKAvatar.h"
+#import "STKClippingNode.h"
 
 typedef NS_ENUM(NSInteger, zIndex)
 {
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSInteger, zIndex)
 @property (readonly) CGFloat radius;
 
 // The clipping node which will clip the image
-@property CCClippingNode *clippingNode;
+@property STKClippingNode *clippingNode;
 
 @end
 
@@ -148,30 +149,27 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Only set new if there is one
 	if(maskedImage)
 	{
-		// Get the clipping sprite
-		CCSprite *clippingSprite = [CCSprite spriteWithImageNamed:@"Global/Images/circle-mask.png"];
 		
-		// Create the clipping node
-		self.clippingNode = [CCClippingNode clippingNodeWithStencil:clippingSprite];
+		UIImage *clippingImage = [UIImage imageNamed:@"circle-mask"];
 		
 		// Scale the maskedImage up if needed
-		if(maskedImage.contentSizeInPoints.width < clippingSprite.contentSizeInPoints.width || maskedImage.contentSizeInPoints.height < clippingSprite.contentSizeInPoints.height)
+		if(maskedImage.contentSizeInPoints.width < clippingImage.size.width || maskedImage.contentSizeInPoints.height < clippingImage.size.height)
 		{
 			// Determine smallest direction (horizontal, vertical)
 			CGFloat smallestImageSize;
 			CGFloat correspondingClippingSpriteSize;
 			
 			// It is the width
-			if(maskedImage.contentSizeInPoints.width < clippingSprite.contentSizeInPoints.width)
+			if(maskedImage.contentSizeInPoints.width < clippingImage.size.width)
 			{
 				smallestImageSize = maskedImage.contentSizeInPoints.width;
-				correspondingClippingSpriteSize = clippingSprite.contentSizeInPoints.width;
+				correspondingClippingSpriteSize = clippingImage.size.width;
 			}
 			// It is the height
 			else
 			{
 				smallestImageSize = maskedImage.contentSizeInPoints.height;
-				correspondingClippingSpriteSize = clippingSprite.contentSizeInPoints.height;
+				correspondingClippingSpriteSize = clippingImage.size.height;
 			}
 			
 			// Determine the needed scale
@@ -182,12 +180,10 @@ typedef NS_ENUM(NSInteger, zIndex)
 		}
 		
 		// Add the image
-		[self.clippingNode addChild:self.maskedImage];
+		// Create the clipping node
+		self.clippingNode = [STKClippingNode clippingNodeWithMask:clippingImage andNode:maskedImage];
 		self.clippingNode.zOrder = Z_IMAGE;
-		
-		// Don't know what idiot thought defaulting this to one was a good idea
-		self.clippingNode.alphaThreshold = 0;
-		
+
 		self.clippingNode.position = CGPointMake(self.contentSize.width * self.anchorPoint.x,
 												self.contentSize.height * self.anchorPoint.y);
 		

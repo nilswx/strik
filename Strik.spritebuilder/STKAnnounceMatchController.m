@@ -28,6 +28,8 @@
 #import "CCNode+Animation.h"
 #import "Linguistics.h"
 
+#import "STKClippingNode.h"
+
 #define TIMELINE_OPPONENT_FOUND @"OpponentFound"
 #define TIMELINE_INTRO @"Default Timeline"
 
@@ -137,19 +139,11 @@
 	countryLabel.string = [Linguistics localizedNameFromCountryCode:player.country];
 	
 	// Create a masked flag
-	CCSprite *flagMask = [CCSprite spriteWithImageNamed:@"Global/Images/flag-mask.png"];
 	CCSprite *flag = [CCSprite spriteWithImageNamed:[NSString stringWithFormat:@"Global/Images/Flags/%@.png", player.country]];
-	
-	CCClippingNode *clippingNode = [CCClippingNode clippingNodeWithStencil:flagMask];
-	
-	// Don't know what idiot thought defaulting this to one was a good idea
-	clippingNode.alphaThreshold = 0;
-	
-	[clippingNode addChild:flag];
+	STKClippingNode *clippingNode = [STKClippingNode clippingNodeWithMask:[UIImage imageNamed:@"flag-mask"] andNode:flag];
 	
 	// Make sure it is positioned correctly
-	flag.anchorPoint = CGPointMake(0, 0);
-	flagMask.anchorPoint = CGPointMake(0, 0);
+	clippingNode.anchorPoint = CGPointMake(0, 0);
 
 	// And add to scene
 	[flagContainer addChild:clippingNode];

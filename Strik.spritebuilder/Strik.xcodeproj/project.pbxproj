@@ -20,6 +20,7 @@
 		830452A318C769EC000BBE18 /* STKAnnounceMatchScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A218C769EC000BBE18 /* STKAnnounceMatchScene.m */; };
 		830452A618C769F8000BBE18 /* STKAnnounceMatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A518C769F8000BBE18 /* STKAnnounceMatchController.m */; };
 		830452AA18C77828000BBE18 /* STKAnnouncePlayerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 830452A918C77828000BBE18 /* STKAnnouncePlayerCard.m */; };
+		830770EA18E576E800B106A4 /* STKClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 830770E918E576E800B106A4 /* STKClippingNode.m */; };
 		8330170518BA267800F8296B /* GridNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170218BA267800F8296B /* GridNode.m */; };
 		8330170A18BA269C00F8296B /* CCNode+ClipVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170718BA269C00F8296B /* CCNode+ClipVisit.m */; };
 		8330170B18BA269C00F8296B /* ScrollNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330170918BA269C00F8296B /* ScrollNode.m */; };
@@ -160,6 +161,8 @@
 		830452A518C769F8000BBE18 /* STKAnnounceMatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAnnounceMatchController.m; sourceTree = "<group>"; };
 		830452A818C77828000BBE18 /* STKAnnouncePlayerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAnnouncePlayerCard.h; sourceTree = "<group>"; };
 		830452A918C77828000BBE18 /* STKAnnouncePlayerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAnnouncePlayerCard.m; sourceTree = "<group>"; };
+		830770E818E576E800B106A4 /* STKClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKClippingNode.h; sourceTree = "<group>"; };
+		830770E918E576E800B106A4 /* STKClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKClippingNode.m; sourceTree = "<group>"; };
 		8330170118BA267800F8296B /* GridNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNode.h; sourceTree = "<group>"; };
 		8330170218BA267800F8296B /* GridNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridNode.m; sourceTree = "<group>"; };
 		8330170318BA267800F8296B /* GridNodeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridNodeDataSource.h; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 				483B595818D0C50500F013C9 /* STKBlurLayer.m */,
 				836CFFA818D9927300B523C6 /* STKSplittedProgressNode.h */,
 				836CFFA918D9927300B523C6 /* STKSplittedProgressNode.m */,
+				830770E818E576E800B106A4 /* STKClippingNode.h */,
+				830770E918E576E800B106A4 /* STKClippingNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -1132,6 +1137,7 @@
 				8393787118B6023D0007BDE4 /* STKAvatar.m in Sources */,
 				8383A65F18B8E62E003816BF /* STKLobbyController.m in Sources */,
 				4800C8A818E46B9200267C85 /* STKNewsItem.m in Sources */,
+				830770EA18E576E800B106A4 /* STKClippingNode.m in Sources */,
 				8383A65B18B8D255003816BF /* STKProgressNode.m in Sources */,
 				8393784F18B601E60007BDE4 /* NSStack.m in Sources */,
 				8330170F18BB4EF000F8296B /* STKTimelineItemNode.m in Sources */,

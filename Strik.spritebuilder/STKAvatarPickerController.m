@@ -187,7 +187,7 @@
 	int index = 0;
 	if([self.allAvatars containsObject:avatar])
 	{
-		index = [self.allAvatars indexOfObject:avatar];
+		index = (int)[self.allAvatars indexOfObject:avatar];
 	}
 	
 	return floor(index / [STKAvatarPage avatarsPerPage]);

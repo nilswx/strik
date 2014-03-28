@@ -149,38 +149,9 @@ typedef NS_ENUM(NSInteger, zIndex)
 	// Only set new if there is one
 	if(maskedImage)
 	{
-		
+		// Create the clipping node
 		UIImage *clippingImage = [UIImage imageNamed:@"circle-mask"];
 		
-		// Scale the maskedImage up if needed
-		if(maskedImage.contentSizeInPoints.width < clippingImage.size.width || maskedImage.contentSizeInPoints.height < clippingImage.size.height)
-		{
-			// Determine smallest direction (horizontal, vertical)
-			CGFloat smallestImageSize;
-			CGFloat correspondingClippingSpriteSize;
-			
-			// It is the width
-			if(maskedImage.contentSizeInPoints.width < clippingImage.size.width)
-			{
-				smallestImageSize = maskedImage.contentSizeInPoints.width;
-				correspondingClippingSpriteSize = clippingImage.size.width;
-			}
-			// It is the height
-			else
-			{
-				smallestImageSize = maskedImage.contentSizeInPoints.height;
-				correspondingClippingSpriteSize = clippingImage.size.height;
-			}
-			
-			// Determine the needed scale
-			float difference = 1 - (smallestImageSize / correspondingClippingSpriteSize);
-			
-			// And scale up
-			maskedImage.scale = 1 + difference;
-		}
-		
-		// Add the image
-		// Create the clipping node
 		self.clippingNode = [STKClippingNode clippingNodeWithMask:clippingImage andNode:maskedImage];
 		self.clippingNode.zOrder = Z_IMAGE;
 

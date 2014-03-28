@@ -16,6 +16,34 @@
 	// Create UIImage from the node
 	UIImage *imageNode = [self imageFromNode:node];
 	
+	// Scale the maskedImage up if needed
+	if(imageNode.size.width < mask.size.width || imageNode.size.height < mask.size.height)
+	{
+		// Determine smallest direction (horizontal, vertical)
+		CGFloat smallestImageSize;
+		CGFloat correspondingClippingSpriteSize;
+		
+		// It is the width
+		if(imageNode.size.width < mask.size.width)
+		{
+			smallestImageSize = imageNode.size.width;
+			correspondingClippingSpriteSize = mask.size.width;
+		}
+		// It is the height
+		else
+		{
+			smallestImageSize = imageNode.size.height;
+			correspondingClippingSpriteSize = mask.size.height;
+		}
+		
+		// Determine the needed scale
+		float difference = 1 - (smallestImageSize / correspondingClippingSpriteSize);
+		float newScale = 1 + difference;
+		
+		// And scale it a bit up
+		imageNode = [self imageWithImage:imageNode scaledToSize:CGSizeMake(imageNode.size.width * newScale, imageNode.size.height * newScale)];
+	}
+	
 	// Mask the image with CG
 	UIImage *maskedImage = [self maskImage:imageNode withMask:mask];
 	
@@ -82,6 +110,18 @@
     CGImageRelease(maskedReference);
     
     return maskedImage;
+}
+
+// Thanks http://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end

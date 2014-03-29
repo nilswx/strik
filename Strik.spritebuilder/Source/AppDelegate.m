@@ -103,7 +103,7 @@
 	
 	// Install audio & play music
 	[self.core installComponent:[STKAudioController new]];
-	[self.core[@"audio"] playMusicWithName:@"bg-piano"];
+	[self.core[@"audio"] playMusicWithName:MUSIC_BACKGROUND_MENU];
 }
 
 - (CCScene*) startScene

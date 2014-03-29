@@ -29,3 +29,6 @@
 
 // Player names (emojis count for multiple chars0
 #define MAX_NAME_LENGTH 32
+
+// Music for scenes
+#define MUSIC_BACKGROUND_MENU @"bg-piano"

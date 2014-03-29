@@ -11,6 +11,7 @@
 #import "STKSettingsScene.h"
 
 #import "STKFacebookController.h"
+#import "STKAudioController.h"
 
 @interface STKSettingsController()
 
@@ -55,6 +56,17 @@
 {
 	[STKSettings setBool:![STKSettings boolforKey:SETTINGS_KEY_SOUND] forKey:SETTINGS_KEY_SOUND];
 	[self.settingsScene enableSetting:[STKSettings boolforKey:SETTINGS_KEY_SOUND] forKey:SETTINGS_KEY_SOUND];
+	
+	// Re-enable background music
+	if([STKSettings boolforKey:SETTINGS_KEY_SOUND])
+	{
+		[self.core[@"audio"] playMusicWithName:MUSIC_BACKGROUND_MENU];
+	}
+	// Disable background music
+	else
+	{
+		[self.core[@"audio"] stopMusic];
+	}
 }
 
 - (void)onAdFreeButton:(CCButton *)button

@@ -30,10 +30,13 @@
 
 // The rematch button
 @property (readonly) CCButton *rematchButton;
+@property (nonatomic, readonly) BOOL rematchButtonIsActive;
 
 // Returns all progress nodes on the scene
 @property (readonly) NSArray *allProgressNodes;
 
 - (NSArray *)allProgressNodes;
+
+- (void)setRematchButtonActive:(BOOL)active;
 
 @end

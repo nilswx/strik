@@ -20,11 +20,15 @@
 #import "STKAnnounceMatchController.h"
 #import "STKHomeController.h"
 #import "STKGameController.h"
+#import "STKEndGameController.h"
 
 #import "STKFriend.h"
 #import "STKFacebookController.h"
 
 @interface STKMatchController()
+
+// For easier access, only when we are on that scene else it returns nil
+@property (nonatomic, readonly) STKEndGameController *endGameController;
 
 @end
 
@@ -39,6 +43,7 @@
 	// Challenge system
 	[self routeNetMessagesOf:CHALLENGE to:@selector(handleChallenge:)];
 	[self routeNetMessagesOf:CHALLENGE_DECLINED to:@selector(handleChallengeDeclined:)];
+	[self routeNetMessagesOf:CHALLENGE_REVOKED to:@selector(handleChallengeRevoked:)];
 }
 
 - (void)exitMatch
@@ -151,59 +156,101 @@
 
 - (void)handleChallenge:(STKIncomingMessage*)message
 {
-	// Is player Facebook linked?
-	STKFacebookController* facebook = self.core[@"facebook"];
-	if(facebook.isServerLinked)
+	// Determine current scene to see if it is a rematch or an invite
+	if([self isOnEndGameScene])
 	{
-		// Known friend?
-		STKFriend* friend = [facebook friendByPlayerId:[message readInt]];
-		if(friend)
+		[self.endGameController didReceiveRematchRequest];
+	}
+	else
+	{
+		// Is player Facebook linked?
+		STKFacebookController* facebook = self.core[@"facebook"];
+		if(facebook.isServerLinked)
 		{
-			// Cool, we're popular!
-			NSLog(@"Challenge: received a new match challenge from #%d '%@' (%@)", friend.playerId, friend.name, friend.fullName);
-			
-			// Format text
-			NSString* title = [NSString stringWithFormat:NSLocalizedString(@"Challenged by %@", nil), friend.name];
-			NSString* message = [NSString stringWithFormat:NSLocalizedString(@"%@ has challenged you to a match!", nil), friend.fullName];
-			
-			// Create and identify alert view
-			UIAlertView* view = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Decline", nil) otherButtonTitles:NSLocalizedString(@"Accept", nil), nil];
-			view.delegate = self;
-			view.tag = friend.playerId;
-			
-			// Pop the big question!
-			[view show];
+			// Known friend?
+			STKFriend* friend = [facebook friendByPlayerId:[message readInt]];
+			if(friend)
+			{
+				// Cool, we're popular!
+				NSLog(@"Challenge: received a new match challenge from #%d '%@' (%@)", friend.playerId, friend.name, friend.fullName);
+				
+				// Format text
+				NSString* title = [NSString stringWithFormat:NSLocalizedString(@"Challenged by %@", nil), friend.name];
+				NSString* message = [NSString stringWithFormat:NSLocalizedString(@"%@ has challenged you to a match!", nil), friend.fullName];
+				
+				// Create and identify alert view
+				UIAlertView* view = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Decline", nil) otherButtonTitles:NSLocalizedString(@"Accept", nil), nil];
+				view.delegate = self;
+				view.tag = friend.playerId;
+				
+				// Pop the big question!
+				[view show];
+			}
 		}
 	}
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	[self acceptedChallengeForFriend:(int)alertView.tag accepted:(buttonIndex == 1)];
+}
+
+- (void)acceptedChallengeForFriend:(int)playerId accepted:(BOOL)acceptedChallenge
+{
 	// Collect details
-	int playerId = alertView.tag;
-	BOOL acceptChallenge = (buttonIndex == 1);
-	NSLog(@"Challenge: %@ challenge from player #%d", (acceptChallenge ? @"accepting" : @"declining"), playerId);
+	NSLog(@"Challenge: %@ challenge from player #%d", (acceptedChallenge ? @"accepting" : @"declining"), playerId);
 	
 	// Relay decision to server
-	STKOutgoingMessage* msg = [STKOutgoingMessage withOp:(acceptChallenge ? ACCEPT_CHALLENGE : DECLINE_CHALLENGE)];
+	STKOutgoingMessage* msg = [STKOutgoingMessage withOp:(acceptedChallenge ? ACCEPT_CHALLENGE : DECLINE_CHALLENGE)];
 	[msg appendInt:playerId];
 	[self sendNetMessage:msg];
 }
 
 - (void)handleChallengeDeclined:(STKIncomingMessage*)msg
 {
-	// Is player Facebook linked?
-	STKFacebookController* facebook = self.core[@"facebook"];
-	if(facebook.isServerLinked)
+	if([self isOnEndGameScene])
 	{
-		// Known friend?
-		STKFriend* friend = [facebook friendByPlayerId:[msg readInt]];
-		if(friend)
+		[self.endGameController didReceiveRematchRevoke];
+	}
+	else
+	{
+		// Is player Facebook linked?
+		STKFacebookController* facebook = self.core[@"facebook"];
+		if(facebook.isServerLinked)
 		{
-			// Such a sad notification
-			[[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]] show];
+			// Known friend?
+			STKFriend* friend = [facebook friendByPlayerId:[msg readInt]];
+			if(friend)
+			{
+				// Such a sad notification
+				[[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]] show];
+			}
 		}
 	}
+}
+
+- (void)handleChallengeRevoked:(STKIncomingMessage *)msg
+{
+	if([self isOnEndGameScene])
+	{
+		[self.endGameController didReceiveRematchRevoke];
+	}
+}
+
+- (BOOL)isOnEndGameScene
+{
+	STKDirector *director = self.core[@"director"];
+	return [director.sceneController isKindOfClass:[STKEndGameController class]];
+}
+
+- (STKEndGameController *)endGameController
+{
+	if([self isOnEndGameScene])
+	{
+		STKDirector *director = self.core[@"director"];
+		return (STKEndGameController *)(director.sceneController);
+	}
+	return nil;
 }
 
 @end

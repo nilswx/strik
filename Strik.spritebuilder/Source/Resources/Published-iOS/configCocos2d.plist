@@ -6,8 +6,6 @@
 	<string>CCScreenModeFlexible</string>
 	<key>CCSetupScreenOrientation</key>
 	<string>CCScreenOrientationPortrait</string>
-	<key>CCSetupShowDebugStats</key>
-	<true/>
 	<key>CCSetupTabletScale2X</key>
 	<true/>
 </dict>

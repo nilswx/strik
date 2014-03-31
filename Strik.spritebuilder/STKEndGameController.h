@@ -14,4 +14,7 @@
 
 - (id)initWithMatch:(STKMatch*)match;
 
+- (void)didReceiveRematchRequest;
+- (void)didReceiveRematchRevoke;
+
 @end

@@ -192,9 +192,7 @@
 			self.isInitiater = NO;
 			
 			// Send message to the server
-			STKOutgoingMessage *message = [STKOutgoingMessage withOp:REVOKE_CHALLENGE];
-			[message appendInt:self.match.opponent.info.playerId];
-			[self sendNetMessage:message];
+			[self.core[@"match"] revokeChallengeForFriend:self.match.opponent.info.playerId];
 			
 			// And animate back
 			[self.endGameScene setRematchButtonActive:NO];

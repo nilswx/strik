@@ -15,6 +15,8 @@
 @property CCNode *blurredBackground;
 
 - (void)overlayScene:(STKSceneController *)sceneController;
+- (void)overlayScene:(STKSceneController *)sceneController withHolePunchedButton:(BOOL)holePunchedButton;
+
 - (void)hideOverlay;
 
 @end

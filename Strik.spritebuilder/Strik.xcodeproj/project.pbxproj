@@ -36,6 +36,8 @@
 		835803BC18B67B720008DA0E /* STKNewPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803BB18B67B720008DA0E /* STKNewPlayerScene.m */; };
 		835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C518B6869A0008DA0E /* STKBootstrapController.m */; };
 		835803C918B686AD0008DA0E /* STKBootstrapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 835803C818B686AD0008DA0E /* STKBootstrapScene.m */; };
+		8360E04E18E9907E00EE7387 /* STKChallengeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8360E04D18E9907E00EE7387 /* STKChallengeScene.m */; };
+		8360E05118E9909300EE7387 /* STKChallengeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8360E05018E9909300EE7387 /* STKChallengeController.m */; };
 		836CFFAA18D9927300B523C6 /* STKSplittedProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 836CFFA918D9927300B523C6 /* STKSplittedProgressNode.m */; };
 		8379200B18CDB9A10094F3AC /* STKGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379200A18CDB9A10094F3AC /* STKGameController.m */; };
 		8379200E18CDBD5D0094F3AC /* STKGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379200D18CDBD5D0094F3AC /* STKGameScene.m */; };
@@ -197,6 +199,10 @@
 		835803C518B6869A0008DA0E /* STKBootstrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapController.m; sourceTree = "<group>"; };
 		835803C718B686AD0008DA0E /* STKBootstrapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKBootstrapScene.h; sourceTree = "<group>"; };
 		835803C818B686AD0008DA0E /* STKBootstrapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKBootstrapScene.m; sourceTree = "<group>"; };
+		8360E04C18E9907E00EE7387 /* STKChallengeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKChallengeScene.h; sourceTree = "<group>"; };
+		8360E04D18E9907E00EE7387 /* STKChallengeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKChallengeScene.m; sourceTree = "<group>"; };
+		8360E04F18E9909300EE7387 /* STKChallengeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKChallengeController.h; sourceTree = "<group>"; };
+		8360E05018E9909300EE7387 /* STKChallengeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKChallengeController.m; sourceTree = "<group>"; };
 		836CFFA818D9927300B523C6 /* STKSplittedProgressNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKSplittedProgressNode.h; sourceTree = "<group>"; };
 		836CFFA918D9927300B523C6 /* STKSplittedProgressNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKSplittedProgressNode.m; sourceTree = "<group>"; };
 		8379200918CDB9A10094F3AC /* STKGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKGameController.h; sourceTree = "<group>"; };
@@ -494,6 +500,17 @@
 				835803C818B686AD0008DA0E /* STKBootstrapScene.m */,
 			);
 			name = Bootstrap;
+			sourceTree = "<group>";
+		};
+		8360E04A18E9906600EE7387 /* Challenge scene */ = {
+			isa = PBXGroup;
+			children = (
+				8360E04C18E9907E00EE7387 /* STKChallengeScene.h */,
+				8360E04D18E9907E00EE7387 /* STKChallengeScene.m */,
+				8360E04F18E9909300EE7387 /* STKChallengeController.h */,
+				8360E05018E9909300EE7387 /* STKChallengeController.m */,
+			);
+			name = "Challenge scene";
 			sourceTree = "<group>";
 		};
 		8379201618CDE50F0094F3AC /* Nodes */ = {
@@ -834,6 +851,7 @@
 		8393789618B602BD0007BDE4 /* Lobby */ = {
 			isa = PBXGroup;
 			children = (
+				8360E04A18E9906600EE7387 /* Challenge scene */,
 				8330171018BB963300F8296B /* Nodes */,
 				8383A65D18B8E62E003816BF /* STKLobbyController.h */,
 				8383A65E18B8E62E003816BF /* STKLobbyController.m */,
@@ -1143,6 +1161,7 @@
 				8330170F18BB4EF000F8296B /* STKTimelineItemNode.m in Sources */,
 				8383A66218B8E642003816BF /* STKLobbyScene.m in Sources */,
 				835803C618B6869A0008DA0E /* STKBootstrapController.m in Sources */,
+				8360E04E18E9907E00EE7387 /* STKChallengeScene.m in Sources */,
 				8393783318B5FFB60007BDE4 /* STKScene.m in Sources */,
 				83B0EB2C18D05FD200C54574 /* STKBoardNode.m in Sources */,
 				8330171318BB964300F8296B /* STKLobbyPersonNode.m in Sources */,
@@ -1160,6 +1179,7 @@
 				835803B818B67B640008DA0E /* STKNewPlayerController.m in Sources */,
 				8343D49718E4281A0011B280 /* STKAdvertisementNode.m in Sources */,
 				8393787A18B6023D0007BDE4 /* STKPowerUp.m in Sources */,
+				8360E05118E9909300EE7387 /* STKChallengeController.m in Sources */,
 				8383A64518B77B27003816BF /* STKHomeScene.m in Sources */,
 				4856CEAB18DC93C8008FC004 /* STKAdvertisementBottomBar.m in Sources */,
 				8393784918B5FFF80007BDE4 /* STKOutgoingMessage.m in Sources */,

@@ -25,6 +25,8 @@
 #import "STKFriend.h"
 #import "STKFacebookController.h"
 
+#import "STKLobbyController.h"
+
 @interface STKMatchController()
 
 // For easier access, only when we are on that scene else it returns nil
@@ -206,6 +208,13 @@
 	[self sendNetMessage:msg];
 }
 
+- (void)revokeChallengeForFriend:(int)playerId
+{
+	STKOutgoingMessage *message = [STKOutgoingMessage withOp:REVOKE_CHALLENGE];
+	[message appendInt:playerId];
+	[self sendNetMessage:message];
+}
+
 - (void)handleChallengeDeclined:(STKIncomingMessage*)msg
 {
 	if([self isOnEndGameScene])
@@ -222,8 +231,11 @@
 			STKFriend* friend = [facebook friendByPlayerId:[msg readInt]];
 			if(friend)
 			{
-				// Such a sad notification
-				[[STKAlertView alertWithTitle:NSLocalizedString(@"Challenge Declined", nil) andMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ declined your challenge. Oh well!", nil), friend.fullName]] show];
+				// Change waiting for response to "player declined challenge"
+				STKDirector *director = self.core[@"director"];
+				STKLobbyController *lobbyController = (STKLobbyController *)director.sceneController;
+				
+				[lobbyController friendDeclinedChallenge];
 			}
 		}
 	}

@@ -23,4 +23,6 @@
 // Accept a challenge if one is there (it will send the server request regardless)
 - (void)acceptedChallengeForFriend:(int)playerId accepted:(BOOL)acceptedChallenge;
 
+- (void)revokeChallengeForFriend:(int)playerId;
+
 @end

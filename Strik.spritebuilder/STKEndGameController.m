@@ -34,6 +34,9 @@
 @property (nonatomic, readonly) STKEndGameScene *endGameScene;
 @property (nonatomic) STKMatch *match;
 
+// Determines if the person is the initiater of the rematch
+@property BOOL isInitiater;
+
 @end
 
 @implementation STKEndGameController
@@ -164,17 +167,54 @@
 
 - (void)onRematchButton:(CCButton *)button
 {
-	if(true) // TODO: if not already checkmarked
+	if(!self.endGameScene.rematchButtonIsActive)
 	{
+		[self.endGameScene setRematchButtonActive:YES];
+		
+		self.isInitiater = YES;
+		
 		NSLog(@"Rematch please");
 		
 		STKMatchPlayer* opponent = self.match.opponent;
 		
 		// Ask for a rematch...
 		STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
-		[msg appendInt:opponent.playerId];
+		[msg appendInt:opponent.info.playerId];
 		[self sendNetMessage:msg];
 	}
+	// I am not the initiater but my button is active, which means that I am challenged!
+	else
+	{
+		// We were the initiatiar, we revoke the request
+		if(self.isInitiater)
+		{
+			// No one is initiating anything anymore :(
+			self.isInitiater = NO;
+			
+			// Send message to the server
+			[self.core[@"match"] revokeChallengeForFriend:self.match.opponent.info.playerId];
+			
+			// And animate back
+			[self.endGameScene setRematchButtonActive:NO];
+		}
+		// We are not the initiater, so we see a checkmark, and tap, and accept
+		else
+		{
+			STKMatchController *matchController = self.core[@"match"];
+			[matchController acceptedChallengeForFriend:self.match.opponent.info.playerId accepted:YES];
+		}
+	}
+}
+
+- (void)didReceiveRematchRequest
+{
+	[self.endGameScene setRematchButtonActive:YES];
+}
+
+- (void)didReceiveRematchRevoke
+{
+	self.isInitiater = NO;
+	[self.endGameScene setRematchButtonActive:NO];
 }
 
 - (STKEndGameScene *)endGameScene

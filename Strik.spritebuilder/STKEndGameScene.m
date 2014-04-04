@@ -11,6 +11,8 @@
 #import "STKSplittedProgressNode.h"
 #import "STKAvatarNode.h"
 
+#import "CCNode+Animation.h"
+
 #define PLAYER_INFO_OFFSET_SMALL_SCREEN 10
 
 @interface STKEndGameScene()
@@ -33,6 +35,8 @@
 
 // The rematch button
 @property CCButton *rematchButton;
+@property CCNode *rematchContainer;
+@property CCSprite *rematchCheckMark;
 
 // The top bar
 @property CCNode *topBar;
@@ -64,6 +68,46 @@
 {
 	// Todo: change me some day
 	return @[self.wordsFoundProgress, self.lettersFoundProgress, self.scoreProgress];
+}
+
+- (BOOL)rematchButtonIsActive
+{
+	return (self.rematchContainer.contentSizeInPoints.width > 100);
+}
+
+- (void)setRematchButtonActive:(BOOL)active
+{
+	CGFloat startWidth;
+	CGFloat endWidth;
+	CGFloat scale;
+	
+	if(active)
+	{
+		startWidth = 100;
+		endWidth = 125;
+		scale = 0.5f;
+	}
+	else
+	{
+		startWidth = 125;
+		endWidth = 100;
+		scale = 0;
+	}
+	
+	// Resize the container
+	CCActionTween *resize = [CCActionTween actionWithDuration:0.5f key:@"width" from:startWidth	to:endWidth];
+	CCActionEaseElasticOut *eased = [CCActionEaseElasticOut actionWithAction:resize period:0.7f];
+	[self.rematchContainer runAction:eased];
+	
+	// Somehow (even when set to percentages) the button does not autofit in container, so resizing that manually too
+	CCActionTween *resizeButton = [CCActionTween actionWithDuration:0.5f key:@"width" from:startWidth to:endWidth];
+	CCActionEaseElasticOut *easedButton = [CCActionEaseElasticOut actionWithAction:resizeButton period:0.7f];
+	[self.rematchButton runAction:easedButton];
+	
+	// And animate the checkmark <3
+	CCActionScaleTo *scaleAction = [CCActionScaleTo actionWithDuration:0.5f scale:scale];
+	CCActionEaseElasticOut *easedScale = [CCActionEaseElasticOut actionWithAction:scaleAction period:0.7f];
+	[self.rematchCheckMark runAction:easedScale];
 }
 
 @end

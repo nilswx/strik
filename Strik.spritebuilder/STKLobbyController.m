@@ -21,6 +21,11 @@
 #import "STKAudioController.h"
 
 #import "STKDirector.h"
+#import "STKDirector+Modal.h"
+
+#import "STKChallengeController.h"
+#import "STKChallengeScene.h"
+#import "STKAvatarNode.h"
 
 #import "STKIncomingMessage.h"
 #import "STKOutgoingMessage.h"
@@ -32,6 +37,9 @@
 // The facebook users and friends
 @property NSArray *facebookUsers;
 @property NSArray *friends;
+
+// This will keep track of the last challenged friend
+@property STKFriend *lastChallengedFriend;
 
 @end
 
@@ -206,6 +214,23 @@
 			{
 				NSLog(@"Lobby: challenging %@", friend);
 				
+				// Create the overlay and show the overlay
+				STKChallengeController *challengeController = [STKChallengeController new];
+				STKChallengeScene *challengeScene = challengeController.scene;
+				
+				// Set name and avatar
+				challengeScene.playerName.string = friend.name;
+				challengeScene.avatarNode.avatar = friend.avatar;
+				challengeScene.avatarNode.backgroundColor = PLAYER_ONLINE_COLOR;
+				challengeScene.avatarNode.borderColor = PLAYER_ONLINE_COLOR;
+				
+				// Show me the candy
+				STKDirector *director = self.core[@"director"];
+				[director overlayScene:challengeController];
+				
+				// Set last challenged friend
+				self.lastChallengedFriend = friend;
+
 				// Challenge him/her (and animate etc)
 				STKOutgoingMessage* msg = [STKOutgoingMessage withOp:CHALLENGE_PLAYER];
 				[msg appendInt:friend.playerId];
@@ -279,6 +304,27 @@
 		
 		// Friend is available, but is playing in a different locale. Ask user if he wants to change
 	}
+}
+
+- (void)revokeChallenge
+{
+	// Revoke the challenge
+	[self.core[@"match"] revokeChallengeForFriend:self.lastChallengedFriend.playerId];
+	
+	// Hide the overlay
+	[self.core[@"director"] hideOverlay];
+	
+	// Unset last challenged friend
+	self.lastChallengedFriend = nil;
+}
+
+- (void)friendDeclinedChallenge
+{
+	// Get the overlay
+	STKDirector *director = self.core[@"director"];
+	STKChallengeScene *challengeScene = (STKChallengeScene *)director.overlayScene;
+	
+	challengeScene.responseLabel.string = NSLocalizedString(@"Opponent declined challenge.", nil);
 }
 
 @end

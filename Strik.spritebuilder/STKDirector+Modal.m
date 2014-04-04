@@ -30,10 +30,15 @@
 // Displays a scene over the current scene with blurred background
 - (void)overlayScene:(STKSceneController *)sceneController
 {
+	[self overlayScene:sceneController withHolePunchedButton:YES];
+}
+
+- (void)overlayScene:(STKSceneController *)sceneController withHolePunchedButton:(BOOL)holePunchedButton
+{
 	// Keep track of the overlay scene controller and scene
 	self.overlaySceneController = sceneController;
 	self.overlayScene = sceneController.scene;
-
+	
 	// What is a controller without a core...
 	self.overlaySceneController.core = self.core;
 	
@@ -47,7 +52,7 @@
 	
 	// Create the blurred background which will capture touch
 	// Todo: blur it
-
+	
 	// Create a full screen blurred node
 	self.blurredBackground = [self createBlurredBackground];
 	
@@ -57,7 +62,13 @@
 	
 	// Add a full screen button to this node, so when it is tapped the window closes
 	STKHolePunchedButton *button = [STKHolePunchedButton holePunchedButtonWithCenterNode:self.overlayScene];
-	[button setTarget:self selector:@selector(tappedBackground:)];
+	
+	// Only set target if we want to use the hole punched button (else it will be there and it will just absorb touches outside of the region)
+	if(holePunchedButton)
+	{
+		[button setTarget:self selector:@selector(tappedBackground:)];
+	}
+	
 	[self.blurredBackground addChild:button];
 	
 	[self.scene addChild:self.blurredBackground];
@@ -66,7 +77,7 @@
 	self.overlayScene.positionType = CCPositionTypeNormalized;
 	self.overlayScene.position = CGPointMake(0.5, 0.5);
 	self.overlayScene.anchorPoint = CGPointMake(0.5, 0.5);
-		
+	
 	// And put it on screen
 	[self.scene addChild:self.overlayScene];
 	

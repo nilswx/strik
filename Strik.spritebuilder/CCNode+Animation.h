@@ -12,6 +12,10 @@ typedef void (^animationBlock)();
 
 @interface CCNode (Animation)
 
+// Only use these with actions (they redraw too) else use contentSize
+@property CGFloat width;
+@property CGFloat height;
+
 - (void)runTimelineNamed:(NSString *)name;
 - (void)runTimelineNamed:(NSString *)name withCallback:(animationBlock)block;
 

@@ -180,7 +180,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	// Collect details
-	int playerId = alertView.tag;
+	int playerId = (int)alertView.tag;
 	BOOL acceptChallenge = (buttonIndex == 1);
 	NSLog(@"Challenge: %@ challenge from player #%d", (acceptChallenge ? @"accepting" : @"declining"), playerId);
 	
